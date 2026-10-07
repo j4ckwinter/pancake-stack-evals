@@ -36,6 +36,23 @@ class PackageValidationTests(unittest.TestCase):
     def test_real_repository_passes(self):
         self.assertEqual(validate_package(ROOT), [])
 
+    def test_declarative_library_rejects_scripts_tests_and_evidence(self):
+        for name in ("helper.py", "skills/setup/scripts/helper.sh", "tests/example.txt", "docs/evidence/result.json", "hooks/hook.json"):
+            with self.subTest(name=name):
+                path = self.root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("fixture")
+                self.assertTrue(any("declarative library" in error for error in validate_package(self.root)))
+                path.unlink()
+                parent = path.parent
+                while parent != self.root and not any(parent.iterdir()):
+                    parent.rmdir()
+                    parent = parent.parent
+        guide = self.root / "skills/setup/references/task.md"
+        guide.parent.mkdir(parents=True, exist_ok=True)
+        guide.write_text("Use inherited settings for this task.\n")
+        self.assertEqual(validate_package(self.root), [])
+
     def test_validation_leaves_package_unchanged(self):
         before = {path.relative_to(self.root): path.read_bytes()
                   for path in self.root.rglob("*") if path.is_file()}

@@ -32,6 +32,16 @@ def validate_package(root: Path) -> list[str]:
     def fail(path, message):
         errors.append(f"{path.relative_to(root)}: {message}")
 
+    for directory in (root / "tests", root / "docs/evidence", root / "hooks"):
+        if directory.exists():
+            fail(directory, "evaluation tools, evidence, and hooks do not belong in the declarative library")
+    for path in root.rglob("*"):
+        relative = path.relative_to(root)
+        if ".git" in relative.parts:
+            continue
+        if path.suffix == ".py" or (relative.parts[0] == "skills" and "scripts" in relative.parts):
+            fail(path, "bundled executable helpers do not belong in the declarative library")
+
     def read(path):
         if not path.resolve().is_relative_to(root):
             fail(path, "path escapes package")

@@ -5,7 +5,6 @@ Raw records may contain account metadata; keep output private, not in Git.
 """
 import argparse
 from datetime import datetime
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -105,7 +104,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
     bundle = run / "bundle"
     if variant == "pancake" or suite == "review":
         shutil.copytree(ROOT / "skills", bundle / "skills")
-        shutil.copytree(ROOT / "docs", bundle / "docs")
+        (bundle / "docs").mkdir()
+        shutil.copy2(ROOT / "docs/configuration.md", bundle / "docs/configuration.md")
     if suite == "review" and variant == "consolidated":
         check = bundle / "skills/check/SKILL.md"
         check.write_text(consolidate(check.read_text()))
