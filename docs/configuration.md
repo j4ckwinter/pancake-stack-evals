@@ -1,6 +1,6 @@
 # Configuration contract
 
-[The example](../config/preferences.example.json) has `schemaVersion` equal to the integer `1`. `defaults` contains `model` and `reasoningEffort`. `roles` contains `implementation`, `review`, and `research`, each with the same two fields. All fields are required. Extra fields, duplicate JSON keys, and unsupported schema versions are rejected.
+[The example](https://github.com/j4ckwinter/pancake-stack/blob/795dc890ee0b0acf24e743d82362c4a92e4202e1/config/preferences.example.json) has `schemaVersion` equal to the integer `1`. `defaults` contains `model` and `reasoningEffort`. `roles` contains `implementation`, `review`, and `research`, each with the same two fields. All fields are required. Extra fields, duplicate JSON keys, and unsupported schema versions are rejected.
 
 A role model of `null` inherits the default model. A default model of `null` inherits the supplied host model. An unavailable host model remains `null` in resolved output. Saved `reasoningEffort` values remain valid storage fields but do not affect resolution or delegation. Resolved effort is the supplied `--host-reasoning-effort` value or `null`.
 
@@ -24,7 +24,7 @@ See [Set up Pancake Stack](setup.md) for invocation and helper usage.
 
 Schema 1 stays supported with its existing fields and output shape. Schema 2 adds the required `challengeReviewers` list. Each entry contains exactly `model` and `reasoningEffort`, with the same nullable trimmed string rules. A reviewer model inherits through the review role, defaults, then the supplied host model. Effort comes only from the supplied host value or remains `null`. An empty list returns one effective review pair. `resolve` still returns only the three existing roles.
 
-[The panel example](../config/challenge-panel.example.json) contains two all-null entries to demonstrate the shape. These resolve to the same settings and do not demonstrate model diversity. Select distinct model IDs supported by your active host to request diversity. Duplicate model choices remain valid independent perspectives. Resolution preserves each entry and the panel count.
+[The panel example](https://github.com/j4ckwinter/pancake-stack/blob/795dc890ee0b0acf24e743d82362c4a92e4202e1/config/challenge-panel.example.json) contains two all-null entries to demonstrate the shape. These resolve to the same settings and do not demonstrate model diversity. Select distinct model IDs supported by your active host to request diversity. Duplicate model choices remain valid independent perspectives. Resolution preserves each entry and the panel count.
 
 `resolve-challenge` returns a list of effective reviewer pairs. It accepts the same optional host arguments as `resolve` and never writes or applies preferences. Missing storage returns one inherited review pair without creating directories. Schema 1 and an empty Challenge panel in schema 2 or 3 use the same fallback.
 
@@ -36,7 +36,7 @@ Only Challenge consumes the panel. Task-supplied reviewer choices replace it for
 
 Schema 3 retains the exact defaults, roles, and Challenge panel fields and adds the required `implementationReviewers` list. Each entry contains exactly `model` and `reasoningEffort`. Nullable models inherit through review, defaults, then the supplied host model. Effort comes only from the supplied host value or remains `null`. Schema 1 and 2 remain supported without migration. `resolve` and `resolve-challenge` keep their existing output shapes.
 
-[The implementation panel example](../config/implementation-panel.example.json) uses two all-null entries. They resolve to the same settings and request independent reviews without demonstrating model diversity. Duplicate entries remain separate reviewers. Choose distinct models supported by the actual delegation host to request diversity.
+[The implementation panel example](https://github.com/j4ckwinter/pancake-stack/blob/795dc890ee0b0acf24e743d82362c4a92e4202e1/config/implementation-panel.example.json) uses two all-null entries. They resolve to the same settings and request independent reviews without demonstrating model diversity. Duplicate entries remain separate reviewers. Choose distinct models supported by the actual delegation host to request diversity.
 
 `resolve-implementation-review` returns effective implementation reviewer pairs without writing or applying preferences. Missing storage, schema 1 or 2, and an empty schema 3 list return one inherited review pair. Reading missing storage does not create directories. Challenge and implementation panels resolve independently.
 

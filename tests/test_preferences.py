@@ -7,7 +7,9 @@ import sys
 import tempfile
 import unittest
 
-ROOT = Path(__file__).resolve().parents[1]
+from target import LEGACY
+
+ROOT = LEGACY
 HELPER = ROOT / "skills/setup/scripts/preferences.py"
 EXAMPLE = json.loads((ROOT / "config/preferences.example.json").read_text())
 

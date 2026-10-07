@@ -7,7 +7,9 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-HELPER = Path(__file__).resolve().parents[1] / "skills/setup/scripts/catalog.py"
+from target import LEGACY
+
+HELPER = LEGACY / "skills/setup/scripts/catalog.py"
 
 
 class CatalogTests(unittest.TestCase):

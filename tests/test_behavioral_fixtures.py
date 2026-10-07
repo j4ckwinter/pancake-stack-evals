@@ -142,7 +142,8 @@ class BehavioralFixtureTests(unittest.TestCase):
             snapshot(workspace)
 
     def test_preference_trial_uses_real_helper_and_temporary_storage(self):
-        helper = Path(__file__).resolve().parents[1] / "skills/setup/scripts/preferences.py"
+        from target import LEGACY
+        helper = LEGACY / "skills/setup/scripts/preferences.py"
         config = self.root / "profile/pancake-stack/config.json"
         config.parent.mkdir(parents=True)
         config.write_text(json.dumps({

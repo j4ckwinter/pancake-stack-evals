@@ -14,7 +14,7 @@ Start with a read-only task:
 
 > /pancake-stack:how Explain how this project starts and where its main behavior lives. Keep this read-only and cite the implementation.
 
-Use `/pancake-stack:pancake` for implementation, `/pancake-stack:design` for a proposal, and `/pancake-stack:setup` for optional saved preferences. Other workflow names match the [skill list](../README.md). Replace the Codex `$` prefix in [prompt recipes](recipes.md) with `/`.
+Use `/pancake-stack:pancake` for implementation, `/pancake-stack:design` for a proposal, and `/pancake-stack:setup` for optional saved preferences. Other workflow names match the [skill list](https://github.com/j4ckwinter/pancake-stack/blob/795dc890ee0b0acf24e743d82362c4a92e4202e1/README.md). Replace the Codex `$` prefix in [prompt recipes](recipes.md) with `/`.
 
 The local marketplace flow uses Claude Code's native shell commands:
 

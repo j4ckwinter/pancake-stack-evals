@@ -32,7 +32,8 @@ class ReviewEvaluationTests(unittest.TestCase):
                 self.assertNotIn('billing.py', diff)
 
     def test_consolidation_preserves_surrounding_instructions(self):
-        source = (Path(__file__).resolve().parents[1] / 'skills/check/SKILL.md').read_text()
+        from target import source_root
+        source = (source_root() / 'skills/check/SKILL.md').read_text()
         candidate = consolidate(source)
         self.assertLess(len(candidate), len(source))
         self.assertEqual(source.split('Read repository instructions')[0],

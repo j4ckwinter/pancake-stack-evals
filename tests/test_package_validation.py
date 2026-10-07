@@ -6,7 +6,9 @@ import unittest
 
 from package_validation import validate_package
 
-ROOT = Path(__file__).resolve().parents[1]
+from target import source_root
+
+ROOT = source_root()
 
 
 class PackageValidationTests(unittest.TestCase):
@@ -16,7 +18,8 @@ class PackageValidationTests(unittest.TestCase):
         self.root = Path(self.storage.name) / "package"
         self.root.mkdir()
         for directory in ("skills", "docs", "config", ".agents", ".claude-plugin", ".github", "tests/behavioral/cases"):
-            shutil.copytree(ROOT / directory, self.root / directory)
+            if (ROOT / directory).exists():
+                shutil.copytree(ROOT / directory, self.root / directory)
         for filename in ("README.md", "plugin.json"):
             shutil.copy2(ROOT / filename, self.root / filename)
 
@@ -57,6 +60,7 @@ class PackageValidationTests(unittest.TestCase):
             ("config/preferences.example.json", '{"defaults":{"model":null,"model":null}}', "duplicate JSON key"),
         ):
             with self.subTest(filename=filename):
+                (self.root / filename).parent.mkdir(parents=True, exist_ok=True)
                 (self.root / filename).write_text(content)
                 self.assert_diagnostic(filename, expected)
 
@@ -145,6 +149,7 @@ class PackageValidationTests(unittest.TestCase):
         )
         for content, diagnostic in cases:
             with self.subTest(content=content):
+                (self.root / filename).parent.mkdir(parents=True, exist_ok=True)
                 (self.root / filename).write_text(content)
                 self.assert_diagnostic(filename, diagnostic)
         (self.root / filename).write_text(

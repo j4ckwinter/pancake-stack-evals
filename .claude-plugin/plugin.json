@@ -1,9 +1,0 @@
-{
-  "name": "pancake-stack",
-  "version": "0.19.3",
-  "description": "Configure preferences, scope and design changes, understand code, challenge assumptions, fix and verify behavior, write clear updates, and reflect on lessons.",
-  "author": {
-    "name": "Jack Winter"
-  },
-  "skills": "./skills/"
-}

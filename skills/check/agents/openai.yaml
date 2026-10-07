@@ -1,3 +1,0 @@
-interface:
-  display_name: "Check"
-  short_description: "Review changes for bugs and regressions"

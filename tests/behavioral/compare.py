@@ -23,7 +23,12 @@ else:
     from support import CASES, prepare, snapshot
     from traces import completed_workers, summarize_session
 
-ROOT = Path(__file__).resolve().parents[2]
+EVALUATOR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(EVALUATOR / "tests"))
+from target import source_root
+sys.path.insert(0, str(EVALUATOR))
+from run_checks import identity
+ROOT = source_root()
 CASES_TO_RUN = ("summary", "records", "exporter")
 
 
@@ -67,7 +72,7 @@ def collect_sessions(profile):
 def assess_candidate(case, workspace, before, profile):
     """Run generated application/tests in the CLI's read-only sandbox."""
     script = (
-        f"import sys, json; sys.path.insert(0, {str(ROOT / 'tests')!r}); "
+        f"import sys, json; sys.path.insert(0, {str(EVALUATOR / 'tests')!r}); "
         "from behavioral.support import assess; "
         "case, workspace, before = json.load(sys.stdin); "
         "print(assess(case, workspace, before))"
@@ -88,7 +93,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if __package__:
             from .review import REQUEST, consolidate, prepare_review
         else:
-            sys.path.insert(0, str(ROOT / "tests"))
+            sys.path.insert(0, str(EVALUATOR / "tests"))
             from behavioral.review import REQUEST, consolidate, prepare_review
     destination.mkdir(mode=0o700)
     # Candidate paths carry neither the scenario nor its treatment label.
@@ -100,8 +105,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
     bundle = run / "bundle"
     if variant == "pancake" or suite == "review":
         shutil.copytree(ROOT / "skills", bundle / "skills")
-        (bundle / "docs").mkdir()
-        shutil.copy2(ROOT / "docs/configuration.md", bundle / "docs/configuration.md")
+        shutil.copytree(ROOT / "docs", bundle / "docs")
     if suite == "review" and variant == "consolidated":
         check = bundle / "skills/check/SKILL.md"
         check.write_text(consolidate(check.read_text()))
@@ -204,7 +208,7 @@ def main():
     if args.repetitions < 1 or args.timeout < 1:
         parser.error("repetitions and timeout must be positive")
     output = args.output.resolve()
-    if output.is_relative_to(ROOT):
+    if output.is_relative_to(ROOT) or output.is_relative_to(EVALUATOR):
         parser.error("raw trial output must be outside the repository")
     auth = Path(os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))) / "auth.json"
     if not auth.is_file():
@@ -214,7 +218,7 @@ def main():
         if __package__:
             from .review import CASES as review_cases
         else:
-            sys.path.insert(0, str(ROOT / "tests"))
+            sys.path.insert(0, str(EVALUATOR / "tests"))
             from behavioral.review import CASES as review_cases
     cases = tuple(review_cases) if args.suite == "review" else CASES_TO_RUN
     variants = ("baseline", "consolidated") if args.suite == "review" else ("baseline", "pancake")
@@ -222,12 +226,11 @@ def main():
             for index, case in enumerate(cases)
             for variant in (variants if (repeat + index) % 2 == 0 else variants[::-1])]
     write_json(output / "manifest.json", {
-        "source_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "source": identity(ROOT),
+        "evaluator": identity(EVALUATOR),
         "cli_version": subprocess.check_output(["codex", "--version"], text=True).strip(),
         "model": args.model, "effort": args.effort, "timeout_seconds": args.timeout,
         "suite": args.suite,
-        "source_hashes": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                          for p in sorted([*(ROOT / "skills").rglob("*"), *(ROOT / "tests/behavioral").rglob("*")]) if p.is_file() and "__pycache__" not in p.parts},
         "plan": plan,
     })
     results = []

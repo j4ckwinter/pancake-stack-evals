@@ -1,83 +1,25 @@
-# pancake stack
+# Pancake Stack evaluations
 
-i love how quickly ai lets me move. i hate the slop i end up building, fixing, and reviewing. speed isn’t worth much if i spend the next day cleaning up.
-what i do love is pancakes. so naturally, i made a stack.
-these are the skills i use every day to help ai write code i actually want to keep.
+This local repository owns package checks, behavioral fixtures, live trial tools, and historical evidence for Pancake Stack. It was cloned from source commit `795dc890ee0b0acf24e743d82362c4a92e4202e1`, preserving the original Git history. No remote is configured.
 
-## try it out
+## Run checks
 
-the same skills work in Codex and Claude Code. run these commands from the repo.
-
-### Codex
+Use Python 3.12, matching the former CI environment. From this repository, supply the library checkout explicitly:
 
 ```sh
-codex plugin marketplace add .
-codex plugin add pancake-stack@pancake-stack
+python3 -B run_checks.py --source ../pancake-stack --output /tmp/pancake-checks.json
 ```
 
-open a new Codex chat, then give it a task:
+The runner checks the current working tree. Its JSON record identifies the library and evaluator commits, dirty state, and file hashes, including nonignored untracked files. It also verifies that the checks did not change either tree. A dirty-tree result is not a verdict on the commit alone. Tests use temporary storage and do not install the plugin or change global preferences.
 
-> $pancake-stack:pancake Explain how this project starts and where its main behavior lives. Keep this read-only and cite the code you inspect.
+The `fixtures/legacy-0.19.3` helpers preserve tests of retired functionality. Their passing results describe those historical helpers, not current library capabilities.
 
-you can also select **Pancake** in the skill picker. see the [installation record](docs/installation-verification.md) for what’s been tested.
+## Live evaluations
 
-### Claude Code
+Live runs require explicit authorization and a supported authenticated Codex CLI. Set `PANCAKE_STACK_SOURCE` to the absolute library checkout before invoking `tests/behavioral/compare.py`. Keep raw output outside both repositories. The runner records both revisions, dirty state, and source hashes. It never runs during unit-test discovery.
 
-load the plugin for one session:
+The [evaluation procedure](docs/behavioral-evaluation.md), [trial results](docs/behavioral-results.md), and [baseline comparison](docs/baseline-comparison.md) retain historical methods and outcomes. Documentation copied from the library describes the versions named in those records; old repository-relative commands may require the explicit source setting above. Existing evidence has not been relabeled as verification of the simplified library.
 
-```sh
-claude --plugin-dir .
-```
+## Automation
 
-then give it the same task, using `/` instead of `$`:
-
-> /pancake-stack:pancake Explain how this project starts and where its main behavior lives. Keep this read-only and cite the code you inspect.
-
-Claude Code has validated the package and found all 19 skills. authenticated workflow and reviewer-setting checks are still pending. see [Claude Code support](docs/claude.md) for details.
-
-## use it
-
-reach for `$pancake-stack:pancake` when you have work to do. tell it what you want, where to look, and how you’ll know it works.
-
-use `$pancake-stack:design` when you want to settle the approach first. use `$pancake-stack:setup` to save optional model choices for delegates and reviewers. delegates inherit host effort unless the task requests an effort. setup doesn’t switch the model in your current chat, and each host keeps its own preferences.
-
-there are [prompt recipes](docs/recipes.md) if you want a starting point, or you can pick a skill directly:
-
-<details>
-<summary>all the other skills</summary>
-
-| skill | use it to |
-| --- | --- |
-| `$pancake-stack:scope` | work out what a ticket needs. |
-| `$pancake-stack:design` | plan a change and compare approaches. |
-| `$pancake-stack:how` | explain how the code works. |
-| `$pancake-stack:why` | investigate why it was built that way. |
-| `$pancake-stack:teach` | explain a concept at your pace. |
-| `$pancake-stack:check` | review a change for bugs and regressions. |
-| `$pancake-stack:challenge` | stress-test assumptions and decisions. |
-| `$pancake-stack:fix` | figure out what broke and fix it. |
-| `$pancake-stack:tdd` | write and run a failing test, then implement the behavior. |
-| `$pancake-stack:verify` | check it works and say what still needs checking. |
-| `$pancake-stack:sift` | clean up supplied prose. |
-| `$pancake-stack:wtf` | make the previous answer clearer. |
-| `$pancake-stack:balls` | draft a standup with blockers, aims, and lessons learned. |
-| `$pancake-stack:pr` | draft a PR title and description. |
-| `$pancake-stack:handoff` | leave someone enough context to pick things up. |
-| `$pancake-stack:recap` | catch up on decisions and unfinished work. |
-| `$pancake-stack:reflect` | find lessons and propose improvements. |
-
-</details>
-
-## a bit more
-
-[configuration](docs/configuration.md) and [setup](docs/setup.md) cover preferences and optional reviewers. [accepted safeguards](docs/safeguards.md) covers the checks and remaining gaps.
-
-run the repository checks with:
-
-```sh
-python3 -B -m unittest discover -s tests -v
-```
-
-these check the package, skills, links, preference helpers, and behavioral fixtures. preference tests use temporary storage. the checks don’t install the plugin or change your global preferences.
-
-[repository checks](.github/workflows/checks.yml) runs the same command on pull requests and pushes, using Python 3.12 on Ubuntu. installed-host checks and live model trials remain separate.
+GitHub cannot fetch this local-only repository. The library's old in-repository test workflow must be removed when its tests move. Once a remote is authorized, its workflow can check out a pinned evaluator commit alongside the library and run the command above. Private repository access requires separately configured credentials. Do not add a workflow pointing to a nonexistent remote.

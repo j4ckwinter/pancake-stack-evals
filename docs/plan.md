@@ -4,7 +4,7 @@
 
 Version 0.19.3 packages the same 19 workflows for Codex and Claude Code. Both hosts share the skill tree and keep separate preferences. Delegates inherit host effort unless the task explicitly requests an effort. Existing saved effort remains stored but inactive.
 
-Version 0.19.3 adds commit requests to the shipping workflow and requires repository commit-message conventions, with Conventional Commits as the fallback when none is documented. See [shipping guidance](../skills/pancake/references/shipping.md). Installed-host verification for this version remains pending.
+Version 0.19.3 adds commit requests to the shipping workflow and requires repository commit-message conventions, with Conventional Commits as the fallback when none is documented. See [shipping guidance](https://github.com/j4ckwinter/pancake-stack/blob/795dc890ee0b0acf24e743d82362c4a92e4202e1/skills/pancake/references/shipping.md). Installed-host verification for this version remains pending.
 
 Native Claude validation, isolated local installation, skill inventory, and model metadata discovery passed for 0.19.0 on 6 October 2026. Authenticated Claude behavior remains pending. See [Claude Code support](claude.md).
 

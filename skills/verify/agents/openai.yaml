@@ -1,3 +1,0 @@
-interface:
-  display_name: "Verify"
-  short_description: "Check behavior and report verification gaps"
