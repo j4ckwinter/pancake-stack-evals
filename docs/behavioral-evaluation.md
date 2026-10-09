@@ -44,6 +44,12 @@ Its public README defines malformed-record and version behavior. Trusted
 artifact probes stay outside candidate projects and exercise these documented
 contracts. Candidate test quality and verification evidence require separate
 inspection; passing artifacts do not certify added regression coverage.
+The contract case permits Python and Markdown additions, including shared
+modules, and behavior-preserving changes to the billing facade and README.
+The assessor protects persisted archives and unrelated existing files. Review
+added files and documentation for task relevance separately. A file outside
+automatic assessment scope needs adjudication, not an automatic claim that
+the candidate violated the task. Historical cases keep their original policy.
 
 All arms receive identical requests, model and effort, scope restrictions,
 timeouts, and two-thread limits. Scoped implementation delegates and read-only

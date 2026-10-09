@@ -11,6 +11,7 @@ from dataclasses import dataclass
 class Scenario:
     mutable: tuple
     probe: str
+    additional_suffixes: tuple = ()
 
 
 SCENARIOS = {
@@ -25,7 +26,7 @@ for arguments, expected_output in [(['--help'], 'Available commands: status, hel
     result = subprocess.run([sys.executable, '-B', 'cli.py', *arguments], text=True, capture_output=True, timeout=10)
     assert result.returncode == 0 and result.stdout == expected_output
 """),
-    "contract": Scenario(("producer.py", "consumer.py", "archive.py", "test_contract.py"), """
+    "contract": Scenario(("producer.py", "consumer.py", "archive.py", "billing.py", "README.md", "test_contract.py"), """
 import json
 import subprocess
 import sys
@@ -83,7 +84,7 @@ else:
     raise AssertionError('live reader accepted v1')
 result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'], text=True, capture_output=True, timeout=10)
 assert result.returncode == 0, result.stdout + result.stderr
-"""),
+""", additional_suffixes=(".py", ".md")),
     "delivery": Scenario((), """
 from app import quote
 assert quote(99, 'local') == 5
@@ -213,8 +214,9 @@ def assess(case, workspace, before):
             assert name in current, f"required source file missing: {name}"
         for name in current.keys() - before.keys():
             path = Path(name)
-            assert (len(path.parts) == 1 and name.startswith("test_")
-                    and name.endswith(".py")), f"unrelated file added: {name}"
+            regression = len(path.parts) == 1 and name.startswith("test_") and name.endswith(".py")
+            message = "addition outside automatic assessment scope" if scenario.additional_suffixes else "unrelated file added"
+            assert regression or path.suffix in scenario.additional_suffixes, f"{message}: {name}"
     environment = os.environ.copy()
     environment.pop("CARRIER_TOKEN", None)
     probe = "import sys; sys.path.insert(0, '.')\n" + scenario.probe + "\nprint('artifact checks passed')\n"
