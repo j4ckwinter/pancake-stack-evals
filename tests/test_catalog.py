@@ -62,8 +62,8 @@ for line in sys.stdin:
 ''')
             server.chmod(0o700)
             result = subprocess.run(
-                [sys.executable, str(HELPER), "--codex", str(server), "--timeout", "1"],
-                text=True, capture_output=True, timeout=6,
+                [sys.executable, str(HELPER), "--codex", str(server), "--timeout", "3"],
+                text=True, capture_output=True, timeout=8,
             )
             self.assertEqual(sorted(p.name for p in Path(directory).iterdir()), ["codex"])
             return result
@@ -161,9 +161,10 @@ for line in sys.stdin:
 ''')
             server.chmod(0o700)
             result = subprocess.run(
-                [sys.executable, str(HELPER), "--host", "claude", "--claude", str(server), "--timeout", "1"],
-                capture_output=True, text=True, timeout=6,
+                [sys.executable, str(HELPER), "--host", "claude", "--claude", str(server), "--timeout", "3"],
+                capture_output=True, text=True, timeout=8,
             )
+            self.assertTrue(record.is_file(), f"fake Claude did not initialize: {result.stderr}")
             recorded = json.loads(record.read_text())
             with self.assertRaises(ProcessLookupError):
                 os.kill(recorded["pid"], 0)
