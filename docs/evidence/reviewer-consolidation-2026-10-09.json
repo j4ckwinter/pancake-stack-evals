@@ -1,0 +1,488 @@
+{
+  "version": "0.21.3",
+  "sourceRevision": "fa1beb7faebf6b59da3f746f37f40ee108ecf5aa",
+  "sourceStatus": " M .claude-plugin/marketplace.json\n M .claude-plugin/plugin.json\n M plugin.json\n M skills/challenge/SKILL.md\n M skills/pancake/references/host-runtime.md\n M skills/pancake/references/implementation.md\n",
+  "hostVersions": {
+    "codex": "0.160.0",
+    "claude": "2.1.291"
+  },
+  "sourceHashes": {
+    "plugin.json": "4a5e5542e808538bb584abeeeed2e0fc19908b66685181c11c38db68b044ada3",
+    "README.md": "86ec8a74fdc1458e3f9a9c62a185e58edfaa56e12372d5eb45a683b35492b5c3",
+    ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+    "AGENTS.md": "ca63ce258e460d3e868635722be824af829d826ec9032053cc84b206e57a9e6b",
+    ".agents/plugins/marketplace.json": "6afb5815a255610fd46864fb0522f4d2554ed728fc23105a0977705885a0a313",
+    "docs/recipes.md": "31ec6040a757500bf7325e4c3f52b7484f07ba1f5e71d0a0555af4c705fb7adf",
+    "docs/setup.md": "d2a0e99a16f1016d66b9654fe1e34020acfe87c52c632b5c52066bc8a7f54ba2",
+    "docs/installation-verification.md": "79bc12ce89ccfce690e99e3026d3f72e9b4da187904eb1d72c660a432f00a088",
+    "docs/verification.md": "b96741e6f793e53c2a3e721da1f187587ff354463cc5418f8823d0516d0a714b",
+    "docs/configuration.md": "758b0ac82b6270939da134957c49885a38fef8ea2544d26993de8ef08e1240db",
+    "docs/plan.md": "ae0662842e0fb58e282005b4d39db56ac0165d9d39eeb78a41175713ab26bbd0",
+    "docs/claude.md": "6701fc7640717aedb84f53ce9c8e2076c3507a07522ac10649e95c05f71e41a3",
+    "docs/local/pstack-roadmap.md": "0787fca310db1eed4ad7d680db36e8571ea2808651f4994af466e2570e294644",
+    ".claude-plugin/marketplace.json": "08a6a4f801b28c443d33ffa76e5dd166f34adf4c377870be973ef13dc3e43df9",
+    ".claude-plugin/plugin.json": "57c711e10b56317a8cf8d4191ccc2fb85ee8fd0af2725842b965ea59a5dd3891",
+    ".github/workflows/checks.yml": "234100ae547307adef396a7b5c10c9e5aaa8ef5ca8e9ec978e5782b705ca9f73",
+    "skills/pancake/SKILL.md": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+    "skills/pancake/references/implementation.md": "25c9070cdb67462ef64355de61d8a7b0c8ba7dddc7b9f908a17c6cd0384ea5ab",
+    "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+    "skills/pancake/references/parallel-work.md": "a7c0f2738db69d0222adfb5448b685e50bf6a739f0cc5bc263211d77d1d51654",
+    "skills/pancake/references/experiments.md": "a3ee8e890bfbf456e72019438a4b6fc6a115ad244232d32b5441d553debd7c8a",
+    "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+    "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+    "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+    "skills/pancake/references/substantial-work.md": "b734cb5affaaff02bf9da6f7454d4007ef18af206a9f61f82735fa628dbf9bfa",
+    "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+    "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+    "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+    "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+    "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+    "skills/pancake/agents/openai.yaml": "9be4bc45816a22ae67eae89726daa97bdb846fd32df0e3fe30ab4cc800b406e0",
+    "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+    "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+    "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+    "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+    "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+    "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+    "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+    "skills/design/SKILL.md": "049311b1543c7cf0dfeea03e0c374fce47e174546027cea43fe1783fe5777903",
+    "skills/design/references/competing-designs.md": "54e4b2e1ddde93dfdf1b99d2cf932f75cc701a9fd28b4cc9688550b024cc5a6e",
+    "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+    "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+    "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+    "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+    "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+    "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+    "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+    "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+    "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+    "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+    "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+    "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+    "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+    "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+    "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+    "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+    "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+    "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+    "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+    "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+    "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+    "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+    "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+    "skills/fix/SKILL.md": "36f445afec49a02a518a98210f826416cb0b70ea382a9c30db4ba42fa9de7ae5",
+    "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+    "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+    "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+    "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+    "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+    "skills/check/SKILL.md": "fd4f838b3f8992a4ebd67ac4b1dd19edd8c58f40124005ff3ec47a7cc8cc2d0e",
+    "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+    "skills/tdd/SKILL.md": "095fa6a462281270cab765533bcd29fd7fe9710382c72a7d6778558719078403",
+    "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+    "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+    "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080"
+  },
+  "installs": {
+    "codex-profile": {
+      "commands": [
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "marketplace",
+            "add",
+            "$RUN_ROOT/package",
+            "--json"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "add",
+            "pancake-stack@pancake-stack",
+            "--json"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "list",
+            "--json"
+          ],
+          "exitCode": 0
+        }
+      ],
+      "resourceCount": 61,
+      "mismatches": [],
+      "installedPath": "$RUN_ROOT/codex-profile/plugins/cache/pancake-stack/pancake-stack/0.21.3",
+      "discovery": {
+        "command": [
+          "codex",
+          "app-server"
+        ],
+        "names": [
+          "pancake-stack:balls",
+          "pancake-stack:challenge",
+          "pancake-stack:check",
+          "pancake-stack:design",
+          "pancake-stack:fix",
+          "pancake-stack:handoff",
+          "pancake-stack:how",
+          "pancake-stack:pancake",
+          "pancake-stack:pr",
+          "pancake-stack:recap",
+          "pancake-stack:reflect",
+          "pancake-stack:scope",
+          "pancake-stack:setup",
+          "pancake-stack:sift",
+          "pancake-stack:tdd",
+          "pancake-stack:teach",
+          "pancake-stack:verify",
+          "pancake-stack:why",
+          "pancake-stack:wtf"
+        ],
+        "passed": true
+      }
+    },
+    "claude-profile": {
+      "commands": [
+        {
+          "command": [
+            "claude",
+            "plugin",
+            "marketplace",
+            "add",
+            "$RUN_ROOT/package"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "claude",
+            "plugin",
+            "install",
+            "pancake-stack@pancake-stack",
+            "--json"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "claude",
+            "plugin",
+            "list",
+            "--json"
+          ],
+          "exitCode": 0
+        }
+      ],
+      "resourceCount": 61,
+      "mismatches": [],
+      "installedPath": "$RUN_ROOT/claude-profile/plugins/cache/pancake-stack/pancake-stack/0.21.3",
+      "discovery": {
+        "command": [
+          "claude",
+          "-p",
+          "--input-format",
+          "stream-json",
+          "--output-format",
+          "stream-json",
+          "--verbose",
+          "--no-session-persistence",
+          "--setting-sources",
+          "user",
+          "--settings",
+          "{\"disableAllHooks\":true}",
+          "--strict-mcp-config",
+          "--mcp-config",
+          "{\"mcpServers\":{}}",
+          "--tools",
+          ""
+        ],
+        "names": [
+          "pancake-stack:balls",
+          "pancake-stack:challenge",
+          "pancake-stack:check",
+          "pancake-stack:design",
+          "pancake-stack:fix",
+          "pancake-stack:handoff",
+          "pancake-stack:how",
+          "pancake-stack:pancake",
+          "pancake-stack:pr",
+          "pancake-stack:recap",
+          "pancake-stack:reflect",
+          "pancake-stack:scope",
+          "pancake-stack:setup",
+          "pancake-stack:sift",
+          "pancake-stack:tdd",
+          "pancake-stack:teach",
+          "pancake-stack:verify",
+          "pancake-stack:why",
+          "pancake-stack:wtf"
+        ],
+        "passed": true
+      }
+    },
+    "profile": {
+      "commands": [
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "marketplace",
+            "add",
+            "$RUN_ROOT/package",
+            "--json"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "add",
+            "pancake-stack@pancake-stack",
+            "--json"
+          ],
+          "exitCode": 0
+        },
+        {
+          "command": [
+            "codex",
+            "plugin",
+            "list",
+            "--json"
+          ],
+          "exitCode": 0
+        }
+      ],
+      "resourceCount": 61,
+      "mismatches": [],
+      "installedPath": "$RUN_ROOT/exporter/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3"
+    }
+  },
+  "trials": {
+    "records": {
+      "case": "records",
+      "prompt": "$pancake-stack:pancake\nChange new invoice payloads to use amount instead of total and update the live consumer. Preserve compatibility with archived records that still use total. Update the relevant checks and verify both contracts. Preserve the public create_invoice(total=...) API, including the established billing caller.\nWork only in this fixture and the installed Pancake Stack plugin. Preserve unrelated files. Independent delegates may read those same locations and must not delegate further. Do not inspect global preferences, unrelated projects, user history, or other profiles. Do not commit, install dependencies, use external services, or write preferences.",
+      "command": [
+        "codex",
+        "exec",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=3",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "workspace-write",
+        "--skip-git-repo-check",
+        "--cd",
+        "$RUN_ROOT/records/workspace",
+        "--output-last-message",
+        "$RUN_ROOT/records/final.txt",
+        "-"
+      ],
+      "timeoutSeconds": 360,
+      "timedOut": false,
+      "exitCode": 0,
+      "elapsedSeconds": 79.116,
+      "artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "preferencesAbsent": true,
+      "authRemoved": true,
+      "final": "New invoice payloads now use `amount`, and the live consumer reads it. `create_invoice(total=...)` and the billing caller remain compatible; archived `total` records remain readable.\n\nAll four tests pass. Independent review found no actionable issues. Archive data and unrelated files are unchanged.",
+      "observedInstalledReadPaths": [
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/check/SKILL.md",
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/pancake/references/host-runtime.md",
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/pancake/references/implementation.md",
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/pancake/references/values.md",
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/sift/SKILL.md",
+        "$RUN_ROOT/records/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/verify/SKILL.md"
+      ],
+      "coverage": {
+        "expectedReviewers": 1,
+        "completedReviewers": 1,
+        "freshContextRequests": true,
+        "modelAndEffortOverridesOmitted": true,
+        "nestedDelegatesObserved": false,
+        "briefNeutrality": "not inspectable; encrypted message field"
+      },
+      "workers": [
+        {
+          "id": "01a1215c-62d0-79c0-923e-cc84537e30ec",
+          "parent_id": "01a1215b-ac7a-7d41-b097-fa01ef5607ee",
+          "agent_path": "/root/invoice_review",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "verdicts": [
+            "No actionable findings.\n\n`producer.py:1\u20132` preserves `create_invoice(total=...)` while emitting `amount`; `consumer.py:2` reads that field. The billing keyword caller remains compatible. Archived `total` records remain readable through `archive.py:2`, and `archive.json` retains the expected legacy record.\n\nVerification: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v` passed all four tests, covering live payloads, the keyword API with zero, billing, and archive reading.\n\nCoverage limit: this verdict covers the supplied fixture and contracts; no external consumers were inspected. With no Git repository, historical file preservation cannot be independently established from a diff."
+          ]
+        }
+      ],
+      "spawnCalls": [
+        {
+          "id": "call_8a6c7a66ba8e43108b5f172efa10f0ea",
+          "name": "spawn_agent",
+          "arguments": {
+            "task_name": "invoice_review",
+            "fork_turns": "none"
+          }
+        }
+      ],
+      "parentId": "01a1215b-ac7a-7d41-b097-fa01ef5607ee"
+    },
+    "exporter": {
+      "case": "exporter",
+      "prompt": "$pancake-stack:challenge\nReview the supplied change.diff for bugs and compatibility gaps. Check relevant callers and explain any limits on what you can verify. Leave the files unchanged.\nUse a two-entry reviewer panel: reviewer 1 inherits the current model and reasoning effort; reviewer 2 independently inherits the current model and reasoning effort.\nWork only in this fixture and the installed Pancake Stack plugin. Preserve unrelated files. Independent delegates may read those same locations and must not delegate further. Do not inspect global preferences, unrelated projects, user history, or other profiles. Do not commit, install dependencies, use external services, or write preferences.",
+      "command": [
+        "codex",
+        "exec",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=3",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "$RUN_ROOT/exporter/workspace",
+        "--output-last-message",
+        "$RUN_ROOT/exporter/final.txt",
+        "-"
+      ],
+      "timeoutSeconds": 360,
+      "timedOut": false,
+      "exitCode": 0,
+      "elapsedSeconds": 87.027,
+      "artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "preferencesAbsent": true,
+      "authRemoved": true,
+      "final": "**Verdict: fix the compatibility regression before accepting this change.**\n\n- **Act on:** Renaming `total` to `amount` in [app.py]($RUN_ROOT/exporter/workspace/app.py:2) breaks [consumer.py]($RUN_ROOT/exporter/workspace/consumer.py:2), which still requires `total`. `read_total(export_invoice(19.5))` reproduced `KeyError: 'total'`. Preserve the existing key or coordinate a migration across consumers.\n- **Verification gap:** The existing test passes but checks only the new export shape. Add an exporter-to-consumer test to catch this regression.\n- **Unresolved:** The external billing service\u2019s contract and sandbox are inaccessible, as documented in [README.md]($RUN_ROOT/exporter/workspace/README.md:1). Its compatibility cannot be verified here; obtain contract evidence before removing `total`.\n\nBoth requested reviewers completed independent reviews in fresh contexts, with model and reasoning overrides omitted to inherit current settings. Their findings agree and were confirmed directly.\n\nReviewed the complete diff and relevant local code and tests. Files remain unchanged; no dependencies or external services were used.",
+      "observedInstalledReadPaths": [
+        "$RUN_ROOT/exporter/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/challenge/SKILL.md",
+        "$RUN_ROOT/exporter/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/pancake/references/host-runtime.md",
+        "$RUN_ROOT/exporter/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/pancake/references/values.md",
+        "$RUN_ROOT/exporter/profile/plugins/cache/pancake-stack/pancake-stack/0.21.3/skills/sift/SKILL.md"
+      ],
+      "coverage": {
+        "expectedReviewers": 2,
+        "completedReviewers": 2,
+        "freshContextRequests": true,
+        "modelAndEffortOverridesOmitted": true,
+        "nestedDelegatesObserved": false,
+        "briefNeutrality": "not inspectable; encrypted message field"
+      },
+      "workers": [
+        {
+          "id": "01a1215d-4335-79b1-9241-dcbfe922caa3",
+          "parent_id": "01a1215c-e32d-7432-a4ba-66c4d078823a",
+          "agent_path": "/root/reviewer_1",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "verdicts": [
+            "Verdict: **act on the compatibility regression before accepting this change.**\n\n- **Supported bug:** Renaming `\"total\"` to `\"amount\"` in [app.py]($RUN_ROOT/exporter/workspace/app.py:2) breaks [consumer.py]($RUN_ROOT/exporter/workspace/consumer.py:2), which still reads `payload[\"total\"]`. Concrete trigger: `read_total(export_invoice(19.5))`. I executed this call and observed `KeyError: 'total'`. Preserve the existing key unless the rename is an intentional migration with all consumers updated.\n- **Verification gap:** [test_app.py]($RUN_ROOT/exporter/workspace/test_app.py:8) expects only `{\"amount\": 19.5}`. The single existing test passes while the exporter-to-consumer call fails. Add coverage for that integration and the intended compatibility contract.\n- **Unresolved external compatibility:** [README.md]($RUN_ROOT/exporter/workspace/README.md:1) identifies an external billing consumer whose contract and sandbox are inaccessible. No evidence establishes whether it accepts `\"amount\"`. Confirm its contract before removing `\"total\"`; do not treat external breakage as proved.\n\nScope: inspected the entire supplied diff, exporter, local consumer, test, README, and unrelated note. No fixture `AGENTS.md` was found. Read challenge, core values, sift, and host-runtime guidance. No changes, diff application, services, installations, external requests, or further delegation.\n\nChecks: `python3 -B -m unittest -v` passed one test; the direct integration reproduction failed as described. The launcher emitted sandbox cache warnings, but both Python checks executed. External billing behavior remains unverified."
+          ]
+        },
+        {
+          "id": "01a1215d-5c79-7ec2-a291-e07a9769e6b6",
+          "parent_id": "01a1215c-e32d-7432-a4ba-66c4d078823a",
+          "agent_path": "/root/reviewer_2",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "verdicts": [
+            "Verdict: act on a confirmed compatibility regression; external compatibility remains unresolved.\n\n- **Act on \u2014 removing `total` breaks the supplied consumer.** [app.py]($RUN_ROOT/exporter/workspace/app.py:2) returns `{\"amount\": total}`, while [consumer.py]($RUN_ROOT/exporter/workspace/consumer.py:2) reads `payload[\"total\"]`. Calling `read_total(export_invoice(19.5))` reproduced `KeyError: 'total'`. Preserve the established `total` contract, or coordinate a migration with affected consumers. Add an exporter-to-consumer integration test.\n- **Unresolved \u2014 external billing compatibility.** [README.md]($RUN_ROOT/exporter/workspace/README.md:1) identifies an external billing consumer whose contract and sandbox are inaccessible. Its acceptance of `amount` cannot be established here. Obtain its schema or contract evidence before treating the rename as compatible.\n\nThe existing unit test passed, but [test_app.py]($RUN_ROOT/exporter/workspace/test_app.py:8) asserts only the new exporter shape and misses consumer compatibility.\n\nInspected the complete supplied diff, implementation, consumer, test, README, and unrelated note; no fixture instructions found in the fixture or its immediate parent. Read the challenge skill and required references. No changes applied, dependencies installed, external services accessed, or further agents delegated. Python checks ran with bytecode disabled; launcher cache attempts were denied by the sandbox."
+          ]
+        }
+      ],
+      "spawnCalls": [
+        {
+          "id": "call_a146574942c546688a48bf529dd9e6ca",
+          "name": "spawn_agent",
+          "arguments": {
+            "task_name": "reviewer_1",
+            "fork_turns": "none"
+          }
+        },
+        {
+          "id": "call_af209a371d7b445a8e53b8eac4e85644",
+          "name": "spawn_agent",
+          "arguments": {
+            "task_name": "reviewer_2",
+            "fork_turns": "none"
+          }
+        }
+      ],
+      "parentId": "01a1215c-e32d-7432-a4ba-66c4d078823a"
+    }
+  },
+  "limitations": [
+    "Claude authenticated behavior unverified because no login is available.",
+    "Child spawn message text is encrypted in session records. fork_turns none establishes fresh-context request; brief neutrality cannot be inspected.",
+    "Observed model and effort come from local host turn_context metadata, not independent remote-runtime attestation.",
+    "Two bounded installed CLI trials do not establish every workflow, visible app picker behavior, or general success rates.",
+    "Source was dirty when captured; source hashes identify the tested snapshot."
+  ],
+  "postTrialCommittedSourceCheck": {
+    "commit": "b74aa9eb64142425db28961ebf686ec4fd5c1aff",
+    "trackedFileCount": 74,
+    "missingFromSnapshot": [],
+    "differentFromSnapshot": [],
+    "snapshotExtraFiles": [
+      "docs/local/pstack-roadmap.md"
+    ],
+    "matchesCommittedTree": true
+  },
+  "committedSourceRevision": "b74aa9eb64142425db28961ebf686ec4fd5c1aff",
+  "snapshotMatchesCommittedSource": true,
+  "validation": {
+    "tests": 80,
+    "passed": true,
+    "sourceUnchanged": true,
+    "evaluatorUnchanged": true,
+    "independentStaticReview": "no actionable regressions"
+  }
+}
