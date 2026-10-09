@@ -2,7 +2,7 @@
 
 Pancake Stack `0.21.3` consolidates shared reviewer mechanics in `host-runtime.md`. Challenge and implementation retain their own triggers and default reviewer counts. The three affected documents contain 398 fewer words. Independent static review found no actionable regressions, and all 80 external checks passed without changing either repository.
 
-The [retained evidence](evidence/reviewer-consolidation-2026-10-09.json) identifies the tested snapshot, committed source revision, exact prompts and commands, installed resource hashes, worker identities, and completed verdicts. The snapshot was captured from a dirty worktree and then matched to commit `b74aa9e`. Raw host records remain private.
+The [retained evidence](evidence/reviewer-consolidation-2026-10-09.json) identifies the tested snapshot, committed source revision, exact prompts and commands, installed resource hashes, worker identities, and completed verdicts. The snapshot was captured from a dirty worktree; all 74 tracked files match commit `b74aa9e`. It also contained an ignored historical roadmap, which was not supplied in prompts or observed as read. Raw host records remain private.
 
 ## Installed checks
 

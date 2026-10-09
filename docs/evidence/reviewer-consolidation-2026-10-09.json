@@ -477,7 +477,6 @@
     "matchesCommittedTree": true
   },
   "committedSourceRevision": "b74aa9eb64142425db28961ebf686ec4fd5c1aff",
-  "snapshotMatchesCommittedSource": true,
   "validation": {
     "tests": 80,
     "passed": true,
