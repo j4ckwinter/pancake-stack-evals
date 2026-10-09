@@ -1,6 +1,6 @@
 # Evaluate a workflow on a fresh task
 
-Use the seven scenarios in [tests/behavioral/cases](../tests/behavioral/cases) to check workflow behavior against small, repeatable projects. They derive from the trial families recorded in [the project plan](plan.md). They are new fixtures, not recovered copies of the historical trials.
+Use the scenarios in [tests/behavioral/cases](../tests/behavioral/cases) to check workflow behavior against small, repeatable projects. They derive from the trial families recorded in [the project plan](plan.md). They are new fixtures, not recovered copies of the historical trials.
 
 The [3 October 2026 trial results](behavioral-results.md) record observed outcomes and unresolved process gaps.
 
@@ -24,6 +24,66 @@ Before running, define the hypothesis as improved task quality or workflow adher
 Inspect final responses and changed tests as well as machine results. A completed worker must actually review the relevant project and final code state; identity alone is insufficient. Record missing usage, unavailable blinding, source-read failures, and any configuration mismatch. Keep outputs under neutral labels when using a separate assessor; final responses can still reveal the treatment. Small synthetic tasks can saturate correctness and cannot establish production benefit or installed-host parity.
 
 Raw output includes prompts, commands, session records, final responses, source hashes, and candidate workspaces. It may contain account metadata: keep it private and publish only inspected, sanitized excerpts. The runner removes copied authentication before assessment and executes generated application/tests through `codex sandbox --permission-profile :read-only`, with isolated Codex and Claude preference paths. Verify that sandbox support works on the active host; the runner must not fall back to unrestricted execution. It removes temporary candidate directories after each run and preserves records in the explicit output directory for assessment. Do not point candidates at the assessor files or copy authentication into committed evidence.
+
+## Three-arm outcome and proportionality pilot
+
+The `comparison` suite reuses the runner for `baseline`, `pancake`, and the local
+Codex adaptation of `poteto`. The baseline has no workflow bundle. This is a
+source-guidance comparison on one host, not plugin installation validation.
+Run only when live model usage is authorized:
+
+```sh
+PANCAKE_STACK_SOURCE=/absolute/path/pancake-stack python3 -B tests/behavioral/compare.py --suite comparison --poteto-source /absolute/path/codex/skills --output /tmp/pstack-three-arm-unique --model gpt-6.1-sol --effort medium --repetitions 2 --timeout 300
+```
+
+Two repetitions give 12 sequential trials on two new tasks. `label` requires an
+exact CLI typo correction with every other byte preserved. `contract` migrates
+versioned invoice envelopes across producer, live reader, and archive reader
+while preserving keyword APIs, a protected facade, and persisted archives.
+Its public README defines malformed-record and version behavior. Trusted
+artifact probes stay outside candidate projects and exercise these documented
+contracts. Candidate test quality and verification evidence require separate
+inspection; passing artifacts do not certify added regression coverage.
+
+All arms receive identical requests, model and effort, scope restrictions,
+timeouts, and two-thread limits. Scoped implementation delegates and read-only
+reviewers are permitted, inherit the lead's model and effort, and cannot
+create grandchildren. Saved preference reads and writes are prohibited. Arm
+order rotates across cases and repetitions; two repetitions do not completely
+balance positions within each individual case. Three repetitions do.
+
+The poteto source must contain `poteto-mode/SKILL.md`. Preparation selects only
+sibling skills with the Codex compatibility marker, copies their complete trees
+into a random `bundle/skills`, and rejects symlinks. It does not install skills,
+auto-discover them through the profile, or copy saved settings. The manifest
+records every copied file hash, selected skills, and available origin metadata.
+Relative Markdown links are audited against copied resources; unresolved links
+are recorded for inspection, including template placeholders and optional
+references. Absolute links are not a correctness gate. Optional external
+plugins are not copied or installed. Missing optional capabilities must be
+reported as limitations of the observed run.
+
+Source, evaluator, and poteto identities are checked before and after every
+comparison trial. A changed input stops the batch and invalidates its stable
+input assumption. Raw evidence remains private. The 300-second candidate and
+45-second assessment limits bound 12 candidate/assessment pairs to roughly
+69 minutes plus preparation and evidence collection. Infrastructure failures
+stop the batch; artifact failures remain visible outcomes.
+
+Predeclare assessment as artifact success, preservation of protected files,
+verification evidence, and cost. Report per-case elapsed time, input/cached/
+output/total tokens, missing usage, tool-call and command-event counts,
+completed workers, changed/added files, and final-response characters. Workers
+are not automatically reviewers. Inspect their scope and completion evidence.
+Use the tiny task to assess proportionality; do not collapse quality and cost
+into an invented composite score. Keep timeouts visible rather than comparing
+only fast successful runs. Token counts are usage proxies, not monetary cost.
+
+Candidates necessarily see their guidance identity. They do not receive arm
+comparisons or ground truth. Independent assessment can use neutral labels,
+but final prose can reveal treatment. A small synthetic pilot on one model and
+host cannot establish general effectiveness, production savings, installed
+plugin behavior, or diverse-model review quality.
 
 ## Reviewer detection and instruction consolidation
 

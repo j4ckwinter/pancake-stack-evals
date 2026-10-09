@@ -1,0 +1,1 @@
+Migrate newly created invoices to the v2 envelope documented in README.md. Update the live consumer and version-aware archive reader, retain the public create_invoice(total=...) and billing facade APIs, and keep persisted archives unchanged. Verify the documented valid and invalid contracts.

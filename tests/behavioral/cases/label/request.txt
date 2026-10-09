@@ -1,0 +1,1 @@
+Correct the help text typo "Availble commands" to "Available commands" in cli.py. Preserve every other byte of that file and all other files. This is a text correction; no new tests are needed.
