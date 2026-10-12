@@ -114,6 +114,101 @@ After adjudicating each output, `review.summarize(results, assessments)` joins o
 
 Use neutral output labels and withhold treatments from an independent assessor when available. Record any lack of blinding or independence. These small, related fixtures measure specific compatibility failures and can saturate accuracy; they cannot establish general reviewer quality or production cost savings.
 
+## Three-arm review comparison
+
+Use `--suite review-comparison` to compare an unguided baseline, the source
+Pancake entrypoint, and the local Codex adaptation of Poteto on review tasks.
+The historical `review` suite retains its four invoice cases and its Check
+baseline and consolidated arms. Run the new suite only with live usage
+authorized and with a new private output directory:
+
+```sh
+PANCAKE_STACK_SOURCE=/absolute/path/pancake-stack python3 -B tests/behavioral/compare.py --suite review-comparison --poteto-source /absolute/path/codex/skills --output /tmp/pstack-review-comparison-unique --model gpt-6.1-sol --effort medium --repetitions 1 --timeout 240
+```
+
+One repetition produces 12 sequential runs. All arms receive the same organic
+review request, model, effort, timeout, and read-only sandbox. The baseline has
+no bundle. Pancake starts at `pancake/SKILL.md`; Poteto starts at its own
+`poteto-mode/SKILL.md`. Independent read-only delegation is permitted when
+useful, with inherited model and effort, two threads, and no grandchildren.
+Source identity checks, bundle inventories, preference restrictions, usage
+collection, and credential cleanup match the three-arm implementation suite.
+The runner stops if an input changes before or during a trial. Arm order rotates
+across cases. One repetition does not balance positions within each case.
+
+The private `review_comparison.py` registry owns two bug cases and two matched
+clean controls. The configuration pair simplifies an option resolver whose
+contract distinguishes zero from an omitted or null limit. The lifecycle pair
+changes a file reader to return an iterable consumed after the call returns.
+All four projects pass their local tests. Independent evaluator probes check
+zero-limit selection and consumption after return, and verify that the clean
+reader closes its stream after consumption. Candidates receive ordinary source,
+a README contract, and `change.diff`. Case identities, expected mechanisms,
+and trusted probes stay outside their workspace.
+
+Predeclare the following rubric before inspecting outputs:
+
+- Apply the preceding reviewer-detection rules for concrete mechanisms,
+  triggers, consequences, duplicate findings, misses, and unsupported findings.
+  Report false findings on both faulty changes and clean controls.
+- Judge unnecessary work from tool and session evidence. Count a distinct
+  episode once, under its primary category. `unrelated_investigation` means
+  investigating code or topics with no plausible path to the changed contract.
+  `redundant_verification` means repeating a check without a change, new
+  hypothesis, unresolved failure, or missing observation that warrants it.
+  `unnecessary_delegation` means assigning work that duplicates completed
+  evidence or lacks a useful independent question. `scope_expansion` means
+  undertaking unrequested implementation or redesign beyond reviewing the diff.
+- A longer review, more tokens, an unsuccessful hypothesis, guidance reads,
+  or delegation alone does not establish unnecessary work. Explain why each
+  counted episode could not reasonably improve this review. Cite the observed
+  operation and relevant context. Keep useful independent review distinct from
+  duplicated work.
+- Mark incomplete evidence as unavailable. An assessed empty item list means
+  the assessor inspected sufficient records and found no unnecessary work.
+  Missing or unavailable assessment never means zero. Record assessor identity,
+  independence, and any treatment information visible during adjudication.
+
+Call `review_comparison.summarize(results, assessments)` with ordered records
+using the same `run_id`, `case`, `detected`, `false_findings`, and `process`
+fields as `review.summarize`. Every assessment also needs `unnecessary_work`.
+An assessed record has this shape:
+
+```json
+{
+  "status": "assessed",
+  "items": [{
+    "id": "episode-1",
+    "category": "redundant_verification",
+    "evidence": ["raw-sessions/session.jsonl:18-26"],
+    "reason": "The same passing check was repeated without any intervening change or new question."
+  }]
+}
+```
+
+An unavailable record contains only `status: "unavailable"` and a nonempty
+`reason`. Item IDs must be unique within a run; categories must match the rubric.
+Every item needs a reason and nonempty evidence references. Validation rejects
+missing assessments, unknown statuses or categories, and unsupported mechanism
+IDs. Evidence pointers require human inspection; validation does not certify
+the judgment or resolve references.
+
+Summaries keep correctness, successful-run cost, and unnecessary-work counts
+separate. They report assessed and unavailable runs, runs with items, total
+items, and category counts. When no run has an assessment, item counts and
+categories are null. When only some runs have assessments, counts describe
+those runs alone. Select matching result and assessment pairs by `case` before
+calling the summarizer for per-case results. Preserve execution failures,
+timeouts, missing usage, and individual evidence alongside aggregates. Failed
+executions still contribute adjudicated misses and false findings.
+
+This bounded pilot measures two synthetic failure mechanisms on one model and
+host. It cannot establish production savings, general review quality, or plugin
+installation behavior. Candidates can see their guidance, and their final
+responses can reveal it to assessors. Read-only filesystem access is not a
+confidentiality boundary for private evaluator files. Keep that limitation
+explicit when interpreting results.
+
 ## Check the fixtures first
 
 From the repository root, run the fixture-support tests.

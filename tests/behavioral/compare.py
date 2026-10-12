@@ -149,6 +149,15 @@ def assess_candidate(case, workspace, before, profile):
 
 
 def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None):
+    read_only_review = suite in ("review", "review-comparison")
+    three_arm = suite in ("comparison", "review-comparison")
+    if suite == "review-comparison":
+        if __package__:
+            from .review_comparison import CASES as review_cases, REQUEST, prepare_review
+        else:
+            from behavioral.review_comparison import CASES as review_cases, REQUEST, prepare_review
+        if variant not in ("baseline", "pancake", "poteto") or case not in review_cases:
+            raise ValueError("invalid review-comparison case or variant")
     if suite == "review":
         if __package__:
             from .review import REQUEST, consolidate, prepare_review
@@ -165,7 +174,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         profile = run / "profile"
         profile.mkdir(mode=0o700)
         workspace = run / "workspace"
-        before = prepare_review(case, workspace) if suite == "review" else prepare(case, workspace)
+        before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
         if variant == "pancake" or suite == "review":
             shutil.copytree(ROOT / "skills", bundle / "skills")
@@ -179,7 +188,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if suite == "review" and variant == "consolidated":
             check = bundle / "skills/check/SKILL.md"
             check.write_text(consolidate(check.read_text()))
-        request = REQUEST if suite == "review" else (CASES / case / "request.txt").read_text().strip()
+        request = REQUEST if read_only_review else (CASES / case / "request.txt").read_text().strip()
         prompt = request + (
             "\n\nWork only in the current project. Preserve unrelated files. "
             "Independent read-only review is permitted when useful; reviewers must inherit "
@@ -188,10 +197,11 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             "projects or user history. Keep any preference reads within the isolated "
             "CODEX_HOME profile."
         )
-        if suite == "comparison":
+        if three_arm:
             prompt = request + (
-                "\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. "
-                "Scoped implementation delegates and independent read-only reviewers are permitted when useful. "
+                "\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. " +
+                ("Independent read-only review is permitted when useful. " if read_only_review else
+                 "Scoped implementation delegates and independent read-only reviewers are permitted when useful. ") +
                 "All workers must inherit this conversation's model and effort and must not delegate further. "
                 "Do not commit, install dependencies, use external services, read saved preferences, change "
                 "preferences, or inspect unrelated projects or user history. Resolve sibling skill references "
@@ -213,7 +223,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             "--enable", "multi_agent", "-c", "agents.max_threads=2",
             "-c", 'cli_auth_credentials_store="file"', "-m", model,
             *(["-c", f"model_reasoning_effort={json.dumps(effort)}"] if effort else []),
-            "--sandbox", "read-only" if suite == "review" else "workspace-write", "--skip-git-repo-check",
+            "--sandbox", "read-only" if read_only_review else "workspace-write", "--skip-git-repo-check",
             "--cd", str(workspace), "--output-last-message", str(destination / "final.txt"), "-",
         ]
         write_json(destination / "invocation.json", command)
@@ -241,7 +251,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             result["exit_code"] = process.returncode
             (profile / "auth.json").unlink(missing_ok=True)
             try:
-                result["artifact"] = ({"passed": snapshot(workspace) == before} if suite == "review"
+                result["artifact"] = ({"passed": snapshot(workspace) == before} if read_only_review
                                       else assess_candidate(case, workspace, before, profile))
             except (AssertionError, ValueError, OSError, subprocess.SubprocessError) as error:
                 result["artifact"] = {"passed": False, "detail": str(error)}
@@ -250,7 +260,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 result["after"] = snapshot(workspace)
             except (ValueError, OSError) as error:
                 result["after"] = {"snapshot_error": str(error)}
-            if suite == "comparison" and "snapshot_error" not in result["after"]:
+            if three_arm and "snapshot_error" not in result["after"]:
                 result["changed_files"] = sorted(name for name in before
                                                  if result["after"].get(name) != before[name])
                 result["added_files"] = sorted(result["after"].keys() - before.keys())
@@ -261,7 +271,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             parents = [s for s in sessions if s["parent_id"] is None]
             result["sessions"] = [{k: s[k] for k in ("id", "parent_id", "agent_path", "selections", "completed", "usage")}
                                   for s in sessions]
-            result["completed_workers" if suite == "comparison" else "completed_reviewers"] = [s["id"] for p in parents for s in completed_workers(sessions, p["id"])]
+            result["completed_workers" if three_arm else "completed_reviewers"] = [s["id"] for p in parents for s in completed_workers(sessions, p["id"])]
             result["usage_all_sessions"] = {
                 field: sum(s["usage"].get(field, 0) for s in sessions if s["usage"])
                 for field in ("input_tokens", "cached_input_tokens", "output_tokens", "total_tokens")
@@ -289,7 +299,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True, help="new private directory outside the repository")
     parser.add_argument("--model", required=True)
     parser.add_argument("--effort", help="omit to inherit CLI default")
-    parser.add_argument("--suite", choices=("workflow", "review", "comparison"), default="workflow")
+    parser.add_argument("--suite", choices=("workflow", "review", "comparison", "review-comparison"), default="workflow")
     parser.add_argument("--poteto-source", type=Path, help="installed Codex-adapted sibling skill root")
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=300, help="seconds per candidate")
@@ -297,15 +307,16 @@ def main():
     if args.repetitions < 1 or args.timeout < 1:
         parser.error("repetitions and timeout must be positive")
     poteto = None
-    if args.suite == "comparison":
+    three_arm = args.suite in ("comparison", "review-comparison")
+    if three_arm:
         if args.poteto_source is None:
-            parser.error("comparison requires --poteto-source")
+            parser.error(f"{args.suite} requires --poteto-source")
         try:
             poteto = poteto_inventory(args.poteto_source)
         except (OSError, ValueError) as error:
             parser.error(str(error))
     elif args.poteto_source is not None:
-        parser.error("--poteto-source is only valid for comparison")
+        parser.error("--poteto-source is only valid for comparison or review-comparison")
     output = args.output.resolve()
     if output.is_relative_to(ROOT) or output.is_relative_to(EVALUATOR):
         parser.error("raw trial output must be outside the repository")
@@ -319,12 +330,14 @@ def main():
         else:
             sys.path.insert(0, str(EVALUATOR / "tests"))
             from behavioral.review import CASES as review_cases
-    cases = (tuple(review_cases) if args.suite == "review" else
+    if args.suite == "review-comparison":
+        from behavioral.review_comparison import CASES as review_cases
+    cases = (tuple(review_cases) if args.suite in ("review", "review-comparison") else
              COMPARISON_CASES if args.suite == "comparison" else CASES_TO_RUN)
     variants = (("baseline", "consolidated") if args.suite == "review" else
-                ("baseline", "pancake", "poteto") if args.suite == "comparison" else
+                ("baseline", "pancake", "poteto") if three_arm else
                 ("baseline", "pancake"))
-    plan = trial_plan(cases, variants, args.repetitions, args.suite == "comparison")
+    plan = trial_plan(cases, variants, args.repetitions, three_arm)
     source_identity, evaluator_identity = identity(ROOT), identity(EVALUATOR)
     write_json(output / "manifest.json", {
         "source": source_identity,
@@ -336,7 +349,7 @@ def main():
     })
     results = []
     for index, (case, repeat, variant) in enumerate(plan, 1):
-        if args.suite == "comparison" and (
+        if three_arm and (
                 identity(ROOT) != source_identity or identity(EVALUATOR) != evaluator_identity
                 or poteto_inventory(args.poteto_source) != poteto):
             raise SystemExit("Comparison inputs changed since manifest capture; batch stopped.")
@@ -344,7 +357,7 @@ def main():
         result = run_trial(case, variant, output / f"run-{index:02d}", auth,
                            args.model, args.effort, args.timeout, args.suite, args.poteto_source,
                            poteto if variant == "poteto" else None)
-        if args.suite == "comparison":
+        if three_arm:
             result["inputs_unchanged"] = (
                 identity(ROOT) == source_identity and identity(EVALUATOR) == evaluator_identity
                 and poteto_inventory(args.poteto_source) == poteto)
