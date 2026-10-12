@@ -1,5 +1,9 @@
 # Installation verification
 
+## Current declarative package, 9 October 2026
+
+Version 0.21.3 installed in isolated Codex and Claude profiles, discovered all 19 skills on each host, and matched source resources. Two installed Codex trials completed the default implementation reviewer and a two-reviewer Challenge panel. See the [consolidation report](reviewer-consolidation.md) for exact evidence and limits. Claude authenticated workflows and visible pickers remain unverified. Earlier saved-preference behavior below is historical and no longer part of the library.
+
 ## Two-host packaging in 0.19.0
 
 On 6 October 2026, Claude Code 2.1.291 validated both native manifests with `--strict`, installed the local package in temporary `CLAUDE_CONFIG_DIR`, and discovered all 19 unique namespaced skills. Model choices and effort metadata were read through initialization without a user or model turn. Normal and isolated authentication checks reported no sign-in, so authenticated Claude workflows and delegated settings remain unverified.

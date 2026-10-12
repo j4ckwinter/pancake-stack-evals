@@ -1,0 +1,1300 @@
+{
+  "date": "2026-10-09",
+  "source_revision": "f2b1a4024a67367d1e4a9ed6162ccfbc9ae23fbb",
+  "trial_evaluator_revision": "c2b044ea3eb460519942f58af4926d6fda04bfe2",
+  "assessment_evaluator_revision": "e3a04e80210c87315c1d30cec324b352f3a4f11a",
+  "cli_version": "codex-cli 0.160.0",
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "medium",
+  "timeout_seconds": 300,
+  "repetitions": 2,
+  "poteto": {
+    "skills": [
+      "architect",
+      "arena",
+      "automate-me",
+      "blast-radius",
+      "bro",
+      "create-verification-skill",
+      "figure-it-out",
+      "how",
+      "interrogate",
+      "maintain-verification-skill",
+      "make-bot-ui",
+      "no-comments",
+      "poteto-mode",
+      "principle-attack-the-premise",
+      "principle-boundary-discipline",
+      "principle-build-the-lever",
+      "principle-encode-lessons-in-structure",
+      "principle-exhaust-the-design-space",
+      "principle-experience-first",
+      "principle-fix-root-causes",
+      "principle-foundational-thinking",
+      "principle-guard-the-context-window",
+      "principle-laziness-protocol",
+      "principle-make-operations-idempotent",
+      "principle-migrate-callers-then-delete-legacy-apis",
+      "principle-minimize-reader-load",
+      "principle-model-the-domain",
+      "principle-never-block-on-the-human",
+      "principle-outcome-oriented-execution",
+      "principle-prove-it-works",
+      "principle-redesign-from-first-principles",
+      "principle-separate-before-serializing-shared-state",
+      "principle-sequence-verifiable-units",
+      "principle-subtract-before-you-add",
+      "principle-test-behavior-not-implementation",
+      "principle-type-system-discipline",
+      "recall",
+      "reflect",
+      "setup-pstack",
+      "show-me-your-work",
+      "swarm",
+      "tdd",
+      "teach",
+      "technical-writing",
+      "typescript-best-practices",
+      "unslop",
+      "why"
+    ],
+    "files": {
+      "architect/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "architect/SKILL.md": "2a0d65647420e1d5601a179ce37c36a890be207645ed85e4642d988c38ee9fc7",
+      "architect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "architect/references/design-red-flags.md": "905066f9bbac81c573c2b325be47751d2c0f9325e0a0772bd4384e82dafe9336",
+      "architect/references/rationale-template.md": "0cedfccdc7b47fc881febd5a8293eecbc542c20f8df825639904a8102d2eb5d3",
+      "architect/references/runner-prompt.md": "983bf2820cc14ed8ecab6e448e1033e5cfe6031967d0a9287b48c7fa9c33d925",
+      "arena/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "arena/SKILL.md": "4f3929f0484f61a7b199f3c1dc56a8f731aa7083a1cdfc31e7cd3f354bf96261",
+      "arena/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "automate-me/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "automate-me/SKILL.md": "556d8e74bb5b23786cf82cddcc2c5e5b64db3106a4e53dad0f0ee8561f813690",
+      "automate-me/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "blast-radius/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "blast-radius/SKILL.md": "07c11a76dd59a8d2d7558493c50cc54656f83cffec91a99b677fffa32c6a714b",
+      "blast-radius/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "bro/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "bro/SKILL.md": "bc7afd55696591a4a23e933510d808f7d1a672ddd569cd414ac23ff3e4779c4e",
+      "bro/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "create-verification-skill/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "create-verification-skill/SKILL.md": "a281c6e52fe3037e759fd8a928bb9ba1e3a66c1a06648f4fc11cf59e0d5244b4",
+      "create-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "create-verification-skill/references/feature-map-example/README.md": "cb7bd782cf89968a4ba3d58a5151db837430db92d19a6f52a906973b77b516ba",
+      "create-verification-skill/references/feature-map-example/create-note.md": "644a44c74f35d38c2feb7cd05a0121fdebbb623e8dc376c185b565a581d1ccf7",
+      "create-verification-skill/references/feature-map-example/search.md": "6e87b9e7f2791a7776ba1bb83f371cd285c306c67f19d245cc4dd6ca3015c823",
+      "figure-it-out/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "figure-it-out/SKILL.md": "42e48734b5c3554b148351c873bc066a015426a50a6ca6ede89de42af8f837ed",
+      "figure-it-out/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "how/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "how/SKILL.md": "0f00a47c197a9623ceed25b6b3a37d8b3a353501e98282235488759cbca903ef",
+      "how/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "how/references/explainer-prompt.md": "ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff",
+      "how/references/explorer-prompt.md": "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be",
+      "interrogate/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "interrogate/SKILL.md": "bebc429f339045c71a6d2bd028263c73e4a2bd796945918ff852a147b4052e55",
+      "interrogate/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "interrogate/references/code-quality-review.md": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8",
+      "interrogate/references/lead-judgment.md": "6e5bdf5670eb34017692e9b6c546f36ac7552e6bb9f3f2f3429164fcc46a9361",
+      "interrogate/references/reviewer-prompt.md": "e0598e254792b56de39bb16b1e6db559b03a522fdc54b98f942d254090920ae6",
+      "interrogate/references/rubric.md": "a85aa801abbaf14434f00579440abc0d8e2723227ba8bf57de7cca8d6e7d2f25",
+      "maintain-verification-skill/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "maintain-verification-skill/SKILL.md": "9d73a788761b7a3247b72f202e9a1ee5c026f8e8723a3e60baf3537cd789fa1b",
+      "maintain-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "make-bot-ui/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "make-bot-ui/SKILL.md": "b41f930ed48e4cde9f5dad6ded823907a707e92737d7ba129952bc33fa801399",
+      "make-bot-ui/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "no-comments/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "no-comments/SKILL.md": "980d15611a536189f9017f7ac2b84cda7de908f73a0ab59860a6a4021e8766a6",
+      "no-comments/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "no-comments/references/comment-sicko.md": "c0fd0383008da45fc78cfac17b9007d62c42f87ad1c8d5c2fb658b1fd01f7c82",
+      "poteto-mode/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "poteto-mode/SKILL.md": "901bf3896b069e85e5b477607c06e807bb6b92a09075c687415ca1b9177190b5",
+      "poteto-mode/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "poteto-mode/playbooks/authoring-a-skill.md": "f6a13a445c360b48d6cd72780ac01955f45b82826476efe0e67c7559329407aa",
+      "poteto-mode/playbooks/autonomous-run.md": "15e54ad3ac92565613980772d8708de6e19cc4690bfd4bb3fb8836522407377b",
+      "poteto-mode/playbooks/autopilot-full.md": "975439613b9073b637a88c6df762b474dbd745f0e86150bb07d2121e32eb48e7",
+      "poteto-mode/playbooks/autopilot-stack.md": "f626f4ed17725de5ea96ac22597a1c298c46c36015e844bf86a68f6d38d57fbf",
+      "poteto-mode/playbooks/babysit.md": "a0346c37c2313f36a863b80f66ee7b98059c2242adf74fc7b3e48abdb9ec6f5a",
+      "poteto-mode/playbooks/bug-fix.md": "cb382835bf8954300f958b798e2c0beb12e459e0d2c92dd9af218f8e7ab32ad6",
+      "poteto-mode/playbooks/eval.md": "4e71e1d73ecb4f33cea45df79ad5c1ba92f2671643ed9e3ef47dcc492f14ec97",
+      "poteto-mode/playbooks/feature.md": "a7b7569f4e394fbb4c6bc2d7088a92bbe9f843fb6070046bf6997a0bbf6f77ff",
+      "poteto-mode/playbooks/hillclimb.md": "13f30b694aad4678112cb4272f96a0e4530c71ef3b83330f643028e2c8ecd2cb",
+      "poteto-mode/playbooks/investigation.md": "dc66bcf6af3a074fc7f67aa5e12b93ef571a4fb4d8e17f2f1af5ae5359f42e46",
+      "poteto-mode/playbooks/multi-phase-plan.md": "d8e8c6df960b28a00f9ad5f73b646b7ad55a7e883f3c8fd62cfb29e307139bd2",
+      "poteto-mode/playbooks/opening-a-pr.md": "1c0281f84348aa5dc6f10defbcdd8357f4b0786d874f340ba34bfc169dc6c26f",
+      "poteto-mode/playbooks/orchestrate.md": "d2a9d32c66ca6d2f8c5cfca2f62283f9e7730d4a0308ed797f75cc16eeed10dd",
+      "poteto-mode/playbooks/pause-safely.md": "77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d",
+      "poteto-mode/playbooks/perf-issue.md": "d6f67f12f0c30db9644020e23a929374d9e3feae5ed02d38b0f79c8949920570",
+      "poteto-mode/playbooks/prototype.md": "7aa1f52c691c3d46d5afc527b23f90977fce869ce33573c73c81a4c7f0cde962",
+      "poteto-mode/playbooks/refactoring.md": "07aa5495b00c1711318557929bba360cad7b77b1e4f56e52d21d51936e3b1f6f",
+      "poteto-mode/playbooks/runtime-forensics.md": "594f02c40c243a346e1f57b688ecf2ed5e882f21b3d24ed2204d1ac6f1c24a8a",
+      "poteto-mode/playbooks/session-pickup.md": "7f451d8ce417ef1026721903d622719a45a39afea808db8de95415b8f76d49c6",
+      "poteto-mode/playbooks/shipping.md": "19f3f6803a7bbe9ff04f624b03e3b55f07ac0a05e991aa00d5fe51239b920b2a",
+      "poteto-mode/playbooks/trace-forensics.md": "137ce3984fb96e45971fdff4d3c79fa4ccc647c5b30ae4945783b9fb23f8cec7",
+      "poteto-mode/playbooks/visual-parity.md": "950ca51999a6454c98eee6bcbc3d1bbe501a4e3a5d5439b6f6ddc378991b256c",
+      "poteto-mode/playbooks/worktree-cleanup.md": "6f34f1e0045cdb558cf04e7fdedb62f187c73d5e59308935ad27697a4703b5f4",
+      "poteto-mode/references/bugbot-triage.md": "b2d146c770d8d3593e1ef3d77b668039b8e1f78093ea1a86f1d45d7f99614309",
+      "poteto-mode/references/codex-port.md": "b9fcb2838919267b60e89ac2d5e905f0539856142f5b3956ac5713ffd1ef30f3",
+      "poteto-mode/references/origin.json": "a70113513eb819cdbf40375cddda11cb1e932a587860788f9570e64590cacfa3",
+      "poteto-mode/references/poteto-agent.md": "c3850be1b97bc97cec0568ed8b26d04e7693c4e07868137c58fe546d37f288e9",
+      "poteto-mode/scripts/bootstrap.ts": "ccd2ed08fd9da9d0d942e5f2491cfc74bb92d8a08fa51755e0da1ac8de287361",
+      "poteto-mode/scripts/bun.lock": "667d9cf7222e9aae3fa42a4be383e657784216e9df115da02227fbc5ac7bbe46",
+      "poteto-mode/scripts/check-plan.mjs": "1f9e788ce90a13a9973e35e8c3a52737857c375e057bdccc13c8510a9af30f04",
+      "poteto-mode/scripts/find-codex-sessions.py": "2d77e5b72eaeffd39b4f70ae554ca31323ebde2a6b8c9a52c3d3aaa6befd1f6a",
+      "poteto-mode/scripts/orch/orch.test.ts": "174b86d21ff51ccd28d1a8c938cb2e0c6fa287b209d4ca6c03932fcb1b53372e",
+      "poteto-mode/scripts/orch/orch.ts": "f091687df627a0b75fabd54af58945a9cd6c7039ef0622012ac9ed60cd8ec434",
+      "poteto-mode/scripts/orch/store.ts": "0eae7cf69282e827b1227166f2e32cee3560f2f3e65b3f1f2faf6fb83d3b4c5b",
+      "poteto-mode/scripts/package.json": "d1f815091209d49763775cc188e8e06ff32d5fec648bffd2272bc25a165e87c3",
+      "poteto-mode/scripts/watch-pr/cli.test.ts": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1",
+      "poteto-mode/scripts/watch-pr/cli.ts": "89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680",
+      "poteto-mode/scripts/watch-pr/fakes.test-helper.ts": "e53e31b7f03068063f53a99a3591b052aaed66e4e2b196b3a364980f60324ab1",
+      "poteto-mode/scripts/watch-pr/github.test.ts": "0cbce011050522938523e36bb42a260e92b812dcd2076930fa681672ad316b24",
+      "poteto-mode/scripts/watch-pr/github.ts": "d1bbbafbe8e2c703c84da2029de7f2c4011412512f8cf65a42100f46bcb92c8a",
+      "poteto-mode/scripts/watch-pr/policy.test.ts": "a9fedb25feefd1f57ef6a662f80c99018690170a3a8070773a08eaf694d1d3d9",
+      "poteto-mode/scripts/watch-pr/policy.ts": "68d240505852cf23c9b2dea463342e9e61243f486b3cc86c735d140f9ee7be49",
+      "poteto-mode/scripts/watch-pr/render.ts": "2b709e86628d5b8fdb61f860e60ababc342b0626c67576305442cf548283a604",
+      "poteto-mode/scripts/watch-pr/tsconfig.json": "1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45",
+      "poteto-mode/scripts/watch-pr/types.compile.ts": "621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6",
+      "poteto-mode/scripts/watch-pr/types.ts": "64ba6221e3bfe61bbb292337d199cdec6309455477280efb060203dba34e0e91",
+      "poteto-mode/scripts/watch-pr/watch-pr": "d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4",
+      "poteto-mode/scripts/worktree-audit.sh": "dc6be70e25a02830ceaa02dd731022a5f0e3311903fd52f2ec645046ba71786d",
+      "principle-attack-the-premise/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-attack-the-premise/SKILL.md": "913cef5660515e9a27133c6f408f9cd4db7f00da342ea1ac77f6773c5dba4579",
+      "principle-attack-the-premise/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-boundary-discipline/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-boundary-discipline/SKILL.md": "77e227862d8a1c06fa1d9c3e86e4942b26e3d48a8a9fdd0964a80e5bfbee22a6",
+      "principle-boundary-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-build-the-lever/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-build-the-lever/SKILL.md": "64648ebec8c9322596878e72111decfc9c6c173e1df5dd5dfe9645dedd7ba3db",
+      "principle-build-the-lever/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-encode-lessons-in-structure/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-encode-lessons-in-structure/SKILL.md": "cff05194be5e7cb52914f7d13c073d006f8544a5c7785fff55c730396cdfccfb",
+      "principle-encode-lessons-in-structure/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-exhaust-the-design-space/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-exhaust-the-design-space/SKILL.md": "f9f28ba64bb8d26b94c0fee620011e4c105d8efdbaccaa4e6ce6802ae4e2c6ad",
+      "principle-exhaust-the-design-space/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-experience-first/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-experience-first/SKILL.md": "329d9476e7f90cd8bad014b30727d54e1290762157b30677da0052bc83e1e130",
+      "principle-experience-first/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-fix-root-causes/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-fix-root-causes/SKILL.md": "bdd9a65d8278a2351e84ddcda3280cfeba01af88ccc033d990798de50723ef96",
+      "principle-fix-root-causes/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-foundational-thinking/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-foundational-thinking/SKILL.md": "30aa3b15beece56b73cbd8ad12686f5e9dfb0d30aa9ca095769fb75fb5cf232a",
+      "principle-foundational-thinking/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-guard-the-context-window/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-guard-the-context-window/SKILL.md": "db523dec5ae5f49ceb2dd1bda27306297495242b7db9857d8ab370f881d7461c",
+      "principle-guard-the-context-window/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-laziness-protocol/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-laziness-protocol/SKILL.md": "a5cab8856eac4204de9480c0aecca64e27c24c6d58abb315ec44b557cd0d9f4d",
+      "principle-laziness-protocol/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-make-operations-idempotent/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-make-operations-idempotent/SKILL.md": "eb98ea135c0fde10246c625a8a582d94f6a44f04e28c8bc825f86ff2b4c6cfd3",
+      "principle-make-operations-idempotent/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-migrate-callers-then-delete-legacy-apis/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-migrate-callers-then-delete-legacy-apis/SKILL.md": "94d9d450b0b0f23d4e339f78d6af5ca2c5cb32b08ec0971399132c9705326ef9",
+      "principle-migrate-callers-then-delete-legacy-apis/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-minimize-reader-load/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-minimize-reader-load/SKILL.md": "315cf3a8e703e52630af9d04f77953db40baa0af99b326070d15d6d3db73528d",
+      "principle-minimize-reader-load/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-model-the-domain/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-model-the-domain/SKILL.md": "cd6fc9bf6cba92febb0a3933fe88ca258b71449b0eee12fca64b8ab6288e787f",
+      "principle-model-the-domain/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-never-block-on-the-human/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-never-block-on-the-human/SKILL.md": "053f6098705488111289ff42ba8b87022f49f6625d6d1452ccb6aacd99379cc6",
+      "principle-never-block-on-the-human/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-outcome-oriented-execution/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-outcome-oriented-execution/SKILL.md": "97c17dcc54c1d8c1aea36c65e8f095a753c03225644e5856ed1832a8742f2297",
+      "principle-outcome-oriented-execution/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-prove-it-works/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-prove-it-works/SKILL.md": "7c264333001462ced5e2b2dfa89af817de90ff1360c45af9b94029b2b3fc215f",
+      "principle-prove-it-works/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-redesign-from-first-principles/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-redesign-from-first-principles/SKILL.md": "253734e03015a143f032eb79e9c757197a1c914226cf10502fb2f00e64465088",
+      "principle-redesign-from-first-principles/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-separate-before-serializing-shared-state/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-separate-before-serializing-shared-state/SKILL.md": "94e66bacd2996802618ef14b2d623e9cd1aab5c7625608d135d6a471fd0fa121",
+      "principle-separate-before-serializing-shared-state/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-sequence-verifiable-units/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-sequence-verifiable-units/SKILL.md": "613fa51df6085813c97be39f19ee7c9d73e30d58e0e0c3ded9c79aaaab22a3a8",
+      "principle-sequence-verifiable-units/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-subtract-before-you-add/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-subtract-before-you-add/SKILL.md": "c4200f774f49a8ded2e3e4d158eef30adc7213226fb38ed7f66b2a66a862b204",
+      "principle-subtract-before-you-add/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-test-behavior-not-implementation/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-test-behavior-not-implementation/SKILL.md": "59d8e5e7c051a5d9a85a0038dcc10ac74663a75b778649797ae3b8a22a80f280",
+      "principle-test-behavior-not-implementation/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "principle-type-system-discipline/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "principle-type-system-discipline/SKILL.md": "39eb72badb738ed564a5cbf525b81274dbf1f84299821d06fa03e0fa3920f8f4",
+      "principle-type-system-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "recall/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "recall/SKILL.md": "5eb9af64a617723d9db092d0f71ca2731ed7af896ffcae9922763623488258c0",
+      "recall/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "reflect/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "reflect/SKILL.md": "7d6454fa18f703e12a16e137ad8f9af5eb1f1c824b80a708b84f5bcbb2b1158f",
+      "reflect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "reflect/references/divergent-reviewer.md": "da1fa0693d605ef8c12cc3c67b5f86cbb1be32652c3a9854c2eec2d2850e94a4",
+      "reflect/references/judgment-reviewer.md": "e897db56952f9adace9504cf033c33cf1938b37df64dd5af1ac21fff508c4a67",
+      "reflect/references/synthesizer.md": "2f76c847eb45b182dc6fbcbf7d96c8ee7e2986ecfd9e0d640fec44e3cc5a617c",
+      "reflect/references/tooling-reviewer.md": "db02b1cd9cf2bd0914bf8a3696dca28f77138fa272ff9d62b80f15594c2a19c4",
+      "setup-pstack/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "setup-pstack/SKILL.md": "40f280eca5ce9f3b4e4475647e9f0c79278b7427c54490e00829c37a8f960ffc",
+      "show-me-your-work/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "show-me-your-work/SKILL.md": "a9aedda3224807f961e62641c3a27c47cccc91089c6363789614e2c7ff44c5a6",
+      "show-me-your-work/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "show-me-your-work/references/decision-log-template.tsv": "6779378006a2f5225e8c06deb84f1d913fb532041ebbb6e50d94600bfe3f4b76",
+      "show-me-your-work/scripts/log.sh": "a65a4bc5fb7cdeadbdb7b7ff1ca4682f4d9c42420942b2977cd17b46c4ac338e",
+      "swarm/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "swarm/SKILL.md": "dcb0125eb049ed1fb62e5e1c26c9bf0e5932bb3391693c2ce724167047f5a2ee",
+      "swarm/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "tdd/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "tdd/SKILL.md": "86d974bf22203ae9099f5844d9b8e1fd260ccf29c958c2af8f9c35aa4229ac63",
+      "tdd/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "teach/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "teach/SKILL.md": "8ea3304d01ececc7a4df6a49def5d1d0fe2e35cbd2d74656d1c1bb62a4b15b95",
+      "teach/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "technical-writing/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "technical-writing/SKILL.md": "99e636361d5d6dc85e457bcb5b2a7c3d082e637a9cd17cc356d756de7cbec43d",
+      "technical-writing/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "typescript-best-practices/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "typescript-best-practices/SKILL.md": "a599d12ba5616ffa4f0dad63a45a1c4c198082b48631feb470375fc89052fc7d",
+      "typescript-best-practices/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "typescript-best-practices/references/patterns.md": "62e9cd32d2fa066a35d0d1349aac22dce31a48ad7d5eaf142570770cfe707384",
+      "unslop/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "unslop/SKILL.md": "2394b4ce34e4437a75a72b979e4befca1875a9c1dc0a0be750a7300d6adf5877",
+      "unslop/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "why/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+      "why/SKILL.md": "08b1ec5c92a1f4f45719133e37096c88d78ceb24b8534f5d101a4ba713ef94f4",
+      "why/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "why/references/epistemics.md": "fcc0f559c072832c869a5ada72434b4849320a637ae63c09e8ee14f7ad787059",
+      "why/references/investigator-prompt.md": "6892956a7ab0b5ee6c4babaf4f793703abe89b350ea7cb9463b4a56eea1c8266",
+      "why/references/source-playbook.md": "9ae9dcb9d09111c9facc68510331c5aba4aed9b1b057314ff1fc0e166ad3993a",
+      "why/references/sources/code-archaeology.md": "8c14aa382f0de40829b2668d43e3f54814480bb93a486c9282ada4003f6b9dbd",
+      "why/references/sources/databricks.md": "236ede7aab6454662a992db088a5393537a5233a4c26719c93188f9e174488f6",
+      "why/references/sources/datadog.md": "ebe9c07bac28e47757ee7f16fb93b0c01d427a08c501957d047f395a2f37b7e7",
+      "why/references/sources/incident-postmortem.md": "a899470f05f86029630a13a2696491cc708ca7b56a6e822a69ff6e954d6ff8cf",
+      "why/references/sources/linear.md": "01304e7f1badfcfb78babbb0edcadeb3cc8dd3f713793420cdff24ba190f907c",
+      "why/references/sources/notion.md": "3bcfa695c49dfad4ac036d5d7181c12585f55ac04f1936198d16ab75a2788997",
+      "why/references/sources/sentry.md": "6f292bc4fb1548e956f95e1900b9481abf5134254419f1cd9edec95428c82d73",
+      "why/references/sources/slack.md": "58fee61d024b3700b407e7acbed367944720ff05adfddb6954d36c88368f3ba7",
+      "why/references/synthesizer-prompt.md": "733a3e9cf897b1aca56aaddeae01a3832e4bfed024c2f602db2d1bf807d7a73b"
+    },
+    "unresolved_relative_links": [
+      {
+        "file": "why/references/synthesizer-prompt.md",
+        "reference": "url"
+      }
+    ],
+    "origin": {
+      "repository": "https://github.com/cursor/plugins",
+      "path": "pstack",
+      "commit": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+      "upstream_version": "0.15.5",
+      "port": "Codex user-scoped skills",
+      "changes": [
+        "Codex frontmatter and invocation policy",
+        "host tool and model mappings",
+        "Codex setup preferences",
+        "workspace-scoped history discovery",
+        "authorization boundaries",
+        "agent prompt references"
+      ],
+      "optional_runtime": "Bun for orch/watch-pr"
+    }
+  },
+  "plan": [
+    [
+      "label",
+      1,
+      "baseline"
+    ],
+    [
+      "label",
+      1,
+      "pancake"
+    ],
+    [
+      "label",
+      1,
+      "poteto"
+    ],
+    [
+      "contract",
+      1,
+      "pancake"
+    ],
+    [
+      "contract",
+      1,
+      "poteto"
+    ],
+    [
+      "contract",
+      1,
+      "baseline"
+    ],
+    [
+      "label",
+      2,
+      "pancake"
+    ],
+    [
+      "label",
+      2,
+      "poteto"
+    ],
+    [
+      "label",
+      2,
+      "baseline"
+    ],
+    [
+      "contract",
+      2,
+      "poteto"
+    ],
+    [
+      "contract",
+      2,
+      "baseline"
+    ],
+    [
+      "contract",
+      2,
+      "pancake"
+    ]
+  ],
+  "raw_records": "/tmp/pancake-three-arm-20261009",
+  "raw_manifest_sha256": "f7047f47b0dafd3df4cceb06fe900039683feca66aaafef00f5355a6ee0db28a",
+  "method_corrections": [
+    "Original contract assessments rejected new implementation modules under a historical test-only addition policy. All twelve preserved outputs were reassessed with the corrected evaluator; original outcomes remain below.",
+    "Run 10 timed out. The standard runner stopped, then the coordinator executed only runs 11 and 12 from the original plan with unchanged inputs, settings, and limits. No candidate was retried.",
+    "The numeric audit was added after independent static inspection. It is separate from predeclared probes."
+  ],
+  "independent_assessment": {
+    "packets": 12,
+    "blinding": "Treatment and model identities withheld, but final prose and worker topology reveal workflow differences. Not fully blinded.",
+    "scope": "Original and final source, candidate tests, final replies, and parsed completion verdicts. No reviewer execution of candidate code.",
+    "findings": [
+      "All snapshots preserve archives and unrelated files. New shared modules are relevant.",
+      "Run 05 excludes Decimal and Fraction despite the public numeric contract; its independent reviewer missed this restriction. The post-hoc runtime audit reproduced it.",
+      "Run 10 is incomplete despite a correct-looking artifact.",
+      "Some candidate tests conflate invalid versions with mismatched fields, reducing discrimination despite correct source guards.",
+      "The two workers in each Poteto label run implemented and audited comments; they were not independent contract reviewers."
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "run-01",
+      "case": "label",
+      "variant": "baseline",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 39.295,
+      "usage_all_sessions": {
+        "input_tokens": 59973,
+        "cached_input_tokens": 53888,
+        "output_tokens": 453,
+        "total_tokens": 60426
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 3,
+      "command_actions_all_sessions": 3,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 242,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected \u201cAvailble commands\u201d to \u201cAvailable commands\u201d in [cli.py]($PROJECT/workspace/cli.py:6).\n\nVerified every other byte and all other files remained unchanged. No tests added or run."
+    },
+    {
+      "run_id": "run-02",
+      "case": "label",
+      "variant": "pancake",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 50.804,
+      "usage_all_sessions": {
+        "input_tokens": 94615,
+        "cached_input_tokens": 83968,
+        "output_tokens": 923,
+        "total_tokens": 95538
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 6,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 173,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected `Availble commands` to `Available commands` in `cli.py`. Verified the help output and confirmed every other byte and all other files are unchanged. No tests added."
+    },
+    {
+      "run_id": "run-03",
+      "case": "label",
+      "variant": "poteto",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 99.148,
+      "usage_all_sessions": {
+        "input_tokens": 411084,
+        "cached_input_tokens": 367872,
+        "output_tokens": 2510,
+        "total_tokens": 413594
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 14,
+      "command_actions_all_sessions": 15,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 366,
+      "completed_workers": [
+        "01a12137-c68f-7c63-9683-8b86c006804c",
+        "01a12137-e1cf-7621-a1fe-e545eb808ec7"
+      ],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected \u201cAvailble commands\u201d to \u201cAvailable commands\u201d in [cli.py]($PROJECT/workspace/cli.py:6).\n\nLaziness Protocol kept the edit to one substitution. Prove It Works guided byte comparison and help-output verification. Every other byte and all other project files are unchanged. No tests added or commits made."
+    },
+    {
+      "run_id": "run-04",
+      "case": "contract",
+      "variant": "pancake",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 154.842,
+      "usage_all_sessions": {
+        "input_tokens": 372305,
+        "cached_input_tokens": 323584,
+        "output_tokens": 4403,
+        "total_tokens": 376708
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 14,
+      "command_actions_all_sessions": 25,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice_contract.py"
+      ],
+      "final_response_chars": 412,
+      "completed_workers": [
+        "01a12139-fe27-7722-9690-1e72d6eeb5d1"
+      ],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice_contract.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": true
+          },
+          "decimal_billing": {
+            "passed": true
+          },
+          "decimal_live": {
+            "passed": true
+          },
+          "decimal_archive_v1": {
+            "passed": true
+          },
+          "decimal_archive_v2": {
+            "passed": true
+          },
+          "fraction_producer": {
+            "passed": true
+          },
+          "fraction_billing": {
+            "passed": true
+          },
+          "fraction_live": {
+            "passed": true
+          },
+          "fraction_archive_v1": {
+            "passed": true
+          },
+          "fraction_archive_v2": {
+            "passed": true
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": "Implemented exact v2 invoice creation, strict v2-only live reading, and v1/v2 archive reading. Positional and `total=` calls remain supported through both public APIs.\n\nAll 7 tests pass, covering documented valid and invalid contracts. Independent review found no actionable issues. Baseline hashes confirm persisted archives and unrelated files are unchanged. No commit or dependency installation was performed."
+    },
+    {
+      "run_id": "run-05",
+      "case": "contract",
+      "variant": "poteto",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 194.742,
+      "usage_all_sessions": {
+        "input_tokens": 1476182,
+        "cached_input_tokens": 1371136,
+        "output_tokens": 9355,
+        "total_tokens": 1485537
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 39,
+      "command_actions_all_sessions": 34,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice_contract.py"
+      ],
+      "final_response_chars": 389,
+      "completed_workers": [
+        "01a1213b-85c7-77c1-9fa1-b7b33ee67696",
+        "01a1213b-9f3e-75d1-a409-245eb8a4f41d"
+      ],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice_contract.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "decimal_billing": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "decimal_live": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "decimal_archive_v1": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "decimal_archive_v2": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "fraction_producer": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "fraction_billing": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "fraction_live": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "fraction_archive_v1": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "fraction_archive_v2": {
+            "passed": false,
+            "error_type": "ValueError"
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": "Implemented v2 invoice creation with strict shared validation. Live reads accept only v2; archive reads accept explicit v1 and v2. Public positional and `total=` APIs remain supported.\n\nAll eight tests pass, covering documented valid and invalid contracts. Independent review found no bugs. Archive and unrelated file hashes are unchanged. No commits or dependency installations were made."
+    },
+    {
+      "run_id": "run-06",
+      "case": "contract",
+      "variant": "baseline",
+      "repetition": 1,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 86.497,
+      "usage_all_sessions": {
+        "input_tokens": 79760,
+        "cached_input_tokens": 70784,
+        "output_tokens": 2094,
+        "total_tokens": 81854
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 4,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice_contract.py"
+      ],
+      "final_response_chars": 367,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice_contract.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": true
+          },
+          "decimal_billing": {
+            "passed": true
+          },
+          "decimal_live": {
+            "passed": true
+          },
+          "decimal_archive_v1": {
+            "passed": true
+          },
+          "decimal_archive_v2": {
+            "passed": true
+          },
+          "fraction_producer": {
+            "passed": true
+          },
+          "fraction_billing": {
+            "passed": true
+          },
+          "fraction_live": {
+            "passed": true
+          },
+          "fraction_archive_v1": {
+            "passed": true
+          },
+          "fraction_archive_v2": {
+            "passed": true
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": "New invoices now use the exact v2 envelope. The live consumer accepts only v2; the archive reader accepts explicit v1 and v2. Both enforce the documented validation rules.\n\nPositional and `total=` calls remain supported for both public APIs. Persisted archives and unrelated files are unchanged.\n\nAll 7 tests pass, covering the documented valid and invalid contracts."
+    },
+    {
+      "run_id": "run-07",
+      "case": "label",
+      "variant": "pancake",
+      "repetition": 2,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 55.164,
+      "usage_all_sessions": {
+        "input_tokens": 94661,
+        "cached_input_tokens": 80256,
+        "output_tokens": 948,
+        "total_tokens": 95609
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 6,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 269,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected \u201cAvailble commands\u201d to \u201cAvailable commands\u201d in [cli.py]($PROJECT/workspace/cli.py:6).\n\nVerified the help output and byte preservation: every other byte and all other files are unchanged. No tests added."
+    },
+    {
+      "run_id": "run-08",
+      "case": "label",
+      "variant": "poteto",
+      "repetition": 2,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 92.972,
+      "usage_all_sessions": {
+        "input_tokens": 435980,
+        "cached_input_tokens": 375040,
+        "output_tokens": 2315,
+        "total_tokens": 438295
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 16,
+      "command_actions_all_sessions": 16,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 355,
+      "completed_workers": [
+        "01a12140-9e46-7d71-a0d8-abb7af9d2d5b",
+        "01a12140-d30e-75d1-a12f-e41923c184ff"
+      ],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected the typo in [cli.py]($PROJECT/workspace/cli.py:6). Byte comparison verified every other byte and file stayed unchanged. Help output now reads `Available commands: status, help`.\n\nPoteto\u2019s Laziness Protocol guided the single replacement; Prove It Works guided verification. No tests added."
+    },
+    {
+      "run_id": "run-09",
+      "case": "label",
+      "variant": "baseline",
+      "repetition": 2,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 30.779,
+      "usage_all_sessions": {
+        "input_tokens": 46636,
+        "cached_input_tokens": 39168,
+        "output_tokens": 305,
+        "total_tokens": 46941
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 2,
+      "command_actions_all_sessions": 2,
+      "changed_files": [
+        "cli.py"
+      ],
+      "added_files": [],
+      "final_response_chars": 164,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": true,
+      "original_artifact_failure": null,
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": null,
+      "final_reply": "Corrected `Availble commands` to `Available commands` in `cli.py` at line 6. Verified every other byte was preserved. No other files changed; no tests added or run."
+    },
+    {
+      "run_id": "run-10",
+      "case": "contract",
+      "variant": "poteto",
+      "repetition": 2,
+      "timed_out": true,
+      "exit_code": -9,
+      "elapsed_seconds": 300.023,
+      "usage_all_sessions": {
+        "input_tokens": 1566057,
+        "cached_input_tokens": 1471872,
+        "output_tokens": 13009,
+        "total_tokens": 1579066
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 49,
+      "command_actions_all_sessions": 33,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice.py"
+      ],
+      "final_response_chars": null,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": true
+          },
+          "decimal_billing": {
+            "passed": true
+          },
+          "decimal_live": {
+            "passed": true
+          },
+          "decimal_archive_v1": {
+            "passed": true
+          },
+          "decimal_archive_v2": {
+            "passed": true
+          },
+          "fraction_producer": {
+            "passed": true
+          },
+          "fraction_billing": {
+            "passed": true
+          },
+          "fraction_live": {
+            "passed": true
+          },
+          "fraction_archive_v1": {
+            "passed": true
+          },
+          "fraction_archive_v2": {
+            "passed": true
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": null
+    },
+    {
+      "run_id": "run-11",
+      "case": "contract",
+      "variant": "baseline",
+      "repetition": 2,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 81.288,
+      "usage_all_sessions": {
+        "input_tokens": 97794,
+        "cached_input_tokens": 82048,
+        "output_tokens": 2267,
+        "total_tokens": 100061
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 5,
+      "command_actions_all_sessions": 5,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice_contract.py"
+      ],
+      "final_response_chars": 353,
+      "completed_workers": [],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice_contract.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": true
+          },
+          "decimal_billing": {
+            "passed": true
+          },
+          "decimal_live": {
+            "passed": true
+          },
+          "decimal_archive_v1": {
+            "passed": true
+          },
+          "decimal_archive_v2": {
+            "passed": true
+          },
+          "fraction_producer": {
+            "passed": true
+          },
+          "fraction_billing": {
+            "passed": true
+          },
+          "fraction_live": {
+            "passed": true
+          },
+          "fraction_archive_v1": {
+            "passed": true
+          },
+          "fraction_archive_v2": {
+            "passed": true
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": "New invoices now use the exact v2 envelope. The live consumer accepts only v2; the archive reader validates explicit v1 and v2.\n\nBoth public `total` APIs retain positional and keyword calls. Persisted archives and unrelated files remain unchanged.\n\nAll 7 tests pass, covering the documented valid and invalid contracts and preserving the original tests."
+    },
+    {
+      "run_id": "run-12",
+      "case": "contract",
+      "variant": "pancake",
+      "repetition": 2,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 178.002,
+      "usage_all_sessions": {
+        "input_tokens": 509760,
+        "cached_input_tokens": 442496,
+        "output_tokens": 5561,
+        "total_tokens": 515321
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 18,
+      "command_actions_all_sessions": 20,
+      "changed_files": [
+        "archive.py",
+        "consumer.py",
+        "producer.py",
+        "test_contract.py"
+      ],
+      "added_files": [
+        "invoice_contract.py"
+      ],
+      "final_response_chars": 294,
+      "completed_workers": [
+        "01a12149-e276-7e72-9339-fc72e0c5395c"
+      ],
+      "preferences_unchanged": true,
+      "inputs_unchanged": true,
+      "observed_settings": [
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ],
+        [
+          {
+            "model": "gpt-6.1-sol",
+            "effort": "medium"
+          }
+        ]
+      ],
+      "original_artifact_passed": false,
+      "original_artifact_failure": [
+        "AssertionError: unrelated file added: invoice_contract.py"
+      ],
+      "reassessed_artifact": {
+        "passed": true,
+        "exit_code": 0,
+        "stdout": "artifact checks passed\n",
+        "stderr": ""
+      },
+      "assessment_preserved_workspace": true,
+      "numeric_audit": {
+        "exit_code": 0,
+        "checks": {
+          "decimal_producer": {
+            "passed": true
+          },
+          "decimal_billing": {
+            "passed": true
+          },
+          "decimal_live": {
+            "passed": true
+          },
+          "decimal_archive_v1": {
+            "passed": true
+          },
+          "decimal_archive_v2": {
+            "passed": true
+          },
+          "fraction_producer": {
+            "passed": true
+          },
+          "fraction_billing": {
+            "passed": true
+          },
+          "fraction_live": {
+            "passed": true
+          },
+          "fraction_archive_v1": {
+            "passed": true
+          },
+          "fraction_archive_v2": {
+            "passed": true
+          },
+          "nan_live": {
+            "passed": true
+          },
+          "nan_archive": {
+            "passed": true
+          }
+        },
+        "stderr": ""
+      },
+      "final_reply": "Implemented exact v2 invoice creation, live v2-only reads, and archive v1/v2 reads. Positional and `total=` APIs remain supported.\n\nAll seven tests pass, covering valid and invalid contracts. Independent review found no remaining issues. Persisted archives and unrelated files remain unchanged."
+    }
+  ]
+}

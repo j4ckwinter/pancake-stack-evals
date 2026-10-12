@@ -1,0 +1,67 @@
+{
+  "label": "output-07",
+  "case": "config-bug",
+  "final": "- **[P1] Preserve an explicit zero limit** \u2014 [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces `0` with `20`, violating the documented contract that zero disables selection. Reproduced: `select_jobs(['a', 'b', 'c'], {'limit': 0})` returns all three jobs instead of `[]`. Restore the explicit `None` check and add zero-limit coverage.\n\nBoth existing tests pass; neither covers zero. No files were edited.",
+  "exit_code": 0,
+  "timed_out": false,
+  "workspace_unchanged": true,
+  "records": [
+    {
+      "session": 0,
+      "worker": false,
+      "completed": true,
+      "calls": [
+        {
+          "id": "call_54SXz7uxlkizfPiNUkPiRSv6",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"pwd && rg --files -g 'AGENTS.md' -g 'change.diff' -g 'SKILL.md' -g 'package.json' -g 'pyproject.toml' -g 'go.mod' -g 'Cargo.toml'\",\"max_output_tokens\":3000}));\ntext(await tools.exec_command({cmd:\"cat [project]/bundle/skills/workflow/SKILL.md\",\"max_output_tokens\":6000}));\n"
+          }
+        },
+        {
+          "id": "call_UwxoJcYKeNcGHOG4Lx4YdDpw",
+          "name": "exec",
+          "arguments": {
+            "input": "const r=await Promise.allSettled([\ntools.exec_command({cmd:\"cat ../bundle/skills/workflow/references/values.md ../bundle/skills/sift/SKILL.md ../bundle/skills/check/SKILL.md\",\"max_output_tokens\":10000}),\ntools.exec_command({cmd:\"ls -la && cat change.diff\",\"max_output_tokens\":14000})\n]); r.forEach(text);\n"
+          }
+        },
+        {
+          "id": "call_HurKpDtDOo4IYHcyYUATJthQ",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat README.md && nl -ba settings.py && nl -ba jobs.py && nl -ba test_jobs.py && rg --files --hidden\",\"max_output_tokens\":4000}));\n"
+          }
+        },
+        {
+          "id": "call_koXiDutf5NNFu7fKckYBKf3e",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest -v test_jobs && PYTHONDONTWRITEBYTECODE=1 python3 -B -c 'from jobs import select_jobs; print(\\\"zero limit:\\\", select_jobs([\\\"a\\\", \\\"b\\\", \\\"c\\\"], {\\\"limit\\\": 0})); print(\\\"None limit count:\\\", len(select_jobs(list(range(30)), {\\\"limit\\\": None})))'\",\"max_output_tokens\":2000}));\n"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "call_54SXz7uxlkizfPiNUkPiRSv6",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_UwxoJcYKeNcGHOG4Lx4YdDpw",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_HurKpDtDOo4IYHcyYUATJthQ",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"d71149\",\"wall_time_seconds\":0.000002209,\"exit_code\":0,\"original_token_count\":230,\"output\":\"# Batch selection\\\\n\\\\nselect_jobs(jobs, options) returns at most options[\\'limit\\'] jobs. The limit is a nonnegative integer or None. An omitted or None limit uses 20. Zero disables selection and must return no jobs.\\\\n     1\\\\tDEFAULT_LIMIT = 20\\\\n     2\\\\t\\\\n     3\\\\t\\\\n     4\\\\tdef resolve_limit(options):\\\\n     5\\\\t    return options.get(\\'limit\\') or DEFAULT_LIMIT\\\\n     1\\\\tfrom settings import resolve_limit\\\\n     2\\\\t\\\\n     3\\\\t\\\\n     4\\\\tdef select_jobs(jobs, options):\\\\n     5\\\\t    return jobs[:resolve_limit(options)]\\\\n     1\\\\timport unittest\\\\n     2\\\\tfrom jobs import select_jobs\\\\n     3\\\\t\\\\n     4\\\\t\\\\n     5\\\\tclass JobTests(unittest.TestCase):\\\\n     6\\\\t    def test_explicit_limit(self):\\\\n     7\\\\t        self.assertEqual(select_jobs([\\'a\\', \\'b\\', \\'c\\'], {\\'limit\\': 2}), [\\'a\\', \\'b\\'])\\\\n     8\\\\t\\\\n     9\\\\t    def test_default(self):\\\\n    10\\\\t        self.assertEqual(select_jobs(list(range(30)), {}), list(range(20)))\\\\ntest_jobs.py\\\\nsettings.py\\\\njobs.py\\\\nREADME.md\\\\nchange.diff\\\\n\"}'}]"
+        },
+        {
+          "id": "call_koXiDutf5NNFu7fKckYBKf3e",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"c062a9\",\"wall_time_seconds\":0.000001792,\"exit_code\":0,\"original_token_count\":269,\"output\":\"python3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-1m6SEvSN\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-drl6avJN\\' (errno=Operation not permitted)\\\\ntest_default (test_jobs.JobTests) ... ok\\\\ntest_explicit_limit (test_jobs.JobTests) ... ok\\\\n\\\\n----------------------------------------------------------------------\\\\nRan 2 tests in 0.000s\\\\n\\\\nOK\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-1QFLtjyx\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-dfr4IJgd\\' (errno=Operation not permitted)\\\\nzero limit: [\\'a\\', \\'b\\', \\'c\\']\\\\nNone limit count: 20\\\\n\"}'}]"
+        }
+      ],
+      "verdicts": [
+        "- **[P1] Preserve an explicit zero limit** \u2014 [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces `0` with `20`, violating the documented contract that zero disables selection. Reproduced: `select_jobs(['a', 'b', 'c'], {'limit': 0})` returns all three jobs instead of `[]`. Restore the explicit `None` check and add zero-limit coverage.\n\nBoth existing tests pass; neither covers zero. No files were edited."
+      ]
+    }
+  ],
+  "limits": "Guidance names and private paths normalized; long guidance-read outputs omitted. Spawn briefs may be encrypted. Treatment may remain inferable from prose and worker topology."
+}

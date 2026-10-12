@@ -1,6 +1,6 @@
 # Evaluate a workflow on a fresh task
 
-Use the seven scenarios in [tests/behavioral/cases](../tests/behavioral/cases) to check workflow behavior against small, repeatable projects. They derive from the trial families recorded in [the project plan](plan.md). They are new fixtures, not recovered copies of the historical trials.
+Use the scenarios in [tests/behavioral/cases](../tests/behavioral/cases) to check workflow behavior against small, repeatable projects. They derive from the trial families recorded in [the project plan](plan.md). They are new fixtures, not recovered copies of the historical trials.
 
 The [3 October 2026 trial results](behavioral-results.md) record observed outcomes and unresolved process gaps.
 
@@ -25,6 +25,72 @@ Inspect final responses and changed tests as well as machine results. A complete
 
 Raw output includes prompts, commands, session records, final responses, source hashes, and candidate workspaces. It may contain account metadata: keep it private and publish only inspected, sanitized excerpts. The runner removes copied authentication before assessment and executes generated application/tests through `codex sandbox --permission-profile :read-only`, with isolated Codex and Claude preference paths. Verify that sandbox support works on the active host; the runner must not fall back to unrestricted execution. It removes temporary candidate directories after each run and preserves records in the explicit output directory for assessment. Do not point candidates at the assessor files or copy authentication into committed evidence.
 
+## Three-arm outcome and proportionality pilot
+
+The `comparison` suite reuses the runner for `baseline`, `pancake`, and the local
+Codex adaptation of `poteto`. The baseline has no workflow bundle. This is a
+source-guidance comparison on one host, not plugin installation validation.
+Run only when live model usage is authorized:
+
+```sh
+PANCAKE_STACK_SOURCE=/absolute/path/pancake-stack python3 -B tests/behavioral/compare.py --suite comparison --poteto-source /absolute/path/codex/skills --output /tmp/pstack-three-arm-unique --model gpt-6.1-sol --effort medium --repetitions 2 --timeout 300
+```
+
+Two repetitions give 12 sequential trials on two new tasks. `label` requires an
+exact CLI typo correction with every other byte preserved. `contract` migrates
+versioned invoice envelopes across producer, live reader, and archive reader
+while preserving keyword APIs, a protected facade, and persisted archives.
+Its public README defines malformed-record and version behavior. Trusted
+artifact probes stay outside candidate projects and exercise these documented
+contracts. Candidate test quality and verification evidence require separate
+inspection; passing artifacts do not certify added regression coverage.
+The contract case permits Python and Markdown additions, including shared
+modules, and behavior-preserving changes to the billing facade and README.
+The assessor protects persisted archives and unrelated existing files. Review
+added files and documentation for task relevance separately. A file outside
+automatic assessment scope needs adjudication, not an automatic claim that
+the candidate violated the task. Historical cases keep their original policy.
+
+All arms receive identical requests, model and effort, scope restrictions,
+timeouts, and two-thread limits. Scoped implementation delegates and read-only
+reviewers are permitted, inherit the lead's model and effort, and cannot
+create grandchildren. Saved preference reads and writes are prohibited. Arm
+order rotates across cases and repetitions; two repetitions do not completely
+balance positions within each individual case. Three repetitions do.
+
+The poteto source must contain `poteto-mode/SKILL.md`. Preparation selects only
+sibling skills with the Codex compatibility marker, copies their complete trees
+into a random `bundle/skills`, and rejects symlinks. It does not install skills,
+auto-discover them through the profile, or copy saved settings. The manifest
+records every copied file hash, selected skills, and available origin metadata.
+Relative Markdown links are audited against copied resources; unresolved links
+are recorded for inspection, including template placeholders and optional
+references. Absolute links are not a correctness gate. Optional external
+plugins are not copied or installed. Missing optional capabilities must be
+reported as limitations of the observed run.
+
+Source, evaluator, and poteto identities are checked before and after every
+comparison trial. A changed input stops the batch and invalidates its stable
+input assumption. Raw evidence remains private. The 300-second candidate and
+45-second assessment limits bound 12 candidate/assessment pairs to roughly
+69 minutes plus preparation and evidence collection. Infrastructure failures
+stop the batch; artifact failures remain visible outcomes.
+
+Predeclare assessment as artifact success, preservation of protected files,
+verification evidence, and cost. Report per-case elapsed time, input/cached/
+output/total tokens, missing usage, tool-call and command-event counts,
+completed workers, changed/added files, and final-response characters. Workers
+are not automatically reviewers. Inspect their scope and completion evidence.
+Use the tiny task to assess proportionality; do not collapse quality and cost
+into an invented composite score. Keep timeouts visible rather than comparing
+only fast successful runs. Token counts are usage proxies, not monetary cost.
+
+Candidates necessarily see their guidance identity. They do not receive arm
+comparisons or ground truth. Independent assessment can use neutral labels,
+but final prose can reveal treatment. A small synthetic pilot on one model and
+host cannot establish general effectiveness, production savings, installed
+plugin behavior, or diverse-model review quality.
+
 ## Reviewer detection and instruction consolidation
 
 Use `compare.py --suite review` for the focused reviewer experiment. The baseline is the current source Check skill; the consolidated variant replaces only three adjacent contract-tracing paragraphs in a temporary bundle. It adds no compatibility instructions and changes no shipped skill. The hypothesis is that this consolidation preserves defect detection and useful review behavior while reducing overhead. Reject adoption on observed quality or process regressions; overlapping cost ranges in a small pilot leave the overhead claim inconclusive.
@@ -47,6 +113,101 @@ Before examining results, use these assessment rules:
 After adjudicating each output, `review.summarize(results, assessments)` joins ordered runner results with records containing matching `run_id`, `case`, supported `detected` mechanism IDs, `false_findings`, and a `process` map of observed booleans or nulls. `review.score` holds the private mechanism IDs and rejects unsupported IDs. Keep assessment records outside candidate workspaces. Retain sanitized verdicts and evidence pointers so another reader can inspect the judgments; regex matching against prose is not defect assessment.
 
 Use neutral output labels and withhold treatments from an independent assessor when available. Record any lack of blinding or independence. These small, related fixtures measure specific compatibility failures and can saturate accuracy; they cannot establish general reviewer quality or production cost savings.
+
+## Three-arm review comparison
+
+Use `--suite review-comparison` to compare an unguided baseline, the source
+Pancake entrypoint, and the local Codex adaptation of Poteto on review tasks.
+The historical `review` suite retains its four invoice cases and its Check
+baseline and consolidated arms. Run the new suite only with live usage
+authorized and with a new private output directory:
+
+```sh
+PANCAKE_STACK_SOURCE=/absolute/path/pancake-stack python3 -B tests/behavioral/compare.py --suite review-comparison --poteto-source /absolute/path/codex/skills --output /tmp/pstack-review-comparison-unique --model gpt-6.1-sol --effort medium --repetitions 1 --timeout 240
+```
+
+One repetition produces 12 sequential runs. All arms receive the same organic
+review request, model, effort, timeout, and read-only sandbox. The baseline has
+no bundle. Pancake starts at `pancake/SKILL.md`; Poteto starts at its own
+`poteto-mode/SKILL.md`. Independent read-only delegation is permitted when
+useful, with inherited model and effort, two threads, and no grandchildren.
+Source identity checks, bundle inventories, preference restrictions, usage
+collection, and credential cleanup match the three-arm implementation suite.
+The runner stops if an input changes before or during a trial. Arm order rotates
+across cases. One repetition does not balance positions within each case.
+
+The private `review_comparison.py` registry owns two bug cases and two matched
+clean controls. The configuration pair simplifies an option resolver whose
+contract distinguishes zero from an omitted or null limit. The lifecycle pair
+changes a file reader to return an iterable consumed after the call returns.
+All four projects pass their local tests. Independent evaluator probes check
+zero-limit selection and consumption after return, and verify that the clean
+reader closes its stream after consumption. Candidates receive ordinary source,
+a README contract, and `change.diff`. Case identities, expected mechanisms,
+and trusted probes stay outside their workspace.
+
+Predeclare the following rubric before inspecting outputs:
+
+- Apply the preceding reviewer-detection rules for concrete mechanisms,
+  triggers, consequences, duplicate findings, misses, and unsupported findings.
+  Report false findings on both faulty changes and clean controls.
+- Judge unnecessary work from tool and session evidence. Count a distinct
+  episode once, under its primary category. `unrelated_investigation` means
+  investigating code or topics with no plausible path to the changed contract.
+  `redundant_verification` means repeating a check without a change, new
+  hypothesis, unresolved failure, or missing observation that warrants it.
+  `unnecessary_delegation` means assigning work that duplicates completed
+  evidence or lacks a useful independent question. `scope_expansion` means
+  undertaking unrequested implementation or redesign beyond reviewing the diff.
+- A longer review, more tokens, an unsuccessful hypothesis, guidance reads,
+  or delegation alone does not establish unnecessary work. Explain why each
+  counted episode could not reasonably improve this review. Cite the observed
+  operation and relevant context. Keep useful independent review distinct from
+  duplicated work.
+- Mark incomplete evidence as unavailable. An assessed empty item list means
+  the assessor inspected sufficient records and found no unnecessary work.
+  Missing or unavailable assessment never means zero. Record assessor identity,
+  independence, and any treatment information visible during adjudication.
+
+Call `review_comparison.summarize(results, assessments)` with ordered records
+using the same `run_id`, `case`, `detected`, `false_findings`, and `process`
+fields as `review.summarize`. Every assessment also needs `unnecessary_work`.
+An assessed record has this shape:
+
+```json
+{
+  "status": "assessed",
+  "items": [{
+    "id": "episode-1",
+    "category": "redundant_verification",
+    "evidence": ["raw-sessions/session.jsonl:18-26"],
+    "reason": "The same passing check was repeated without any intervening change or new question."
+  }]
+}
+```
+
+An unavailable record contains only `status: "unavailable"` and a nonempty
+`reason`. Item IDs must be unique within a run; categories must match the rubric.
+Every item needs a reason and nonempty evidence references. Validation rejects
+missing assessments, unknown statuses or categories, and unsupported mechanism
+IDs. Evidence pointers require human inspection; validation does not certify
+the judgment or resolve references.
+
+Summaries keep correctness, successful-run cost, and unnecessary-work counts
+separate. They report assessed and unavailable runs, runs with items, total
+items, and category counts. When no run has an assessment, item counts and
+categories are null. When only some runs have assessments, counts describe
+those runs alone. Select matching result and assessment pairs by `case` before
+calling the summarizer for per-case results. Preserve execution failures,
+timeouts, missing usage, and individual evidence alongside aggregates. Failed
+executions still contribute adjudicated misses and false findings.
+
+This bounded pilot measures two synthetic failure mechanisms on one model and
+host. It cannot establish production savings, general review quality, or plugin
+installation behavior. Candidates can see their guidance, and their final
+responses can reveal it to assessors. Read-only filesystem access is not a
+confidentiality boundary for private evaluator files. Keep that limitation
+explicit when interpreting results.
 
 ## Check the fixtures first
 

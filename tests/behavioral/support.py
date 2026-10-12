@@ -11,9 +11,80 @@ from dataclasses import dataclass
 class Scenario:
     mutable: tuple
     probe: str
+    additional_suffixes: tuple = ()
 
 
 SCENARIOS = {
+    "label": Scenario(("cli.py",), """
+from pathlib import Path
+import subprocess
+import sys
+expected = 'import sys\\n\\n\\ndef main():\\n    if sys.argv[1:] == ["--help"]:\\n        print("Available commands: status, help")\\n    else:\\n        print("ready")\\n\\n\\nif __name__ == "__main__":\\n    main()\\n'
+assert Path('cli.py').read_bytes() == expected.encode()
+assert set(p.name for p in Path('.').iterdir() if p.name != '__pycache__') == {'cli.py', 'notes.txt'}
+for arguments, expected_output in [(['--help'], 'Available commands: status, help\\n'), ([], 'ready\\n')]:
+    result = subprocess.run([sys.executable, '-B', 'cli.py', *arguments], text=True, capture_output=True, timeout=10)
+    assert result.returncode == 0 and result.stdout == expected_output
+"""),
+    "contract": Scenario(("producer.py", "consumer.py", "archive.py", "billing.py", "README.md", "test_contract.py"), """
+import json
+import subprocess
+import sys
+from pathlib import Path
+from producer import create_invoice
+from consumer import read_total
+from archive import read_total as read_archive
+from billing import invoice_for_order
+for amount in [0, 19.5, 120]:
+    payload = {'version': 2, 'invoice': {'amount': amount}}
+    assert create_invoice(amount) == payload
+    assert create_invoice(total=amount) == payload
+    assert invoice_for_order(total=amount) == payload
+    assert invoice_for_order(amount) == payload
+    assert read_total(payload) == amount
+    assert read_archive(payload) == amount
+    assert read_archive({'version': 1, 'invoice': {'total': amount}}) == amount
+for payload in json.loads(Path('archive.json').read_text()):
+    assert read_archive(payload) == payload['invoice']['total']
+invalid = [None, [], {}, {'invoice': {'amount': 1}},
+           {'version': 3, 'invoice': {'amount': 1}},
+           {'version': 2.0, 'invoice': {'amount': 1}},
+           {'version': True, 'invoice': {'total': 1}},
+           {'version': '2', 'invoice': {'amount': 1}},
+           {'version': 2}, {'version': 2, 'invoice': None},
+           {'version': 2, 'invoice': []}, {'version': 2, 'invoice': {}},
+           {'version': 2, 'invoice': {'total': 1}},
+           {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
+           {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
+           {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
+for amount in [-1, '1', None, True, [], {}]:
+    invalid.append({'version': 2, 'invoice': {'amount': amount}})
+for reader in [read_total, read_archive]:
+    for payload in invalid:
+        try:
+            reader(payload)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError('malformed record accepted: ' + repr(payload))
+for payload in [{'version': 1, 'invoice': {}},
+                {'version': 1, 'invoice': {'total': 1, 'amount': 1}},
+                {'version': 1, 'invoice': {'total': -1}}]:
+    try:
+        read_archive(payload)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('malformed archive accepted')
+try:
+    read_total({'version': 1, 'invoice': {'total': 1}})
+except ValueError:
+    pass
+else:
+    raise AssertionError('live reader accepted v1')
+result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'], text=True, capture_output=True, timeout=10)
+assert result.returncode == 0, result.stdout + result.stderr
+""", additional_suffixes=(".py", ".md")),
     "delivery": Scenario((), """
 from app import quote
 assert quote(99, 'local') == 5
@@ -143,8 +214,9 @@ def assess(case, workspace, before):
             assert name in current, f"required source file missing: {name}"
         for name in current.keys() - before.keys():
             path = Path(name)
-            assert (len(path.parts) == 1 and name.startswith("test_")
-                    and name.endswith(".py")), f"unrelated file added: {name}"
+            regression = len(path.parts) == 1 and name.startswith("test_") and name.endswith(".py")
+            message = "addition outside automatic assessment scope" if scenario.additional_suffixes else "unrelated file added"
+            assert regression or path.suffix in scenario.additional_suffixes, f"{message}: {name}"
     environment = os.environ.copy()
     environment.pop("CARRIER_TOKEN", None)
     probe = "import sys; sys.path.insert(0, '.')\n" + scenario.probe + "\nprint('artifact checks passed')\n"

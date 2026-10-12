@@ -1,0 +1,3703 @@
+{
+  "date": "2026-10-12",
+  "scope": "Bounded source-workflow review comparison, not installed-host verification",
+  "manifest": {
+    "source": {
+      "revision": "56534574588ed392ac4d306e3562fa088cd57470",
+      "dirty": false,
+      "file_hashes": {
+        ".agents/plugins/marketplace.json": "6afb5815a255610fd46864fb0522f4d2554ed728fc23105a0977705885a0a313",
+        ".claude-plugin/marketplace.json": "08a6a4f801b28c443d33ffa76e5dd166f34adf4c377870be973ef13dc3e43df9",
+        ".claude-plugin/plugin.json": "57c711e10b56317a8cf8d4191ccc2fb85ee8fd0af2725842b965ea59a5dd3891",
+        ".github/workflows/checks.yml": "234100ae547307adef396a7b5c10c9e5aaa8ef5ca8e9ec978e5782b705ca9f73",
+        ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+        "AGENTS.md": "ca63ce258e460d3e868635722be824af829d826ec9032053cc84b206e57a9e6b",
+        "README.md": "c97f91060b709916ea998696d8b35c9c9b72344a2e7203d47528da677e891a46",
+        "docs/claude.md": "e88e5e7b3f4123b0778dbbc5ec4053f2db4183b6edf6de6a590cf900104fb000",
+        "docs/configuration.md": "758b0ac82b6270939da134957c49885a38fef8ea2544d26993de8ef08e1240db",
+        "docs/installation-verification.md": "7b8232487e0cba75d212ee09993a7567efe6ac01b747027f31efb40a3d992360",
+        "docs/plan.md": "fd27e7b3952a68e8cb72b6d817cf98610bc471377020bc7f473b6fead8b6dee4",
+        "docs/recipes.md": "31ec6040a757500bf7325e4c3f52b7484f07ba1f5e71d0a0555af4c705fb7adf",
+        "docs/setup.md": "d2a0e99a16f1016d66b9654fe1e34020acfe87c52c632b5c52066bc8a7f54ba2",
+        "docs/verification.md": "5b467a89d1e08b0bd68c8c0789d99284773ce6de4dbe1840bac2415797a1ec45",
+        "plugin.json": "4a5e5542e808538bb584abeeeed2e0fc19908b66685181c11c38db68b044ada3",
+        "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+        "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+        "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+        "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+        "skills/check/SKILL.md": "fd4f838b3f8992a4ebd67ac4b1dd19edd8c58f40124005ff3ec47a7cc8cc2d0e",
+        "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+        "skills/design/SKILL.md": "049311b1543c7cf0dfeea03e0c374fce47e174546027cea43fe1783fe5777903",
+        "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+        "skills/design/references/competing-designs.md": "54e4b2e1ddde93dfdf1b99d2cf932f75cc701a9fd28b4cc9688550b024cc5a6e",
+        "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+        "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+        "skills/fix/SKILL.md": "36f445afec49a02a518a98210f826416cb0b70ea382a9c30db4ba42fa9de7ae5",
+        "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+        "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+        "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+        "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+        "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+        "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+        "skills/pancake/SKILL.md": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+        "skills/pancake/agents/openai.yaml": "9be4bc45816a22ae67eae89726daa97bdb846fd32df0e3fe30ab4cc800b406e0",
+        "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+        "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+        "skills/pancake/references/experiments.md": "a3ee8e890bfbf456e72019438a4b6fc6a115ad244232d32b5441d553debd7c8a",
+        "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+        "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+        "skills/pancake/references/implementation.md": "25c9070cdb67462ef64355de61d8a7b0c8ba7dddc7b9f908a17c6cd0384ea5ab",
+        "skills/pancake/references/parallel-work.md": "a7c0f2738db69d0222adfb5448b685e50bf6a739f0cc5bc263211d77d1d51654",
+        "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+        "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+        "skills/pancake/references/substantial-work.md": "b734cb5affaaff02bf9da6f7454d4007ef18af206a9f61f82735fa628dbf9bfa",
+        "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+        "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+        "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+        "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+        "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+        "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+        "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+        "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+        "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+        "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+        "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+        "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+        "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+        "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+        "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+        "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+        "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+        "skills/tdd/SKILL.md": "095fa6a462281270cab765533bcd29fd7fe9710382c72a7d6778558719078403",
+        "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+        "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+        "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+        "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+        "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+        "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+        "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+        "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+        "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+        "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+        "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080"
+      }
+    },
+    "evaluator": {
+      "revision": "f3a3049ab730ab4c7d3998774f7973b34de0f889",
+      "dirty": false,
+      "file_hashes": {
+        ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+        "AGENTS.md": "ae701a3ba45d901a3e0bfa4bc57adf71ce41b02fa20435025a44105a7a73fa4d",
+        "README.md": "e1c2e2d652916c4daa52d1fc867da0af801e305ca1e88f63e8405d9e64a354e6",
+        "docs/baseline-comparison.md": "a1f7c9e17cc1ce2214738fc84b79252ada2e9f391d95f7a9591d50a57f6e6e70",
+        "docs/behavioral-evaluation.md": "4ece1ab43f10f4c4823452031c04309c3b7008bd52b4908c31c47f03f60ae903",
+        "docs/behavioral-results.md": "7059c0ae92f96bb93b3cb0861fb75e768d046057af32151b4466b4363597801f",
+        "docs/claude.md": "b62a3f86aa470e2b8758f047577b9867628409ba52d18d861151ff84c481df56",
+        "docs/configuration.md": "eb81ff3396957e20f879ac0b4153567a44247ca30946280d6821bb07a8ee710c",
+        "docs/evidence/baseline-comparison-2026-10-07.json": "a13f4d01d713cfd1dc47dd5fc6dceddb54afe8f485b39edd9c772722bbe8c4ec",
+        "docs/evidence/challenge-panel-2026-10-05.json": "4b95071b23c6faabc9ae39a768fc1fb849c4483e32820802f9319c54cbd0de13",
+        "docs/evidence/claude-decisions-2026-10-06.tsv": "d324a7cabf6c11869e40f5de8160114c4c4fe10268d274211a22e9671973ba82",
+        "docs/evidence/claude-support-2026-10-06.json": "d641990ad00364763151f2c7967fb4dff4059e84e5dcdbefcd4da8ac7610d9e0",
+        "docs/evidence/default-persistence-2026-10-06.json": "b0ec5f533e92f48507039f8a24d56df783ee6d7e55b13c1cfe84e8f5fc2d0295",
+        "docs/evidence/delegation-fallbacks-2026-10-06.json": "b45fe7e0026f6fd5944900bc815a0bd4afd092abc9fe236fd33729390974f936",
+        "docs/evidence/git-install-2026-10-06.json": "671e92b14af738279062f8c5fb293fec326f4d9fdf72b163ca37068963917b70",
+        "docs/evidence/host-installation-2026-10-09.json": "f24adb52a080c1f78ce682da8e69c1621af36b06d08080297b62459f57344cc8",
+        "docs/evidence/implementation-panel-incomplete-2026-10-05.json": "240fc84e014dae88bac23fde82776c7ac936337c4eb0d0f8739273ce9c83156a",
+        "docs/evidence/installed-panel-2026-10-05.json": "5cd140d78bd382a3e1aac5cde85c87e04b513e9ec7ad84beec59269817369449",
+        "docs/evidence/library-split-2026-10-07.json": "53c11b14b8f76dc02746070298c79c88367f918d580e38317fe8a75d0584c2ce",
+        "docs/evidence/preference-followup-2026-10-07.json": "9f0d890cb9dd10a3a15ff605905d0074f9c0d1ead18fd31a05d98c6ee99f1530",
+        "docs/evidence/preference-timing-2026-10-07.json": "bfb9ab2993ed60c6a9efbf2f4d9efa26e8d95237d08c0af5eac6b10333096ac8",
+        "docs/evidence/records-2026-10-03.json": "36cfe6ffcf4d5acd8007ec2d314121e64a33583be088f90cc6fa48343fc44b9d",
+        "docs/evidence/reviewer-comparison-2026-10-07.json": "dd9557dce9c2f37ddc1e772492b509cbd27c8292b87e41e6d9640317aa14b34c",
+        "docs/evidence/reviewer-consolidation-2026-10-09.json": "5dc8d62bf8cd97390ac3bc21d705fdbe2e8cbfa0a413dee01502468c52dc46b5",
+        "docs/evidence/roadmap-decisions-2026-10-05.tsv": "f72cdd9a0e932782a3e5100cc39fb4f7b18358c37c4659ae142be334bc8cfef9",
+        "docs/evidence/roadmap-workflows-2026-10-05.json": "05b8d288af505d94447028796b74141e03fac89329079abd51fc0747d291cc88",
+        "docs/evidence/summary-2026-10-03.json": "5775e484d4ea3a14885fe3712cc9a51ef09a43b61d5a41bc0c34d1a3a3c53cb2",
+        "docs/evidence/tdd-2026-10-03.json": "2419601cfe2e152d4d0bcc5025035180873b37803c11bab206ebd8167e3dbab9",
+        "docs/evidence/three-arm-comparison-2026-10-09.json": "e4fd81e9c38f51b4968ba9bef0d74c78b7fe3e4dd4e02180638a6a18aaae2342",
+        "docs/evidence/workflow-fix-2026-10-03.json": "ff43d420b4aa8ee3a4526761ad00f27d33c7a99c91eb3a19688ca971ac55b208",
+        "docs/evidence/workflow-records-2026-10-03.json": "07b0e70525a6620400493b28bd8a20524f0ccc9e8390d3ef9790e77232e14f76",
+        "docs/evidence/workflow-summary-2026-10-03.json": "e7ca4ae725acdd467651ca705901d5d0b8042d7f867f0956d176a15b5382cff5",
+        "docs/installation-verification.md": "21b09c03735f32715113803bbeab409e70fcbbf8edfb061e642e1872f18ba1d9",
+        "docs/library-split.md": "a70a9ab6d0edcdbb4bab2f9b80f518a2bb663cf615e95ec8af87bb8810581aaa",
+        "docs/plan.md": "1bf1106ae6f30fc0dffa0570af6dda9aff71b29e544141d2b02ba46b7e0008c2",
+        "docs/recipes.md": "26ffd5b1f3d5993b129fad813abbcc8b1b63e788fd1cf1680b5f493e137eeffe",
+        "docs/reviewer-consolidation.md": "66b038b5f91ebf84254a3d00ed808e41656e7cd061d6819b6af4a9de8d473b7f",
+        "docs/safeguards.md": "6d60ebfb1789f4749cd9b685918d69e70e8cb7fbb82dbe2300569b875776e483",
+        "docs/setup.md": "c13ab1864bc179e379fc9e4ce885297d3cb73dc0fe74120ebde303db9edcd654",
+        "docs/three-arm-comparison.md": "2d3fc9866fb5362177ab2738ab643364fb55b02c0c4b2116188f6f4eaf6a253b",
+        "fixtures/legacy-0.19.3/README.md": "85962d246acc5b77453c5f424542d378d4c980907599818795edc7883bdc3867",
+        "fixtures/legacy-0.19.3/config/challenge-panel.example.json": "5129b092b6d2f6b8f9597e8d635d8e696f8ae0e76fbf46a2043e46620ba8f343",
+        "fixtures/legacy-0.19.3/config/implementation-panel.example.json": "b7be389691fd063aed221957d065ddc74ad3a7c3d0f89254cbaef9a3f8b76163",
+        "fixtures/legacy-0.19.3/config/preferences.example.json": "642e07fbe875f4f35390621dcc7053554481ac43db06ddb2e55830496c85b1f3",
+        "fixtures/legacy-0.19.3/skills/setup/scripts/catalog.py": "0be97e5033072ea821369e83fd3719e04f5c9a9801a154f0904b7883215583e7",
+        "fixtures/legacy-0.19.3/skills/setup/scripts/preferences.py": "a7df83d8abd46751fa1f024c7265d45ad6e5c8080c6a6b6a733a88a0b79ba519",
+        "run_checks.py": "1f12556191a3a702e20f5e4f330addcd70652081f7d1a27804ab504d8b806e23",
+        "tests/behavioral/cases/checkout/request.txt": "7a0f522d057699afbc5899e766187e077d720a931c319f976c43fb641e562a33",
+        "tests/behavioral/cases/checkout/workspace/app.py": "8f7363cfe7e81b71b02b58f45fdd1713f3fe9ad0afafc1495ad32be556bd8d72",
+        "tests/behavioral/cases/checkout/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/contract/request.txt": "2daed4d2f392f67eedbdc11ea8dcd457eb1fc6910ca004d7e3fc3e909ce7f255",
+        "tests/behavioral/cases/contract/workspace/README.md": "df2290d72c46097433aef4bd7aad9b13cc39717197fcee832463019471ab9072",
+        "tests/behavioral/cases/contract/workspace/archive.json": "97bfebbcce3371383d28b9bad7640c9126ed773ee8c767a5f0bb826c7f217868",
+        "tests/behavioral/cases/contract/workspace/archive.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+        "tests/behavioral/cases/contract/workspace/billing.py": "9018f8c162282ee0601fb6580e2419debd5ce4dac656a5e19a5e895d68cc6f3b",
+        "tests/behavioral/cases/contract/workspace/consumer.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+        "tests/behavioral/cases/contract/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+        "tests/behavioral/cases/contract/workspace/producer.py": "879fb93132d29b04d8b615a5170bcc35fba8c6033fe46b321f247732f0da80c5",
+        "tests/behavioral/cases/contract/workspace/test_contract.py": "76a8086467525a9fbbdb01a249dbe1d323ecea8fc12b5addf149e0c0d134af68",
+        "tests/behavioral/cases/delivery/request.txt": "f38fc2c9eb1a71c6cdcba2ff8d0eae0326f0b09e0d23cc7c07e569c0b87d12cf",
+        "tests/behavioral/cases/delivery/workspace/app.py": "aa0d1f1eff78f376240414c37f450842dfade4ab2ffa5199976adee8548eb2f0",
+        "tests/behavioral/cases/delivery/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/exporter/request.txt": "0daab596bc950832db20099a1c3f4d3cfe3ed3893a27f24c3f6d3474d09a9dec",
+        "tests/behavioral/cases/exporter/workspace/README.md": "cc15bd298ed194fb18a8c3c4485c9fb1cbf4f60cc39462de5701ee60601e3851",
+        "tests/behavioral/cases/exporter/workspace/app.py": "345f0f9efccc6679cb3a898d2d5ad730ae2f347fa58170548c3a85054ec82a3b",
+        "tests/behavioral/cases/exporter/workspace/change.diff": "c5d219eb1df36c0c0a0142cf9dd64196a2eb0d8d3337a88204bdb1420f47631b",
+        "tests/behavioral/cases/exporter/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/exporter/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/exporter/workspace/test_app.py": "f95010575d0a955e881ea5cdfad89e599826b94665dc1791832aaf17d23ae2d0",
+        "tests/behavioral/cases/invoice/request.txt": "665bc6dc78a0225ad7768664d18c5e3d14d33f89d66be02467ddceef191d0c62",
+        "tests/behavioral/cases/invoice/workspace/app.py": "909c8f229655196c9acf8c27765bd895f83e65fd31a4b9cd32a25b06a961bbcb",
+        "tests/behavioral/cases/invoice/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/label/request.txt": "2d51fe68884acccf068c377da1702f4a1d33adccf759ae412029a5451f697662",
+        "tests/behavioral/cases/label/workspace/cli.py": "6c0790388b1cad5efbb7198823918b4e77b45ce3ddf9d59d58392a988f319a8a",
+        "tests/behavioral/cases/label/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+        "tests/behavioral/cases/records/request.txt": "ee82aceb483763b2726b3fcdbbca151322d907b3a2f62ed6b4a83f55ec75f7ed",
+        "tests/behavioral/cases/records/workspace/README.md": "aa61c14b4fd30eca9c20a99816fde1aee6f786d2ab0bac3b4d68e018a76581d5",
+        "tests/behavioral/cases/records/workspace/archive.json": "700935e29ea3462fc45d33b0212ddf415d51925b0f8bd785ffba7ca6cb54dfd1",
+        "tests/behavioral/cases/records/workspace/archive.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/records/workspace/billing.py": "510c98140ba4a1f1eb3e8f1814989f373f7cb9043341bdbaed98d18d84dd7edb",
+        "tests/behavioral/cases/records/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/records/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/records/workspace/producer.py": "3dcfed3c37cc31eee19129ddf312baab34599e19a6a76102101017d7022db6c8",
+        "tests/behavioral/cases/records/workspace/test_records.py": "93ec677a510912169a338b9f9570859c213c0811c69d6ca9f90a1c340b20492d",
+        "tests/behavioral/cases/summary/request.txt": "f09746dae748e925a7cd52ed08f19029bc97f9adfc008de9014b565f129f5584",
+        "tests/behavioral/cases/summary/workspace/app.py": "232cc340c3e6fd52dfe588a5793590a94bd48f7b4da59e142a62472aa8e6daf3",
+        "tests/behavioral/cases/summary/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/summary/workspace/test_app.py": "c18a7dc3b9df4c34ed8909387c08b0a1f191a7bd47b1606671c7a36c9bb6fbf1",
+        "tests/behavioral/cases/update/request.txt": "08687423e702eb35396bbfd505461b6ade73eff7b0ecbb0985f8a2ae05b96534",
+        "tests/behavioral/cases/update/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/update/workspace/update.txt": "8f9603fa753324cf18ef081a431b612ceed8b712a16bc7ca2a0fa5ebd57ecbd9",
+        "tests/behavioral/compare.py": "8afa6adc22eca87739e87c4903ba2d0985afc0f27f6769a2fe160ae1b33652f1",
+        "tests/behavioral/review.py": "c10c5ae9aafd381c83e17a34cba2d8decbccd0b145a40f8453f0d014772c1518",
+        "tests/behavioral/review_comparison.py": "593208bbfbb6a8c05bcb830f88f8cccd20cd683ccf58509a2aa4c837bd904b3c",
+        "tests/behavioral/support.py": "37316071f5b927eed9cacdb8b8420740cc7880f1d57aec95ab9aca7258970e60",
+        "tests/behavioral/traces.py": "decf0c4e9ad3af5fdc033e7fee79f715fb21e24b3e112f153709586f6a2c612c",
+        "tests/package_validation.py": "095f789dbf91bf9de343cda10ce1bb9c57e37e5f92f3593d8c96a0835b4fb56b",
+        "tests/target.py": "ae15fdbfbf58c56eb1722ce9ac34d4bfe8559462368038ab4ab60344840eccf3",
+        "tests/test_behavioral_fixtures.py": "494fb07547909d322a25fb51b6704ac099535428d24f8cd488fc69df004ddf61",
+        "tests/test_catalog.py": "1cb79bca54c0be5c223d31a319386f0dfd1f444eff04085b8a2b3f12bd76deee",
+        "tests/test_comparison.py": "fd78c68cf578bd2f233d85f1c40d75093cbac5115cfefb73d7fe435c61b3e5fe",
+        "tests/test_comparison_fixtures.py": "255fc0220019b82d54fea4241cfa969160cd5f8732538610a37c3ee57f832ad5",
+        "tests/test_identity.py": "59ec33126e142c7ffe5eb589e9dccbb45f5a5c88a3c3ffac76ba807380834fda",
+        "tests/test_package_validation.py": "3e62c86734f0a74e371b02d8ea994428d7d397a8e8b972ac2b9d377b762c8186",
+        "tests/test_preferences.py": "705b6f08c8e1709b4018523f934cc61428644b6f224a6f0579eeed49164e12d3",
+        "tests/test_review_comparison.py": "37a4e37780ee97d39ef5094d5874bfc818a7490c30f536146767f86979a5af86",
+        "tests/test_review_evaluation.py": "a3edae946f49bf9ef452b860c3b9b116e6d2b977495be0e12d1fc75a5d840a1a",
+        "tests/test_trial_traces.py": "e0dc14cf565df864b8f74477b50bb509f141ac3155780b6296f702c3f7e28ade"
+      }
+    },
+    "cli_version": "codex-cli 0.160.0",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "timeout_seconds": 240,
+    "suite": "review-comparison",
+    "poteto": {
+      "skills": [
+        "architect",
+        "arena",
+        "automate-me",
+        "blast-radius",
+        "bro",
+        "create-verification-skill",
+        "figure-it-out",
+        "how",
+        "interrogate",
+        "maintain-verification-skill",
+        "make-bot-ui",
+        "no-comments",
+        "poteto-mode",
+        "principle-attack-the-premise",
+        "principle-boundary-discipline",
+        "principle-build-the-lever",
+        "principle-encode-lessons-in-structure",
+        "principle-exhaust-the-design-space",
+        "principle-experience-first",
+        "principle-fix-root-causes",
+        "principle-foundational-thinking",
+        "principle-guard-the-context-window",
+        "principle-laziness-protocol",
+        "principle-make-operations-idempotent",
+        "principle-migrate-callers-then-delete-legacy-apis",
+        "principle-minimize-reader-load",
+        "principle-model-the-domain",
+        "principle-never-block-on-the-human",
+        "principle-outcome-oriented-execution",
+        "principle-prove-it-works",
+        "principle-redesign-from-first-principles",
+        "principle-separate-before-serializing-shared-state",
+        "principle-sequence-verifiable-units",
+        "principle-subtract-before-you-add",
+        "principle-test-behavior-not-implementation",
+        "principle-type-system-discipline",
+        "recall",
+        "reflect",
+        "setup-pstack",
+        "show-me-your-work",
+        "swarm",
+        "tdd",
+        "teach",
+        "technical-writing",
+        "typescript-best-practices",
+        "unslop",
+        "why"
+      ],
+      "files": {
+        "architect/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "architect/SKILL.md": "2a0d65647420e1d5601a179ce37c36a890be207645ed85e4642d988c38ee9fc7",
+        "architect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "architect/references/design-red-flags.md": "905066f9bbac81c573c2b325be47751d2c0f9325e0a0772bd4384e82dafe9336",
+        "architect/references/rationale-template.md": "0cedfccdc7b47fc881febd5a8293eecbc542c20f8df825639904a8102d2eb5d3",
+        "architect/references/runner-prompt.md": "983bf2820cc14ed8ecab6e448e1033e5cfe6031967d0a9287b48c7fa9c33d925",
+        "arena/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "arena/SKILL.md": "4f3929f0484f61a7b199f3c1dc56a8f731aa7083a1cdfc31e7cd3f354bf96261",
+        "arena/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "automate-me/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "automate-me/SKILL.md": "556d8e74bb5b23786cf82cddcc2c5e5b64db3106a4e53dad0f0ee8561f813690",
+        "automate-me/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "blast-radius/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "blast-radius/SKILL.md": "07c11a76dd59a8d2d7558493c50cc54656f83cffec91a99b677fffa32c6a714b",
+        "blast-radius/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "bro/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "bro/SKILL.md": "bc7afd55696591a4a23e933510d808f7d1a672ddd569cd414ac23ff3e4779c4e",
+        "bro/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "create-verification-skill/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "create-verification-skill/SKILL.md": "a281c6e52fe3037e759fd8a928bb9ba1e3a66c1a06648f4fc11cf59e0d5244b4",
+        "create-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "create-verification-skill/references/feature-map-example/README.md": "cb7bd782cf89968a4ba3d58a5151db837430db92d19a6f52a906973b77b516ba",
+        "create-verification-skill/references/feature-map-example/create-note.md": "644a44c74f35d38c2feb7cd05a0121fdebbb623e8dc376c185b565a581d1ccf7",
+        "create-verification-skill/references/feature-map-example/search.md": "6e87b9e7f2791a7776ba1bb83f371cd285c306c67f19d245cc4dd6ca3015c823",
+        "figure-it-out/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "figure-it-out/SKILL.md": "42e48734b5c3554b148351c873bc066a015426a50a6ca6ede89de42af8f837ed",
+        "figure-it-out/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "how/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "how/SKILL.md": "0f00a47c197a9623ceed25b6b3a37d8b3a353501e98282235488759cbca903ef",
+        "how/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "how/references/explainer-prompt.md": "ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff",
+        "how/references/explorer-prompt.md": "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be",
+        "interrogate/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "interrogate/SKILL.md": "bebc429f339045c71a6d2bd028263c73e4a2bd796945918ff852a147b4052e55",
+        "interrogate/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "interrogate/references/code-quality-review.md": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8",
+        "interrogate/references/lead-judgment.md": "6e5bdf5670eb34017692e9b6c546f36ac7552e6bb9f3f2f3429164fcc46a9361",
+        "interrogate/references/reviewer-prompt.md": "e0598e254792b56de39bb16b1e6db559b03a522fdc54b98f942d254090920ae6",
+        "interrogate/references/rubric.md": "a85aa801abbaf14434f00579440abc0d8e2723227ba8bf57de7cca8d6e7d2f25",
+        "maintain-verification-skill/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "maintain-verification-skill/SKILL.md": "9d73a788761b7a3247b72f202e9a1ee5c026f8e8723a3e60baf3537cd789fa1b",
+        "maintain-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "make-bot-ui/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "make-bot-ui/SKILL.md": "b41f930ed48e4cde9f5dad6ded823907a707e92737d7ba129952bc33fa801399",
+        "make-bot-ui/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "no-comments/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "no-comments/SKILL.md": "980d15611a536189f9017f7ac2b84cda7de908f73a0ab59860a6a4021e8766a6",
+        "no-comments/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "no-comments/references/comment-sicko.md": "c0fd0383008da45fc78cfac17b9007d62c42f87ad1c8d5c2fb658b1fd01f7c82",
+        "poteto-mode/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "poteto-mode/SKILL.md": "901bf3896b069e85e5b477607c06e807bb6b92a09075c687415ca1b9177190b5",
+        "poteto-mode/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "poteto-mode/playbooks/authoring-a-skill.md": "f6a13a445c360b48d6cd72780ac01955f45b82826476efe0e67c7559329407aa",
+        "poteto-mode/playbooks/autonomous-run.md": "15e54ad3ac92565613980772d8708de6e19cc4690bfd4bb3fb8836522407377b",
+        "poteto-mode/playbooks/autopilot-full.md": "975439613b9073b637a88c6df762b474dbd745f0e86150bb07d2121e32eb48e7",
+        "poteto-mode/playbooks/autopilot-stack.md": "f626f4ed17725de5ea96ac22597a1c298c46c36015e844bf86a68f6d38d57fbf",
+        "poteto-mode/playbooks/babysit.md": "a0346c37c2313f36a863b80f66ee7b98059c2242adf74fc7b3e48abdb9ec6f5a",
+        "poteto-mode/playbooks/bug-fix.md": "cb382835bf8954300f958b798e2c0beb12e459e0d2c92dd9af218f8e7ab32ad6",
+        "poteto-mode/playbooks/eval.md": "4e71e1d73ecb4f33cea45df79ad5c1ba92f2671643ed9e3ef47dcc492f14ec97",
+        "poteto-mode/playbooks/feature.md": "a7b7569f4e394fbb4c6bc2d7088a92bbe9f843fb6070046bf6997a0bbf6f77ff",
+        "poteto-mode/playbooks/hillclimb.md": "13f30b694aad4678112cb4272f96a0e4530c71ef3b83330f643028e2c8ecd2cb",
+        "poteto-mode/playbooks/investigation.md": "dc66bcf6af3a074fc7f67aa5e12b93ef571a4fb4d8e17f2f1af5ae5359f42e46",
+        "poteto-mode/playbooks/multi-phase-plan.md": "d8e8c6df960b28a00f9ad5f73b646b7ad55a7e883f3c8fd62cfb29e307139bd2",
+        "poteto-mode/playbooks/opening-a-pr.md": "1c0281f84348aa5dc6f10defbcdd8357f4b0786d874f340ba34bfc169dc6c26f",
+        "poteto-mode/playbooks/orchestrate.md": "d2a9d32c66ca6d2f8c5cfca2f62283f9e7730d4a0308ed797f75cc16eeed10dd",
+        "poteto-mode/playbooks/pause-safely.md": "77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d",
+        "poteto-mode/playbooks/perf-issue.md": "d6f67f12f0c30db9644020e23a929374d9e3feae5ed02d38b0f79c8949920570",
+        "poteto-mode/playbooks/prototype.md": "7aa1f52c691c3d46d5afc527b23f90977fce869ce33573c73c81a4c7f0cde962",
+        "poteto-mode/playbooks/refactoring.md": "07aa5495b00c1711318557929bba360cad7b77b1e4f56e52d21d51936e3b1f6f",
+        "poteto-mode/playbooks/runtime-forensics.md": "594f02c40c243a346e1f57b688ecf2ed5e882f21b3d24ed2204d1ac6f1c24a8a",
+        "poteto-mode/playbooks/session-pickup.md": "7f451d8ce417ef1026721903d622719a45a39afea808db8de95415b8f76d49c6",
+        "poteto-mode/playbooks/shipping.md": "19f3f6803a7bbe9ff04f624b03e3b55f07ac0a05e991aa00d5fe51239b920b2a",
+        "poteto-mode/playbooks/trace-forensics.md": "137ce3984fb96e45971fdff4d3c79fa4ccc647c5b30ae4945783b9fb23f8cec7",
+        "poteto-mode/playbooks/visual-parity.md": "950ca51999a6454c98eee6bcbc3d1bbe501a4e3a5d5439b6f6ddc378991b256c",
+        "poteto-mode/playbooks/worktree-cleanup.md": "6f34f1e0045cdb558cf04e7fdedb62f187c73d5e59308935ad27697a4703b5f4",
+        "poteto-mode/references/bugbot-triage.md": "b2d146c770d8d3593e1ef3d77b668039b8e1f78093ea1a86f1d45d7f99614309",
+        "poteto-mode/references/codex-port.md": "b9fcb2838919267b60e89ac2d5e905f0539856142f5b3956ac5713ffd1ef30f3",
+        "poteto-mode/references/origin.json": "a70113513eb819cdbf40375cddda11cb1e932a587860788f9570e64590cacfa3",
+        "poteto-mode/references/poteto-agent.md": "c3850be1b97bc97cec0568ed8b26d04e7693c4e07868137c58fe546d37f288e9",
+        "poteto-mode/scripts/bootstrap.ts": "ccd2ed08fd9da9d0d942e5f2491cfc74bb92d8a08fa51755e0da1ac8de287361",
+        "poteto-mode/scripts/bun.lock": "667d9cf7222e9aae3fa42a4be383e657784216e9df115da02227fbc5ac7bbe46",
+        "poteto-mode/scripts/check-plan.mjs": "1f9e788ce90a13a9973e35e8c3a52737857c375e057bdccc13c8510a9af30f04",
+        "poteto-mode/scripts/find-codex-sessions.py": "2d77e5b72eaeffd39b4f70ae554ca31323ebde2a6b8c9a52c3d3aaa6befd1f6a",
+        "poteto-mode/scripts/orch/orch.test.ts": "174b86d21ff51ccd28d1a8c938cb2e0c6fa287b209d4ca6c03932fcb1b53372e",
+        "poteto-mode/scripts/orch/orch.ts": "f091687df627a0b75fabd54af58945a9cd6c7039ef0622012ac9ed60cd8ec434",
+        "poteto-mode/scripts/orch/store.ts": "0eae7cf69282e827b1227166f2e32cee3560f2f3e65b3f1f2faf6fb83d3b4c5b",
+        "poteto-mode/scripts/package.json": "d1f815091209d49763775cc188e8e06ff32d5fec648bffd2272bc25a165e87c3",
+        "poteto-mode/scripts/watch-pr/cli.test.ts": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1",
+        "poteto-mode/scripts/watch-pr/cli.ts": "89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680",
+        "poteto-mode/scripts/watch-pr/fakes.test-helper.ts": "e53e31b7f03068063f53a99a3591b052aaed66e4e2b196b3a364980f60324ab1",
+        "poteto-mode/scripts/watch-pr/github.test.ts": "0cbce011050522938523e36bb42a260e92b812dcd2076930fa681672ad316b24",
+        "poteto-mode/scripts/watch-pr/github.ts": "d1bbbafbe8e2c703c84da2029de7f2c4011412512f8cf65a42100f46bcb92c8a",
+        "poteto-mode/scripts/watch-pr/policy.test.ts": "a9fedb25feefd1f57ef6a662f80c99018690170a3a8070773a08eaf694d1d3d9",
+        "poteto-mode/scripts/watch-pr/policy.ts": "68d240505852cf23c9b2dea463342e9e61243f486b3cc86c735d140f9ee7be49",
+        "poteto-mode/scripts/watch-pr/render.ts": "2b709e86628d5b8fdb61f860e60ababc342b0626c67576305442cf548283a604",
+        "poteto-mode/scripts/watch-pr/tsconfig.json": "1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45",
+        "poteto-mode/scripts/watch-pr/types.compile.ts": "621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6",
+        "poteto-mode/scripts/watch-pr/types.ts": "64ba6221e3bfe61bbb292337d199cdec6309455477280efb060203dba34e0e91",
+        "poteto-mode/scripts/watch-pr/watch-pr": "d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4",
+        "poteto-mode/scripts/worktree-audit.sh": "dc6be70e25a02830ceaa02dd731022a5f0e3311903fd52f2ec645046ba71786d",
+        "principle-attack-the-premise/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-attack-the-premise/SKILL.md": "913cef5660515e9a27133c6f408f9cd4db7f00da342ea1ac77f6773c5dba4579",
+        "principle-attack-the-premise/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-boundary-discipline/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-boundary-discipline/SKILL.md": "77e227862d8a1c06fa1d9c3e86e4942b26e3d48a8a9fdd0964a80e5bfbee22a6",
+        "principle-boundary-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-build-the-lever/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-build-the-lever/SKILL.md": "64648ebec8c9322596878e72111decfc9c6c173e1df5dd5dfe9645dedd7ba3db",
+        "principle-build-the-lever/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-encode-lessons-in-structure/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-encode-lessons-in-structure/SKILL.md": "cff05194be5e7cb52914f7d13c073d006f8544a5c7785fff55c730396cdfccfb",
+        "principle-encode-lessons-in-structure/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-exhaust-the-design-space/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-exhaust-the-design-space/SKILL.md": "f9f28ba64bb8d26b94c0fee620011e4c105d8efdbaccaa4e6ce6802ae4e2c6ad",
+        "principle-exhaust-the-design-space/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-experience-first/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-experience-first/SKILL.md": "329d9476e7f90cd8bad014b30727d54e1290762157b30677da0052bc83e1e130",
+        "principle-experience-first/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-fix-root-causes/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-fix-root-causes/SKILL.md": "bdd9a65d8278a2351e84ddcda3280cfeba01af88ccc033d990798de50723ef96",
+        "principle-fix-root-causes/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-foundational-thinking/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-foundational-thinking/SKILL.md": "30aa3b15beece56b73cbd8ad12686f5e9dfb0d30aa9ca095769fb75fb5cf232a",
+        "principle-foundational-thinking/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-guard-the-context-window/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-guard-the-context-window/SKILL.md": "db523dec5ae5f49ceb2dd1bda27306297495242b7db9857d8ab370f881d7461c",
+        "principle-guard-the-context-window/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-laziness-protocol/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-laziness-protocol/SKILL.md": "a5cab8856eac4204de9480c0aecca64e27c24c6d58abb315ec44b557cd0d9f4d",
+        "principle-laziness-protocol/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-make-operations-idempotent/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-make-operations-idempotent/SKILL.md": "eb98ea135c0fde10246c625a8a582d94f6a44f04e28c8bc825f86ff2b4c6cfd3",
+        "principle-make-operations-idempotent/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-migrate-callers-then-delete-legacy-apis/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-migrate-callers-then-delete-legacy-apis/SKILL.md": "94d9d450b0b0f23d4e339f78d6af5ca2c5cb32b08ec0971399132c9705326ef9",
+        "principle-migrate-callers-then-delete-legacy-apis/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-minimize-reader-load/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-minimize-reader-load/SKILL.md": "315cf3a8e703e52630af9d04f77953db40baa0af99b326070d15d6d3db73528d",
+        "principle-minimize-reader-load/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-model-the-domain/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-model-the-domain/SKILL.md": "cd6fc9bf6cba92febb0a3933fe88ca258b71449b0eee12fca64b8ab6288e787f",
+        "principle-model-the-domain/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-never-block-on-the-human/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-never-block-on-the-human/SKILL.md": "053f6098705488111289ff42ba8b87022f49f6625d6d1452ccb6aacd99379cc6",
+        "principle-never-block-on-the-human/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-outcome-oriented-execution/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-outcome-oriented-execution/SKILL.md": "97c17dcc54c1d8c1aea36c65e8f095a753c03225644e5856ed1832a8742f2297",
+        "principle-outcome-oriented-execution/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-prove-it-works/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-prove-it-works/SKILL.md": "7c264333001462ced5e2b2dfa89af817de90ff1360c45af9b94029b2b3fc215f",
+        "principle-prove-it-works/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-redesign-from-first-principles/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-redesign-from-first-principles/SKILL.md": "253734e03015a143f032eb79e9c757197a1c914226cf10502fb2f00e64465088",
+        "principle-redesign-from-first-principles/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-separate-before-serializing-shared-state/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-separate-before-serializing-shared-state/SKILL.md": "94e66bacd2996802618ef14b2d623e9cd1aab5c7625608d135d6a471fd0fa121",
+        "principle-separate-before-serializing-shared-state/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-sequence-verifiable-units/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-sequence-verifiable-units/SKILL.md": "613fa51df6085813c97be39f19ee7c9d73e30d58e0e0c3ded9c79aaaab22a3a8",
+        "principle-sequence-verifiable-units/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-subtract-before-you-add/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-subtract-before-you-add/SKILL.md": "c4200f774f49a8ded2e3e4d158eef30adc7213226fb38ed7f66b2a66a862b204",
+        "principle-subtract-before-you-add/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-test-behavior-not-implementation/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-test-behavior-not-implementation/SKILL.md": "59d8e5e7c051a5d9a85a0038dcc10ac74663a75b778649797ae3b8a22a80f280",
+        "principle-test-behavior-not-implementation/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "principle-type-system-discipline/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "principle-type-system-discipline/SKILL.md": "39eb72badb738ed564a5cbf525b81274dbf1f84299821d06fa03e0fa3920f8f4",
+        "principle-type-system-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "recall/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "recall/SKILL.md": "5eb9af64a617723d9db092d0f71ca2731ed7af896ffcae9922763623488258c0",
+        "recall/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "reflect/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "reflect/SKILL.md": "7d6454fa18f703e12a16e137ad8f9af5eb1f1c824b80a708b84f5bcbb2b1158f",
+        "reflect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "reflect/references/divergent-reviewer.md": "da1fa0693d605ef8c12cc3c67b5f86cbb1be32652c3a9854c2eec2d2850e94a4",
+        "reflect/references/judgment-reviewer.md": "e897db56952f9adace9504cf033c33cf1938b37df64dd5af1ac21fff508c4a67",
+        "reflect/references/synthesizer.md": "2f76c847eb45b182dc6fbcbf7d96c8ee7e2986ecfd9e0d640fec44e3cc5a617c",
+        "reflect/references/tooling-reviewer.md": "db02b1cd9cf2bd0914bf8a3696dca28f77138fa272ff9d62b80f15594c2a19c4",
+        "setup-pstack/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "setup-pstack/SKILL.md": "40f280eca5ce9f3b4e4475647e9f0c79278b7427c54490e00829c37a8f960ffc",
+        "show-me-your-work/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "show-me-your-work/SKILL.md": "a9aedda3224807f961e62641c3a27c47cccc91089c6363789614e2c7ff44c5a6",
+        "show-me-your-work/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "show-me-your-work/references/decision-log-template.tsv": "6779378006a2f5225e8c06deb84f1d913fb532041ebbb6e50d94600bfe3f4b76",
+        "show-me-your-work/scripts/log.sh": "a65a4bc5fb7cdeadbdb7b7ff1ca4682f4d9c42420942b2977cd17b46c4ac338e",
+        "swarm/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "swarm/SKILL.md": "dcb0125eb049ed1fb62e5e1c26c9bf0e5932bb3391693c2ce724167047f5a2ee",
+        "swarm/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "tdd/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "tdd/SKILL.md": "86d974bf22203ae9099f5844d9b8e1fd260ccf29c958c2af8f9c35aa4229ac63",
+        "tdd/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "teach/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "teach/SKILL.md": "8ea3304d01ececc7a4df6a49def5d1d0fe2e35cbd2d74656d1c1bb62a4b15b95",
+        "teach/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "technical-writing/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "technical-writing/SKILL.md": "99e636361d5d6dc85e457bcb5b2a7c3d082e637a9cd17cc356d756de7cbec43d",
+        "technical-writing/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "typescript-best-practices/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "typescript-best-practices/SKILL.md": "a599d12ba5616ffa4f0dad63a45a1c4c198082b48631feb470375fc89052fc7d",
+        "typescript-best-practices/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "typescript-best-practices/references/patterns.md": "62e9cd32d2fa066a35d0d1349aac22dce31a48ad7d5eaf142570770cfe707384",
+        "unslop/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "unslop/SKILL.md": "2394b4ce34e4437a75a72b979e4befca1875a9c1dc0a0be750a7300d6adf5877",
+        "unslop/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "why/LICENSE": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e",
+        "why/SKILL.md": "08b1ec5c92a1f4f45719133e37096c88d78ceb24b8534f5d101a4ba713ef94f4",
+        "why/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+        "why/references/epistemics.md": "fcc0f559c072832c869a5ada72434b4849320a637ae63c09e8ee14f7ad787059",
+        "why/references/investigator-prompt.md": "6892956a7ab0b5ee6c4babaf4f793703abe89b350ea7cb9463b4a56eea1c8266",
+        "why/references/source-playbook.md": "9ae9dcb9d09111c9facc68510331c5aba4aed9b1b057314ff1fc0e166ad3993a",
+        "why/references/sources/code-archaeology.md": "8c14aa382f0de40829b2668d43e3f54814480bb93a486c9282ada4003f6b9dbd",
+        "why/references/sources/databricks.md": "236ede7aab6454662a992db088a5393537a5233a4c26719c93188f9e174488f6",
+        "why/references/sources/datadog.md": "ebe9c07bac28e47757ee7f16fb93b0c01d427a08c501957d047f395a2f37b7e7",
+        "why/references/sources/incident-postmortem.md": "a899470f05f86029630a13a2696491cc708ca7b56a6e822a69ff6e954d6ff8cf",
+        "why/references/sources/linear.md": "01304e7f1badfcfb78babbb0edcadeb3cc8dd3f713793420cdff24ba190f907c",
+        "why/references/sources/notion.md": "3bcfa695c49dfad4ac036d5d7181c12585f55ac04f1936198d16ab75a2788997",
+        "why/references/sources/sentry.md": "6f292bc4fb1548e956f95e1900b9481abf5134254419f1cd9edec95428c82d73",
+        "why/references/sources/slack.md": "58fee61d024b3700b407e7acbed367944720ff05adfddb6954d36c88368f3ba7",
+        "why/references/synthesizer-prompt.md": "733a3e9cf897b1aca56aaddeae01a3832e4bfed024c2f602db2d1bf807d7a73b"
+      },
+      "unresolved_relative_links": [
+        {
+          "file": "why/references/synthesizer-prompt.md",
+          "reference": "url"
+        }
+      ],
+      "origin": {
+        "repository": "https://github.com/cursor/plugins",
+        "path": "pstack",
+        "commit": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+        "upstream_version": "0.15.5",
+        "port": "Codex user-scoped skills",
+        "changes": [
+          "Codex frontmatter and invocation policy",
+          "host tool and model mappings",
+          "Codex setup preferences",
+          "workspace-scoped history discovery",
+          "authorization boundaries",
+          "agent prompt references"
+        ],
+        "optional_runtime": "Bun for orch/watch-pr"
+      }
+    },
+    "plan": [
+      [
+        "config-bug",
+        1,
+        "baseline"
+      ],
+      [
+        "config-bug",
+        1,
+        "pancake"
+      ],
+      [
+        "config-bug",
+        1,
+        "poteto"
+      ],
+      [
+        "config-clean",
+        1,
+        "pancake"
+      ],
+      [
+        "config-clean",
+        1,
+        "poteto"
+      ],
+      [
+        "config-clean",
+        1,
+        "baseline"
+      ],
+      [
+        "lifetime-bug",
+        1,
+        "poteto"
+      ],
+      [
+        "lifetime-bug",
+        1,
+        "baseline"
+      ],
+      [
+        "lifetime-bug",
+        1,
+        "pancake"
+      ],
+      [
+        "lifetime-clean",
+        1,
+        "baseline"
+      ],
+      [
+        "lifetime-clean",
+        1,
+        "pancake"
+      ],
+      [
+        "lifetime-clean",
+        1,
+        "poteto"
+      ]
+    ]
+  },
+  "repetitions": 1,
+  "assessor": {
+    "requested_model": "gpt-5.6-sol",
+    "independent": true,
+    "neutral_labels": true,
+    "complete_blinding": false
+  },
+  "redactions": [
+    "Temporary project and private absolute paths normalized.",
+    "Guidance names normalized in assessment packets.",
+    "Long guidance-read output bodies omitted from packets; raw sessions remain private.",
+    "Encrypted spawn brief text not available to the parser. No credentials or account metadata retained."
+  ],
+  "parent_review": "Lead read all final outputs and checked the retained command records. Full retained outputs confirmed every recorded change.diff read returned diff content, including combined reads omitted from neutral packets.",
+  "runs": [
+    {
+      "run_id": "run-01",
+      "suite": "review-comparison",
+      "case": "config-bug",
+      "variant": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 36.043,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "80f27439ed1165a6bf6deebde94bbbc934237418a366356848a7532a34561078",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "0aacdffcf0b087ccd7442a8e2d15ecd8a27151416dec97eaf24f5ca122713acf",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 500,
+      "sessions": [
+        {
+          "id": "01a12fd0-6d74-78e1-90fa-962659ccca10",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 74886,
+            "cached_input_tokens": 67840,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 420,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 75306
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 74886,
+        "cached_input_tokens": 67840,
+        "output_tokens": 420,
+        "total_tokens": 75306
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 4,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-02",
+        "case": "config-bug",
+        "detected": [
+          "zero-limit"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies that truthiness converts the valid zero limit to the default and consequently selects jobs instead of disabling selection.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-02.json: calls call_fa0926db36bf4a51a22da6e0c6f30c9a and call_a0df850633524651a3af9c351d3f6f94 read the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-02.json: call_f432883f656a4d9b8e943d6088e279fb shows existing tests pass and limit=0 returns all three sample jobs",
+          "review-comparison-2026-10-12/output-02.json: final verdict"
+        ],
+        "run_id": "run-01"
+      },
+      "final": "- **[P1] Preserve an explicit zero limit** \u2014 [settings.py:5]([project]/workspace/settings.py:5). Using `or DEFAULT_LIMIT` converts `0` to `20`, violating the documented requirement that zero disables selection. Confirmed: `select_jobs(['a', 'b', 'c'], {'limit': 0})` returns all three jobs instead of `[]`. Restore the explicit `None` check and add a zero-limit test.\n\nBoth existing tests pass; neither covers this regression. No files changed.",
+      "inspection_record": "review-comparison-2026-10-12/output-02.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-02",
+      "suite": "review-comparison",
+      "case": "config-bug",
+      "variant": "pancake",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 34.829,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "80f27439ed1165a6bf6deebde94bbbc934237418a366356848a7532a34561078",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "0aacdffcf0b087ccd7442a8e2d15ecd8a27151416dec97eaf24f5ca122713acf",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 489,
+      "sessions": [
+        {
+          "id": "01a12fd0-fb22-7c61-b823-a28f756a22bc",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 85919,
+            "cached_input_tokens": 72448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 580,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 86499
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 85919,
+        "cached_input_tokens": 72448,
+        "output_tokens": 580,
+        "total_tokens": 86499
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 6,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-07",
+        "case": "config-bug",
+        "detected": [
+          "zero-limit"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies that truthiness replaces explicit zero with 20 and demonstrates the selection consequence while confirming None still defaults.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-07.json: calls call_UwxoJcYKeNcGHOG4Lx4YdDpw and call_HurKpDtDOo4IYHcyYUATJthQ record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-07.json: call_koXiDutf5NNFu7fKckYBKf3e shows existing tests pass, zero selects jobs, and None selects the default count",
+          "review-comparison-2026-10-12/output-07.json: final verdict"
+        ],
+        "run_id": "run-02"
+      },
+      "final": "- **[P1] Preserve an explicit zero limit** \u2014 [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces `0` with `20`, violating the documented contract that zero disables selection. Reproduced: `select_jobs(['a', 'b', 'c'], {'limit': 0})` returns all three jobs instead of `[]`. Restore the explicit `None` check and add zero-limit coverage.\n\nBoth existing tests pass; neither covers zero. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-07.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Pancake skill at [project]/bundle/skills/pancake/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-03",
+      "suite": "review-comparison",
+      "case": "config-bug",
+      "variant": "poteto",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 79.98,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "80f27439ed1165a6bf6deebde94bbbc934237418a366356848a7532a34561078",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "0aacdffcf0b087ccd7442a8e2d15ecd8a27151416dec97eaf24f5ca122713acf",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 493,
+      "sessions": [
+        {
+          "id": "01a12fd1-84fe-7863-bd3b-a99ff0663188",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 260288,
+            "cached_input_tokens": 238720,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1570,
+            "reasoning_output_tokens": 53,
+            "total_tokens": 261858
+          }
+        },
+        {
+          "id": "01a12fd2-22e6-7e13-b803-069ebc998ed8",
+          "parent_id": "01a12fd1-84fe-7863-bd3b-a99ff0663188",
+          "agent_path": "/root/independent_review",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 102470,
+            "cached_input_tokens": 81280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 613,
+            "reasoning_output_tokens": 17,
+            "total_tokens": 103083
+          }
+        }
+      ],
+      "completed_workers": [
+        "01a12fd2-22e6-7e13-b803-069ebc998ed8"
+      ],
+      "usage_all_sessions": {
+        "input_tokens": 362758,
+        "cached_input_tokens": 320000,
+        "output_tokens": 2183,
+        "total_tokens": 364941
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 13,
+      "command_actions_all_sessions": 9,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-11",
+        "case": "config-bug",
+        "detected": [
+          "zero-limit"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies the zero-to-default truthiness conversion and consequent selection of up to 20 jobs, with before/after evidence.",
+          "The independent reviewer was spawned before the lead's focused verification and independently checked the zero-limit contract; this is useful review rather than unnecessary delegation.",
+          "The failed heredoc was followed by a justified equivalent focused check; this is not redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or worker topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-11.json: lead calls call_e878307960fa43029deda64e0884b890 through call_69ed6a7c27de40b19fc405fa9a9a87d4 record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-11.json: lead call call_75eff18e1bec4d4fb11c6468eb960dfa shows prior behavior returns no jobs while changed behavior returns 20 and the focused assertion fails",
+          "review-comparison-2026-10-12/output-11.json: worker calls call_261861536b6b4b9ab312e8f68bce6d23 and call_c2d81b3480a14aeaa5770e99bafb3ca1 independently inspect and reproduce the zero-limit defect",
+          "review-comparison-2026-10-12/output-11.json: final verdict"
+        ],
+        "run_id": "run-03"
+      },
+      "final": "- **[P1] Preserve an explicit zero limit** in [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces valid `0` with `20`, so `select_jobs()` selects up to 20 jobs when the documented contract requires none. Restore the explicit `None` check.\n\nReproduced against both versions. The two existing tests pass but omit zero. The Workflow principle \u201cProve It Works\u201d prompted this direct behavior check. No files changed.",
+      "inspection_record": "review-comparison-2026-10-12/output-11.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Poteto skill at [project]/bundle/skills/poteto-mode/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-04",
+      "suite": "review-comparison",
+      "case": "config-clean",
+      "variant": "pancake",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 57.002,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "fbb9b969cf1d6b09e5eb1871fee1983a6cbc2164b060dafff4004416e51a32da",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "5341ad1cd10753d4770ff0d50a2c4d5151444ab86cd08f44a2d627fa0f36787e",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 276,
+      "sessions": [
+        {
+          "id": "01a12fd2-bf19-7201-a174-9e587164908b",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 86221,
+            "cached_input_tokens": 78592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 640,
+            "reasoning_output_tokens": 22,
+            "total_tokens": 86861
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 86221,
+        "cached_input_tokens": 78592,
+        "output_tokens": 640,
+        "total_tokens": 86861
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 7,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-04",
+        "case": "config-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and checks omitted, None, zero, positive, and above-length limits.",
+          "The combined guidance/diff output body is omitted, but the recorded command explicitly reads change.diff; later visible commands independently show the implementation, caller, tests, and README contract.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-04.json: calls call_3eefed65d202443b8b3f2a124f752468 and call_987dd8b614444cc28bdd48f3ed10fc0d record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-04.json: call_be9a27c2b0674d068ce4d86318fa47fa shows project tests and all focused limit cases pass",
+          "review-comparison-2026-10-12/output-04.json: final verdict"
+        ],
+        "run_id": "run-04"
+      },
+      "final": "No actionable regressions found in `change.diff`. The rewrite preserves the documented behavior for omitted, `None`, zero, and positive limits.\n\nBoth existing tests passed, along with direct checks for all those cases and a limit exceeding the job count. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-04.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Pancake skill at [project]/bundle/skills/pancake/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-05",
+      "suite": "review-comparison",
+      "case": "config-clean",
+      "variant": "poteto",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 95.875,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "fbb9b969cf1d6b09e5eb1871fee1983a6cbc2164b060dafff4004416e51a32da",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "5341ad1cd10753d4770ff0d50a2c4d5151444ab86cd08f44a2d627fa0f36787e",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 298,
+      "sessions": [
+        {
+          "id": "01a12fd3-9f8b-72c3-89c4-04c252ed998b",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 271906,
+            "cached_input_tokens": 245504,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1525,
+            "reasoning_output_tokens": 108,
+            "total_tokens": 273431
+          }
+        },
+        {
+          "id": "01a12fd4-5bdf-7aa3-b6bc-74e030c4bc70",
+          "parent_id": "01a12fd3-9f8b-72c3-89c4-04c252ed998b",
+          "agent_path": "/root/independent_review",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 149394,
+            "cached_input_tokens": 119040,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1029,
+            "reasoning_output_tokens": 43,
+            "total_tokens": 150423
+          }
+        }
+      ],
+      "completed_workers": [
+        "01a12fd4-5bdf-7aa3-b6bc-74e030c4bc70"
+      ],
+      "usage_all_sessions": {
+        "input_tokens": 421300,
+        "cached_input_tokens": 364544,
+        "output_tokens": 2554,
+        "total_tokens": 423854
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 15,
+      "command_actions_all_sessions": 10,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-09",
+        "case": "config-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and compares old and new behavior across documented missing, None, zero, positive, and above-length cases.",
+          "The independent reviewer was spawned before the lead's focused verification and independently checked the same contract; this is useful review rather than unnecessary delegation. The second wait followed a timeout and message delivery, so it is justified coordination.",
+          "The failed heredoc attempts were followed by justified equivalent checks and are not redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or worker topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-09.json: lead calls call_59c21d3b1b6643e69bd81ecff4c115ab through call_6bc3c1b009464ddda1a3347cd0288337 record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-09.json: lead call call_3ed9ab0f26234ac1976b245acf94720d shows project tests pass and 103 documented inputs match prior behavior",
+          "review-comparison-2026-10-12/output-09.json: worker calls call_1c7fd039fd9d4c8ea3324e583d022bcc and call_591d11f6c3b24582b73e7205fd204ddc independently inspect and verify the contract cases",
+          "review-comparison-2026-10-12/output-09.json: final verdict"
+        ],
+        "run_id": "run-05"
+      },
+      "final": "No actionable regressions found in `change.diff`.\n\nApplied **Prove It Works** by comparing old and new behavior across 103 documented input cases, including omitted, `None`, and zero limits. All matched. Both existing tests passed, and the independent review found no issues.\n\nNo files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-09.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Poteto skill at [project]/bundle/skills/poteto-mode/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-06",
+      "suite": "review-comparison",
+      "case": "config-clean",
+      "variant": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 39.089,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "e436c5c1a0f7ad9d8bab49df1bec840adc45ed844eb01b1ed6c109edae5a90bc",
+        "change.diff": "fbb9b969cf1d6b09e5eb1871fee1983a6cbc2164b060dafff4004416e51a32da",
+        "jobs.py": "310af21dfab0ea113f002e4ac702547019d81476d8eb0d95e453c9b2a5bb840e",
+        "settings.py": "5341ad1cd10753d4770ff0d50a2c4d5151444ab86cd08f44a2d627fa0f36787e",
+        "test_jobs.py": "0b42e68ebecb23f4aa7ccc213208829c88add013f1a8c70f8755c82506d2d81e"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 235,
+      "sessions": [
+        {
+          "id": "01a12fd5-1783-7483-b0fb-5f4ed66a61cd",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 74951,
+            "cached_input_tokens": 67840,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 397,
+            "reasoning_output_tokens": 20,
+            "total_tokens": 75348
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 74951,
+        "cached_input_tokens": 67840,
+        "output_tokens": 397,
+        "total_tokens": 75348
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 4,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-05",
+        "case": "config-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and checks every documented limit class, including zero.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-05.json: calls call_608341ad6e0743f79c3680a47e7478cf and call_96840655534e4ae488cb3020a8bfdf6b read the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-05.json: call_3824a30f791d477a96363023f80d431d shows project tests and documented limit cases pass",
+          "review-comparison-2026-10-12/output-05.json: final verdict"
+        ],
+        "run_id": "run-06"
+      },
+      "final": "No actionable regressions found. The rewrite preserves the documented behavior for omitted, `None`, zero, and positive limits.\n\nBoth existing tests and additional checks covering all documented limit cases passed. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-05.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-07",
+      "suite": "review-comparison",
+      "case": "lifetime-bug",
+      "variant": "poteto",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 97.738,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "5b17e558f680edbd4fcc955658b186060d19b7a78817b485bf2af0a5618375de",
+        "reader.py": "eb2c40a8f01484090caaa9efb3299f32d526bdb824aad22d224bd11181073887",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 654,
+      "sessions": [
+        {
+          "id": "01a12fd5-b211-7320-8206-2aabe84f0f1f",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 271729,
+            "cached_input_tokens": 251904,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1806,
+            "reasoning_output_tokens": 65,
+            "total_tokens": 273535
+          }
+        },
+        {
+          "id": "01a12fd6-6993-7332-9c71-2074c0de493d",
+          "parent_id": "01a12fd5-b211-7320-8206-2aabe84f0f1f",
+          "agent_path": "/root/independent_review",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 167127,
+            "cached_input_tokens": 138624,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 849,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167976
+          }
+        }
+      ],
+      "completed_workers": [
+        "01a12fd6-6993-7332-9c71-2074c0de493d"
+      ],
+      "usage_all_sessions": {
+        "input_tokens": 438856,
+        "cached_input_tokens": 390528,
+        "output_tokens": 2655,
+        "total_tokens": 441511
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 16,
+      "command_actions_all_sessions": 10,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-12",
+        "case": "lifetime-bug",
+        "detected": [
+          "closed-stream"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies that returning the lazy parser closes its source before consumption, causing ValueError in both direct consumption and render_report; it also verifies the pre-diff behavior.",
+          "The independent reviewer was spawned before the lead's focused verification and independently checked the lifecycle contract; this is useful review rather than unnecessary delegation.",
+          "The failed heredoc was followed by a justified equivalent in-memory check. The later real-file check adds direct artifact evidence, so neither episode is redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or worker topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-12.json: lead calls call_dc95026c13f940bcb6bfcf5a911562c4 through call_b77bcb91e6da4facb13c3b38d3e05d25 record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-12.json: lead calls call_e6cf3b32b85048959d109c1be325e98e and call_4f617b4d512344759dfe13ecbdb7b148 reproduce the closed-stream failures and show pre-diff success",
+          "review-comparison-2026-10-12/output-12.json: worker calls call_010c84bcf03f4d2fb4b11f38d7a30722 through call_d97a16dcc1894ac8b275590bef7b4383 independently inspect and reproduce the defect",
+          "review-comparison-2026-10-12/output-12.json: final verdict"
+        ],
+        "run_id": "run-07"
+      },
+      "final": "- **[P1] Keep the stream open until iteration completes** \u2014 [reader.py:7]([project]/workspace/reader.py:7). `parse_rows(stream)` returns a lazy generator, but leaving `with open(...)` closes its stream. Both `list(read_rows(\"README.md\"))` and `render_report(\"README.md\")` raise `ValueError: I/O operation on closed file`. Restore eager consumption or let the generator own the stream until iteration finishes.\n\nBoth existing tests pass because they cover only `parse_rows`. No files were edited.\n\nApplied **Prove It Works** by reproducing the failure through the actual reader and report functions.",
+      "inspection_record": "review-comparison-2026-10-12/output-12.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Poteto skill at [project]/bundle/skills/poteto-mode/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-08",
+      "suite": "review-comparison",
+      "case": "lifetime-bug",
+      "variant": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 37.473,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "5b17e558f680edbd4fcc955658b186060d19b7a78817b485bf2af0a5618375de",
+        "reader.py": "eb2c40a8f01484090caaa9efb3299f32d526bdb824aad22d224bd11181073887",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 609,
+      "sessions": [
+        {
+          "id": "01a12fd7-314b-7443-8fda-6c897260e8a6",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 90755,
+            "cached_input_tokens": 83840,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 554,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 91309
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 90755,
+        "cached_input_tokens": 83840,
+        "output_tokens": 554,
+        "total_tokens": 91309
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 5,
+      "command_actions_all_sessions": 3,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-01",
+        "case": "lifetime-bug",
+        "detected": [
+          "closed-stream"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies lazy consumption after read_rows returns, the already-closed stream, the resulting ValueError, and the affected render_report caller.",
+          "The failed heredoc was followed by a justified equivalent focused check; this is not redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-01.json: calls call_0a218a43c96d4373be06e779102c8280 and call_2be1b50880c9424e9bca0128e649335e read the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-01.json: call_1d1a2dbf998d4c94a628065dc399175a shows existing tests pass and render_report raises ValueError on the closed stream",
+          "review-comparison-2026-10-12/output-01.json: final verdict"
+        ],
+        "run_id": "run-08"
+      },
+      "final": "- **[P1] Returned iterator uses a closed file** \u2014 [reader.py:7]([project]/workspace/reader.py:7). Removing `list(...)` defers reading until after the `with` block closes the stream. Consuming `read_rows(path)` now raises `ValueError: I/O operation on closed file`, breaking `render_report(path)` and the documented contract. Restore eager consumption or keep the file open within a generator until iteration finishes.\n\nConfirmed by calling `render_report(\"README.md\")`. Both existing tests pass because they test only `parse_rows`. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-01.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-09",
+      "suite": "review-comparison",
+      "case": "lifetime-bug",
+      "variant": "pancake",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 33.807,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "5b17e558f680edbd4fcc955658b186060d19b7a78817b485bf2af0a5618375de",
+        "reader.py": "eb2c40a8f01484090caaa9efb3299f32d526bdb824aad22d224bd11181073887",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 593,
+      "sessions": [
+        {
+          "id": "01a12fd7-c50a-7193-a0d9-a436342d8e24",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 85904,
+            "cached_input_tokens": 76544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 529,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 86433
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 85904,
+        "cached_input_tokens": 76544,
+        "output_tokens": 529,
+        "total_tokens": 86433
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 3,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-06",
+        "case": "lifetime-bug",
+        "detected": [
+          "closed-stream"
+        ],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Identifies the lazy generator escaping the with block, the closed-stream ValueError, and impact on render_report.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-06.json: calls call_2ddb74b5720f434a86a40a752117240b and call_09f80a178e9a4ad989091aaa9637ee58 record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-06.json: call_8d5878e323624352a27a7523a7a3170b shows existing tests pass and consuming read_rows raises ValueError",
+          "review-comparison-2026-10-12/output-06.json: final verdict"
+        ],
+        "run_id": "run-09"
+      },
+      "final": "- **[P1] Returned iterator uses a closed file** \u2014 [reader.py:7]([project]/workspace/reader.py:7). `parse_rows(stream)` returns a lazy generator, but the `with` block closes `stream` before callers consume it. Iterating the result raises `ValueError: I/O operation on closed file`, breaking `render_report(path)`. Restore eager consumption or keep the stream open until iteration finishes.\n\nReproduced by consuming `read_rows(\"README.md\")`. Both existing tests pass, but only exercise `parse_rows` with open streams. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-06.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Pancake skill at [project]/bundle/skills/pancake/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-10",
+      "suite": "review-comparison",
+      "case": "lifetime-clean",
+      "variant": "baseline",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 44.771,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "793adb49d5000e251da6d8dd7f3c0ac0ddbfe42b0dde1420d01cd7eb5bc5b5fc",
+        "reader.py": "2725440983c2ef8f91160900499144519f6926db07bf588a5cf922ca38654609",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 321,
+      "sessions": [
+        {
+          "id": "01a12fd8-4a63-7d32-9f2a-bddd73e667d0",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 105815,
+            "cached_input_tokens": 86016,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 827,
+            "reasoning_output_tokens": 40,
+            "total_tokens": 106642
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 105815,
+        "cached_input_tokens": 86016,
+        "output_tokens": 827,
+        "total_tokens": 106642
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 5,
+      "command_actions_all_sessions": 4,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-10",
+        "case": "lifetime-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and verifies read-after-return, empty input, report output, and stream closure.",
+          "The failed heredoc was followed by a justified equivalent focused check; this is not redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-10.json: calls call_bdfKZ04XKTR2zIckqxQdNgOw and call_ozTjgAah6vavNwkkSfsITQXZ read the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-10.json: call_zZsQcQHp4UgGKhcAQ68UZx7i shows project tests and focused lifecycle/report checks pass",
+          "review-comparison-2026-10-12/output-10.json: final verdict"
+        ],
+        "run_id": "run-10"
+      },
+      "final": "No actionable regressions found. The generator preserves the documented iterable contract, works with `render_report`, and closes the stream when iteration finishes.\n\nBoth existing tests and additional read-only checks for deferred consumption, empty input, report output, and stream closure passed. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-10.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-11",
+      "suite": "review-comparison",
+      "case": "lifetime-clean",
+      "variant": "pancake",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 44.782,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "793adb49d5000e251da6d8dd7f3c0ac0ddbfe42b0dde1420d01cd7eb5bc5b5fc",
+        "reader.py": "2725440983c2ef8f91160900499144519f6926db07bf588a5cf922ca38654609",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 422,
+      "sessions": [
+        {
+          "id": "01a12fd8-fa9f-7590-aa28-9440ab08fe86",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 86520,
+            "cached_input_tokens": 71040,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 850,
+            "reasoning_output_tokens": 115,
+            "total_tokens": 87370
+          }
+        }
+      ],
+      "completed_workers": [],
+      "usage_all_sessions": {
+        "input_tokens": 86520,
+        "cached_input_tokens": 71040,
+        "output_tokens": 850,
+        "total_tokens": 87370
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 4,
+      "command_actions_all_sessions": 7,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-03",
+        "case": "lifetime-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and verifies deferred consumption, empty input, caller compatibility, and stream closure.",
+          "The combined guidance/diff output body is omitted, but the recorded command explicitly reads change.diff; later visible commands independently show the implementation, caller, tests, and README contract.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-03.json: calls call_GUHRPcFe6khGL7mpi1UNRope and call_8H1NU8D8KiVidDxCAu6vcO9x record reads of the diff, implementation, caller, tests, and README contract",
+          "review-comparison-2026-10-12/output-03.json: call_dimUAiVfph0f2E4iod1mcsvb shows the project tests and focused lifecycle/report checks pass",
+          "review-comparison-2026-10-12/output-03.json: final verdict"
+        ],
+        "run_id": "run-11"
+      },
+      "final": "No actionable regressions found.\n\nThe generator preserves the documented iterable contract, keeps the file open during iteration, and closes it when iteration finishes. `render_report` remains compatible.\n\nBoth existing tests and focused checks for iteration, empty input, stream closure, and report rendering passed. File opening now occurs on iteration; no inspected caller requires eager opening.\n\nNo files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-03.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Pancake skill at [project]/bundle/skills/pancake/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    },
+    {
+      "run_id": "run-12",
+      "suite": "review-comparison",
+      "case": "lifetime-clean",
+      "variant": "poteto",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "medium",
+      "timed_out": false,
+      "elapsed_seconds": 74.89,
+      "exit_code": 0,
+      "artifact": {
+        "passed": true
+      },
+      "preferences_unchanged": true,
+      "after": {
+        "README.md": "04b2e4f1546695177caec64a825c65f9894d6ff7b8bc6a8316d89e2d2e1a1efd",
+        "change.diff": "793adb49d5000e251da6d8dd7f3c0ac0ddbfe42b0dde1420d01cd7eb5bc5b5fc",
+        "reader.py": "2725440983c2ef8f91160900499144519f6926db07bf588a5cf922ca38654609",
+        "report.py": "9b2b42789c86f2fbb4ef9c7a0ab1a1c45e1cac6c23fa18153ad478304799fb6b",
+        "test_reader.py": "29c5f52acc3e8ebc7cfff80bcdc2fc4e9852b5bb3ac2de5bdb0cba2137599297"
+      },
+      "changed_files": [],
+      "added_files": [],
+      "final_response_chars": 401,
+      "sessions": [
+        {
+          "id": "01a12fd9-ab65-72b3-a210-fa3f72583ce2",
+          "parent_id": null,
+          "agent_path": null,
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 215046,
+            "cached_input_tokens": 190080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1477,
+            "reasoning_output_tokens": 58,
+            "total_tokens": 216523
+          }
+        },
+        {
+          "id": "01a12fda-300a-7ca3-801f-6b3cb22c546b",
+          "parent_id": "01a12fd9-ab65-72b3-a210-fa3f72583ce2",
+          "agent_path": "/root/readonly_review",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "medium"
+            }
+          ],
+          "completed": true,
+          "usage": {
+            "input_tokens": 120317,
+            "cached_input_tokens": 104832,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 920,
+            "reasoning_output_tokens": 45,
+            "total_tokens": 121237
+          }
+        }
+      ],
+      "completed_workers": [
+        "01a12fda-300a-7ca3-801f-6b3cb22c546b"
+      ],
+      "usage_all_sessions": {
+        "input_tokens": 335363,
+        "cached_input_tokens": 294912,
+        "output_tokens": 2397,
+        "total_tokens": 337760
+      },
+      "usage_complete": true,
+      "tool_calls_all_sessions": 12,
+      "command_actions_all_sessions": 14,
+      "inputs_unchanged": true,
+      "repetition": 1,
+      "assessment": {
+        "label": "output-08",
+        "case": "lifetime-clean",
+        "detected": [],
+        "false_findings": 0,
+        "process": {
+          "contract_reads": true,
+          "focused_verification": true,
+          "grounded_verdict": true
+        },
+        "unnecessary_work": {
+          "status": "assessed",
+          "items": []
+        },
+        "notes": [
+          "Correctly finds no regression and verifies ordinary and empty input, report compatibility, closure after exhaustion, and explicit generator closure.",
+          "The independent reviewer was spawned before the lead's focused verification and supplied a separate contract/lifecycle check; this is useful independent review rather than unnecessary delegation.",
+          "The failed heredoc attempts were followed by justified equivalent checks and are not redundant verification.",
+          "Alternate-model assessment requested as gpt-5.6-sol. Independent neutral-label review, but not completely blinded because treatment may be inferable from packet prose or worker topology."
+        ],
+        "evidence": [
+          "review-comparison-2026-10-12/output-08.json: lead calls call_3efcb7101da0422a860909a5f4f2e850 and call_42e94c9d216f443a8239b0f6bc7804d1 record reads of the diff and affected contract surface",
+          "review-comparison-2026-10-12/output-08.json: lead call call_da99d5ee7bb1470fa0f2f2d7807da3e1 shows project tests and focused lifecycle/report checks pass",
+          "review-comparison-2026-10-12/output-08.json: worker calls call_ae6c70f350b6484f840d411d7c7a8bb9 and call_5f258e5a85da4d258c86197e22c96f80 independently inspect and verify the changed behavior",
+          "review-comparison-2026-10-12/output-08.json: final verdict"
+        ],
+        "run_id": "run-12"
+      },
+      "final": "No actionable regressions found in `change.diff`.\n\nThe generator satisfies the documented iterable contract, preserves `render_report` output, and closes the stream after exhaustion. Both existing tests and direct checks for empty input, deferred consumption, and stream closure passed. Independent review agreed.\n\nWorkflow\u2019s Prove It Works principle guided direct behavior checks. No files were edited.",
+      "inspection_record": "review-comparison-2026-10-12/output-08.json",
+      "prompt": "Review change.diff against the current project for actionable regressions. Do not edit files.\n\nWork only in the current project and supplied skill bundle. Preserve unrelated files. Independent read-only review is permitted when useful. All workers must inherit this conversation's model and effort and must not delegate further. Do not commit, install dependencies, use external services, read saved preferences, change preferences, or inspect unrelated projects or user history. Resolve sibling skill references inside the supplied bundle, never from global skill directories.\nUse the Poteto skill at [project]/bundle/skills/poteto-mode/SKILL.md and its applicable references.",
+      "invocation": [
+        "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "--enable",
+        "multi_agent",
+        "-c",
+        "agents.max_threads=2",
+        "-c",
+        "cli_auth_credentials_store=\"file\"",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "--sandbox",
+        "read-only",
+        "--skip-git-repo-check",
+        "--cd",
+        "[project]/workspace",
+        "--output-last-message",
+        "/private[run]/final.txt",
+        "-"
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "runs": 4,
+      "execution_failures": 0,
+      "expected_defects": 2,
+      "detected_defects": 2,
+      "missed_defects": 0,
+      "false_findings": 0,
+      "clean_controls": 2,
+      "clean_controls_with_findings": 0,
+      "process": {
+        "contract_reads": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "focused_verification": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "grounded_verdict": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "workspace_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "preferences_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        }
+      },
+      "missing_usage_runs": 0,
+      "miss_rate": 0.0,
+      "clean_false_positive_rate": 0.0,
+      "cost": {
+        "elapsed_seconds": {
+          "n": 4,
+          "median": 38.281,
+          "min": 36.043,
+          "max": 44.771
+        },
+        "tool_calls": {
+          "n": 4,
+          "median": 4.5,
+          "min": 4,
+          "max": 5
+        },
+        "command_actions": {
+          "n": 4,
+          "median": 4.0,
+          "min": 3,
+          "max": 4
+        },
+        "input_tokens": {
+          "n": 4,
+          "median": 82853.0,
+          "min": 74886,
+          "max": 105815
+        },
+        "cached_input_tokens": {
+          "n": 4,
+          "median": 75840.0,
+          "min": 67840,
+          "max": 86016
+        },
+        "output_tokens": {
+          "n": 4,
+          "median": 487.0,
+          "min": 397,
+          "max": 827
+        },
+        "total_tokens": {
+          "n": 4,
+          "median": 83328.5,
+          "min": 75306,
+          "max": 106642
+        }
+      },
+      "unnecessary_work": {
+        "assessed_runs": 4,
+        "unavailable_runs": 0,
+        "runs_with_items": 0,
+        "items": 0,
+        "categories": {
+          "unrelated_investigation": 0,
+          "redundant_verification": 0,
+          "unnecessary_delegation": 0,
+          "scope_expansion": 0
+        }
+      }
+    },
+    "pancake": {
+      "runs": 4,
+      "execution_failures": 0,
+      "expected_defects": 2,
+      "detected_defects": 2,
+      "missed_defects": 0,
+      "false_findings": 0,
+      "clean_controls": 2,
+      "clean_controls_with_findings": 0,
+      "process": {
+        "contract_reads": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "focused_verification": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "grounded_verdict": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "workspace_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "preferences_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        }
+      },
+      "missing_usage_runs": 0,
+      "miss_rate": 0.0,
+      "clean_false_positive_rate": 0.0,
+      "cost": {
+        "elapsed_seconds": {
+          "n": 4,
+          "median": 39.805499999999995,
+          "min": 33.807,
+          "max": 57.002
+        },
+        "tool_calls": {
+          "n": 4,
+          "median": 4.0,
+          "min": 4,
+          "max": 4
+        },
+        "command_actions": {
+          "n": 4,
+          "median": 6.5,
+          "min": 3,
+          "max": 7
+        },
+        "input_tokens": {
+          "n": 4,
+          "median": 86070.0,
+          "min": 85904,
+          "max": 86520
+        },
+        "cached_input_tokens": {
+          "n": 4,
+          "median": 74496.0,
+          "min": 71040,
+          "max": 78592
+        },
+        "output_tokens": {
+          "n": 4,
+          "median": 610.0,
+          "min": 529,
+          "max": 850
+        },
+        "total_tokens": {
+          "n": 4,
+          "median": 86680.0,
+          "min": 86433,
+          "max": 87370
+        }
+      },
+      "unnecessary_work": {
+        "assessed_runs": 4,
+        "unavailable_runs": 0,
+        "runs_with_items": 0,
+        "items": 0,
+        "categories": {
+          "unrelated_investigation": 0,
+          "redundant_verification": 0,
+          "unnecessary_delegation": 0,
+          "scope_expansion": 0
+        }
+      }
+    },
+    "poteto": {
+      "runs": 4,
+      "execution_failures": 0,
+      "expected_defects": 2,
+      "detected_defects": 2,
+      "missed_defects": 0,
+      "false_findings": 0,
+      "clean_controls": 2,
+      "clean_controls_with_findings": 0,
+      "process": {
+        "contract_reads": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "focused_verification": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "grounded_verdict": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "workspace_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        },
+        "preferences_unchanged": {
+          "passed": 4,
+          "failed": 0,
+          "unavailable": 0
+        }
+      },
+      "missing_usage_runs": 0,
+      "miss_rate": 0.0,
+      "clean_false_positive_rate": 0.0,
+      "cost": {
+        "elapsed_seconds": {
+          "n": 4,
+          "median": 87.92750000000001,
+          "min": 74.89,
+          "max": 97.738
+        },
+        "tool_calls": {
+          "n": 4,
+          "median": 14.0,
+          "min": 12,
+          "max": 16
+        },
+        "command_actions": {
+          "n": 4,
+          "median": 10.0,
+          "min": 9,
+          "max": 14
+        },
+        "input_tokens": {
+          "n": 4,
+          "median": 392029.0,
+          "min": 335363,
+          "max": 438856
+        },
+        "cached_input_tokens": {
+          "n": 4,
+          "median": 342272.0,
+          "min": 294912,
+          "max": 390528
+        },
+        "output_tokens": {
+          "n": 4,
+          "median": 2475.5,
+          "min": 2183,
+          "max": 2655
+        },
+        "total_tokens": {
+          "n": 4,
+          "median": 394397.5,
+          "min": 337760,
+          "max": 441511
+        }
+      },
+      "unnecessary_work": {
+        "assessed_runs": 4,
+        "unavailable_runs": 0,
+        "runs_with_items": 0,
+        "items": 0,
+        "categories": {
+          "unrelated_investigation": 0,
+          "redundant_verification": 0,
+          "unnecessary_delegation": 0,
+          "scope_expansion": 0
+        }
+      }
+    }
+  },
+  "per_case": {
+    "config-bug": {
+      "baseline": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 36.043,
+            "min": 36.043,
+            "max": 36.043
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 74886,
+            "min": 74886,
+            "max": 74886
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 67840,
+            "min": 67840,
+            "max": 67840
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 420,
+            "min": 420,
+            "max": 420
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 75306,
+            "min": 75306,
+            "max": 75306
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "pancake": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 34.829,
+            "min": 34.829,
+            "max": 34.829
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 6,
+            "min": 6,
+            "max": 6
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 85919,
+            "min": 85919,
+            "max": 85919
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 72448,
+            "min": 72448,
+            "max": 72448
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 580,
+            "min": 580,
+            "max": 580
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 86499,
+            "min": 86499,
+            "max": 86499
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "poteto": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 79.98,
+            "min": 79.98,
+            "max": 79.98
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 13,
+            "min": 13,
+            "max": 13
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 9,
+            "min": 9,
+            "max": 9
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 362758,
+            "min": 362758,
+            "max": 362758
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 320000,
+            "min": 320000,
+            "max": 320000
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 2183,
+            "min": 2183,
+            "max": 2183
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 364941,
+            "min": 364941,
+            "max": 364941
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      }
+    },
+    "config-clean": {
+      "pancake": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 57.002,
+            "min": 57.002,
+            "max": 57.002
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 7,
+            "min": 7,
+            "max": 7
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 86221,
+            "min": 86221,
+            "max": 86221
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 78592,
+            "min": 78592,
+            "max": 78592
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 640,
+            "min": 640,
+            "max": 640
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 86861,
+            "min": 86861,
+            "max": 86861
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "poteto": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 95.875,
+            "min": 95.875,
+            "max": 95.875
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 15,
+            "min": 15,
+            "max": 15
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 10,
+            "min": 10,
+            "max": 10
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 421300,
+            "min": 421300,
+            "max": 421300
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 364544,
+            "min": 364544,
+            "max": 364544
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 2554,
+            "min": 2554,
+            "max": 2554
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 423854,
+            "min": 423854,
+            "max": 423854
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "baseline": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 39.089,
+            "min": 39.089,
+            "max": 39.089
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 74951,
+            "min": 74951,
+            "max": 74951
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 67840,
+            "min": 67840,
+            "max": 67840
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 397,
+            "min": 397,
+            "max": 397
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 75348,
+            "min": 75348,
+            "max": 75348
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      }
+    },
+    "lifetime-bug": {
+      "poteto": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 97.738,
+            "min": 97.738,
+            "max": 97.738
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 16,
+            "min": 16,
+            "max": 16
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 10,
+            "min": 10,
+            "max": 10
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 438856,
+            "min": 438856,
+            "max": 438856
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 390528,
+            "min": 390528,
+            "max": 390528
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 2655,
+            "min": 2655,
+            "max": 2655
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 441511,
+            "min": 441511,
+            "max": 441511
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "baseline": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 37.473,
+            "min": 37.473,
+            "max": 37.473
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 5,
+            "min": 5,
+            "max": 5
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 3,
+            "min": 3,
+            "max": 3
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 90755,
+            "min": 90755,
+            "max": 90755
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 83840,
+            "min": 83840,
+            "max": 83840
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 554,
+            "min": 554,
+            "max": 554
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 91309,
+            "min": 91309,
+            "max": 91309
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "pancake": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 1,
+        "detected_defects": 1,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 0,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": 0.0,
+        "clean_false_positive_rate": null,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 33.807,
+            "min": 33.807,
+            "max": 33.807
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 3,
+            "min": 3,
+            "max": 3
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 85904,
+            "min": 85904,
+            "max": 85904
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 76544,
+            "min": 76544,
+            "max": 76544
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 529,
+            "min": 529,
+            "max": 529
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 86433,
+            "min": 86433,
+            "max": 86433
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      }
+    },
+    "lifetime-clean": {
+      "baseline": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 44.771,
+            "min": 44.771,
+            "max": 44.771
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 5,
+            "min": 5,
+            "max": 5
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 105815,
+            "min": 105815,
+            "max": 105815
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 86016,
+            "min": 86016,
+            "max": 86016
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 827,
+            "min": 827,
+            "max": 827
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 106642,
+            "min": 106642,
+            "max": 106642
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "pancake": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 44.782,
+            "min": 44.782,
+            "max": 44.782
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 4,
+            "min": 4,
+            "max": 4
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 7,
+            "min": 7,
+            "max": 7
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 86520,
+            "min": 86520,
+            "max": 86520
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 71040,
+            "min": 71040,
+            "max": 71040
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 850,
+            "min": 850,
+            "max": 850
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 87370,
+            "min": 87370,
+            "max": 87370
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      },
+      "poteto": {
+        "runs": 1,
+        "execution_failures": 0,
+        "expected_defects": 0,
+        "detected_defects": 0,
+        "missed_defects": 0,
+        "false_findings": 0,
+        "clean_controls": 1,
+        "clean_controls_with_findings": 0,
+        "process": {
+          "contract_reads": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "focused_verification": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "grounded_verdict": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "workspace_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          },
+          "preferences_unchanged": {
+            "passed": 1,
+            "failed": 0,
+            "unavailable": 0
+          }
+        },
+        "missing_usage_runs": 0,
+        "miss_rate": null,
+        "clean_false_positive_rate": 0.0,
+        "cost": {
+          "elapsed_seconds": {
+            "n": 1,
+            "median": 74.89,
+            "min": 74.89,
+            "max": 74.89
+          },
+          "tool_calls": {
+            "n": 1,
+            "median": 12,
+            "min": 12,
+            "max": 12
+          },
+          "command_actions": {
+            "n": 1,
+            "median": 14,
+            "min": 14,
+            "max": 14
+          },
+          "input_tokens": {
+            "n": 1,
+            "median": 335363,
+            "min": 335363,
+            "max": 335363
+          },
+          "cached_input_tokens": {
+            "n": 1,
+            "median": 294912,
+            "min": 294912,
+            "max": 294912
+          },
+          "output_tokens": {
+            "n": 1,
+            "median": 2397,
+            "min": 2397,
+            "max": 2397
+          },
+          "total_tokens": {
+            "n": 1,
+            "median": 337760,
+            "min": 337760,
+            "max": 337760
+          }
+        },
+        "unnecessary_work": {
+          "assessed_runs": 1,
+          "unavailable_runs": 0,
+          "runs_with_items": 0,
+          "items": 0,
+          "categories": {
+            "unrelated_investigation": 0,
+            "redundant_verification": 0,
+            "unnecessary_delegation": 0,
+            "scope_expansion": 0
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Four synthetic cases and one repetition do not establish general quality, repeatability, or production savings.",
+    "Per-case positions are not balanced with one repetition.",
+    "One candidate model and one CLI host; the assessor uses an alternate requested model.",
+    "No installed-plugin, visible-picker, or authenticated Claude coverage.",
+    "Read-only filesystem permissions do not prevent reading outside the project.",
+    "Successful retries after failed shell syntax are not redundant verification under the predeclared rubric. Zero counted unnecessary work does not mean minimum possible work.",
+    "Completed review workers are observed, but encrypted briefs and missing explicit context-isolation arguments do not establish neutral independent review. The assessor did not count these workers as unnecessary work; that is not a neutrality verdict."
+  ],
+  "verification": {
+    "tests": 86,
+    "record": {
+      "source": {
+        "revision": "56534574588ed392ac4d306e3562fa088cd57470",
+        "dirty": false,
+        "file_hashes": {
+          ".agents/plugins/marketplace.json": "6afb5815a255610fd46864fb0522f4d2554ed728fc23105a0977705885a0a313",
+          ".claude-plugin/marketplace.json": "08a6a4f801b28c443d33ffa76e5dd166f34adf4c377870be973ef13dc3e43df9",
+          ".claude-plugin/plugin.json": "57c711e10b56317a8cf8d4191ccc2fb85ee8fd0af2725842b965ea59a5dd3891",
+          ".github/workflows/checks.yml": "234100ae547307adef396a7b5c10c9e5aaa8ef5ca8e9ec978e5782b705ca9f73",
+          ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+          "AGENTS.md": "ca63ce258e460d3e868635722be824af829d826ec9032053cc84b206e57a9e6b",
+          "README.md": "c97f91060b709916ea998696d8b35c9c9b72344a2e7203d47528da677e891a46",
+          "docs/claude.md": "e88e5e7b3f4123b0778dbbc5ec4053f2db4183b6edf6de6a590cf900104fb000",
+          "docs/configuration.md": "758b0ac82b6270939da134957c49885a38fef8ea2544d26993de8ef08e1240db",
+          "docs/installation-verification.md": "7b8232487e0cba75d212ee09993a7567efe6ac01b747027f31efb40a3d992360",
+          "docs/plan.md": "fd27e7b3952a68e8cb72b6d817cf98610bc471377020bc7f473b6fead8b6dee4",
+          "docs/recipes.md": "31ec6040a757500bf7325e4c3f52b7484f07ba1f5e71d0a0555af4c705fb7adf",
+          "docs/setup.md": "d2a0e99a16f1016d66b9654fe1e34020acfe87c52c632b5c52066bc8a7f54ba2",
+          "docs/verification.md": "5b467a89d1e08b0bd68c8c0789d99284773ce6de4dbe1840bac2415797a1ec45",
+          "plugin.json": "4a5e5542e808538bb584abeeeed2e0fc19908b66685181c11c38db68b044ada3",
+          "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+          "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+          "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+          "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+          "skills/check/SKILL.md": "fd4f838b3f8992a4ebd67ac4b1dd19edd8c58f40124005ff3ec47a7cc8cc2d0e",
+          "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+          "skills/design/SKILL.md": "049311b1543c7cf0dfeea03e0c374fce47e174546027cea43fe1783fe5777903",
+          "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+          "skills/design/references/competing-designs.md": "54e4b2e1ddde93dfdf1b99d2cf932f75cc701a9fd28b4cc9688550b024cc5a6e",
+          "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+          "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+          "skills/fix/SKILL.md": "36f445afec49a02a518a98210f826416cb0b70ea382a9c30db4ba42fa9de7ae5",
+          "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+          "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+          "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+          "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+          "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+          "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+          "skills/pancake/SKILL.md": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+          "skills/pancake/agents/openai.yaml": "9be4bc45816a22ae67eae89726daa97bdb846fd32df0e3fe30ab4cc800b406e0",
+          "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+          "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+          "skills/pancake/references/experiments.md": "a3ee8e890bfbf456e72019438a4b6fc6a115ad244232d32b5441d553debd7c8a",
+          "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+          "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "skills/pancake/references/implementation.md": "25c9070cdb67462ef64355de61d8a7b0c8ba7dddc7b9f908a17c6cd0384ea5ab",
+          "skills/pancake/references/parallel-work.md": "a7c0f2738db69d0222adfb5448b685e50bf6a739f0cc5bc263211d77d1d51654",
+          "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+          "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+          "skills/pancake/references/substantial-work.md": "b734cb5affaaff02bf9da6f7454d4007ef18af206a9f61f82735fa628dbf9bfa",
+          "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+          "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+          "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+          "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+          "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+          "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+          "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+          "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+          "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+          "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+          "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+          "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+          "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+          "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+          "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+          "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+          "skills/tdd/SKILL.md": "095fa6a462281270cab765533bcd29fd7fe9710382c72a7d6778558719078403",
+          "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+          "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+          "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+          "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+          "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+          "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+          "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+          "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+          "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+          "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080"
+        }
+      },
+      "evaluator": {
+        "revision": "24d53c05031999970b506518114d009bf5c95707",
+        "dirty": true,
+        "file_hashes": {
+          "tests/behavioral/review_comparison.py": "7b146406e99d7740d302f2d012e115b774ba5b4473c535307c413165adf30fe0",
+          "tests/test_review_comparison.py": "37a4e37780ee97d39ef5094d5874bfc818a7490c30f536146767f86979a5af86",
+          ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+          "AGENTS.md": "ae701a3ba45d901a3e0bfa4bc57adf71ce41b02fa20435025a44105a7a73fa4d",
+          "README.md": "e1c2e2d652916c4daa52d1fc867da0af801e305ca1e88f63e8405d9e64a354e6",
+          "docs/baseline-comparison.md": "a1f7c9e17cc1ce2214738fc84b79252ada2e9f391d95f7a9591d50a57f6e6e70",
+          "docs/behavioral-evaluation.md": "4ece1ab43f10f4c4823452031c04309c3b7008bd52b4908c31c47f03f60ae903",
+          "docs/behavioral-results.md": "7059c0ae92f96bb93b3cb0861fb75e768d046057af32151b4466b4363597801f",
+          "docs/claude.md": "b62a3f86aa470e2b8758f047577b9867628409ba52d18d861151ff84c481df56",
+          "docs/configuration.md": "eb81ff3396957e20f879ac0b4153567a44247ca30946280d6821bb07a8ee710c",
+          "docs/evidence/baseline-comparison-2026-10-07.json": "a13f4d01d713cfd1dc47dd5fc6dceddb54afe8f485b39edd9c772722bbe8c4ec",
+          "docs/evidence/challenge-panel-2026-10-05.json": "4b95071b23c6faabc9ae39a768fc1fb849c4483e32820802f9319c54cbd0de13",
+          "docs/evidence/claude-decisions-2026-10-06.tsv": "d324a7cabf6c11869e40f5de8160114c4c4fe10268d274211a22e9671973ba82",
+          "docs/evidence/claude-support-2026-10-06.json": "d641990ad00364763151f2c7967fb4dff4059e84e5dcdbefcd4da8ac7610d9e0",
+          "docs/evidence/default-persistence-2026-10-06.json": "b0ec5f533e92f48507039f8a24d56df783ee6d7e55b13c1cfe84e8f5fc2d0295",
+          "docs/evidence/delegation-fallbacks-2026-10-06.json": "b45fe7e0026f6fd5944900bc815a0bd4afd092abc9fe236fd33729390974f936",
+          "docs/evidence/git-install-2026-10-06.json": "671e92b14af738279062f8c5fb293fec326f4d9fdf72b163ca37068963917b70",
+          "docs/evidence/host-installation-2026-10-09.json": "f24adb52a080c1f78ce682da8e69c1621af36b06d08080297b62459f57344cc8",
+          "docs/evidence/implementation-panel-incomplete-2026-10-05.json": "240fc84e014dae88bac23fde82776c7ac936337c4eb0d0f8739273ce9c83156a",
+          "docs/evidence/installed-panel-2026-10-05.json": "5cd140d78bd382a3e1aac5cde85c87e04b513e9ec7ad84beec59269817369449",
+          "docs/evidence/library-split-2026-10-07.json": "53c11b14b8f76dc02746070298c79c88367f918d580e38317fe8a75d0584c2ce",
+          "docs/evidence/preference-followup-2026-10-07.json": "9f0d890cb9dd10a3a15ff605905d0074f9c0d1ead18fd31a05d98c6ee99f1530",
+          "docs/evidence/preference-timing-2026-10-07.json": "bfb9ab2993ed60c6a9efbf2f4d9efa26e8d95237d08c0af5eac6b10333096ac8",
+          "docs/evidence/records-2026-10-03.json": "36cfe6ffcf4d5acd8007ec2d314121e64a33583be088f90cc6fa48343fc44b9d",
+          "docs/evidence/reviewer-comparison-2026-10-07.json": "dd9557dce9c2f37ddc1e772492b509cbd27c8292b87e41e6d9640317aa14b34c",
+          "docs/evidence/reviewer-consolidation-2026-10-09.json": "5dc8d62bf8cd97390ac3bc21d705fdbe2e8cbfa0a413dee01502468c52dc46b5",
+          "docs/evidence/roadmap-decisions-2026-10-05.tsv": "f72cdd9a0e932782a3e5100cc39fb4f7b18358c37c4659ae142be334bc8cfef9",
+          "docs/evidence/roadmap-workflows-2026-10-05.json": "05b8d288af505d94447028796b74141e03fac89329079abd51fc0747d291cc88",
+          "docs/evidence/summary-2026-10-03.json": "5775e484d4ea3a14885fe3712cc9a51ef09a43b61d5a41bc0c34d1a3a3c53cb2",
+          "docs/evidence/tdd-2026-10-03.json": "2419601cfe2e152d4d0bcc5025035180873b37803c11bab206ebd8167e3dbab9",
+          "docs/evidence/three-arm-comparison-2026-10-09.json": "e4fd81e9c38f51b4968ba9bef0d74c78b7fe3e4dd4e02180638a6a18aaae2342",
+          "docs/evidence/workflow-fix-2026-10-03.json": "ff43d420b4aa8ee3a4526761ad00f27d33c7a99c91eb3a19688ca971ac55b208",
+          "docs/evidence/workflow-records-2026-10-03.json": "07b0e70525a6620400493b28bd8a20524f0ccc9e8390d3ef9790e77232e14f76",
+          "docs/evidence/workflow-summary-2026-10-03.json": "e7ca4ae725acdd467651ca705901d5d0b8042d7f867f0956d176a15b5382cff5",
+          "docs/installation-verification.md": "21b09c03735f32715113803bbeab409e70fcbbf8edfb061e642e1872f18ba1d9",
+          "docs/library-split.md": "a70a9ab6d0edcdbb4bab2f9b80f518a2bb663cf615e95ec8af87bb8810581aaa",
+          "docs/plan.md": "1bf1106ae6f30fc0dffa0570af6dda9aff71b29e544141d2b02ba46b7e0008c2",
+          "docs/recipes.md": "26ffd5b1f3d5993b129fad813abbcc8b1b63e788fd1cf1680b5f493e137eeffe",
+          "docs/reviewer-consolidation.md": "66b038b5f91ebf84254a3d00ed808e41656e7cd061d6819b6af4a9de8d473b7f",
+          "docs/safeguards.md": "6d60ebfb1789f4749cd9b685918d69e70e8cb7fbb82dbe2300569b875776e483",
+          "docs/setup.md": "c13ab1864bc179e379fc9e4ce885297d3cb73dc0fe74120ebde303db9edcd654",
+          "docs/three-arm-comparison.md": "2d3fc9866fb5362177ab2738ab643364fb55b02c0c4b2116188f6f4eaf6a253b",
+          "fixtures/legacy-0.19.3/README.md": "85962d246acc5b77453c5f424542d378d4c980907599818795edc7883bdc3867",
+          "fixtures/legacy-0.19.3/config/challenge-panel.example.json": "5129b092b6d2f6b8f9597e8d635d8e696f8ae0e76fbf46a2043e46620ba8f343",
+          "fixtures/legacy-0.19.3/config/implementation-panel.example.json": "b7be389691fd063aed221957d065ddc74ad3a7c3d0f89254cbaef9a3f8b76163",
+          "fixtures/legacy-0.19.3/config/preferences.example.json": "642e07fbe875f4f35390621dcc7053554481ac43db06ddb2e55830496c85b1f3",
+          "fixtures/legacy-0.19.3/skills/setup/scripts/catalog.py": "0be97e5033072ea821369e83fd3719e04f5c9a9801a154f0904b7883215583e7",
+          "fixtures/legacy-0.19.3/skills/setup/scripts/preferences.py": "a7df83d8abd46751fa1f024c7265d45ad6e5c8080c6a6b6a733a88a0b79ba519",
+          "run_checks.py": "1f12556191a3a702e20f5e4f330addcd70652081f7d1a27804ab504d8b806e23",
+          "tests/behavioral/cases/checkout/request.txt": "7a0f522d057699afbc5899e766187e077d720a931c319f976c43fb641e562a33",
+          "tests/behavioral/cases/checkout/workspace/app.py": "8f7363cfe7e81b71b02b58f45fdd1713f3fe9ad0afafc1495ad32be556bd8d72",
+          "tests/behavioral/cases/checkout/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/contract/request.txt": "2daed4d2f392f67eedbdc11ea8dcd457eb1fc6910ca004d7e3fc3e909ce7f255",
+          "tests/behavioral/cases/contract/workspace/README.md": "df2290d72c46097433aef4bd7aad9b13cc39717197fcee832463019471ab9072",
+          "tests/behavioral/cases/contract/workspace/archive.json": "97bfebbcce3371383d28b9bad7640c9126ed773ee8c767a5f0bb826c7f217868",
+          "tests/behavioral/cases/contract/workspace/archive.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+          "tests/behavioral/cases/contract/workspace/billing.py": "9018f8c162282ee0601fb6580e2419debd5ce4dac656a5e19a5e895d68cc6f3b",
+          "tests/behavioral/cases/contract/workspace/consumer.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+          "tests/behavioral/cases/contract/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+          "tests/behavioral/cases/contract/workspace/producer.py": "879fb93132d29b04d8b615a5170bcc35fba8c6033fe46b321f247732f0da80c5",
+          "tests/behavioral/cases/contract/workspace/test_contract.py": "76a8086467525a9fbbdb01a249dbe1d323ecea8fc12b5addf149e0c0d134af68",
+          "tests/behavioral/cases/delivery/request.txt": "f38fc2c9eb1a71c6cdcba2ff8d0eae0326f0b09e0d23cc7c07e569c0b87d12cf",
+          "tests/behavioral/cases/delivery/workspace/app.py": "aa0d1f1eff78f376240414c37f450842dfade4ab2ffa5199976adee8548eb2f0",
+          "tests/behavioral/cases/delivery/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/exporter/request.txt": "0daab596bc950832db20099a1c3f4d3cfe3ed3893a27f24c3f6d3474d09a9dec",
+          "tests/behavioral/cases/exporter/workspace/README.md": "cc15bd298ed194fb18a8c3c4485c9fb1cbf4f60cc39462de5701ee60601e3851",
+          "tests/behavioral/cases/exporter/workspace/app.py": "345f0f9efccc6679cb3a898d2d5ad730ae2f347fa58170548c3a85054ec82a3b",
+          "tests/behavioral/cases/exporter/workspace/change.diff": "c5d219eb1df36c0c0a0142cf9dd64196a2eb0d8d3337a88204bdb1420f47631b",
+          "tests/behavioral/cases/exporter/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+          "tests/behavioral/cases/exporter/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/exporter/workspace/test_app.py": "f95010575d0a955e881ea5cdfad89e599826b94665dc1791832aaf17d23ae2d0",
+          "tests/behavioral/cases/invoice/request.txt": "665bc6dc78a0225ad7768664d18c5e3d14d33f89d66be02467ddceef191d0c62",
+          "tests/behavioral/cases/invoice/workspace/app.py": "909c8f229655196c9acf8c27765bd895f83e65fd31a4b9cd32a25b06a961bbcb",
+          "tests/behavioral/cases/invoice/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/label/request.txt": "2d51fe68884acccf068c377da1702f4a1d33adccf759ae412029a5451f697662",
+          "tests/behavioral/cases/label/workspace/cli.py": "6c0790388b1cad5efbb7198823918b4e77b45ce3ddf9d59d58392a988f319a8a",
+          "tests/behavioral/cases/label/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+          "tests/behavioral/cases/records/request.txt": "ee82aceb483763b2726b3fcdbbca151322d907b3a2f62ed6b4a83f55ec75f7ed",
+          "tests/behavioral/cases/records/workspace/README.md": "aa61c14b4fd30eca9c20a99816fde1aee6f786d2ab0bac3b4d68e018a76581d5",
+          "tests/behavioral/cases/records/workspace/archive.json": "700935e29ea3462fc45d33b0212ddf415d51925b0f8bd785ffba7ca6cb54dfd1",
+          "tests/behavioral/cases/records/workspace/archive.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+          "tests/behavioral/cases/records/workspace/billing.py": "510c98140ba4a1f1eb3e8f1814989f373f7cb9043341bdbaed98d18d84dd7edb",
+          "tests/behavioral/cases/records/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+          "tests/behavioral/cases/records/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/records/workspace/producer.py": "3dcfed3c37cc31eee19129ddf312baab34599e19a6a76102101017d7022db6c8",
+          "tests/behavioral/cases/records/workspace/test_records.py": "93ec677a510912169a338b9f9570859c213c0811c69d6ca9f90a1c340b20492d",
+          "tests/behavioral/cases/summary/request.txt": "f09746dae748e925a7cd52ed08f19029bc97f9adfc008de9014b565f129f5584",
+          "tests/behavioral/cases/summary/workspace/app.py": "232cc340c3e6fd52dfe588a5793590a94bd48f7b4da59e142a62472aa8e6daf3",
+          "tests/behavioral/cases/summary/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/summary/workspace/test_app.py": "c18a7dc3b9df4c34ed8909387c08b0a1f191a7bd47b1606671c7a36c9bb6fbf1",
+          "tests/behavioral/cases/update/request.txt": "08687423e702eb35396bbfd505461b6ade73eff7b0ecbb0985f8a2ae05b96534",
+          "tests/behavioral/cases/update/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+          "tests/behavioral/cases/update/workspace/update.txt": "8f9603fa753324cf18ef081a431b612ceed8b712a16bc7ca2a0fa5ebd57ecbd9",
+          "tests/behavioral/compare.py": "8afa6adc22eca87739e87c4903ba2d0985afc0f27f6769a2fe160ae1b33652f1",
+          "tests/behavioral/review.py": "c10c5ae9aafd381c83e17a34cba2d8decbccd0b145a40f8453f0d014772c1518",
+          "tests/behavioral/support.py": "37316071f5b927eed9cacdb8b8420740cc7880f1d57aec95ab9aca7258970e60",
+          "tests/behavioral/traces.py": "decf0c4e9ad3af5fdc033e7fee79f715fb21e24b3e112f153709586f6a2c612c",
+          "tests/package_validation.py": "095f789dbf91bf9de343cda10ce1bb9c57e37e5f92f3593d8c96a0835b4fb56b",
+          "tests/target.py": "ae15fdbfbf58c56eb1722ce9ac34d4bfe8559462368038ab4ab60344840eccf3",
+          "tests/test_behavioral_fixtures.py": "494fb07547909d322a25fb51b6704ac099535428d24f8cd488fc69df004ddf61",
+          "tests/test_catalog.py": "1cb79bca54c0be5c223d31a319386f0dfd1f444eff04085b8a2b3f12bd76deee",
+          "tests/test_comparison.py": "fd78c68cf578bd2f233d85f1c40d75093cbac5115cfefb73d7fe435c61b3e5fe",
+          "tests/test_comparison_fixtures.py": "255fc0220019b82d54fea4241cfa969160cd5f8732538610a37c3ee57f832ad5",
+          "tests/test_identity.py": "59ec33126e142c7ffe5eb589e9dccbb45f5a5c88a3c3ffac76ba807380834fda",
+          "tests/test_package_validation.py": "3e62c86734f0a74e371b02d8ea994428d7d397a8e8b972ac2b9d377b762c8186",
+          "tests/test_preferences.py": "705b6f08c8e1709b4018523f934cc61428644b6f224a6f0579eeed49164e12d3",
+          "tests/test_review_evaluation.py": "a3edae946f49bf9ef452b860c3b9b116e6d2b977495be0e12d1fc75a5d840a1a",
+          "tests/test_trial_traces.py": "e0dc14cf565df864b8f74477b50bb509f141ac3155780b6296f702c3f7e28ade"
+        }
+      },
+      "source_unchanged": true,
+      "evaluator_unchanged": true,
+      "exit_code": 0,
+      "passed": true
+    },
+    "post_review_docstring_removal": "Six focused review-comparison tests passed after deleting the module narrative docstring; no behavior changed."
+  }
+}

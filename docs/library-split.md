@@ -1,5 +1,7 @@
 # Declarative library migration, 7 October 2026
 
+This is the historical migration record. The evaluator has since been hosted on GitHub and the library has gained pinned CI. See the [current evaluator overview](../README.md); the original observations below retain their date.
+
 The library and evaluator now have separate working trees. The evaluator retains the original history through `795dc890ee0b0acf24e743d82362c4a92e4202e1`. It has no remote. All historical fixture inputs and evidence were preserved; preference and catalog helpers moved to `fixtures/legacy-0.19.3` for historical tests only.
 
 ## Verified result

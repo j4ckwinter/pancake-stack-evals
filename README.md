@@ -1,10 +1,10 @@
 # Pancake Stack evaluations
 
-This local repository owns package checks, behavioral fixtures, live trial tools, and historical evidence for Pancake Stack. It was cloned from source commit `795dc890ee0b0acf24e743d82362c4a92e4202e1`, preserving the original Git history. No remote is configured.
+This repository owns package checks, behavioral fixtures, live trial tools, and historical evidence for Pancake Stack. It was cloned from source commit `795dc890ee0b0acf24e743d82362c4a92e4202e1`, preserving the original Git history. It is hosted at [j4ckwinter/pancake-stack-evals](https://github.com/j4ckwinter/pancake-stack-evals).
 
 ## Run checks
 
-Use Python 3.12, matching the former CI environment. From this repository, supply the library checkout explicitly:
+Use Python 3.12, matching the library CI environment. From this repository, supply the library checkout explicitly:
 
 ```sh
 python3 -B run_checks.py --source ../pancake-stack --output /tmp/pancake-checks.json
@@ -20,6 +20,14 @@ Live runs require explicit authorization and a supported authenticated Codex CLI
 
 The [evaluation procedure](docs/behavioral-evaluation.md), [trial results](docs/behavioral-results.md), and [baseline comparison](docs/baseline-comparison.md) retain historical methods and outcomes. Documentation copied from the library describes the versions named in those records; old repository-relative commands may require the explicit source setting above. Existing evidence has not been relabeled as verification of the simplified library.
 
+## Current evidence
+
+The [three-arm pilot](docs/three-arm-comparison.md) compares baseline, Pancake, and the local Codex port of Poteto on two bounded tasks. The [installed reviewer trials](docs/reviewer-consolidation.md) exercise the consolidated rules in version 0.21.3. Each report records scope and limitations; neither establishes general success rates.
+
+The [three-arm review pilot](docs/review-comparison.md) adds configuration and resource-lifetime defects with matched clean controls. All 12 runs completed, with no missed seeded defects or unsupported actionable findings. Unnecessary work is adjudicated separately from cost. The one-repetition pilot does not establish general quality or repeatability.
+
 ## Automation
 
-GitHub cannot fetch this local-only repository. The library's old in-repository test workflow must be removed when its tests move. Once a remote is authorized, its workflow can check out a pinned evaluator commit alongside the library and run the command above. Private repository access requires separately configured credentials. Do not add a workflow pointing to a nonexistent remote.
+The library's [package workflow](https://github.com/j4ckwinter/pancake-stack/blob/main/.github/workflows/checks.yml) checks out a pinned published evaluator alongside the target library. This evaluator has 86 checks. Publish evaluator changes before advancing the library's pin; do not pin a commit GitHub cannot fetch.
+
+Hosted checks [passed at library revision `1405ff6`](https://github.com/j4ckwinter/pancake-stack/actions/runs/37963572728) with the older 70-check evaluator. Consult the workflow's pin and [Actions results](https://github.com/j4ckwinter/pancake-stack/actions) for later coverage. The runner records both repository identities and checks for mutations. Live model trials and plugin installation remain separate authorized operations.

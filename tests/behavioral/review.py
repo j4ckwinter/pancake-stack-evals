@@ -58,13 +58,13 @@ def consolidate(source):
     ) + source[end:]
 
 
-def score(case, detected, false_findings):
+def score(case, detected, false_findings, *, cases=CASES):
     """Score adjudicated mechanisms, never keywords in a candidate's prose.
 
 The assessor supplies supported ground-truth IDs and a count of unsupported
 findings after inspecting output. Duplicate reports of one defect count once.
 """
-    expected = set(CASES[case])
+    expected = set(cases[case])
     detected = set(detected)
     if not detected <= expected or type(false_findings) is not int or false_findings < 0:
         raise ValueError("invalid adjudication")
@@ -73,7 +73,7 @@ findings after inspecting output. Duplicate reports of one defect count once.
             "clean_control": not expected}
 
 
-def summarize(results, assessments):
+def summarize(results, assessments, *, cases=CASES):
     """Join ordered run records to human adjudications after reviewing evidence.
 
 Execution failures and missing usage stay explicit and cannot look like cheap,
@@ -99,7 +99,7 @@ successful reviews. Process fields are evidence-based assessor observations.
             "process": {}, "samples": {}, "missing_usage_runs": 0,
         })
         group["runs"] += 1
-        outcome = score(result["case"], assessment["detected"], assessment["false_findings"])
+        outcome = score(result["case"], assessment["detected"], assessment["false_findings"], cases=cases)
         for field in ("expected_defects", "detected_defects", "missed_defects", "false_findings"):
             group[field] += outcome[field]
         group["clean_controls"] += outcome["clean_control"]
