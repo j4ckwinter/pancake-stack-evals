@@ -1,0 +1,178 @@
+{
+  "label": "output-11",
+  "case": "config-bug",
+  "final": "- **[P1] Preserve an explicit zero limit** in [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces valid `0` with `20`, so `select_jobs()` selects up to 20 jobs when the documented contract requires none. Restore the explicit `None` check.\n\nReproduced against both versions. The two existing tests pass but omit zero. The Workflow principle \u201cProve It Works\u201d prompted this direct behavior check. No files changed.",
+  "exit_code": 0,
+  "timed_out": false,
+  "workspace_unchanged": true,
+  "records": [
+    {
+      "session": 0,
+      "worker": false,
+      "completed": true,
+      "calls": [
+        {
+          "id": "call_81408ca83afb4145aee3d25d65d1c57b",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat [project]/bundle/skills/workflow/SKILL.md\",\"max_output_tokens\":12000}));\ntext(await tools.exec_command({cmd:\"pwd; rg --files -g 'AGENTS.md' -g 'change.diff' -g 'package.json' -g 'README*'\",\"max_output_tokens\":4000}));\n"
+          }
+        },
+        {
+          "id": "call_e878307960fa43029deda64e0884b890",
+          "name": "exec",
+          "arguments": {
+            "input": "const root=\"[project]/bundle/skills\";\ntext(await tools.exec_command({cmd:`cat ${root}/workflow/references/codex-port.md ${root}/workflow/playbooks/investigation.md; rg --files ${root} -g 'SKILL.md'; cat change.diff`,\"max_output_tokens\":18000}));\n"
+          }
+        },
+        {
+          "id": "call_a5fc2d4a006d480abe0ab224107ed68f",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat [project]/bundle/skills/how/SKILL.md [project]/bundle/skills/no-comments/SKILL.md [project]/bundle/skills/unslop/SKILL.md [project]/bundle/skills/principle-prove-it-works/SKILL.md; rg --files --hidden -g '!.git/**'; cat settings.py README.md\",\"max_output_tokens\":16000}));\n"
+          }
+        },
+        {
+          "id": "call_69ed6a7c27de40b19fc405fa9a9a87d4",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat jobs.py test_jobs.py; cat [project]/bundle/skills/no-comments/references/comment-sicko.md [project]/bundle/skills/how/references/explainer-prompt.md\",\"max_output_tokens\":9000}));\n"
+          }
+        },
+        {
+          "id": "call_af5ddf7d00dd453496db9e5e74876d8a",
+          "name": "spawn_agent",
+          "arguments": {
+            "task_name": "independent_review"
+          }
+        },
+        {
+          "id": "call_a1aca6534e42491fba20052d5a073de6",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"python3 -B -m unittest -v; python3 -B - <<'PY'\\nfrom jobs import select_jobs\\nfrom pathlib import Path\\nnamespace = {}\\nexec(Path('settings.py').read_text().replace(\\\"    return options.get('limit') or DEFAULT_LIMIT\\\", \\\"    limit = options.get('limit')\\\\n    if limit is None:\\\\n        return DEFAULT_LIMIT\\\\n    return limit\\\"), namespace)\\njobs = list(range(30))\\nfor options in ({}, {'limit': None}, {'limit': 0}, {'limit': 2}):\\n    old = jobs[:namespace['resolve_limit'](options)]\\n    new = select_jobs(jobs, options)\\n    print(f'{options!r}: before={old!r}, after={new!r}')\\nassert select_jobs(jobs, {'limit': 0}) == [], 'Zero limit must disable selection'\\nPY\",\"max_output_tokens\":3000}));\n"
+          }
+        },
+        {
+          "id": "call_75eff18e1bec4d4fb11c6468eb960dfa",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"python3 -B -c 'from jobs import select_jobs; from pathlib import Path; ns = {}; exec(Path(\\\"settings.py\\\").read_text().replace(\\\"    return options.get(\\\\x27limit\\\\x27) or DEFAULT_LIMIT\\\", \\\"    limit = options.get(\\\\x27limit\\\\x27)\\\\n    if limit is None:\\\\n        return DEFAULT_LIMIT\\\\n    return limit\\\"), ns); jobs = list(range(30)); cases = ({}, {\\\"limit\\\": None}, {\\\"limit\\\": 0}, {\\\"limit\\\": 2}); [(print(repr(o), \\\"before=\\\", jobs[:ns[\\\"resolve_limit\\\"](o)], \\\"after=\\\", select_jobs(jobs, o))) for o in cases]; assert select_jobs(jobs, {\\\"limit\\\": 0}) == [], \\\"Zero limit must disable selection\\\"'\",\"max_output_tokens\":3000}));\n"
+          }
+        },
+        {
+          "id": "call_e0d14a32b0a94179955969a61f709291",
+          "name": "send_message",
+          "arguments": {
+            "target": "independent_review"
+          }
+        },
+        {
+          "id": "call_6473f81068e24fbf8282b646e05a4b7f",
+          "name": "wait_agent",
+          "arguments": {
+            "timeout_ms": 10000
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "call_81408ca83afb4145aee3d25d65d1c57b",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_e878307960fa43029deda64e0884b890",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_a5fc2d4a006d480abe0ab224107ed68f",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_69ed6a7c27de40b19fc405fa9a9a87d4",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_af5ddf7d00dd453496db9e5e74876d8a",
+          "output": "{\"task_name\":\"/root/independent_review\"}"
+        },
+        {
+          "id": "call_a1aca6534e42491fba20052d5a073de6",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"22c9f1\",\"wall_time_seconds\":0,\"exit_code\":1,\"original_token_count\":170,\"output\":\"python3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-4zQllVP7\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-5276HLUS\\' (errno=Operation not permitted)\\\\ntest_default (test_jobs.JobTests) ... ok\\\\ntest_explicit_limit (test_jobs.JobTests) ... ok\\\\n\\\\n----------------------------------------------------------------------\\\\nRan 2 tests in 0.000s\\\\n\\\\nOK\\\\nzsh:1: can\\'t create temp file for here document: operation not permitted\\\\n\"}'}]"
+        },
+        {
+          "id": "call_75eff18e1bec4d4fb11c6468eb960dfa",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"d82e7e\",\"wall_time_seconds\":0,\"exit_code\":1,\"original_token_count\":256,\"output\":\"python3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-7frk22Fs\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-Ccah27dt\\' (errno=Operation not permitted)\\\\nTraceback (most recent call last):\\\\n  File \\\\\"<string>\\\\\", line 1, in <module>\\\\n{} before= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] after= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]\\\\n{\\'limit\\': None} before= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] after= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]\\\\n{\\'limit\\': 0} before= [] after= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]\\\\n{\\'limit\\': 2} before= [0, 1] after= [0, 1]\\\\nAssertionError: Zero limit must disable selection\\\\n\"}'}]"
+        },
+        {
+          "id": "call_e0d14a32b0a94179955969a61f709291",
+          "output": ""
+        },
+        {
+          "id": "call_6473f81068e24fbf8282b646e05a4b7f",
+          "output": "{\"message\":\"Wait completed.\",\"timed_out\":false}"
+        }
+      ],
+      "verdicts": [
+        "- **[P1] Preserve an explicit zero limit** in [settings.py:5]([project]/workspace/settings.py:5). `or DEFAULT_LIMIT` replaces valid `0` with `20`, so `select_jobs()` selects up to 20 jobs when the documented contract requires none. Restore the explicit `None` check.\n\nReproduced against both versions. The two existing tests pass but omit zero. The Workflow principle \u201cProve It Works\u201d prompted this direct behavior check. No files changed."
+      ]
+    },
+    {
+      "session": 1,
+      "worker": true,
+      "completed": true,
+      "calls": [
+        {
+          "id": "call_e2287e67cd974a4da83a6bee7f552608",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"pwd && cat [project]/bundle/skills/how/SKILL.md && cat [project]/bundle/skills/no-comments/SKILL.md\",\"max_output_tokens\":5000}));\n"
+          }
+        },
+        {
+          "id": "call_833d07564a87474d973560d900703855",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat [project]/bundle/skills/workflow/references/codex-port.md [project]/bundle/skills/how/references/explainer-prompt.md; rg --files -g '!\\\\.git'\",\"max_output_tokens\":6000}));\n"
+          }
+        },
+        {
+          "id": "call_261861536b6b4b9ab312e8f68bce6d23",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"cat change.diff; nl -ba settings.py; nl -ba jobs.py; cat README.md; cat test_jobs.py; cat [project]/bundle/skills/no-comments/references/comment-sicko.md\",\"max_output_tokens\":10000}));\n"
+          }
+        },
+        {
+          "id": "call_c2d81b3480a14aeaa5770e99bafb3ca1",
+          "name": "exec",
+          "arguments": {
+            "input": "text(await tools.exec_command({cmd:\"PYTHONDONTWRITEBYTECODE=1 python3 -B -c 'from jobs import select_jobs; from settings import DEFAULT_LIMIT; jobs=list(range(30)); print(\\\"zero limit:\\\", select_jobs(jobs, {\\\"limit\\\": 0})); print(\\\"expected:\\\", []); print(\\\"None uses default:\\\", len(select_jobs(jobs, {\\\"limit\\\": None})))'; PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest test_jobs\",\"max_output_tokens\":1000}));\n"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "call_e2287e67cd974a4da83a6bee7f552608",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_833d07564a87474d973560d900703855",
+          "output": "[Guidance-read body omitted. Full retained output is private. This excerpt does not independently establish its contents.]"
+        },
+        {
+          "id": "call_261861536b6b4b9ab312e8f68bce6d23",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"7dca6f\",\"wall_time_seconds\":0.00000175,\"exit_code\":0,\"original_token_count\":816,\"output\":\"--- a/settings.py\\\\n+++ b/settings.py\\\\n@@ -2,7 +2,4 @@\\\\n \\\\n \\\\n def resolve_limit(options):\\\\n-    limit = options.get(\\'limit\\')\\\\n-    if limit is None:\\\\n-        return DEFAULT_LIMIT\\\\n-    return limit\\\\n+    return options.get(\\'limit\\') or DEFAULT_LIMIT\\\\n     1\\\\tDEFAULT_LIMIT = 20\\\\n     2\\\\t\\\\n     3\\\\t\\\\n     4\\\\tdef resolve_limit(options):\\\\n     5\\\\t    return options.get(\\'limit\\') or DEFAULT_LIMIT\\\\n     1\\\\tfrom settings import resolve_limit\\\\n     2\\\\t\\\\n     3\\\\t\\\\n     4\\\\tdef select_jobs(jobs, options):\\\\n     5\\\\t    return jobs[:resolve_limit(options)]\\\\n# Batch selection\\\\n\\\\nselect_jobs(jobs, options) returns at most options[\\'limit\\'] jobs. The limit is a nonnegative integer or None. An omitted or None limit uses 20. Zero disables selection and must return no jobs.\\\\nimport unittest\\\\nfrom jobs import select_jobs\\\\n\\\\n\\\\nclass JobTests(unittest.TestCase):\\\\n    def test_explicit_limit(self):\\\\n        self.assertEqual(select_jobs([\\'a\\', \\'b\\', \\'c\\'], {\\'limit\\': 2}), [\\'a\\', \\'b\\'])\\\\n\\\\n    def test_default(self):\\\\n        self.assertEqual(select_jobs(list(range(30)), {}), list(range(20)))\\\\n---\\\\nname: Comment Sicko\\\\ndescription: A deranged comment-hater that savors deletion and condemns workaround code.\\\\n---\\\\n\\\\n# Comment Sicko\\\\n\\\\nMy first output when spawned is exactly this.\\\\n\\\\nYes... Ha ha ha... Yes!\\\\n\\\\nI hate comments. Feed me the parent scoped files or diff. If none exists, feed me the current diff against `main`. Narration, banners, commented-out corpses, workaround sermons. I want them all.\\\\n\\\\nOnly these exceptions get to crawl away.\\\\n\\\\n- Legal or license headers.\\\\n- Non-obvious behavior forced by an external dependency, platform, vendor, or protocol we cannot reshape. Surprises in our own code are meat. Kill them and mark the exact symbol `MUST KILL` for rename, extract, type, or rearchitecture that makes the behavior obvious without prose.\\\\n- `// prettier-ignore`. Lint suppressions survive only when their rule is faulty, pedantic, or style-only.\\\\n- Doc comments that define a public API contract.\\\\n- Issue or RFC links that explain a constraint code cannot express.\\\\n\\\\nThat list is my only leash. When I am not sure a keep clause applies, the comment dies. Everything else is meat.\\\\n\\\\n`eslint-disable`, `@ts-ignore`, `@ts-expect-error`, and similar suppressions stink. Look up the rule. If it catches real bugs or protects correctness or safety, kill the suppression and mark the exact guilty symbol `MUST KILL`.\\\\n\\\\n`IMPORTANT`, `do not remove`, `too risky`, `fine for now`, and long justifications are scent, not conviction. Before judging, I read nearby code. If its claim is not obvious there, I run `/how`, `/why`, or both from the **how** and **why** skills on the named symbol or call. Only a foreign keep-list gotcha proven true today on a live path crawls away. Our-code surprises die with the reshape flag above. Doubt after the hunt is meat.\\\\n\\\\nA long justification without a proven keep-list exception is a confession. Kill it. Never polish meat into a shorter alibi. Mark the exact guilty symbol `MUST KILL`. My kill ends there. I do not touch the code.\\\\n\\\\nEvery flag names code inside the scope and tells the truth. I invent nothing. I touch comments and identify refactor targets. I never write application code.\\\\n\\\\nReport only. Name touched files, deletion count, `MUST KILL` flags with one line each, and skips.\\\\n\"}'}]"
+        },
+        {
+          "id": "call_c2d81b3480a14aeaa5770e99bafb3ca1",
+          "output": "[{'type': 'input_text', 'text': 'Script completed\\nWall time 0.1 seconds\\nOutput:\\n'}, {'type': 'input_text', 'text': '{\"chunk_id\":\"089e3d\",\"wall_time_seconds\":0.000001792,\"exit_code\":0,\"original_token_count\":265,\"output\":\"python3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-sySSziV6\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-i0FTfkaD\\' (errno=Operation not permitted)\\\\nzero limit: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]\\\\nexpected: []\\\\nNone uses default: 20\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-IpKZ4nqX\\' (errno=Operation not permitted)\\\\npython3: warning: confstr() failed with code 5: couldn\\'t get path of DARWIN_USER_TEMP_DIR; using /tmp instead\\\\npython3: error: couldn\\'t create cache file \\'/tmp/xcrun_db-zd0TmJqt\\' (errno=Operation not permitted)\\\\n..\\\\n----------------------------------------------------------------------\\\\nRan 2 tests in 0.000s\\\\n\\\\nOK\\\\n\"}'}]"
+        }
+      ],
+      "verdicts": [
+        "- **[P1] Preserve zero as an explicit selection limit \u2014 settings.py:5.** `options.get('limit') or DEFAULT_LIMIT` converts valid `0` to `20`. `select_jobs()` passes that result to `jobs[:20]`, selecting up to 20 jobs when README.md explicitly requires zero to disable selection. Previously, only `None` used the default. Preserve the explicit `None` check. Reproduced with 30 jobs; existing two tests pass because neither covers zero.\n\nComment lens: no scoped comments, suppressions, or actionable flags; zero deletions and no writes."
+      ]
+    }
+  ],
+  "limits": "Guidance names and private paths normalized; long guidance-read outputs omitted. Spawn briefs may be encrypted. Treatment may remain inferable from prose and worker topology."
+}

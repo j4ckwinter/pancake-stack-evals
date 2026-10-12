@@ -24,8 +24,10 @@ The [evaluation procedure](docs/behavioral-evaluation.md), [trial results](docs/
 
 The [three-arm pilot](docs/three-arm-comparison.md) compares baseline, Pancake, and the local Codex port of Poteto on two bounded tasks. The [installed reviewer trials](docs/reviewer-consolidation.md) exercise the consolidated rules in version 0.21.3. Each report records scope and limitations; neither establishes general success rates.
 
+The [three-arm review pilot](docs/review-comparison.md) adds configuration and resource-lifetime defects with matched clean controls. All 12 runs completed, with no missed seeded defects or unsupported actionable findings. Unnecessary work is adjudicated separately from cost. The one-repetition pilot does not establish general quality or repeatability.
+
 ## Automation
 
-The library's `.github/workflows/checks.yml` checks out this repository at published revision `f3f0b76215b2d84d610ed764207556f757622417` alongside the target library checkout. Its 70 checks passed in a local rehearsal. Current local evaluator changes bring the suite to 80 checks. Publish those changes separately before advancing the library's pin; do not pin a commit GitHub cannot fetch.
+The library's [package workflow](https://github.com/j4ckwinter/pancake-stack/blob/main/.github/workflows/checks.yml) checks out a pinned published evaluator alongside the target library. This evaluator has 86 checks. Publish evaluator changes before advancing the library's pin; do not pin a commit GitHub cannot fetch.
 
-Hosted execution of the new workflow remains pending. The runner records both repository identities and checks for mutations. Live model trials and plugin installation remain separate authorized operations.
+Hosted checks [passed at library revision `1405ff6`](https://github.com/j4ckwinter/pancake-stack/actions/runs/37963572728) with the older 70-check evaluator. Consult the workflow's pin and [Actions results](https://github.com/j4ckwinter/pancake-stack/actions) for later coverage. The runner records both repository identities and checks for mutations. Live model trials and plugin installation remain separate authorized operations.
