@@ -482,6 +482,7 @@
     "passed": true,
     "sourceUnchanged": true,
     "evaluatorUnchanged": true,
-    "independentStaticReview": "no actionable regressions"
+    "independentStaticReview": "no actionable regressions",
+    "provenanceLimit": "This historical summary omits the evaluator revision and dirty state for the 80-check run. It does not establish the exact evaluator snapshot used."
   }
 }

@@ -249,7 +249,8 @@
     },
     "currentEvaluator": {
       "tests": 80,
-      "passed": true
+      "passed": true,
+      "provenanceLimit": "This historical summary omits the evaluator revision and dirty state for the 80-check run. It does not establish the exact evaluator snapshot used."
     },
     "hostedExecution": "pending push; not run on GitHub"
   }
