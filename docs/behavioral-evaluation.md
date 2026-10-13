@@ -366,3 +366,53 @@ assertion idiom can require manual adjudication. Record that limitation rather
 than silently broadening the oracle after seeing treatment results. Two
 repetitions on one synthetic case are a bounded pilot; equal success can indicate
 a ceiling effect and does not establish general efficacy or installation parity.
+
+## Repository review pilot
+
+This suite reviews seeded refactors of two actual evaluator modules from commit
+`d81ad93f3195d5164a305b79e504c44e16001b51`. Each module has a clean change and a
+faulty change. Identity cases exercise symlink hashing. Trace cases exercise
+per-turn command and output evidence. These are seeded regressions, not verified
+historical bugs.
+
+Every candidate receives the full committed repository tree and `change.diff`.
+The vendored [snapshot and provenance](../fixtures/repository-review/README.md)
+provide all source, callers, tests, and documentation without requiring Git
+history or network access. The archive and every file are hash checked before
+extraction. Existing focused tests pass on the original and all four changes.
+Independent private probes pass on the original and clean changes, and reject
+only their matching faulty changes. Run those preflight checks before live work:
+
+```sh
+PANCAKE_STACK_SOURCE=../pancake-stack python3 -B -m unittest discover -s tests -p test_repository_review.py -v
+```
+
+The declared pilot uses four cases, baseline and Pancake arms, and two
+repetitions, for 16 trials. Arm order reverses per case on the second repetition.
+Both arms use the same read-only request, isolated profiles, and no delegation.
+The Pancake arm additionally loads the source skill bundle. The declared model
+is `gpt-6.1-sol` with medium effort and a 300-second limit per candidate:
+
+```sh
+PANCAKE_STACK_SOURCE=../pancake-stack python3 tests/behavioral/compare.py \
+  --suite repository-review --model gpt-6.1-sol --effort medium \
+  --repetitions 2 --timeout 300 --output /private/tmp/repository-review-results
+```
+
+Live trials require explicit task authorization and a new private output directory.
+The two-repetition and 300-second settings belong to this declared pilot.
+It records source and evaluator identities, the snapshot provenance, prompts,
+commands, outcomes, and private traces. It stops when inputs change before or
+during a trial. No automatic retries or plugin installations are included.
+
+Keep the rubric, probes, expected findings, and case-to-output mapping outside
+candidate workspaces. Neutral output labels can blind the assessor to the arm,
+but original repository names and evaluation terminology remain visible in the
+source. Do not describe this as fully blinded. Adjudicate findings by mechanism
+with `behavioral.review.score` and `behavioral.review.summarize`, supplying
+`cases=behavioral.repository_review.CASES`. Count unsupported findings on clean
+controls as false positives. Inspect unanticipated findings before assigning
+that label. Execution failures remain failures rather than successful cheap
+reviews. Report each arm's defect detection, false findings, execution status,
+and recorded usage separately. Two modules in one repository and two repetitions
+per arm do not establish general review performance.
