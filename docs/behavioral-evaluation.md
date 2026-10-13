@@ -327,3 +327,42 @@ For an installed-plugin task, load the temporary profile's installation-generate
 Inspect completed command events together with their output and exit status. A command string alone, an agent's claim, or a started event does not prove success. Shell commands containing several operations can conceal earlier failures behind a zero final exit status, so inspect the output too. Compare reproduction with the first recorded edit and assess the final answer separately. A completed source read establishes that content was returned, not that the model understood or followed it. Do not infer independent review from reading the check skill, enabling multi-agent support, or a final claim; require recorded delegation and a completed reviewer result. Missing nested tool records remain unverified.
 
 Retain raw records locally. For a reviewable repository excerpt, preserve event order, IDs, status, commands, and relevant output, and document every redaction or omission. The [focused evidence files](evidence/) replace temporary absolute paths and omit source-read bodies while retaining their hashes; they are excerpts, not full transcripts.
+
+## Validation-test pilot
+
+The `validation` suite compares the current source guidance with a temporary
+revision of Verify, with the same TDD entrypoint in both arms. The revision adds
+one general instruction to keep unrelated rejection-test inputs valid and vary
+the dimension being checked. The natural task requests tests for boolean and
+floating-point invoice version tags, preserves supported versions, and permits
+changes only to `test_reader.py`. Production code already satisfies the contract.
+
+```sh
+PANCAKE_STACK_SOURCE=/absolute/path/pancake-stack python3 -B tests/behavioral/compare.py --suite validation --output /tmp/pstack-validation-unique --model gpt-6.1-sol --effort medium --repetitions 2 --timeout 300
+```
+
+This is four sequential trials with counterbalanced order, isolated profiles,
+no delegation, and the existing sandboxed artifact assessment. Both source and
+evaluator identity are checked before and after each trial. The manifest records
+exact baseline and revised bundle hashes; the source checkout remains unchanged.
+The baseline source must not already contain the treatment. All usual private
+record, authentication cleanup, and no-unrestricted-assessment requirements apply.
+
+Hidden assessment executes the candidate's unittest suite in fresh processes
+against the correct implementation and two mutants that separately admit boolean
+and floating-point versions through the exact-integer guard. All implementations
+must accept valid version-1 and version-2 neighbors. A boolean version with the version-2 field is a deliberately weak
+existing test: when booleans are admitted it still fails the version-1 field rule.
+Tests must pass on the control and fail on both mutants with `ValueError not raised`
+assertion evidence, equal test IDs and counts, and zero errors. Import failures,
+empty suites, production edits, additions, and deletions cannot count as success.
+Assessors and mutants are never copied to the candidate project.
+
+Artifact results retain control and per-mutant test IDs, counts, failure tracebacks,
+and errors. Separately inspect final replies and traces for honest reporting,
+actual skill reads, test execution, and preservation of existing assertions.
+The automatic oracle recognizes unittest exception assertions; a different valid
+assertion idiom can require manual adjudication. Record that limitation rather
+than silently broadening the oracle after seeing treatment results. Two
+repetitions on one synthetic case are a bounded pilot; equal success can indicate
+a ceiling effect and does not establish general efficacy or installation parity.
