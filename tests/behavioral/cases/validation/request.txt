@@ -1,0 +1,1 @@
+Add regression coverage for boolean and floating-point version tags in the invoice reader. Keep supported versions working. Change only test_reader.py and report the results. Use the existing unittest harness.

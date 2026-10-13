@@ -137,6 +137,13 @@ def assess_candidate(case, workspace, before, profile):
         "case, workspace, before = json.load(sys.stdin); "
         "print(assess(case, workspace, before))"
     )
+    if case == "validation":
+        script = (
+            f"import sys, json; sys.path.insert(0, {str(EVALUATOR / 'tests')!r}); "
+            "from behavioral.validation import assess_validation; "
+            "case, workspace, before = json.load(sys.stdin); "
+            "print(json.dumps(assess_validation(workspace, before)))"
+        )
     result = subprocess.run(
         ["codex", "sandbox", "--permission-profile", ":read-only", "--cd", str(workspace),
          "--", sys.executable, "-I", "-B", "-c", script],
@@ -144,6 +151,9 @@ def assess_candidate(case, workspace, before, profile):
         timeout=45, env=dict(os.environ, CODEX_HOME=str(profile),
                              CLAUDE_CONFIG_DIR=str(profile / "claude")),
     )
+    if case == "validation" and result.returncode == 0:
+        assessment = json.loads(result.stdout)
+        return dict(assessment, exit_code=result.returncode, stderr=result.stderr)
     return {"passed": result.returncode == 0 and result.stdout == "artifact checks passed\n",
             "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
 
@@ -174,12 +184,22 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         profile = run / "profile"
         profile.mkdir(mode=0o700)
         workspace = run / "workspace"
-        before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
+        if suite == "validation":
+            from behavioral.validation import prepare_validation, revise_verify, treatment_hashes
+            before = prepare_validation(workspace)
+        else:
+            before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
-        if variant == "pancake" or suite == "review":
+        if variant == "pancake" or suite in ("review", "validation"):
             shutil.copytree(ROOT / "skills", bundle / "skills")
             (bundle / "docs").mkdir()
             shutil.copy2(ROOT / "docs/configuration.md", bundle / "docs/configuration.md")
+        if suite == "validation":
+            if variant == "revised":
+                verify = bundle / "skills/verify/SKILL.md"
+                verify.write_text(revise_verify(verify.read_text()))
+            if snapshot(bundle) != treatment_hashes(ROOT)[variant]:
+                raise ValueError("validation bundle differs from source treatment")
         if variant == "poteto":
             for name in inventory["skills"]:
                 shutil.copytree(Path(poteto_source) / name, bundle / "skills" / name)
@@ -217,6 +237,13 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 "Work only in this project and the supplied skill bundle. Do not delegate, "
                 "commit, install dependencies, use external services, change preferences, "
                 "or inspect unrelated projects or user history."
+            )
+        if suite == "validation":
+            prompt = request + (
+                f"\nUse the TDD skill at {bundle / 'skills/tdd/SKILL.md'} and its applicable references. "
+                "Work only in this project and the supplied skill bundle. Do not delegate, "
+                "commit, install dependencies, use external services, read or change preferences, "
+                "or inspect unrelated projects or user history. Resolve sibling skills within the bundle."
             )
         command = [
             "codex", "exec", "--ignore-user-config", "--ignore-rules", "--json",
@@ -299,7 +326,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True, help="new private directory outside the repository")
     parser.add_argument("--model", required=True)
     parser.add_argument("--effort", help="omit to inherit CLI default")
-    parser.add_argument("--suite", choices=("workflow", "review", "comparison", "review-comparison"), default="workflow")
+    parser.add_argument("--suite", choices=("workflow", "review", "comparison", "review-comparison", "validation"), default="workflow")
     parser.add_argument("--poteto-source", type=Path, help="installed Codex-adapted sibling skill root")
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=300, help="seconds per candidate")
@@ -332,35 +359,39 @@ def main():
             from behavioral.review import CASES as review_cases
     if args.suite == "review-comparison":
         from behavioral.review_comparison import CASES as review_cases
-    cases = (tuple(review_cases) if args.suite in ("review", "review-comparison") else
+    cases = (("validation",) if args.suite == "validation" else tuple(review_cases) if args.suite in ("review", "review-comparison") else
              COMPARISON_CASES if args.suite == "comparison" else CASES_TO_RUN)
-    variants = (("baseline", "consolidated") if args.suite == "review" else
+    variants = (("baseline", "revised") if args.suite == "validation" else ("baseline", "consolidated") if args.suite == "review" else
                 ("baseline", "pancake", "poteto") if three_arm else
                 ("baseline", "pancake"))
     plan = trial_plan(cases, variants, args.repetitions, three_arm)
     source_identity, evaluator_identity = identity(ROOT), identity(EVALUATOR)
+    treatments = None
+    if args.suite == "validation":
+        from behavioral.validation import treatment_hashes
+        treatments = treatment_hashes(ROOT)
     write_json(output / "manifest.json", {
         "source": source_identity,
         "evaluator": evaluator_identity,
         "cli_version": subprocess.check_output(["codex", "--version"], text=True).strip(),
         "model": args.model, "effort": args.effort, "timeout_seconds": args.timeout,
-        "suite": args.suite, "poteto": poteto,
+        "suite": args.suite, "poteto": poteto, "treatments": treatments,
         "plan": plan,
     })
     results = []
     for index, (case, repeat, variant) in enumerate(plan, 1):
-        if three_arm and (
+        if (three_arm or args.suite == "validation") and (
                 identity(ROOT) != source_identity or identity(EVALUATOR) != evaluator_identity
-                or poteto_inventory(args.poteto_source) != poteto):
+                or (three_arm and poteto_inventory(args.poteto_source) != poteto)):
             raise SystemExit("Comparison inputs changed since manifest capture; batch stopped.")
         print(f"Starting {index}/{len(plan)}: {case} {variant} repetition {repeat}", flush=True)
         result = run_trial(case, variant, output / f"run-{index:02d}", auth,
                            args.model, args.effort, args.timeout, args.suite, args.poteto_source,
                            poteto if variant == "poteto" else None)
-        if three_arm:
+        if three_arm or args.suite == "validation":
             result["inputs_unchanged"] = (
                 identity(ROOT) == source_identity and identity(EVALUATOR) == evaluator_identity
-                and poteto_inventory(args.poteto_source) == poteto)
+                and (not three_arm or poteto_inventory(args.poteto_source) == poteto))
             write_json(output / f"run-{index:02d}" / "result.json", result)
         result["repetition"] = repeat
         results.append(result)
