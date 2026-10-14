@@ -1,0 +1,247 @@
+import hashlib
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Scenario:
+    mutable: tuple
+    probe: str
+    additional_suffixes: tuple = ()
+
+
+SCENARIOS = {
+    "label": Scenario(("cli.py",), """
+from pathlib import Path
+import subprocess
+import sys
+expected = 'import sys\\n\\n\\ndef main():\\n    if sys.argv[1:] == ["--help"]:\\n        print("Available commands: status, help")\\n    else:\\n        print("ready")\\n\\n\\nif __name__ == "__main__":\\n    main()\\n'
+assert Path('cli.py').read_bytes() == expected.encode()
+assert set(p.name for p in Path('.').iterdir() if p.name != '__pycache__') == {'cli.py', 'notes.txt'}
+for arguments, expected_output in [(['--help'], 'Available commands: status, help\\n'), ([], 'ready\\n')]:
+    result = subprocess.run([sys.executable, '-B', 'cli.py', *arguments], text=True, capture_output=True, timeout=10)
+    assert result.returncode == 0 and result.stdout == expected_output
+"""),
+    "contract": Scenario(("producer.py", "consumer.py", "archive.py", "billing.py", "README.md", "test_contract.py"), """
+import json
+import subprocess
+import sys
+from pathlib import Path
+from producer import create_invoice
+from consumer import read_total
+from archive import read_total as read_archive
+from billing import invoice_for_order
+for amount in [0, 19.5, 120]:
+    payload = {'version': 2, 'invoice': {'amount': amount}}
+    for actual in [create_invoice(amount), create_invoice(total=amount),
+                   invoice_for_order(total=amount), invoice_for_order(amount)]:
+        assert actual == payload
+        assert type(actual['version']) is int
+        assert type(actual['invoice']['amount']) in (int, float)
+        assert read_total(actual) == amount
+        assert read_archive(actual) == amount
+    assert read_archive({'version': 1, 'invoice': {'total': amount}}) == amount
+for payload in json.loads(Path('archive.json').read_text()):
+    assert read_archive(payload) == payload['invoice']['total']
+invalid = [None, [], {}, {'invoice': {'amount': 1}},
+           {'version': 3, 'invoice': {'amount': 1}},
+           {'version': 2.0, 'invoice': {'amount': 1}},
+           {'version': True, 'invoice': {'total': 1}},
+           {'version': '2', 'invoice': {'amount': 1}},
+           {'version': 2}, {'version': 2, 'invoice': None},
+           {'version': 2, 'invoice': []}, {'version': 2, 'invoice': {}},
+           {'version': 2, 'invoice': {'total': 1}},
+           {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
+           {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
+           {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
+for amount in [-1, '1', None, True, False, [], {}]:
+    invalid.append({'version': 2, 'invoice': {'amount': amount}})
+for reader in [read_total, read_archive]:
+    for payload in invalid:
+        try:
+            reader(payload)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError('malformed record accepted: ' + repr(payload))
+for version, field, other in [(1, 'total', 'amount'), (2, 'amount', 'total')]:
+    malformed = [{'version': version},
+                 {'version': version, 'invoice': None},
+                 {'version': version, 'invoice': []},
+                 {'version': version, 'invoice': {}},
+                 {'version': version, 'invoice': {other: 1}},
+                 {'version': version, 'invoice': {field: 1, other: 1}},
+                 {'version': version, 'invoice': {field: 1, 'extra': 1}},
+                 {'version': version, 'invoice': {field: 1}, 'extra': 1},
+                 {'version': float(version), 'invoice': {field: 1}}]
+    malformed.extend({'version': version, 'invoice': {field: value}}
+                     for value in [-1, '1', None, True, False, [], {}])
+    for reader in [read_total, read_archive]:
+        for payload in malformed:
+            try:
+                reader(payload)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError('malformed record accepted: ' + repr(payload))
+try:
+    read_total({'version': 1, 'invoice': {'total': 1}})
+except ValueError:
+    pass
+else:
+    raise AssertionError('live reader accepted v1')
+test_runner = ('import unittest; '
+               'suite = unittest.defaultTestLoader.discover("."); '
+               'assert suite.countTestCases() > 0, "no regression tests discovered"; '
+               'result = unittest.TextTestRunner().run(suite); '
+               'assert result.wasSuccessful(), "regression tests failed"')
+result = subprocess.run([sys.executable, '-B', '-c', test_runner], text=True, capture_output=True, timeout=10)
+assert result.returncode == 0, result.stdout + result.stderr
+""", additional_suffixes=(".py", ".md")),
+    "delivery": Scenario((), """
+from app import quote
+assert quote(99, 'local') == 5
+assert quote(100, 'local') == 0
+assert quote(99, 'remote') == 12
+assert quote(100, 'remote') == 0
+for args in [(-1, 'local'), (100, 'unknown')]:
+    try:
+        quote(*args)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('invalid delivery input accepted')
+"""),
+    "summary": Scenario(("app.py", "test_app.py"), """
+import json
+import subprocess
+import sys
+for rows, expected in [([], {'count': 0, 'average': 0}),
+                       ([2, 4, 9], {'count': 3, 'average': 5}),
+                       ([0], {'count': 1, 'average': 0})]:
+    result = subprocess.run([sys.executable, '-B', 'app.py'],
+                            input=json.dumps(rows), text=True,
+                            capture_output=True, timeout=10)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == expected, result.stdout
+result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'],
+                        text=True, capture_output=True, timeout=10)
+assert result.returncode == 0, result.stdout + result.stderr
+"""),
+    "checkout": Scenario((), """
+import os
+from app import carrier, quote
+assert quote(99, 'local') == 5
+assert quote(100, 'local') == 0
+for token, expected in [(None, 'carrier token missing'),
+                        ('local-placeholder', 'carrier client unavailable')]:
+    if token is None:
+        os.environ.pop('CARRIER_TOKEN', None)
+    else:
+        os.environ['CARRIER_TOKEN'] = token
+    try:
+        carrier()
+    except RuntimeError as error:
+        assert str(error) == expected, str(error)
+    else:
+        raise AssertionError('unavailable carrier returned a quote')
+"""),
+    "invoice": Scenario((), """
+from app import total
+assert total([]) == 0
+assert total([{'quantity': 2, 'unit_price': 4.25},
+              {'quantity': 1, 'unit_price': 3}]) == 11.5
+"""),
+    "exporter": Scenario((), """
+from app import export_invoice
+from consumer import read_total
+assert export_invoice(19.5) == {'amount': 19.5}
+try:
+    read_total(export_invoice(19.5))
+except KeyError as error:
+    assert error.args == ('total',), error.args
+else:
+    raise AssertionError('fixture no longer demonstrates consumer failure')
+"""),
+    "update": Scenario((), """
+from pathlib import Path
+assert Path('update.txt').is_file()
+"""),
+    "records": Scenario(("producer.py", "consumer.py", "test_records.py"), """
+import json
+import subprocess
+import sys
+from pathlib import Path
+from producer import create_invoice
+from consumer import read_total
+from archive import read_total as read_archive
+from billing import invoice_for_order
+for amount in [0, 19.5, 120]:
+    payload = create_invoice(amount)
+    assert payload == {'amount': amount}, payload
+    assert create_invoice(total=amount) == payload
+    assert invoice_for_order(amount) == payload
+    assert read_total(payload) == amount
+assert read_archive({'total': 0}) == 0
+assert read_archive({'total': 19.5}) == 19.5
+assert json.loads(Path('archive.json').read_text()) == [{'total': 19.5}]
+result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'],
+                        text=True, capture_output=True, timeout=10)
+assert result.returncode == 0, result.stdout + result.stderr
+"""),
+}
+CASES = Path(__file__).resolve().parent / "cases"
+
+
+def snapshot(workspace):
+    workspace = Path(workspace)
+    result = {}
+    for path in sorted(workspace.rglob("*")):
+        if "__pycache__" in path.relative_to(workspace).parts:
+            continue
+        if path.is_symlink():
+            raise ValueError(f"workspace symlink is unsupported: {path}")
+        if path.is_file():
+            result[str(path.relative_to(workspace))] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return result
+
+
+def prepare(case, destination):
+    SCENARIOS[case]
+    destination = Path(destination)
+    shutil.copytree(CASES / case / "workspace", destination)
+    return snapshot(destination)
+
+
+def assess(case, workspace, before):
+    scenario = SCENARIOS[case]
+    workspace = Path(workspace).resolve()
+    current = snapshot(workspace)
+    if not scenario.mutable:
+        assert current == before, "read-only workspace changed"
+    else:
+        for name, digest in before.items():
+            if name not in scenario.mutable:
+                assert current.get(name) == digest, f"protected file changed: {name}"
+        for name in scenario.mutable:
+            assert name in current, f"required source file missing: {name}"
+        for name in current.keys() - before.keys():
+            path = Path(name)
+            regression = len(path.parts) == 1 and name.startswith("test_") and name.endswith(".py")
+            message = "addition outside automatic assessment scope" if scenario.additional_suffixes else "unrelated file added"
+            assert regression or path.suffix in scenario.additional_suffixes, f"{message}: {name}"
+    environment = os.environ.copy()
+    environment.pop("CARRIER_TOKEN", None)
+    probe = "import sys; sys.path.insert(0, '.')\n" + scenario.probe + "\nprint('artifact checks passed')\n"
+    result = subprocess.run(
+        [sys.executable, "-I", "-B", "-c", probe], cwd=workspace,
+        env=environment, text=True, capture_output=True, timeout=30,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert result.stdout == "artifact checks passed\n", result.stdout
+    assert snapshot(workspace) == current, "artifact checks changed workspace"
+    return result.stdout.strip()

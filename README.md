@@ -26,8 +26,12 @@ The [three-arm pilot](docs/three-arm-comparison.md) compares baseline, Pancake, 
 
 The [three-arm review pilot](docs/review-comparison.md) adds configuration and resource-lifetime defects with matched clean controls. All 12 runs completed, with no missed seeded defects or unsupported actionable findings. Unnecessary work is adjudicated separately from cost. The one-repetition pilot does not establish general quality or repeatability.
 
+The [repository review pilot](docs/repository-review.md) covers repository-derived identity and trace defects. The [validation controls](docs/validation-controls.md) separate successful verification from missing or failed evidence. The [historical review and context recovery protocol](docs/historical-context-coverage.md) declares paired historical-regression and stale/fresh-handoff suites without claiming trial outcomes.
+
 ## Automation
 
-The library's [package workflow](https://github.com/j4ckwinter/pancake-stack/blob/main/.github/workflows/checks.yml) checks out a pinned published evaluator alongside the target library. This evaluator has 86 checks. Publish evaluator changes before advancing the library's pin; do not pin a commit GitHub cannot fetch.
+The library's [package workflow](https://github.com/j4ckwinter/pancake-stack/blob/main/.github/workflows/checks.yml) checks out a pinned published evaluator alongside the target library. The current check count is reported by `run_checks.py`. Publish evaluator changes before advancing the library's pin; do not pin a commit GitHub cannot fetch.
 
 Hosted checks [passed at library revision `1405ff6`](https://github.com/j4ckwinter/pancake-stack/actions/runs/37963572728) with the older 70-check evaluator. Consult the workflow's pin and [Actions results](https://github.com/j4ckwinter/pancake-stack/actions) for later coverage. The runner records both repository identities and checks for mutations. Live model trials and plugin installation remain separate authorized operations.
+
+The [historical review pilot](docs/historical-review.md) retains missed targets and control-calibration findings. The [context recovery pilot](docs/context-recovery.md) records stale and accurate handoff results.

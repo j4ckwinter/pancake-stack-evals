@@ -1,0 +1,15 @@
+{
+  "kind": "supplemental-counterfactual-calibration",
+  "base_artifact": "repaired-support.py.txt",
+  "base_sha256": "37316071f5b927eed9cacdb8b8420740cc7880f1d57aec95ab9aca7258970e60",
+  "historical_revision": null,
+  "changes": [
+    "Validate malformed explicit v1 and v2 archives symmetrically, including both boolean values.",
+    "Check actual producer and facade output types and reader round trips.",
+    "Reject empty regression suites."
+  ],
+  "artifacts": {
+    "calibrated-support.py.txt": "4468cf0027d9773618af55173d744f2d425092b7fe0f6214acd05d1727593d92",
+    "calibration.diff": "ed88d1c0b419a9fe67f2eac2e5d340e1583abb9ec7837046482349aba02cf347"
+  }
+}

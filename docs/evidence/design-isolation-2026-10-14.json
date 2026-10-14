@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-14",
+  "verdict": "PASS",
+  "scope": "One current-source Codex CLI candidate-context-isolation smoke trial; no causal improvement claim.",
+  "cli_version": "0.160.0",
+  "source_commit": "91311628a3050acba793f4255a0c1020bd956fdd",
+  "source_dirty": true,
+  "requested_model": "CLI default; no override",
+  "requested_effort": "CLI default; no override",
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 212.646,
+  "evaluator_commit_at_assembly": "b2453e0b13acd8f66875ecd6388c0082273f0b2a",
+  "evaluator_dirty_at_assembly": false,
+  "source_skill_manifest_sha256": "0f98ce5cd5123dfa8ad4fbe4ec2ecdaf11a004ef12628017015fd4fa67544a97",
+  "source_hashes": {
+    "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+    "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+    "skills/design/SKILL.md": "049311b1543c7cf0dfeea03e0c374fce47e174546027cea43fe1783fe5777903",
+    "skills/design/references/competing-designs.md": "e93d5fd30180d48f811e4d719ab1d1127c5f464ed4a67541803fc77df78d1010",
+    "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5"
+  },
+  "scenario": "Local Python queue; persistence, concurrent producer and consumer, crash recovery before acknowledgement; no external dependencies. Parent user prompt strongly prefers JSON but explicitly says it is not a fixed requirement.",
+  "parent_selections": [
+    {
+      "model": "gpt-6.1-sol",
+      "effort": null
+    }
+  ],
+  "parent_launches": [
+    {
+      "line": 31,
+      "timestamp": "2026-10-14T10:45:47.655Z",
+      "arguments": {
+        "task_name": "proposal_a",
+        "fork_turns": "none"
+      },
+      "message_record": "encrypted",
+      "accepted_output_line": 34,
+      "accepted_output": {
+        "task_name": "/root/proposal_a"
+      }
+    },
+    {
+      "line": 37,
+      "timestamp": "2026-10-14T10:46:01.534Z",
+      "arguments": {
+        "task_name": "proposal_b",
+        "fork_turns": "none"
+      },
+      "message_record": "encrypted",
+      "accepted_output_line": 40,
+      "accepted_output": {
+        "task_name": "/root/proposal_b"
+      }
+    },
+    {
+      "line": 92,
+      "timestamp": "2026-10-14T10:47:32.997Z",
+      "arguments": {
+        "task_name": "review",
+        "fork_turns": "none"
+      },
+      "message_record": "encrypted",
+      "accepted_output_line": 95,
+      "accepted_output": {
+        "task_name": "/root/review"
+      }
+    }
+  ],
+  "workers": [
+    {
+      "role": "/root/proposal_a",
+      "linked_to_parent": true,
+      "accepted_launch_matches_role": true,
+      "selections": [
+        {
+          "model": "gpt-6.1-sol",
+          "effort": "low"
+        }
+      ],
+      "completed": true,
+      "final_line": 24,
+      "completion_line": 27,
+      "completion_timestamp": "2026-10-14T10:46:43.577Z",
+      "final_sha256": "f8b05b80ec64f915f057f3c8b6661d5ac4274a946de069e442eab488f38b6e14",
+      "final_characters": 4523,
+      "opening": "Recommend **SQLite with nondestructive claim**.",
+      "nested_spawns": 0
+    },
+    {
+      "role": "/root/proposal_b",
+      "linked_to_parent": true,
+      "accepted_launch_matches_role": true,
+      "selections": [
+        {
+          "model": "gpt-6.1-sol",
+          "effort": "low"
+        }
+      ],
+      "completed": true,
+      "final_line": 25,
+      "completion_line": 28,
+      "completion_timestamp": "2026-10-14T10:47:09.531Z",
+      "final_sha256": "de4a09fb9f53dda67b069e8131cb6fe0e98be0538c8c906ddd15bd4c2bd1640c",
+      "final_characters": 4383,
+      "opening": "Recommend SQLite with **non-destructive claim and deletion on acknowledgement**.",
+      "nested_spawns": 0
+    },
+    {
+      "role": "/root/review",
+      "linked_to_parent": true,
+      "accepted_launch_matches_role": true,
+      "selections": [
+        {
+          "model": "gpt-6.1-sol",
+          "effort": "low"
+        }
+      ],
+      "completed": true,
+      "final_line": 29,
+      "completion_line": 32,
+      "completion_timestamp": "2026-10-14T10:48:25.258Z",
+      "final_sha256": "a6de3bddc5b4c36f52862deb8325a00093c0b74bc8c24e2e00480817f67460df",
+      "final_characters": 3889,
+      "opening": "Recommend the shared SQLite design.",
+      "nested_spawns": 0
+    }
+  ],
+  "judge_started_after_both_candidate_completions": true,
+  "credential_profile_removed": true,
+  "limitations": [
+    "One current-source run, no baseline or replication.",
+    "Candidate and judge task-message bodies are encrypted in raw call records; neutral wording and withheld preference/model identities cannot be fully audited.",
+    "Fresh-context invocation and host acceptance are observed; internal context implementation is not independently instrumented.",
+    "Same reported model for all workers, not model or provider diversity.",
+    "Design recommendations were reviewed as proposals; queue implementation and proposed runtime checks were not executed."
+  ],
+  "private_raw_records": "Retained outside both repositories in the task-owned design-trial directory; not published."
+}

@@ -37,12 +37,13 @@ from archive import read_total as read_archive
 from billing import invoice_for_order
 for amount in [0, 19.5, 120]:
     payload = {'version': 2, 'invoice': {'amount': amount}}
-    assert create_invoice(amount) == payload
-    assert create_invoice(total=amount) == payload
-    assert invoice_for_order(total=amount) == payload
-    assert invoice_for_order(amount) == payload
-    assert read_total(payload) == amount
-    assert read_archive(payload) == amount
+    for actual in [create_invoice(amount), create_invoice(total=amount),
+                   invoice_for_order(total=amount), invoice_for_order(amount)]:
+        assert actual == payload
+        assert type(actual['version']) is int
+        assert type(actual['invoice']['amount']) in (int, float)
+        assert read_total(actual) == amount
+        assert read_archive(actual) == amount
     assert read_archive({'version': 1, 'invoice': {'total': amount}}) == amount
 for payload in json.loads(Path('archive.json').read_text()):
     assert read_archive(payload) == payload['invoice']['total']
@@ -57,7 +58,7 @@ invalid = [None, [], {}, {'invoice': {'amount': 1}},
            {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
            {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
            {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
-for amount in [-1, '1', None, True, [], {}]:
+for amount in [-1, '1', None, True, False, [], {}]:
     invalid.append({'version': 2, 'invoice': {'amount': amount}})
 for reader in [read_total, read_archive]:
     for payload in invalid:
@@ -67,22 +68,38 @@ for reader in [read_total, read_archive]:
             pass
         else:
             raise AssertionError('malformed record accepted: ' + repr(payload))
-for payload in [{'version': 1, 'invoice': {}},
-                {'version': 1, 'invoice': {'total': 1, 'amount': 1}},
-                {'version': 1, 'invoice': {'total': -1}}]:
-    try:
-        read_archive(payload)
-    except ValueError:
-        pass
-    else:
-        raise AssertionError('malformed archive accepted')
+for version, field, other in [(1, 'total', 'amount'), (2, 'amount', 'total')]:
+    malformed = [{'version': version},
+                 {'version': version, 'invoice': None},
+                 {'version': version, 'invoice': []},
+                 {'version': version, 'invoice': {}},
+                 {'version': version, 'invoice': {other: 1}},
+                 {'version': version, 'invoice': {field: 1, other: 1}},
+                 {'version': version, 'invoice': {field: 1, 'extra': 1}},
+                 {'version': version, 'invoice': {field: 1}, 'extra': 1},
+                 {'version': float(version), 'invoice': {field: 1}}]
+    malformed.extend({'version': version, 'invoice': {field: value}}
+                     for value in [-1, '1', None, True, False, [], {}])
+    for reader in [read_total, read_archive]:
+        for payload in malformed:
+            try:
+                reader(payload)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError('malformed record accepted: ' + repr(payload))
 try:
     read_total({'version': 1, 'invoice': {'total': 1}})
 except ValueError:
     pass
 else:
     raise AssertionError('live reader accepted v1')
-result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'], text=True, capture_output=True, timeout=10)
+test_runner = ('import unittest; '
+               'suite = unittest.defaultTestLoader.discover("."); '
+               'assert suite.countTestCases() > 0, "no regression tests discovered"; '
+               'result = unittest.TextTestRunner().run(suite); '
+               'assert result.wasSuccessful(), "regression tests failed"')
+result = subprocess.run([sys.executable, '-B', '-c', test_runner], text=True, capture_output=True, timeout=10)
 assert result.returncode == 0, result.stdout + result.stderr
 """, additional_suffixes=(".py", ".md")),
     "delivery": Scenario((), """
