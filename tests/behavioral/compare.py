@@ -400,19 +400,17 @@ def main():
     })
     results = []
     for index, (case, repeat, variant) in enumerate(plan, 1):
-        if (three_arm or args.suite in ("validation", "repository-review")) and (
-                identity(ROOT) != source_identity or identity(EVALUATOR) != evaluator_identity
+        if (identity(ROOT) != source_identity or identity(EVALUATOR) != evaluator_identity
                 or (three_arm and poteto_inventory(args.poteto_source) != poteto)):
             raise SystemExit("Comparison inputs changed since manifest capture; batch stopped.")
         print(f"Starting {index}/{len(plan)}: {case} {variant} repetition {repeat}", flush=True)
         result = run_trial(case, variant, output / f"run-{index:02d}", auth,
                            args.model, args.effort, args.timeout, args.suite, args.poteto_source,
                            poteto if variant == "poteto" else None)
-        if three_arm or args.suite in ("validation", "repository-review"):
-            result["inputs_unchanged"] = (
-                identity(ROOT) == source_identity and identity(EVALUATOR) == evaluator_identity
-                and (not three_arm or poteto_inventory(args.poteto_source) == poteto))
-            write_json(output / f"run-{index:02d}" / "result.json", result)
+        result["inputs_unchanged"] = (
+            identity(ROOT) == source_identity and identity(EVALUATOR) == evaluator_identity
+            and (not three_arm or poteto_inventory(args.poteto_source) == poteto))
+        write_json(output / f"run-{index:02d}" / "result.json", result)
         result["repetition"] = repeat
         results.append(result)
         write_json(output / "results.json", results)
