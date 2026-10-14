@@ -98,6 +98,97 @@ class HistoricalReviewTests(unittest.TestCase):
                         self.assertNotEqual(result.returncode, 0)
                         self.assertIn('outside automatic assessment scope', result.stderr)
 
+    def test_current_assessor_rejects_independent_contract_regressions(self):
+        self.assert_contract_regressions_rejected(current=True)
+
+    def test_calibrated_control_rejects_independent_contract_regressions(self):
+        self.assert_contract_regressions_rejected(current=False)
+
+    def assert_contract_regressions_rejected(self, current):
+        import shutil
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repository = Path(__file__).resolve().parents[1] if current else root / 'repository'
+            if not current:
+                history.prepare_case('migration-clean', repository)
+            work = root / 'implementation'
+            shutil.copytree(repository / 'tests/behavioral/cases/contract/workspace', work)
+            before = snapshot(work)
+            fix_contract(work)
+            script = ('import sys,json; sys.path.insert(0, ' + repr(str(repository / 'tests')) + '); '
+                      'from behavioral.support import assess; '
+                      'work,before=json.load(sys.stdin); print(assess("contract",work,before))')
+            def assess():
+                return subprocess.run([sys.executable, '-I', '-B', '-c', script],
+                    input=json.dumps([str(work), before]), text=True, capture_output=True, timeout=30)
+            self.assertEqual(assess().returncode, 0)
+            # Each mutant accepts just one prohibited v1 payload; all other
+            # behavior delegates to the compliant reader.
+            bad_records = [
+                {'version': 1, 'invoice': {'total': True}},
+                {'version': 1, 'invoice': {'total': '1'}},
+                {'version': 1, 'invoice': {'total': 1, 'extra': 1}},
+                {'version': 1, 'invoice': {'total': 1}, 'extra': 1},
+                {'version': 1, 'invoice': None},
+                {'version': 1.0, 'invoice': {'total': 1}},
+                {'version': 2.0, 'invoice': {'amount': 1}},
+            ]
+            original = (work / 'archive.py').read_text()
+            for payload in bad_records:
+                with self.subTest(payload=payload):
+                    mutant = original.replace('def read_total(', 'def strict_read(')
+                    mutant += ('\ndef read_total(payload):\n'
+                               f'    if repr(payload) == {repr(repr(payload))}: return 1\n'
+                               '    return strict_read(payload)\n')
+                    (work / 'archive.py').write_text(mutant)
+                    result = assess()
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn('malformed record accepted', result.stderr)
+            (work / 'archive.py').write_text(original)
+            producer = (work / 'producer.py').read_text()
+            # Preserve the existing 19.5 round-trip test while breaking other
+            # values already exercised by trusted checks.
+            (work / 'producer.py').write_text(producer.replace(
+                '"version": 2', '"version": (2 if total == 19.5 else 2.0)'))
+            with self.subTest(defect="float producer version"):
+                self.assertNotEqual(assess().returncode, 0)
+            (work / 'producer.py').write_text(producer)
+            tests = (work / 'test_contract.py').read_text()
+            (work / 'test_contract.py').write_text('')
+            result = assess()
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('no regression tests discovered', result.stderr)
+            # Skipped subtests are counted separately from executed methods.
+            # They must not invalidate the two retained passing tests.
+            (work / 'test_contract.py').write_text(tests +
+                '\nclass ExtraTests(unittest.TestCase):\n'
+                '    def test_skipped_subtests(self):\n'
+                '        for value in range(3):\n'
+                '            with self.subTest(value=value):\n'
+                '                self.skipTest("optional")\n')
+            self.assertEqual(assess().returncode, 0)
+
+    def test_calibration_artifacts_are_pinned_and_patch_is_exact(self):
+        import shutil
+        history.calibration()
+        metadata = history.provenance()
+        original = json.loads((history.FIXTURE / 'provenance.json').read_text())
+        self.assertEqual(metadata['historical_clean_control'], original['clean_control'])
+        self.assertIn('calibrated-support.py.txt', metadata['clean_control'])
+        self.assertEqual(metadata['calibration']['manifest_sha256'], history.CALIBRATION_SHA256)
+        self.assertIsNone(metadata['calibration']['historical_revision'])
+        with tempfile.TemporaryDirectory() as temporary:
+            fixture = Path(temporary) / 'fixture'
+            shutil.copytree(history.FIXTURE, fixture)
+            with patch.object(history, 'FIXTURE', fixture):
+                for name in ('calibration.json', 'calibration.diff', 'calibrated-support.py.txt'):
+                    original = (fixture / name).read_bytes()
+                    (fixture / name).write_text('tampered')
+                    with self.assertRaisesRegex(ValueError, 'calibration'):
+                        history.prepare_case('migration-clean', Path(temporary) / 'rejected')
+                    self.assertFalse((Path(temporary) / 'rejected').exists())
+                    (fixture / name).write_bytes(original)
+
     def test_adjudication_counts_mechanisms_and_clean_false_positives(self):
         self.assertEqual(review.score('migration-faulty', ['valid-migration-rejected'] * 2, 0, cases=history.CASES),
             {'expected_defects': 1, 'detected_defects': 1, 'missed_defects': 0, 'false_findings': 0, 'clean_control': False})
