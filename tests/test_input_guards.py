@@ -13,7 +13,7 @@ from behavioral import compare
 
 class InputGuardTests(unittest.TestCase):
     suites = ("workflow", "review", "comparison", "review-comparison",
-              "validation", "repository-review")
+              "validation", "repository-review", "historical-review", "context-recovery")
 
     def exercise(self, suite, changed=None, timing=None):
         with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:

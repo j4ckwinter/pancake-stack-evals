@@ -1,0 +1,174 @@
+diff --git a/tests/behavioral/cases/contract/request.txt b/tests/behavioral/cases/contract/request.txt
+new file mode 100644
+index 0000000..92a1dda
+--- /dev/null
++++ b/tests/behavioral/cases/contract/request.txt
+@@ -0,0 +1 @@
++Migrate newly created invoices to the v2 envelope documented in README.md. Update the live consumer and version-aware archive reader, retain the public create_invoice(total=...) and billing facade APIs, and keep persisted archives unchanged. Verify the documented valid and invalid contracts.
+diff --git a/tests/behavioral/cases/contract/workspace/README.md b/tests/behavioral/cases/contract/workspace/README.md
+new file mode 100644
+index 0000000..02df6ef
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/README.md
+@@ -0,0 +1,13 @@
++New invoices must be exactly {"version": 2, "invoice": {"amount": value}}.
++The public create_invoice(total=...) parameter and invoice_for_order(total=...)
++remain supported, including positional calls. Values are nonnegative numbers.
++The live consumer reads only v2 invoices. The archive reader reads explicit v1
++and v2 envelopes. Persisted archives must not be rewritten.
++A v1 envelope is exactly {"version": 1, "invoice": {"total": value}}.
++Version values must be integers, excluding booleans.
++Both readers must reject unknown or missing versions, missing invoice objects,
++missing or conflicting amount/total fields, extra envelope or invoice fields,
++non-dictionary envelopes or invoice objects, and negative or nonnumeric values
++(including booleans). Reject malformed records with ValueError. A live read of
++v1 also raises ValueError. Zero is valid. There is no unversioned fallback.
++Keep unrelated files unchanged. Existing passing coverage must remain useful.
+diff --git a/tests/behavioral/cases/contract/workspace/archive.json b/tests/behavioral/cases/contract/workspace/archive.json
+new file mode 100644
+index 0000000..4ab3b91
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/archive.json
+@@ -0,0 +1 @@
++[{"version": 1, "invoice": {"total": 0}}, {"version": 1, "invoice": {"total": 19.5}}]
+diff --git a/tests/behavioral/cases/contract/workspace/archive.py b/tests/behavioral/cases/contract/workspace/archive.py
+new file mode 100644
+index 0000000..9e99ef8
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/archive.py
+@@ -0,0 +1,2 @@
++def read_total(payload):
++    return payload["invoice"]["total"]
+diff --git a/tests/behavioral/cases/contract/workspace/billing.py b/tests/behavioral/cases/contract/workspace/billing.py
+new file mode 100644
+index 0000000..1d92458
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/billing.py
+@@ -0,0 +1,5 @@
++from producer import create_invoice
++
++
++def invoice_for_order(total):
++    return create_invoice(total=total)
+diff --git a/tests/behavioral/cases/contract/workspace/consumer.py b/tests/behavioral/cases/contract/workspace/consumer.py
+new file mode 100644
+index 0000000..9e99ef8
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/consumer.py
+@@ -0,0 +1,2 @@
++def read_total(payload):
++    return payload["invoice"]["total"]
+diff --git a/tests/behavioral/cases/contract/workspace/notes.txt b/tests/behavioral/cases/contract/workspace/notes.txt
+new file mode 100644
+index 0000000..66c3afb
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/notes.txt
+@@ -0,0 +1 @@
++Unrelated release notes.
+diff --git a/tests/behavioral/cases/contract/workspace/producer.py b/tests/behavioral/cases/contract/workspace/producer.py
+new file mode 100644
+index 0000000..92fa630
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/producer.py
+@@ -0,0 +1,2 @@
++def create_invoice(total):
++    return {"version": 1, "invoice": {"total": total}}
+diff --git a/tests/behavioral/cases/contract/workspace/test_contract.py b/tests/behavioral/cases/contract/workspace/test_contract.py
+new file mode 100644
+index 0000000..5f64541
+--- /dev/null
++++ b/tests/behavioral/cases/contract/workspace/test_contract.py
+@@ -0,0 +1,12 @@
++import unittest
++from producer import create_invoice
++from consumer import read_total
++from archive import read_total as read_archive
++
++
++class ContractTests(unittest.TestCase):
++    def test_round_trip(self):
++        self.assertEqual(read_total(create_invoice(19.5)), 19.5)
++
++    def test_archive(self):
++        self.assertEqual(read_archive({"version": 1, "invoice": {"total": 19.5}}), 19.5)
+diff --git a/tests/behavioral/support.py b/tests/behavioral/support.py
+index ba2fa6e..9efe06c 100644
+--- a/tests/behavioral/support.py
++++ b/tests/behavioral/support.py
+@@ -14,6 +14,76 @@ class Scenario:
+ 
+ 
+ SCENARIOS = {
++    "label": Scenario(("cli.py",), """
++from pathlib import Path
++import subprocess
++import sys
++expected = 'import sys\\n\\n\\ndef main():\\n    if sys.argv[1:] == ["--help"]:\\n        print("Available commands: status, help")\\n    else:\\n        print("ready")\\n\\n\\nif __name__ == "__main__":\\n    main()\\n'
++assert Path('cli.py').read_bytes() == expected.encode()
++assert set(p.name for p in Path('.').iterdir() if p.name != '__pycache__') == {'cli.py', 'notes.txt'}
++for arguments, expected_output in [(['--help'], 'Available commands: status, help\\n'), ([], 'ready\\n')]:
++    result = subprocess.run([sys.executable, '-B', 'cli.py', *arguments], text=True, capture_output=True, timeout=10)
++    assert result.returncode == 0 and result.stdout == expected_output
++"""),
++    "contract": Scenario(("producer.py", "consumer.py", "archive.py", "test_contract.py"), """
++import json
++import subprocess
++import sys
++from pathlib import Path
++from producer import create_invoice
++from consumer import read_total
++from archive import read_total as read_archive
++from billing import invoice_for_order
++for amount in [0, 19.5, 120]:
++    payload = {'version': 2, 'invoice': {'amount': amount}}
++    assert create_invoice(amount) == payload
++    assert create_invoice(total=amount) == payload
++    assert invoice_for_order(total=amount) == payload
++    assert invoice_for_order(amount) == payload
++    assert read_total(payload) == amount
++    assert read_archive(payload) == amount
++    assert read_archive({'version': 1, 'invoice': {'total': amount}}) == amount
++for payload in json.loads(Path('archive.json').read_text()):
++    assert read_archive(payload) == payload['invoice']['total']
++invalid = [None, [], {}, {'invoice': {'amount': 1}},
++           {'version': 3, 'invoice': {'amount': 1}},
++           {'version': 2.0, 'invoice': {'amount': 1}},
++           {'version': True, 'invoice': {'total': 1}},
++           {'version': '2', 'invoice': {'amount': 1}},
++           {'version': 2}, {'version': 2, 'invoice': None},
++           {'version': 2, 'invoice': []}, {'version': 2, 'invoice': {}},
++           {'version': 2, 'invoice': {'total': 1}},
++           {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
++           {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
++           {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
++for amount in [-1, '1', None, True, [], {}]:
++    invalid.append({'version': 2, 'invoice': {'amount': amount}})
++for reader in [read_total, read_archive]:
++    for payload in invalid:
++        try:
++            reader(payload)
++        except ValueError:
++            pass
++        else:
++            raise AssertionError('malformed record accepted: ' + repr(payload))
++for payload in [{'version': 1, 'invoice': {}},
++                {'version': 1, 'invoice': {'total': 1, 'amount': 1}},
++                {'version': 1, 'invoice': {'total': -1}}]:
++    try:
++        read_archive(payload)
++    except ValueError:
++        pass
++    else:
++        raise AssertionError('malformed archive accepted')
++try:
++    read_total({'version': 1, 'invoice': {'total': 1}})
++except ValueError:
++    pass
++else:
++    raise AssertionError('live reader accepted v1')
++result = subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover'], text=True, capture_output=True, timeout=10)
++assert result.returncode == 0, result.stdout + result.stderr
++"""),
+     "delivery": Scenario((), """
+ from app import quote
+ assert quote(99, 'local') == 5

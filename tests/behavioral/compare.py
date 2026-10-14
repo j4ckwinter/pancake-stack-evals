@@ -159,7 +159,7 @@ def assess_candidate(case, workspace, before, profile):
 
 
 def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None):
-    read_only_review = suite in ("review", "review-comparison", "repository-review")
+    read_only_review = suite in ("review", "review-comparison", "repository-review", "historical-review", "context-recovery")
     three_arm = suite in ("comparison", "review-comparison")
     if suite == "review-comparison":
         if __package__:
@@ -178,6 +178,12 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         from behavioral.repository_review import CASES as review_cases, REQUEST, prepare_review, provenance
         if variant not in ("baseline", "pancake") or case not in review_cases:
             raise ValueError("invalid repository-review case or variant")
+    if suite in ("historical-review", "context-recovery"):
+        from behavioral import historical_review, context_recovery
+        scenario = historical_review if suite == "historical-review" else context_recovery
+        REQUEST, prepare_review, provenance = scenario.REQUEST, scenario.prepare_case, scenario.provenance
+        if variant not in ("baseline", "pancake") or case not in scenario.CASES:
+            raise ValueError("invalid case or variant")
     inventory = poteto_inventory(poteto_source) if variant == "poteto" else None
     if expected_poteto is not None and inventory != expected_poteto:
         raise ValueError("poteto input changed since manifest capture")
@@ -242,14 +248,15 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 "commit, install dependencies, use external services, change preferences, "
                 "or inspect unrelated projects or user history."
             )
-        if suite == "repository-review":
+        if suite in ("repository-review", "historical-review", "context-recovery"):
             prompt = request + (
                 "\nWork only in this project and the supplied skill bundle. Do not delegate, "
                 "commit, install dependencies, use external services, read or change preferences, "
                 "or inspect unrelated projects or user history. Resolve sibling skills within the bundle."
             )
             if variant == "pancake":
-                prompt += f"\nUse the Pancake skill at {bundle / 'skills/pancake/SKILL.md'} and its applicable references."
+                skill = "recap" if suite == "context-recovery" else "pancake"
+                prompt += f"\nUse the {skill.title()} skill at {bundle / 'skills' / skill / 'SKILL.md'} and its applicable references."
         if suite == "validation":
             prompt = request + (
                 f"\nUse the TDD skill at {bundle / 'skills/tdd/SKILL.md'} and its applicable references. "
@@ -265,7 +272,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             "--sandbox", "read-only" if read_only_review else "workspace-write", "--skip-git-repo-check",
             "--cd", str(workspace), "--output-last-message", str(destination / "final.txt"), "-",
         ]
-        if suite == "repository-review":
+        if suite in ("repository-review", "historical-review", "context-recovery"):
             index = command.index("--enable")
             command[index:index + 4] = ["--disable", "multi_agent"]
         write_json(destination / "invocation.json", command)
@@ -273,17 +280,20 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         (destination / "prompt.txt").write_text(prompt)
         result = {"run_id": destination.name, "suite": suite, "case": case, "variant": variant, "candidate_root": str(run),
                   "requested_model": model, "requested_effort": effort}
-        if suite == "repository-review":
+        if suite in ("repository-review", "historical-review", "context-recovery"):
             result["snapshot"] = provenance()
         process = None
         try:
             shutil.copy2(auth, profile / "auth.json")
             (profile / "auth.json").chmod(0o600)
             started = time.monotonic()
+            environment = dict(os.environ, CODEX_HOME=str(profile), PYTHONDONTWRITEBYTECODE="1")
+            if suite == "context-recovery":
+                environment = context_recovery.git_environment(environment)
             with (destination / "events.jsonl").open("w") as out, (destination / "stderr.txt").open("w") as err:
                 process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=out, stderr=err,
                                            text=True, start_new_session=True,
-                                           env=dict(os.environ, CODEX_HOME=str(profile), PYTHONDONTWRITEBYTECODE="1"))
+                                           env=environment)
                 try:
                     process.communicate(prompt, timeout=timeout)
                     result["timed_out"] = False
@@ -343,7 +353,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True, help="new private directory outside the repository")
     parser.add_argument("--model", required=True)
     parser.add_argument("--effort", help="omit to inherit CLI default")
-    parser.add_argument("--suite", choices=("workflow", "review", "comparison", "review-comparison", "validation", "repository-review"), default="workflow")
+    parser.add_argument("--suite", choices=("workflow", "review", "comparison", "review-comparison", "validation", "repository-review", "historical-review", "context-recovery"), default="workflow")
     parser.add_argument("--poteto-source", type=Path, help="installed Codex-adapted sibling skill root")
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=300, help="seconds per candidate")
@@ -378,7 +388,11 @@ def main():
         from behavioral.review_comparison import CASES as review_cases
     if args.suite == "repository-review":
         from behavioral.repository_review import CASES as review_cases, provenance
-    cases = (("validation",) if args.suite == "validation" else tuple(review_cases) if args.suite in ("review", "review-comparison", "repository-review") else
+    if args.suite in ("historical-review", "context-recovery"):
+        from behavioral import historical_review, context_recovery
+        scenario = historical_review if args.suite == "historical-review" else context_recovery
+        review_cases, provenance = scenario.CASES, scenario.provenance
+    cases = (("validation",) if args.suite == "validation" else tuple(review_cases) if args.suite in ("review", "review-comparison", "repository-review", "historical-review", "context-recovery") else
              COMPARISON_CASES if args.suite == "comparison" else CASES_TO_RUN)
     variants = (("baseline", "revised") if args.suite == "validation" else ("baseline", "consolidated") if args.suite == "review" else
                 ("baseline", "pancake", "poteto") if three_arm else
@@ -395,7 +409,7 @@ def main():
         "cli_version": subprocess.check_output(["codex", "--version"], text=True).strip(),
         "model": args.model, "effort": args.effort, "timeout_seconds": args.timeout,
         "suite": args.suite, "poteto": poteto, "treatments": treatments,
-        "snapshot": provenance() if args.suite == "repository-review" else None,
+        "snapshot": provenance() if args.suite in ("repository-review", "historical-review", "context-recovery") else None,
         "plan": plan,
     })
     results = []
