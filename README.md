@@ -1,37 +1,48 @@
-# Pancake Stack evaluations
+# pancake stack evals
 
-This repository owns package checks, behavioral fixtures, live trial tools, and historical evidence for Pancake Stack. It was cloned from source commit `795dc890ee0b0acf24e743d82362c4a92e4202e1`, preserving the original Git history. It is hosted at [j4ckwinter/pancake-stack-evals](https://github.com/j4ckwinter/pancake-stack-evals).
+i like what [pancake stack](https://github.com/j4ckwinter/pancake-stack) does for my workflow. i also want to know whether the instructions actually help.
 
-## Run checks
+this is where i test that. the checks, comparisons, misses, and inconclusive results live here.
 
-Use Python 3.12, matching the library CI environment. From this repository, supply the library checkout explicitly:
+## run the checks
+
+use Python 3.12, matching the library's CI environment. from this repo, point the runner at your pancake stack checkout:
 
 ```sh
 python3 -B run_checks.py --source ../pancake-stack --output /tmp/pancake-checks.json
 ```
 
-The runner checks the current working tree. Its JSON record identifies the library and evaluator commits, dirty state, and file hashes, including nonignored untracked files. It also verifies that the checks did not change either tree. A dirty-tree result is not a verdict on the commit alone. Tests use temporary storage and do not install the plugin or change global preferences.
+the checks use temporary storage. they don't install the plugin or change global preferences.
 
-The `fixtures/legacy-0.19.3` helpers preserve tests of retired functionality. Their passing results describe those historical helpers, not current library capabilities.
+the JSON result records both repos' commits, uncommitted changes, and file hashes, including nonignored untracked files. it also checks that neither tree changed during the run. if your checkout has uncommitted changes, the result covers those too.
 
-## Live evaluations
+CI uses a pinned evaluator. to reproduce that exact setup, follow the library's [verification recipe](https://github.com/j4ckwinter/pancake-stack/blob/main/docs/verification.md#run-the-checks). publish evaluator changes before advancing that pin.
 
-Live runs require explicit authorization and a supported authenticated Codex CLI. Set `PANCAKE_STACK_SOURCE` to the absolute library checkout before invoking `tests/behavioral/compare.py`. Keep raw output outside both repositories. The runner records both revisions, dirty state, and source hashes. It never runs during unit-test discovery.
+## see what happened
 
-The [evaluation procedure](docs/behavioral-evaluation.md), [trial results](docs/behavioral-results.md), and [baseline comparison](docs/baseline-comparison.md) retain historical methods and outcomes. Documentation copied from the library describes the versions named in those records; old repository-relative commands may require the explicit source setting above. Existing evidence has not been relabeled as verification of the simplified library.
+each report keeps its methods, results, and limits together.
 
-## Current evidence
+| report | what it looks at |
+| --- | --- |
+| [historical review](docs/historical-review.md) | a real regression, missed findings, and problems uncovered in the evaluator itself. |
+| [context recovery](docs/context-recovery.md) | whether an agent can reconcile stale or accurate handoffs with the current repo. |
+| [repository review](docs/repository-review.md) and [three-arm review](docs/review-comparison.md) | seeded defects and clean controls, with time and token use recorded separately from correctness. |
+| [three-arm comparison](docs/three-arm-comparison.md) | baseline, Pancake, and the local Codex port of Poteto on two bounded tasks. |
+| [validation controls](docs/validation-controls.md) | whether generated verification catches the intended failures. |
+| [installed reviewer trials](docs/reviewer-consolidation.md) | default and requested reviewers in installed version 0.21.3. |
+| [Design isolation](docs/design-isolation.md) | fresh candidate and judge contexts, with limits on inspecting their briefs. |
+| [Codex refresh](docs/codex-refresh.md) | updating a local-checkout installation and checking its cached version and resources. |
 
-The [three-arm pilot](docs/three-arm-comparison.md) compares baseline, Pancake, and the local Codex port of Poteto on two bounded tasks. The [installed reviewer trials](docs/reviewer-consolidation.md) exercise the consolidated rules in version 0.21.3. Each report records scope and limitations; neither establishes general success rates.
+## run a comparison
 
-The [three-arm review pilot](docs/review-comparison.md) adds configuration and resource-lifetime defects with matched clean controls. All 12 runs completed, with no missed seeded defects or unsupported actionable findings. Unnecessary work is adjudicated separately from cost. The one-repetition pilot does not establish general quality or repeatability.
+live trials need explicit authorization and a supported, authenticated Codex CLI. set `PANCAKE_STACK_SOURCE` to your library checkout's absolute path before using `tests/behavioral/compare.py`. use isolated profiles and bounded runs. keep raw output private and outside both repos.
 
-The [repository review pilot](docs/repository-review.md) covers repository-derived identity and trace defects. The [validation controls](docs/validation-controls.md) separate successful verification from missing or failed evidence. The [historical review and context recovery protocol](docs/historical-context-coverage.md) declares paired historical-regression and stale/fresh-handoff suites without claiming trial outcomes.
+start with the [evaluation procedure](docs/behavioral-evaluation.md) or the [historical review and context recovery protocol](docs/historical-context-coverage.md). live trials don't run as part of the package checks. plugin installation is a separate authorized action too.
 
-## Automation
+## what this proves
 
-The library's [package workflow](https://github.com/j4ckwinter/pancake-stack/blob/main/.github/workflows/checks.yml) checks out a pinned published evaluator alongside the target library. The current check count is reported by `run_checks.py`. Publish evaluator changes before advancing the library's pin; do not pin a commit GitHub cannot fetch.
+passing checks tell us about the files and behavior they exercised. a small trial on one host and model doesn't establish a general success rate. a result tied to an older version stays tied to that version.
 
-Hosted checks [passed at library revision `1405ff6`](https://github.com/j4ckwinter/pancake-stack/actions/runs/37963572728) with the older 70-check evaluator. Consult the workflow's pin and [Actions results](https://github.com/j4ckwinter/pancake-stack/actions) for later coverage. The runner records both repository identities and checks for mutations. Live model trials and plugin installation remain separate authorized operations.
+the helpers in `fixtures/legacy-0.19.3` test retired functionality. their passing results don't establish current plugin capabilities.
 
-The [historical review pilot](docs/historical-review.md) retains missed targets and control-calibration findings. The [context recovery pilot](docs/context-recovery.md) records stale and accurate handoff results.
+the [decision trail](docs/gap-pass.md) explains the latest corrections and unresolved limits. [earlier trial results](docs/behavioral-results.md), the [baseline comparison](docs/baseline-comparison.md), and the [library split record](docs/library-split.md) retain the older evidence and project history. commands in historical reports may need the explicit source setting described above.
