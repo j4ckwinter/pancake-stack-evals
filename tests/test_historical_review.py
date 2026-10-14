@@ -145,6 +145,29 @@ class HistoricalReviewTests(unittest.TestCase):
                     self.assertNotEqual(result.returncode, 0)
                     self.assertIn('malformed record accepted', result.stderr)
             (work / 'archive.py').write_text(original)
+            # Each reader/version mutant accepts False only, keeping True and
+            # all other malformed values strict. Boolean equality with zero
+            # must not hide the missing invalid-input probe.
+            for filename, version, field in [('archive.py', 1, 'total'),
+                                             ('archive.py', 2, 'amount'),
+                                             ('consumer.py', 2, 'amount')]:
+                with self.subTest(reader=filename, version=version, value=False):
+                    source = (work / filename).read_text()
+                    mutant = source.replace('def read_total(', 'def strict_read(')
+                    mutant += ('\ndef read_total(payload):\n'
+                               '    if (isinstance(payload, dict)\n'
+                               f'            and payload.get("version") == {version}\n'
+                               '            and isinstance(payload.get("invoice"), dict)\n'
+                               f'            and payload["invoice"].get({field!r}) is False):\n'
+                               '        return 0\n'
+                               '    return strict_read(payload)\n')
+                    try:
+                        (work / filename).write_text(mutant)
+                        result = assess()
+                        self.assertNotEqual(result.returncode, 0)
+                        self.assertIn('malformed record accepted', result.stderr)
+                    finally:
+                        (work / filename).write_text(source)
             producer = (work / 'producer.py').read_text()
             # Preserve the existing 19.5 round-trip test while breaking other
             # values already exercised by trusted checks.

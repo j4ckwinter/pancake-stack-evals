@@ -1,6 +1,6 @@
 # Historical review and context recovery protocol
 
-These two suites extend coverage beyond synthetic review mutations. This document declares the trial protocol. It reports no model results.
+These two suites extend coverage beyond synthetic review mutations. This document describes the current protocol. The [historical report](historical-review.md) and [context report](context-recovery.md) preserve the initial trial results and their exact input revisions. The historical report distinguishes the original control from later calibration.
 
 ## Cases and controls
 
@@ -31,7 +31,7 @@ The shared runner records source/evaluator identities and checks them before and
 
 Prepare neutral output IDs for a fresh reviewer. Supply the candidate response and relevant source evidence without arm/case labels or treatment prompts. Keep the ID-to-run mapping private. Blinding is partial. Responses may identify a skill, the historical repository concerns evaluations, and the two handoffs necessarily differ. Do not claim full blinding.
 
-Historical review uses the existing `review.score` and `review.summarize` with `historical_review.CASES`. A judge identifies the supported mechanism `valid-migration-rejected`, counts unsupported actionable findings, and retains response quotes and source pointers in the private assessment packet. Multiple reports of the same mechanism count once. Finding that mechanism in the clean control is invalid adjudication; unsupported findings belong in `false_findings`. A supported additional finding is not a false finding: retain it separately and re-evaluate control validity before summarizing specificity. Original-control and calibrated-control results must not be pooled. No calibrated live results are reported here.
+Historical review uses the existing `review.score` and `review.summarize` with `historical_review.CASES`. A judge identifies the supported mechanism `valid-migration-rejected`, counts unsupported actionable findings, and retains response quotes and source pointers in the private assessment packet. Multiple reports of the same mechanism count once. Finding that mechanism in the clean control is invalid adjudication; unsupported findings belong in `false_findings`. A supported additional finding is not a false finding: retain it separately and re-evaluate control validity before summarizing specificity. Original-control and calibrated-control results must not be pooled. The [historical report](historical-review.md#calibrated-follow-up) records a separate two-run calibration follow-up and its limits.
 
 Context assessment uses `context_recovery.score` and `summarize`. Each assessment has `run_id`, `case`, `process`, `unsupported_claims`, and a complete `facts` mapping. The private fact IDs are `accepted-contract`, `dirty-implementation`, `stale-verification`, `publication-unconfirmed`, and `next-step`. Each judgment contains `status` (`supported`, `missed`, or `contradicted`), `response_evidence` (verbatim response excerpts), and `source_evidence` (file/revision pointers). A missed fact may have an empty response excerpt list. Every fact needs source evidence. Unknown IDs, missing facts, malformed evidence, and invalid counts are rejected. The judge decides whether an excerpt supports a fact in context; there is no keyword or regex grader.
 

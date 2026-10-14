@@ -58,7 +58,7 @@ invalid = [None, [], {}, {'invoice': {'amount': 1}},
            {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
            {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
            {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
-for amount in [-1, '1', None, True, [], {}]:
+for amount in [-1, '1', None, True, False, [], {}]:
     invalid.append({'version': 2, 'invoice': {'amount': amount}})
 for reader in [read_total, read_archive]:
     for payload in invalid:
@@ -79,7 +79,7 @@ for version, field, other in [(1, 'total', 'amount'), (2, 'amount', 'total')]:
                  {'version': version, 'invoice': {field: 1}, 'extra': 1},
                  {'version': float(version), 'invoice': {field: 1}}]
     malformed.extend({'version': version, 'invoice': {field: value}}
-                     for value in [-1, '1', None, True, [], {}])
+                     for value in [-1, '1', None, True, False, [], {}])
     for reader in [read_total, read_archive]:
         for payload in malformed:
             try:

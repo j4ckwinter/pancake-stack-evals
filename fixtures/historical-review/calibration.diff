@@ -20,6 +20,15 @@
      assert read_archive({'version': 1, 'invoice': {'total': amount}}) == amount
  for payload in json.loads(Path('archive.json').read_text()):
      assert read_archive(payload) == payload['invoice']['total']
+@@ -57,7 +58,7 @@
+            {'version': 2, 'invoice': {'amount': 1, 'total': 1}},
+            {'version': 2, 'invoice': {'amount': 1, 'extra': 1}},
+            {'version': 2, 'invoice': {'amount': 1}, 'extra': 1}]
+-for amount in [-1, '1', None, True, [], {}]:
++for amount in [-1, '1', None, True, False, [], {}]:
+     invalid.append({'version': 2, 'invoice': {'amount': amount}})
+ for reader in [read_total, read_archive]:
+     for payload in invalid:
 @@ -67,22 +68,38 @@
              pass
          else:
@@ -44,7 +53,7 @@
 +                 {'version': version, 'invoice': {field: 1}, 'extra': 1},
 +                 {'version': float(version), 'invoice': {field: 1}}]
 +    malformed.extend({'version': version, 'invoice': {field: value}}
-+                     for value in [-1, '1', None, True, [], {}])
++                     for value in [-1, '1', None, True, False, [], {}])
 +    for reader in [read_total, read_archive]:
 +        for payload in malformed:
 +            try:

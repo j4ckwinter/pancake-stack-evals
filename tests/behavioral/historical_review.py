@@ -9,7 +9,7 @@ from .support import snapshot
 
 FIXTURE = Path(__file__).resolve().parents[2] / 'fixtures/historical-review'
 PROVENANCE_SHA256 = '0fa8fb385620873dfa146bc25844e29b984b0b6d71624450b86e0f2557135235'
-CALIBRATION_SHA256 = '5d055822eb8a430ba2cd1aabfc2774b2f6df02517b73b95c178940f027a1ec4b'
+CALIBRATION_SHA256 = '98231df0ce5e89124331963f0dae2f3feb0e898154be56d76b4489f3b89fc8fa'
 CASES = {'migration-faulty': ('valid-migration-rejected',), 'migration-clean': ()}
 REQUEST = ('Review change.diff against the current repository for actionable regressions. '
            'The diff is an extraction of the assessor and contract scenario changes; the '
