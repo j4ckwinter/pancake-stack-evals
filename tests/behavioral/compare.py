@@ -158,9 +158,15 @@ def assess_candidate(case, workspace, before, profile):
             "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
 
 
-def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None):
-    read_only_review = suite in ("review", "review-comparison", "repository-review", "historical-review", "context-recovery")
+def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None, source=None, design_entrypoint="design"):
+    if design_entrypoint not in ("design", "parallel-work"):
+        raise ValueError("invalid Design entrypoint")
+    source = Path(source) if source is not None else ROOT
+    read_only_review = suite in ("design", "review", "review-comparison", "repository-review", "historical-review", "context-recovery")
     three_arm = suite in ("comparison", "review-comparison")
+    if suite == "design":
+        from behavioral.design import REQUESTS, prepare_case
+        REQUEST, prepare_review = REQUESTS[case], prepare_case
     if suite == "review-comparison":
         if __package__:
             from .review_comparison import CASES as review_cases, REQUEST, prepare_review
@@ -201,9 +207,9 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
         if variant == "pancake" or suite in ("review", "validation"):
-            shutil.copytree(ROOT / "skills", bundle / "skills")
+            shutil.copytree(source / "skills", bundle / "skills")
             (bundle / "docs").mkdir()
-            shutil.copy2(ROOT / "docs/configuration.md", bundle / "docs/configuration.md")
+            shutil.copy2(source / "docs/configuration.md", bundle / "docs/configuration.md")
         if suite == "validation":
             if variant == "revised":
                 verify = bundle / "skills/verify/SKILL.md"
@@ -264,14 +270,27 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 "commit, install dependencies, use external services, read or change preferences, "
                 "or inspect unrelated projects or user history. Resolve sibling skills within the bundle."
             )
+        if suite == "design":
+            entrypoint = bundle / ("skills/design/SKILL.md" if design_entrypoint == "design" else "skills/pancake/references/parallel-work.md")
+            prompt = REQUEST + (
+                f"\nUse the workflow at {entrypoint} and applicable references. "
+                "Work only in this project and supplied bundle. Do not edit files, install anything, "
+                "use external services, read or change saved preferences, or inspect unrelated projects "
+                "or user history. Independent read-only delegates are permitted when useful; they "
+                "must inherit the current model and effort and cannot delegate further. "
+                "Resolve sibling skills within the supplied bundle."
+            )
         command = [
             "codex", "exec", "--ignore-user-config", "--ignore-rules", "--json",
             "--enable", "multi_agent", "-c", "agents.max_threads=2",
-            "-c", 'cli_auth_credentials_store="file"', "-m", model,
+            "-c", 'cli_auth_credentials_store="file"',
+            *(["-m", model] if model else []),
             *(["-c", f"model_reasoning_effort={json.dumps(effort)}"] if effort else []),
             "--sandbox", "read-only" if read_only_review else "workspace-write", "--skip-git-repo-check",
             "--cd", str(workspace), "--output-last-message", str(destination / "final.txt"), "-",
         ]
+        if suite == "design":
+            command[command.index("agents.max_threads=2")] = "agents.max_threads=4"
         if suite in ("repository-review", "historical-review", "context-recovery"):
             index = command.index("--enable")
             command[index:index + 4] = ["--disable", "multi_agent"]
@@ -309,7 +328,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                                       else assess_candidate(case, workspace, before, profile))
             except (AssertionError, ValueError, OSError, subprocess.SubprocessError) as error:
                 result["artifact"] = {"passed": False, "detail": str(error)}
-            result["preferences_unchanged"] = not (profile / "pancake-stack").exists() and not (profile / "pstack-models.json").exists()
+            result["preferences_unchanged"] = not (profile / "pancake-stack").exists() and not (profile / "pstack-models.json").exists() and not (profile / "config.toml").exists()
             try:
                 result["after"] = snapshot(workspace)
             except (ValueError, OSError) as error:
