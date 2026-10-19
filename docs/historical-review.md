@@ -1,5 +1,7 @@
 # Historical review comparison, 14 October 2026
 
+The separately identified [19 October follow-up](historical-review-followup.md) reviews the latest Boolean-corrected control. Its observations do not replace or pool with this batch.
+
 Baseline and Pancake each detected **0/2 instances of the selected historical defect**. Both found genuine additional assessor gaps. The original target-repaired control was not clean, so **clean specificity and clean false-positive rate are unavailable**. This batch establishes no superiority for either arm.
 
 The selected defect rejects a valid migration that factors invoice logic into `lib/invoice.py` and makes compatible billing facade and README changes. The historical assessor protects those existing files and permits only narrowly named top-level test additions. The repaired variant allows the relevant changes. Neither arm identified this mechanism in either target-present run.

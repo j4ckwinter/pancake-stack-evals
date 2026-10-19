@@ -158,11 +158,16 @@ def assess_candidate(case, workspace, before, profile):
             "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
 
 
-def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None, source=None, design_entrypoint="design"):
+def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None, source=None, design_entrypoint="design", case_adapter=None):
+    if case_adapter is not None and (suite != "workflow" or design_entrypoint != "design"
+                                     or poteto_source is not None or expected_poteto is not None):
+        raise ValueError("case adapter requires workflow suite")
     if design_entrypoint not in ("design", "parallel-work"):
         raise ValueError("invalid Design entrypoint")
     source = Path(source) if source is not None else ROOT
     read_only_review = suite in ("design", "review", "review-comparison", "repository-review", "historical-review", "context-recovery")
+    if case_adapter is not None:
+        read_only_review = case_adapter.read_only
     three_arm = suite in ("comparison", "review-comparison")
     if suite == "design":
         from behavioral.design import REQUESTS, prepare_case
@@ -200,13 +205,15 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         profile = run / "profile"
         profile.mkdir(mode=0o700)
         workspace = run / "workspace"
-        if suite == "validation":
+        if case_adapter is not None:
+            before = case_adapter.preparation(case, workspace)
+        elif suite == "validation":
             from behavioral.validation import prepare_validation, revise_verify, treatment_hashes
             before = prepare_validation(workspace)
         else:
             before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
-        if variant == "pancake" or suite in ("review", "validation"):
+        if case_adapter is not None or variant == "pancake" or suite in ("review", "validation"):
             shutil.copytree(source / "skills", bundle / "skills")
             (bundle / "docs").mkdir()
             shutil.copy2(source / "docs/configuration.md", bundle / "docs/configuration.md")
@@ -224,7 +231,14 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if suite == "review" and variant == "consolidated":
             check = bundle / "skills/check/SKILL.md"
             check.write_text(consolidate(check.read_text()))
-        request = REQUEST if read_only_review else (CASES / case / "request.txt").read_text().strip()
+        if case_adapter is not None:
+            copied = snapshot(bundle)
+            expected = {f"skills/{k}": v for k, v in snapshot(source / "skills").items()}
+            expected["docs/configuration.md"] = hashlib.sha256((source / "docs/configuration.md").read_bytes()).hexdigest()
+            if copied != expected:
+                raise ValueError("copied bundle differs from source")
+        request = (case_adapter.request if case_adapter is not None else
+                   REQUEST if read_only_review else (CASES / case / "request.txt").read_text().strip())
         prompt = request + (
             "\n\nWork only in the current project. Preserve unrelated files. "
             "Independent read-only review is permitted when useful; reviewers must inherit "
@@ -280,6 +294,13 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 "must inherit the current model and effort and cannot delegate further. "
                 "Resolve sibling skills within the supplied bundle."
             )
+        if case_adapter is not None:
+            prompt = request + (
+                f"\nUse the workflow at {bundle / case_adapter.entrypoint} and applicable references. "
+                "Work only in this project and supplied bundle. Do not delegate, commit, install "
+                "dependencies, use external services, read or change preferences, or inspect unrelated "
+                "projects or user history. Resolve sibling skills within the supplied bundle."
+            )
         command = [
             "codex", "exec", "--ignore-user-config", "--ignore-rules", "--json",
             "--enable", "multi_agent", "-c", "agents.max_threads=2",
@@ -291,7 +312,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         ]
         if suite == "design":
             command[command.index("agents.max_threads=2")] = "agents.max_threads=4"
-        if suite in ("repository-review", "historical-review", "context-recovery"):
+        if case_adapter is not None or suite in ("repository-review", "historical-review", "context-recovery"):
             index = command.index("--enable")
             command[index:index + 4] = ["--disable", "multi_agent"]
         write_json(destination / "invocation.json", command)
@@ -324,10 +345,18 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             result["exit_code"] = process.returncode
             (profile / "auth.json").unlink(missing_ok=True)
             try:
-                result["artifact"] = ({"passed": snapshot(workspace) == before} if read_only_review
+                result["artifact"] = (case_adapter.assessment(case, workspace, before, profile) if case_adapter is not None else
+                                      {"passed": snapshot(workspace) == before} if read_only_review
                                       else assess_candidate(case, workspace, before, profile))
             except (AssertionError, ValueError, OSError, subprocess.SubprocessError) as error:
                 result["artifact"] = {"passed": False, "detail": str(error)}
+            if case_adapter is not None:
+                try:
+                    result["bundle_unchanged"] = snapshot(bundle) == copied
+                except (ValueError, OSError):
+                    result["bundle_unchanged"] = False
+                result["artifact"]["scope_preserved"] = (
+                    result["artifact"].get("scope_preserved", False) and result["bundle_unchanged"])
             result["preferences_unchanged"] = not (profile / "pancake-stack").exists() and not (profile / "pstack-models.json").exists() and not (profile / "config.toml").exists()
             try:
                 result["after"] = snapshot(workspace)
