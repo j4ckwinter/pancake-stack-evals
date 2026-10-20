@@ -110,6 +110,7 @@ class Case:
     read_only: bool
     preparation: object = prepare_case
     assessment: object = assess_case
+    allow_reviewers: bool = False
 
 
 CASES = {'small-refactor': Case(
