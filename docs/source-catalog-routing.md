@@ -28,3 +28,5 @@ python3 -B docs/evidence/source-catalog-routing-2026-10-21.py --source /path/to/
 Both inputs must be Git checkouts. The runner records revisions and working-tree hashes before launching, checks them around each trial, and stops on invalid execution, changed inputs, mutated scope, missing completion, or empty output. The output directory must be new and outside both repositories. Assess routing relevance and scope from actual returned content and final answers; preservation alone does not establish correct routing.
 
 This was one presentation of each request, with no baseline. The subjects could search all source guidance, beyond metadata normally exposed by a host. README and recipes were not included in the trial bundle, and no picker-metadata read was observed. The results do not demonstrate that the documentation or picker-description change improved discovery. No plugin was installed, global settings were unchanged, and Claude was not exercised.
+
+The original local evaluator revision remains recorded. See [publication provenance](publication-provenance.md) for its sanitized published equivalent; harness and fixture contents are identical.

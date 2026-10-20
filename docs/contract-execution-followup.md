@@ -29,3 +29,5 @@ The initial batch ran faulty current, faulty candidate, calibrated candidate, an
 The existing `Case` adapter and `compare.run_trial` ran the unchanged historical request against frozen source copies. All five runs completed, returned the full supplied Check text in command output, and preserved project snapshots, copied bundles, and checked preference paths. Frozen input hashes and the evaluator identity remained unchanged during trials. Raw sessions remain private. No new evaluation runner was added.
 
 Promote the exact tested instruction as a bounded improvement in contract review. Keep the residual automatic-assessment limits visible. This batch does not establish reliable detection across other repositories, a general false-positive rate, or a requirement to write files during read-only reviews.
+
+Original trial evaluator revisions are retained as recorded. Unpublished evidence history was rewritten before publication; see [publication provenance](publication-provenance.md) for equivalent published revisions and unchanged harness hashes.
