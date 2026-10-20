@@ -1,0 +1,816 @@
+{
+  "publication_policy": "Public allowlist summary. Prompts, transcripts, private paths, session identifiers and detailed audit packets remain private. Trial revisions describe original executions; see publication-provenance.md for rewritten publication equivalents.",
+  "trial_identity": {
+    "source": {
+      "files": {
+        "docs/configuration.md": "ed8d292f215630ab00e130f383d8e0287b6af3b252db358cfcc45fda91ff2ced",
+        "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+        "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+        "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+        "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+        "skills/check/SKILL.md": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+        "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+        "skills/check/references/comments-and-suppressions.md": "c3b388fcf7511c3cce3ebf3c8071807cc9efb77233863e60aa222e3268c6bd28",
+        "skills/design/SKILL.md": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+        "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+        "skills/design/references/boundaries.md": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+        "skills/design/references/competing-designs.md": "e93d5fd30180d48f811e4d719ab1d1127c5f464ed4a67541803fc77df78d1010",
+        "skills/design/references/lifecycle.md": "13fc7bae474079e813db1b145ddb40f54cb6f79fdaecd11a3b686de0817f6328",
+        "skills/design/references/migrations.md": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+        "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+        "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+        "skills/fix/SKILL.md": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f",
+        "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+        "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+        "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+        "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+        "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+        "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+        "skills/pancake/SKILL.md": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+        "skills/pancake/agents/openai.yaml": "9be4bc45816a22ae67eae89726daa97bdb846fd32df0e3fe30ab4cc800b406e0",
+        "skills/pancake/references/change-review.md": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+        "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+        "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+        "skills/pancake/references/experiments.md": "a3ee8e890bfbf456e72019438a4b6fc6a115ad244232d32b5441d553debd7c8a",
+        "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+        "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+        "skills/pancake/references/implementation.md": "916f4bc586487ffee14f03f1b4456b5104092155c0a317f56450353e28d0c3f6",
+        "skills/pancake/references/parallel-work.md": "182a868264638ee1f442d1a4bc870a26265b3fbf62410e5655a25dd6d9920f16",
+        "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+        "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+        "skills/pancake/references/substantial-work.md": "3380f2f838f4e331c43e886ddb27139cec229f2909bfb59d4a4f71cf490da52e",
+        "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+        "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+        "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+        "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+        "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+        "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+        "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+        "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+        "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+        "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+        "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+        "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+        "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+        "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+        "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+        "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+        "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+        "skills/tdd/SKILL.md": "44af2554615e25e679af9178ddbe1bf3cb4585dd21209a88c4aaa3068d5bf3c2",
+        "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+        "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+        "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+        "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+        "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+        "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+        "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+        "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+        "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+        "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+        "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080",
+        "snapshot-origin.json": "ecff4f5320e43a4057a4264313c8588f96b0a0f3b32771fc98406b30fa047656"
+      },
+      "origin": {
+        "revision": "fb6c5a7d4e566699e6acdf60fcd0dc26eaa00477",
+        "dirty": true,
+        "file_hashes": {
+          "skills/pancake/references/change-review.md": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+          ".agents/plugins/marketplace.json": "6afb5815a255610fd46864fb0522f4d2554ed728fc23105a0977705885a0a313",
+          ".claude-plugin/marketplace.json": "0a8417b13f7ce46205e969580adb69a74eef3f30e33d3e2a5c456c80bea84316",
+          ".claude-plugin/plugin.json": "3e6c8b5eb7192743d9c526d63478d61f25e6979a75439e83ceede1aa93ccb620",
+          ".github/workflows/checks.yml": "f2e56ae86ad72de8c5f2541bc037f80bb096ba8a883dc0e2cb93b9c0cf953383",
+          ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+          "AGENTS.md": "ca63ce258e460d3e868635722be824af829d826ec9032053cc84b206e57a9e6b",
+          "README.md": "033d7099c5f4d40f2d6463b439cfaacc664b9b1fdb8036e2799f1a03ec402794",
+          "docs/claude.md": "e88e5e7b3f4123b0778dbbc5ec4053f2db4183b6edf6de6a590cf900104fb000",
+          "docs/codex-installation.md": "32da2c37dfff3fb93c375674a89bcc0e3c5542e1ca35a57512e38e13144bd7e6",
+          "docs/configuration.md": "ed8d292f215630ab00e130f383d8e0287b6af3b252db358cfcc45fda91ff2ced",
+          "docs/installation-verification.md": "ab782567483459254a69b889ae3f1ac8a30a0ac3271aa4358c577eb97a086209",
+          "docs/plan.md": "8bc657a64a4fdb4f837106a218437195d6e8b718bcc1a7e99b8ef4612cbb7eda",
+          "docs/recipes.md": "7da9e14fdbf1e6253a54f832d7b48c1be86d5556aaa9adf99ffb7d6708f2b1f6",
+          "docs/setup.md": "d2a0e99a16f1016d66b9654fe1e34020acfe87c52c632b5c52066bc8a7f54ba2",
+          "docs/verification.md": "e1c2ded38e94307873260d45a6967f58c74a7c8f691dc1dda23f638e6219299e",
+          "plugin.json": "c142e79b336b7b93873a7f647fc63d50f757557c7857eb699998b0d80d9613d8",
+          "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+          "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+          "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+          "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+          "skills/check/SKILL.md": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+          "skills/check/references/comments-and-suppressions.md": "c3b388fcf7511c3cce3ebf3c8071807cc9efb77233863e60aa222e3268c6bd28",
+          "skills/design/SKILL.md": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+          "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+          "skills/design/references/boundaries.md": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+          "skills/design/references/competing-designs.md": "e93d5fd30180d48f811e4d719ab1d1127c5f464ed4a67541803fc77df78d1010",
+          "skills/design/references/lifecycle.md": "13fc7bae474079e813db1b145ddb40f54cb6f79fdaecd11a3b686de0817f6328",
+          "skills/design/references/migrations.md": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+          "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+          "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+          "skills/fix/SKILL.md": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f",
+          "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+          "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+          "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+          "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+          "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+          "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+          "skills/pancake/SKILL.md": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+          "skills/pancake/agents/openai.yaml": "9be4bc45816a22ae67eae89726daa97bdb846fd32df0e3fe30ab4cc800b406e0",
+          "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+          "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+          "skills/pancake/references/experiments.md": "a3ee8e890bfbf456e72019438a4b6fc6a115ad244232d32b5441d553debd7c8a",
+          "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+          "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "skills/pancake/references/implementation.md": "916f4bc586487ffee14f03f1b4456b5104092155c0a317f56450353e28d0c3f6",
+          "skills/pancake/references/parallel-work.md": "182a868264638ee1f442d1a4bc870a26265b3fbf62410e5655a25dd6d9920f16",
+          "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+          "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+          "skills/pancake/references/substantial-work.md": "3380f2f838f4e331c43e886ddb27139cec229f2909bfb59d4a4f71cf490da52e",
+          "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+          "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+          "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+          "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+          "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+          "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+          "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+          "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+          "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+          "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+          "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+          "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+          "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+          "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+          "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+          "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+          "skills/tdd/SKILL.md": "44af2554615e25e679af9178ddbe1bf3cb4585dd21209a88c4aaa3068d5bf3c2",
+          "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+          "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+          "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+          "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+          "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+          "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+          "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+          "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+          "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+          "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080"
+        }
+      }
+    },
+    "evaluator": {
+      "revision": "5535a0a2b5df61a2f06258a6d73bdd87a7e378c8",
+      "dirty": false,
+      "file_hashes": {
+        ".gitignore": "32b2dd7912ea54e02bcb2d85d94ee2a1fe0e74675f20bbbabeb7823055acb249",
+        "AGENTS.md": "ae701a3ba45d901a3e0bfa4bc57adf71ce41b02fa20435025a44105a7a73fa4d",
+        "README.md": "1ebc978ab773b3c3bab18edeb5c0fe016fd6d673999b2446168c696b1624da5d",
+        "docs/baseline-comparison.md": "a1f7c9e17cc1ce2214738fc84b79252ada2e9f391d95f7a9591d50a57f6e6e70",
+        "docs/behavioral-evaluation.md": "2d341eb3d7ff50d719e6b37c8e23782f2b0566f226a870c780b2f77e3137a772",
+        "docs/behavioral-results.md": "7059c0ae92f96bb93b3cb0861fb75e768d046057af32151b4466b4363597801f",
+        "docs/claude.md": "b62a3f86aa470e2b8758f047577b9867628409ba52d18d861151ff84c481df56",
+        "docs/codex-refresh.md": "87d474f0b8d76b135cfae306265b5061749ea133e37d9b14c4967df6c9811439",
+        "docs/configuration.md": "eb81ff3396957e20f879ac0b4153567a44247ca30946280d6821bb07a8ee710c",
+        "docs/context-recovery.md": "2b310191c1ddd114ee137a399a7ba57fa9b350003df311a706a1485ad55cddee",
+        "docs/contract-execution-followup.md": "5752aff564f68fa0b8d3a17d443f2e6cf4830a5ba9619d2965eccb7b98448389",
+        "docs/design-comparison.md": "553418df76acf2637abba4c2bd42e7957e855b6348956165a1a8796b40b8d828",
+        "docs/design-isolation.md": "ea18834e588764a942a1303b6c4afdd317914d8888e2c2f8ee125d42ce2ecb66",
+        "docs/design-reading-paths.md": "f76a031dc423af7b0651777fd6252294be9c86f4831d9604b9a190f91859a1e4",
+        "docs/direct-entrypoints.md": "db1903a3c21e68d17828868db50897cfdad1ae11794746740d5ceedd7c823eb9",
+        "docs/evidence/acceptance-screen-2026-10-19.json": "094695906fc6f6174953babd2c4729035ee68c3b727e1d0c82172e7b92c08e5e",
+        "docs/evidence/baseline-comparison-2026-10-07.json": "a13f4d01d713cfd1dc47dd5fc6dceddb54afe8f485b39edd9c772722bbe8c4ec",
+        "docs/evidence/calibrated-control-2026-10-14.json": "b13b5773af7146c8b2bdd0915f31f31c62d6e0cf358529daa3f5133677dbcd9e",
+        "docs/evidence/challenge-panel-2026-10-05.json": "4b95071b23c6faabc9ae39a768fc1fb849c4483e32820802f9319c54cbd0de13",
+        "docs/evidence/claude-decisions-2026-10-06.tsv": "d324a7cabf6c11869e40f5de8160114c4c4fe10268d274211a22e9671973ba82",
+        "docs/evidence/claude-support-2026-10-06.json": "d641990ad00364763151f2c7967fb4dff4059e84e5dcdbefcd4da8ac7610d9e0",
+        "docs/evidence/codex-refresh-2026-10-14.json": "e289430c0cf0233fdc046610575f580460e3d434a862b7aedf12d9084d5f7efc",
+        "docs/evidence/context-recovery-2026-10-14.json": "790a1d7fcce53b0b87adc75fd4489647a651cabae332f0464eae479225cf8094",
+        "docs/evidence/contract-execution-2026-10-20.json": "bdfe41c6c3dd2574687169a0d7fdd84b5d7a5b60fcd1ce73f0c12e4e7f2a0146",
+        "docs/evidence/default-persistence-2026-10-06.json": "b0ec5f533e92f48507039f8a24d56df783ee6d7e55b13c1cfe84e8f5fc2d0295",
+        "docs/evidence/delegation-fallbacks-2026-10-06.json": "b45fe7e0026f6fd5944900bc815a0bd4afd092abc9fe236fd33729390974f936",
+        "docs/evidence/design-isolation-2026-10-14.json": "b2510cea4ec77d89b37d48082d41006a2492f33ba1538ea5294165b4ca3993e0",
+        "docs/evidence/design-reading-paths-2026-10-16.json": "fd8e9439cbf6d3d8d355ae7af974ca8dfb731942b8e185bf6b52ca603918aa49",
+        "docs/evidence/direct-entrypoints-2026-10-20.json": "389ae11324f31a7cecd21da2a2093223e79c31c79e15e402692c3e57cb889aef",
+        "docs/evidence/git-install-2026-10-06.json": "671e92b14af738279062f8c5fb293fec326f4d9fdf72b163ca37068963917b70",
+        "docs/evidence/historical-followup-2026-10-19.json": "fcbb5603005efc5463d4b576537e4cb28c2ba37f0e5835e708dcb94391152061",
+        "docs/evidence/historical-review-2026-10-14.json": "0b03d7fa1dfd61aa4a61961d0afc055b35a17b7b6f2b047b4ee054018589957a",
+        "docs/evidence/host-installation-2026-10-09.json": "f24adb52a080c1f78ce682da8e69c1621af36b06d08080297b62459f57344cc8",
+        "docs/evidence/implementation-panel-incomplete-2026-10-05.json": "240fc84e014dae88bac23fde82776c7ac936337c4eb0d0f8739273ce9c83156a",
+        "docs/evidence/installed-panel-2026-10-05.json": "5cd140d78bd382a3e1aac5cde85c87e04b513e9ec7ad84beec59269817369449",
+        "docs/evidence/library-split-2026-10-07.json": "53c11b14b8f76dc02746070298c79c88367f918d580e38317fe8a75d0584c2ce",
+        "docs/evidence/preference-followup-2026-10-07.json": "9f0d890cb9dd10a3a15ff605905d0074f9c0d1ead18fd31a05d98c6ee99f1530",
+        "docs/evidence/preference-timing-2026-10-07.json": "bfb9ab2993ed60c6a9efbf2f4d9efa26e8d95237d08c0af5eac6b10333096ac8",
+        "docs/evidence/records-2026-10-03.json": "36cfe6ffcf4d5acd8007ec2d314121e64a33583be088f90cc6fa48343fc44b9d",
+        "docs/evidence/repository-review-2026-10-13.json": "09f468821593c3ecdda31096382b9f96397e18f5738900dad951c795cc744e62",
+        "docs/evidence/review-comparison-2026-10-12.json": "3e136c1fb8d23cfa71b2ab818a85ee0ad2e62947e40805107294f3fafe990f78",
+        "docs/evidence/review-comparison-2026-10-12/output-01.json": "1cc2cac6e86a4ca86022072e2e054ffaa04e2a87a0f11a48c65e3f5a42bd4f40",
+        "docs/evidence/review-comparison-2026-10-12/output-02.json": "d5f4adadd9ffa10797263d037de510c8726448b9f356ba9fa54588f2a245f1a4",
+        "docs/evidence/review-comparison-2026-10-12/output-03.json": "7da2b53f1239c954b839f0cd59b3543fa205376692908d9d43db1d565709b154",
+        "docs/evidence/review-comparison-2026-10-12/output-04.json": "5c691e8699d699d14d8ae98001e99fdc04fe8897fbcdd46658da7b1e26ba2aa1",
+        "docs/evidence/review-comparison-2026-10-12/output-05.json": "7e170cf22f8f93e6065d7ff81bd63c9f38c55d371a7a57d69b3c38e33e68ce44",
+        "docs/evidence/review-comparison-2026-10-12/output-06.json": "6b1ab5c3209d1f99b15304a55ae6a30b95bea837d21e965ce59e9f6e205a498f",
+        "docs/evidence/review-comparison-2026-10-12/output-07.json": "b41d1ed0e2eeababd6d0994806bf1f82a5f588e4ad852b84c2cbb01ab62f26fb",
+        "docs/evidence/review-comparison-2026-10-12/output-08.json": "66f617de1bd8235f83ffd94561b3d335e0e27167d174611e9d5042622211df81",
+        "docs/evidence/review-comparison-2026-10-12/output-09.json": "d9049004cdaf61bca1cd1530e6c11a429ca52590c629ee9797e25cee475697ee",
+        "docs/evidence/review-comparison-2026-10-12/output-10.json": "30da7b901b1e94b7d21a4f8ba43f6862e1e3f006b3d5cbe0d0810e3f97573e37",
+        "docs/evidence/review-comparison-2026-10-12/output-11.json": "708dd75ce8178554c07e12e369e2ad456119fd5b3d4df4e4d5f731713d73faf7",
+        "docs/evidence/review-comparison-2026-10-12/output-12.json": "4dd8fbe991c89be7f760fbb7707bd2a21a876580e27c014455831adb21964978",
+        "docs/evidence/reviewer-comparison-2026-10-07.json": "dd9557dce9c2f37ddc1e772492b509cbd27c8292b87e41e6d9640317aa14b34c",
+        "docs/evidence/reviewer-consolidation-2026-10-09.json": "5dc8d62bf8cd97390ac3bc21d705fdbe2e8cbfa0a413dee01502468c52dc46b5",
+        "docs/evidence/roadmap-decisions-2026-10-05.tsv": "f72cdd9a0e932782a3e5100cc39fb4f7b18358c37c4659ae142be334bc8cfef9",
+        "docs/evidence/roadmap-workflows-2026-10-05.json": "05b8d288af505d94447028796b74141e03fac89329079abd51fc0747d291cc88",
+        "docs/evidence/summary-2026-10-03.json": "5775e484d4ea3a14885fe3712cc9a51ef09a43b61d5a41bc0c34d1a3a3c53cb2",
+        "docs/evidence/tdd-2026-10-03.json": "2419601cfe2e152d4d0bcc5025035180873b37803c11bab206ebd8167e3dbab9",
+        "docs/evidence/three-arm-comparison-2026-10-09.json": "e4fd81e9c38f51b4968ba9bef0d74c78b7fe3e4dd4e02180638a6a18aaae2342",
+        "docs/evidence/validation-controls-2026-10-13.json": "1a07f93c66b4cd479503ab28ff2ecf837f827332b44d3969b2ff6e9a0964a1a2",
+        "docs/evidence/workflow-fix-2026-10-03.json": "ff43d420b4aa8ee3a4526761ad00f27d33c7a99c91eb3a19688ca971ac55b208",
+        "docs/evidence/workflow-gaps-2026-10-19.json": "8386c69fa5d470b45527ba73809611fa4a6a1e157a5189d636148815331dbd9f",
+        "docs/evidence/workflow-records-2026-10-03.json": "07b0e70525a6620400493b28bd8a20524f0ccc9e8390d3ef9790e77232e14f76",
+        "docs/evidence/workflow-summary-2026-10-03.json": "e7ca4ae725acdd467651ca705901d5d0b8042d7f867f0956d176a15b5382cff5",
+        "docs/gap-pass.md": "967755835e97728fb365d0d5efb019a71a3ce5069bc5e4d8e0bee684e381a566",
+        "docs/historical-context-coverage.md": "fefbcd25ac1577df860396292dd8c214e141f5d5a26dbf2704f9949332c399d6",
+        "docs/historical-review-followup.md": "2a420112604ffb36f58184d09d300be10a8312daa7d5fccb4239ca1a98d921fe",
+        "docs/historical-review.md": "767eff7fa58a4047b6e4aa172745d4bd407fe0a1a56b5f1f8418e1d30c95af67",
+        "docs/installation-verification.md": "21b09c03735f32715113803bbeab409e70fcbbf8edfb061e642e1872f18ba1d9",
+        "docs/library-split.md": "a70a9ab6d0edcdbb4bab2f9b80f518a2bb663cf615e95ec8af87bb8810581aaa",
+        "docs/plan.md": "1bf1106ae6f30fc0dffa0570af6dda9aff71b29e544141d2b02ba46b7e0008c2",
+        "docs/recipes.md": "26ffd5b1f3d5993b129fad813abbcc8b1b63e788fd1cf1680b5f493e137eeffe",
+        "docs/repository-review.md": "5efc90ef2e519bf091b22714c03cb7590158f5f68705d4a76c498406e9e2ad29",
+        "docs/review-comparison.md": "4c15e7344c7d6841f031aa2b96757a1258ad5d655cdbea566f4178c17bca3719",
+        "docs/reviewer-consolidation.md": "66b038b5f91ebf84254a3d00ed808e41656e7cd061d6819b6af4a9de8d473b7f",
+        "docs/safeguards.md": "6d60ebfb1789f4749cd9b685918d69e70e8cb7fbb82dbe2300569b875776e483",
+        "docs/setup.md": "c13ab1864bc179e379fc9e4ce885297d3cb73dc0fe74120ebde303db9edcd654",
+        "docs/three-arm-comparison.md": "2d3fc9866fb5362177ab2738ab643364fb55b02c0c4b2116188f6f4eaf6a253b",
+        "docs/validation-controls.md": "96cce52cf78c7c1c1bd813f1023957ff0bfdb243fd6e861cdc3af00b7d6aa560",
+        "docs/workflow-comparison.md": "dee15dbe82128916c667e36d7aaadfb33e37622051358ff8f8b28f7aaf38dda3",
+        "docs/workflow-gap-results.md": "f7715848f174f367b4bda64d18d9361088b287ab2e525a41d1648958e4dd7f8b",
+        "fixtures/historical-review/README.md": "2404a8a8843cf494c0ab3e96364e82d5e8d05724fe83e17553403689e2b9d6ac",
+        "fixtures/historical-review/base-support.py.txt": "8779f806904f5d677ebaac049797b0aa5339e2fb01c886febf6ce8ea45241bbd",
+        "fixtures/historical-review/calibrated-support.py.txt": "4468cf0027d9773618af55173d744f2d425092b7fe0f6214acd05d1727593d92",
+        "fixtures/historical-review/calibration.diff": "ed88d1c0b419a9fe67f2eac2e5d340e1583abb9ec7837046482349aba02cf347",
+        "fixtures/historical-review/calibration.json": "98231df0ce5e89124331963f0dae2f3feb0e898154be56d76b4489f3b89fc8fa",
+        "fixtures/historical-review/introducing.diff": "27a3940121b93e62119d930436e7b3c86a2d32e4d60ab488d2b2e9dc246acb05",
+        "fixtures/historical-review/provenance.json": "0fa8fb385620873dfa146bc25844e29b984b0b6d71624450b86e0f2557135235",
+        "fixtures/historical-review/repaired-support.py.txt": "37316071f5b927eed9cacdb8b8420740cc7880f1d57aec95ab9aca7258970e60",
+        "fixtures/historical-review/source.tar.gz": "2c5089031db09353b94765c930034b255861eb179701f66ce547a0bab31485b9",
+        "fixtures/legacy-0.19.3/README.md": "85962d246acc5b77453c5f424542d378d4c980907599818795edc7883bdc3867",
+        "fixtures/legacy-0.19.3/config/challenge-panel.example.json": "5129b092b6d2f6b8f9597e8d635d8e696f8ae0e76fbf46a2043e46620ba8f343",
+        "fixtures/legacy-0.19.3/config/implementation-panel.example.json": "b7be389691fd063aed221957d065ddc74ad3a7c3d0f89254cbaef9a3f8b76163",
+        "fixtures/legacy-0.19.3/config/preferences.example.json": "642e07fbe875f4f35390621dcc7053554481ac43db06ddb2e55830496c85b1f3",
+        "fixtures/legacy-0.19.3/skills/setup/scripts/catalog.py": "0be97e5033072ea821369e83fd3719e04f5c9a9801a154f0904b7883215583e7",
+        "fixtures/legacy-0.19.3/skills/setup/scripts/preferences.py": "a7df83d8abd46751fa1f024c7265d45ad6e5c8080c6a6b6a733a88a0b79ba519",
+        "fixtures/repository-review/README.md": "d23bb5df49cf561d59a997f3f62c4b3511e25a42e14dc8035cde5d75826990f1",
+        "fixtures/repository-review/provenance.json": "5ace13f86df59f38de5b64cae08ca09f7cac1b768f93636aa5ce6eca3482f5ae",
+        "fixtures/repository-review/source.tar.gz": "1e6d0ae6aa4380347e9c8e409c037a95dba355af9eac005a8bb9efb5444df075",
+        "run_checks.py": "1f12556191a3a702e20f5e4f330addcd70652081f7d1a27804ab504d8b806e23",
+        "tests/behavioral/cases/checkout/request.txt": "7a0f522d057699afbc5899e766187e077d720a931c319f976c43fb641e562a33",
+        "tests/behavioral/cases/checkout/workspace/app.py": "8f7363cfe7e81b71b02b58f45fdd1713f3fe9ad0afafc1495ad32be556bd8d72",
+        "tests/behavioral/cases/checkout/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/contract/request.txt": "2daed4d2f392f67eedbdc11ea8dcd457eb1fc6910ca004d7e3fc3e909ce7f255",
+        "tests/behavioral/cases/contract/workspace/README.md": "df2290d72c46097433aef4bd7aad9b13cc39717197fcee832463019471ab9072",
+        "tests/behavioral/cases/contract/workspace/archive.json": "97bfebbcce3371383d28b9bad7640c9126ed773ee8c767a5f0bb826c7f217868",
+        "tests/behavioral/cases/contract/workspace/archive.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+        "tests/behavioral/cases/contract/workspace/billing.py": "9018f8c162282ee0601fb6580e2419debd5ce4dac656a5e19a5e895d68cc6f3b",
+        "tests/behavioral/cases/contract/workspace/consumer.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+        "tests/behavioral/cases/contract/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+        "tests/behavioral/cases/contract/workspace/producer.py": "879fb93132d29b04d8b615a5170bcc35fba8c6033fe46b321f247732f0da80c5",
+        "tests/behavioral/cases/contract/workspace/test_contract.py": "76a8086467525a9fbbdb01a249dbe1d323ecea8fc12b5addf149e0c0d134af68",
+        "tests/behavioral/cases/delivery/request.txt": "f38fc2c9eb1a71c6cdcba2ff8d0eae0326f0b09e0d23cc7c07e569c0b87d12cf",
+        "tests/behavioral/cases/delivery/workspace/app.py": "aa0d1f1eff78f376240414c37f450842dfade4ab2ffa5199976adee8548eb2f0",
+        "tests/behavioral/cases/delivery/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/exporter/request.txt": "0daab596bc950832db20099a1c3f4d3cfe3ed3893a27f24c3f6d3474d09a9dec",
+        "tests/behavioral/cases/exporter/workspace/README.md": "cc15bd298ed194fb18a8c3c4485c9fb1cbf4f60cc39462de5701ee60601e3851",
+        "tests/behavioral/cases/exporter/workspace/app.py": "345f0f9efccc6679cb3a898d2d5ad730ae2f347fa58170548c3a85054ec82a3b",
+        "tests/behavioral/cases/exporter/workspace/change.diff": "c5d219eb1df36c0c0a0142cf9dd64196a2eb0d8d3337a88204bdb1420f47631b",
+        "tests/behavioral/cases/exporter/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/exporter/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/exporter/workspace/test_app.py": "f95010575d0a955e881ea5cdfad89e599826b94665dc1791832aaf17d23ae2d0",
+        "tests/behavioral/cases/invoice/request.txt": "665bc6dc78a0225ad7768664d18c5e3d14d33f89d66be02467ddceef191d0c62",
+        "tests/behavioral/cases/invoice/workspace/app.py": "909c8f229655196c9acf8c27765bd895f83e65fd31a4b9cd32a25b06a961bbcb",
+        "tests/behavioral/cases/invoice/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/label/request.txt": "2d51fe68884acccf068c377da1702f4a1d33adccf759ae412029a5451f697662",
+        "tests/behavioral/cases/label/workspace/cli.py": "6c0790388b1cad5efbb7198823918b4e77b45ce3ddf9d59d58392a988f319a8a",
+        "tests/behavioral/cases/label/workspace/notes.txt": "6b103b3486198f2ee694c02cda448c6defc7b8df45d1cd075ffa8e052a8a43ac",
+        "tests/behavioral/cases/records/request.txt": "ee82aceb483763b2726b3fcdbbca151322d907b3a2f62ed6b4a83f55ec75f7ed",
+        "tests/behavioral/cases/records/workspace/README.md": "aa61c14b4fd30eca9c20a99816fde1aee6f786d2ab0bac3b4d68e018a76581d5",
+        "tests/behavioral/cases/records/workspace/archive.json": "700935e29ea3462fc45d33b0212ddf415d51925b0f8bd785ffba7ca6cb54dfd1",
+        "tests/behavioral/cases/records/workspace/archive.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/records/workspace/billing.py": "510c98140ba4a1f1eb3e8f1814989f373f7cb9043341bdbaed98d18d84dd7edb",
+        "tests/behavioral/cases/records/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+        "tests/behavioral/cases/records/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/records/workspace/producer.py": "3dcfed3c37cc31eee19129ddf312baab34599e19a6a76102101017d7022db6c8",
+        "tests/behavioral/cases/records/workspace/test_records.py": "93ec677a510912169a338b9f9570859c213c0811c69d6ca9f90a1c340b20492d",
+        "tests/behavioral/cases/summary/request.txt": "f09746dae748e925a7cd52ed08f19029bc97f9adfc008de9014b565f129f5584",
+        "tests/behavioral/cases/summary/workspace/app.py": "232cc340c3e6fd52dfe588a5793590a94bd48f7b4da59e142a62472aa8e6daf3",
+        "tests/behavioral/cases/summary/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/summary/workspace/test_app.py": "c18a7dc3b9df4c34ed8909387c08b0a1f191a7bd47b1606671c7a36c9bb6fbf1",
+        "tests/behavioral/cases/update/request.txt": "08687423e702eb35396bbfd505461b6ade73eff7b0ecbb0985f8a2ae05b96534",
+        "tests/behavioral/cases/update/workspace/notes.txt": "542e9cb83790c95901dd3207b05df908a597a0c303d5986ef20a9bf59e6d8283",
+        "tests/behavioral/cases/update/workspace/update.txt": "8f9603fa753324cf18ef081a431b612ceed8b712a16bc7ca2a0fa5ebd57ecbd9",
+        "tests/behavioral/cases/validation/request.txt": "f62d784ba2884df0d929ecf75233d9d87ab72469182d0463c50df4d8c128e6b8",
+        "tests/behavioral/cases/validation/workspace/README.md": "421efc0a1cd43cbce7736650c4071cd7ed98b22e85d33f8ec8222c704ed173bb",
+        "tests/behavioral/cases/validation/workspace/reader.py": "2061ceb82fa306a3c097d10035170ea2fc903a5ccb6b7c6e957b21d1732392e6",
+        "tests/behavioral/cases/validation/workspace/test_reader.py": "dad3ee159e54df722eb1e78bf867fbf041947cdbd80c8300b68e3cd0ca6f3176",
+        "tests/behavioral/compare.py": "4b367b7179dbe9c792fd226a2f235f8b2da83a5d5851463a13f2bdef1fdac946",
+        "tests/behavioral/context_recovery.py": "dca5a8356c9775d693e222bc73204b43a0de7abee1a62b9c392b363d945421ee",
+        "tests/behavioral/design.py": "4460710c8538ff64d21c82b39aa9f84da748ccc4058828db50c23fec543fb741",
+        "tests/behavioral/design_compare.py": "46b52401fa98653b57343ec58027297ab7951b88e09c38d0e1373f18fd572a8e",
+        "tests/behavioral/entrypoint_compare.py": "f53175a97c838551efbcc2608cf563ede27d2ad0e6d90bc1b0f8d2f8b7e5303a",
+        "tests/behavioral/historical_review.py": "76afe3b5519707411009e8585e3dd1007163fd4330c85546def07a85016b723d",
+        "tests/behavioral/repository_review.py": "ba27584dbe96865664e99cd40c4f0303f98ec506ef126e23ac3f3c318c8675d7",
+        "tests/behavioral/review.py": "c10c5ae9aafd381c83e17a34cba2d8decbccd0b145a40f8453f0d014772c1518",
+        "tests/behavioral/review_comparison.py": "593208bbfbb6a8c05bcb830f88f8cccd20cd683ccf58509a2aa4c837bd904b3c",
+        "tests/behavioral/support.py": "4468cf0027d9773618af55173d744f2d425092b7fe0f6214acd05d1727593d92",
+        "tests/behavioral/traces.py": "decf0c4e9ad3af5fdc033e7fee79f715fb21e24b3e112f153709586f6a2c612c",
+        "tests/behavioral/validation.py": "083e5c45d3742baaca2255c8a25c14949d81cc941a6d348869fa256aef33e69d",
+        "tests/behavioral/workflow_cases.py": "0a5af55fd56e50246629739c1af8520645eb598be5216c906cdb0be7cb3e9e6e",
+        "tests/behavioral/workflow_compare.py": "150ec68c95af54d7357707d69f0aa260dc642fe85d04bce12aa5f22d9478448d",
+        "tests/package_validation.py": "095f789dbf91bf9de343cda10ce1bb9c57e37e5f92f3593d8c96a0835b4fb56b",
+        "tests/target.py": "ae15fdbfbf58c56eb1722ce9ac34d4bfe8559462368038ab4ab60344840eccf3",
+        "tests/test_behavioral_fixtures.py": "494fb07547909d322a25fb51b6704ac099535428d24f8cd488fc69df004ddf61",
+        "tests/test_catalog.py": "1cb79bca54c0be5c223d31a319386f0dfd1f444eff04085b8a2b3f12bd76deee",
+        "tests/test_comparison.py": "fd78c68cf578bd2f233d85f1c40d75093cbac5115cfefb73d7fe435c61b3e5fe",
+        "tests/test_comparison_fixtures.py": "255fc0220019b82d54fea4241cfa969160cd5f8732538610a37c3ee57f832ad5",
+        "tests/test_context_recovery.py": "eccc6d4ac19a88a70688ad402f43a19ea18fddeb5878a45ffbaef22609572800",
+        "tests/test_design_comparison.py": "64e182bdb20f51877099adee88b5cacd727f50161d8db4d44e65922fc671ecef",
+        "tests/test_historical_review.py": "a0e6a7bb97c34efaaabb16162e105d8f12e789c41e71c2fa1cdd316c39e08dcb",
+        "tests/test_identity.py": "59ec33126e142c7ffe5eb589e9dccbb45f5a5c88a3c3ffac76ba807380834fda",
+        "tests/test_input_guards.py": "594bda9632f3ecaae80d2683e845303c5d7b74f720af0aed3293e7420b47c973",
+        "tests/test_package_validation.py": "3e62c86734f0a74e371b02d8ea994428d7d397a8e8b972ac2b9d377b762c8186",
+        "tests/test_preferences.py": "705b6f08c8e1709b4018523f934cc61428644b6f224a6f0579eeed49164e12d3",
+        "tests/test_repository_review.py": "7c1b4e02cfa4c7e4c53d2cbe0603d694d8e8dc2fb8ef5a6c08f2183e5fb6d5a6",
+        "tests/test_review_comparison.py": "37a4e37780ee97d39ef5094d5874bfc818a7490c30f536146767f86979a5af86",
+        "tests/test_review_evaluation.py": "a3edae946f49bf9ef452b860c3b9b116e6d2b977495be0e12d1fc75a5d840a1a",
+        "tests/test_trial_traces.py": "e0dc14cf565df864b8f74477b50bb509f141ac3155780b6296f702c3f7e28ade",
+        "tests/test_validation.py": "2b2d5bcc9a8643624f4010e18a938a80a80f6d6e8c1f8345a42a55fa4c4093fe",
+        "tests/test_workflow_comparison.py": "dc2a6d608fff27ebf3b4dab69cd092c155f036779432e3a591b152297a4316ac"
+      }
+    },
+    "timeout": 240,
+    "model_override": null,
+    "effort_override": null,
+    "cli": "codex-cli 0.160.0",
+    "plan": [
+      [
+        "repair",
+        "fix"
+      ],
+      [
+        "repair",
+        "pancake"
+      ],
+      [
+        "test-first-repair",
+        "tdd"
+      ],
+      [
+        "test-first-repair",
+        "pancake"
+      ]
+    ]
+  },
+  "runs": [
+    {
+      "run": "run-01",
+      "pair": "repair",
+      "entrypoint": "fix",
+      "elapsed_seconds": 74.799,
+      "execution_valid": true,
+      "source_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "usage": {
+        "input_tokens": 373310,
+        "cached_input_tokens": 349184,
+        "output_tokens": 2404,
+        "total_tokens": 375714
+      },
+      "changed_files": [
+        "consumer.py",
+        "producer.py",
+        "test_records.py"
+      ],
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true
+      },
+      "guidance_reads": [
+        {
+          "path": "skills/fix/SKILL.md",
+          "sha256": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f",
+          "words": 503
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "sha256": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+          "words": 336
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "words": 706
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/design/SKILL.md",
+          "sha256": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+          "words": 852
+        },
+        {
+          "path": "skills/pancake/references/host-runtime.md",
+          "sha256": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "words": 814
+        },
+        {
+          "path": "skills/design/references/boundaries.md",
+          "sha256": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+          "words": 154
+        },
+        {
+          "path": "skills/design/references/migrations.md",
+          "sha256": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+          "words": 191
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        }
+      ],
+      "review_judgment": {
+        "completed_reviewers": 1,
+        "fresh_context_observed": true,
+        "no_overrides_observed": true,
+        "completed_before_lead_final": true,
+        "nested_reviewers_observed": false
+      },
+      "workflow_judgment": {
+        "contracts_preserved": true,
+        "meaningful_failure_before_production_edit": true,
+        "tests_pass_after": 5
+      }
+    },
+    {
+      "run": "run-02",
+      "pair": "repair",
+      "entrypoint": "pancake",
+      "elapsed_seconds": 60.372,
+      "execution_valid": true,
+      "source_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "usage": {
+        "input_tokens": 386368,
+        "cached_input_tokens": 323200,
+        "output_tokens": 2302,
+        "total_tokens": 388670
+      },
+      "changed_files": [
+        "consumer.py",
+        "producer.py",
+        "test_records.py"
+      ],
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true
+      },
+      "guidance_reads": [
+        {
+          "path": "skills/pancake/SKILL.md",
+          "sha256": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+          "words": 770
+        },
+        {
+          "path": "skills/pancake/references/implementation.md",
+          "sha256": "916f4bc586487ffee14f03f1b4456b5104092155c0a317f56450353e28d0c3f6",
+          "words": 1022
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        },
+        {
+          "path": "skills/sift/SKILL.md",
+          "sha256": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+          "words": 521
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "words": 706
+        },
+        {
+          "path": "skills/fix/SKILL.md",
+          "sha256": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f",
+          "words": 503
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "sha256": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+          "words": 336
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/design/SKILL.md",
+          "sha256": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+          "words": 852
+        },
+        {
+          "path": "skills/pancake/references/host-runtime.md",
+          "sha256": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "words": 814
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        }
+      ],
+      "review_judgment": {
+        "completed_reviewers": 1,
+        "fresh_context_observed": true,
+        "no_overrides_observed": true,
+        "completed_before_lead_final": true,
+        "nested_reviewers_observed": false
+      },
+      "workflow_judgment": {
+        "contracts_preserved": true,
+        "meaningful_failure_before_production_edit": true,
+        "tests_pass_after": 5
+      }
+    },
+    {
+      "run": "run-03",
+      "pair": "test-first-repair",
+      "entrypoint": "tdd",
+      "elapsed_seconds": 61.301,
+      "execution_valid": true,
+      "source_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "usage": {
+        "input_tokens": 308627,
+        "cached_input_tokens": 250752,
+        "output_tokens": 2062,
+        "total_tokens": 310689
+      },
+      "changed_files": [
+        "consumer.py",
+        "producer.py",
+        "test_records.py"
+      ],
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true
+      },
+      "guidance_reads": [
+        {
+          "path": "skills/tdd/SKILL.md",
+          "sha256": "44af2554615e25e679af9178ddbe1bf3cb4585dd21209a88c4aaa3068d5bf3c2",
+          "words": 499
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "sha256": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+          "words": 336
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "words": 706
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/design/SKILL.md",
+          "sha256": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+          "words": 852
+        },
+        {
+          "path": "skills/pancake/references/host-runtime.md",
+          "sha256": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "words": 814
+        },
+        {
+          "path": "skills/design/references/migrations.md",
+          "sha256": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+          "words": 191
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        }
+      ],
+      "review_judgment": {
+        "completed_reviewers": 1,
+        "fresh_context_observed": true,
+        "no_overrides_observed": true,
+        "completed_before_lead_final": true,
+        "nested_reviewers_observed": false
+      },
+      "workflow_judgment": {
+        "contracts_preserved": true,
+        "meaningful_failure_before_production_edit": true,
+        "tests_pass_after": 5
+      }
+    },
+    {
+      "run": "run-04",
+      "pair": "test-first-repair",
+      "entrypoint": "pancake",
+      "elapsed_seconds": 68.516,
+      "execution_valid": true,
+      "source_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "usage": {
+        "input_tokens": 360892,
+        "cached_input_tokens": 332544,
+        "output_tokens": 2466,
+        "total_tokens": 363358
+      },
+      "changed_files": [
+        "consumer.py",
+        "producer.py",
+        "test_records.py"
+      ],
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true
+      },
+      "guidance_reads": [
+        {
+          "path": "skills/pancake/SKILL.md",
+          "sha256": "0464d73375f8873e098d8145fe99728962c02316b69e0153b082c7502265b43d",
+          "words": 770
+        },
+        {
+          "path": "skills/pancake/references/implementation.md",
+          "sha256": "916f4bc586487ffee14f03f1b4456b5104092155c0a317f56450353e28d0c3f6",
+          "words": 1022
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        },
+        {
+          "path": "skills/sift/SKILL.md",
+          "sha256": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+          "words": 521
+        },
+        {
+          "path": "skills/tdd/SKILL.md",
+          "sha256": "44af2554615e25e679af9178ddbe1bf3cb4585dd21209a88c4aaa3068d5bf3c2",
+          "words": 499
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+          "words": 706
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "sha256": "9e8f93b73681bf123233eecd45e0d9a3ccde8ddbd13d454d0c21d05f71f64cb9",
+          "words": 336
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/design/SKILL.md",
+          "sha256": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1",
+          "words": 852
+        },
+        {
+          "path": "skills/pancake/references/host-runtime.md",
+          "sha256": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+          "words": 814
+        },
+        {
+          "path": "skills/check/SKILL.md",
+          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+          "words": 542
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "sha256": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+          "words": 131
+        }
+      ],
+      "review_judgment": {
+        "completed_reviewers": 1,
+        "fresh_context_observed": true,
+        "no_overrides_observed": true,
+        "completed_before_lead_final": true,
+        "nested_reviewers_observed": false
+      },
+      "workflow_judgment": {
+        "contracts_preserved": true,
+        "meaningful_failure_before_production_edit": true,
+        "tests_pass_after": 5
+      }
+    }
+  ],
+  "independent_assessment": {
+    "result": "All observed core workflow criteria passed. No material contract outcome difference across compared runs.",
+    "method": "Fresh assessment of private shuffled packet with ordered actions and linked reviewer completions.",
+    "limits": [
+      "Lead execution outputs observed; no independent rerun.",
+      "Reviewer command transcripts unavailable; reported reviewer tests not independently observed.",
+      "Encrypted briefs limit assigned-scope and neutrality assessment.",
+      "Small synthetic sample; no general equivalence or efficiency claim."
+    ]
+  },
+  "comparison": [
+    {
+      "pair": "repair",
+      "entrypoint": "fix",
+      "baseline_complete_guidance_words": 4010,
+      "candidate_complete_guidance_words": 4229
+    },
+    {
+      "pair": "repair",
+      "entrypoint": "pancake",
+      "baseline_complete_guidance_words": 5301,
+      "candidate_complete_guidance_words": 6197
+    },
+    {
+      "pair": "test-first-repair",
+      "entrypoint": "tdd",
+      "baseline_complete_guidance_words": 4006,
+      "candidate_complete_guidance_words": 4071
+    },
+    {
+      "pair": "test-first-repair",
+      "entrypoint": "pancake",
+      "baseline_complete_guidance_words": 5297,
+      "candidate_complete_guidance_words": 6193
+    }
+  ],
+  "local_smoke": {
+    "case": "label",
+    "variant": "pancake",
+    "timed_out": false,
+    "elapsed_seconds": 27.059,
+    "exit_code": 0,
+    "preferences_unchanged": true,
+    "inputs_unchanged": true,
+    "final_response_present": true,
+    "execution_valid": true,
+    "usage_complete": true,
+    "artifact": {
+      "passed": true
+    },
+    "usage": {
+      "input_tokens": 112248,
+      "cached_input_tokens": 96128,
+      "output_tokens": 676,
+      "total_tokens": 112924
+    },
+    "reviewers_permitted": true,
+    "completed_reviewers": 0,
+    "unnecessary_review_gap_reported": false,
+    "bundle_preservation": "unmeasured by vanilla runner"
+  },
+  "comparison_packet_note": "An initial duplicate row was corrected from original private records before assessment; eight distinct runs were verified."
+}
