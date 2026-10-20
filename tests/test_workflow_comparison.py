@@ -74,7 +74,9 @@ class WorkflowComparisonTests(unittest.TestCase):
             root = Path(temporary)
             auth = root / 'auth.json'
             auth.write_text('{"fake": true}')
-            for case in ('small-refactor', 'ordinary-clean'):
+            for case, allow_reviewers in (('small-refactor', False), ('ordinary-clean', False),
+                                          ('small-refactor', True)):
+                trial_name = case + str(allow_reviewers)
                 observed = {}
                 def reject(command, **kwargs):
                     observed.update(command=command, profile=Path(kwargs['env']['CODEX_HOME']))
@@ -82,21 +84,89 @@ class WorkflowComparisonTests(unittest.TestCase):
                     raise RuntimeError('simulated failure')
                 with patch('behavioral.compare.subprocess.Popen', side_effect=reject):
                     with self.assertRaisesRegex(RuntimeError, 'simulated failure'):
-                        run_trial(case, 'pancake', root / case, auth, None, None, 10,
-                                  source=source_root(), case_adapter=cases.CASES[case])
+                        run_trial(case, 'pancake', root / trial_name, auth, None, None, 10,
+                                  source=source_root(), case_adapter=replace(
+                                      cases.CASES[case], allow_reviewers=allow_reviewers))
                 command = observed['command']
                 self.assertNotIn('-m', command)
                 self.assertFalse(any('model_reasoning_effort' in arg for arg in command))
-                self.assertEqual(command[command.index('--disable') + 1], 'multi_agent')
+                self.assertEqual(command[command.index('--enable' if allow_reviewers else '--disable') + 1], 'multi_agent')
+                self.assertEqual('agents.max_threads=2' in command, allow_reviewers)
                 self.assertEqual(command[command.index('--sandbox') + 1],
                                  'workspace-write' if case == 'small-refactor' else 'read-only')
                 self.assertFalse(observed['profile'].exists())
-                prompt = (root / case / 'prompt.txt').read_text()
+                prompt = (root / trial_name / 'prompt.txt').read_text()
+                self.assertEqual('Do not delegate' in prompt, not allow_reviewers)
+                if allow_reviewers:
+                    self.assertIn('Independent read-only reviewers', prompt)
+                    self.assertIn('inherit the current model and effort', prompt)
+                    self.assertIn('must not delegate further', prompt)
                 self.assertIn(cases.CASES[case].entrypoint, prompt)
             self.assertEqual(auth.read_text(), '{"fake": true}')
             with self.assertRaisesRegex(ValueError, 'adapter requires'):
                 run_trial('small-refactor', 'pancake', root / 'invalid', auth, None, None, 10,
                           suite='design', case_adapter=cases.CASES['small-refactor'])
+
+    def test_entrypoint_pairs_share_request_and_fixture(self):
+        from behavioral.entrypoint_compare import entrypoints
+        plan = entrypoints()
+        self.assertEqual([name for _, name, _ in plan], ['fix', 'pancake', 'tdd', 'pancake'])
+        for first, second in (plan[:2], plan[2:]):
+            self.assertEqual(first[2].request, second[2].request)
+            self.assertIs(first[2].preparation, second[2].preparation)
+            self.assertIs(first[2].assessment, second[2].assessment)
+            self.assertTrue(first[2].allow_reviewers and second[2].allow_reviewers)
+
+    def test_entrypoint_driver_rejects_invalid_execution_but_records_behavior_failure(self):
+        from behavioral import entrypoint_compare as driver
+        good = dict(artifact={'passed': False, 'scope_preserved': True}, exit_code=0,
+                    timed_out=False, preferences_unchanged=True, bundle_unchanged=True,
+                    completed_reviewers=[], elapsed_seconds=1,
+                    sessions=[{'parent_id': None, 'completed': True}])
+        for fault in (None, 'empty-final', 'preferences_unchanged', 'bundle_unchanged',
+                      'root-incomplete', 'drift', 'scope'):
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                (root / 'auth.json').write_text('{}')
+                def trial(case, variant, destination, *args, **kwargs):
+                    destination.mkdir()
+                    (destination / 'final.txt').write_text('' if fault == 'empty-final' else 'done')
+                    result = dict(good)
+                    if fault in ('preferences_unchanged', 'bundle_unchanged'):
+                        result[fault] = False
+                    if fault == 'root-incomplete':
+                        result['sessions'] = [{'parent_id': None, 'completed': False}]
+                    if fault == 'scope':
+                        result['artifact'] = {'passed': True, 'scope_preserved': False}
+                    return result
+                identities = [{}, {}, {'changed': True}] if fault == 'drift' else None
+                with patch.dict(os.environ, CODEX_HOME=str(root)), \
+                     patch.object(driver, 'source_identity', side_effect=identities, return_value={}), \
+                     patch.object(driver, 'identity', return_value={}), \
+                     patch.object(driver.subprocess, 'check_output', return_value='test-cli'), \
+                     patch.object(driver, 'run_trial', side_effect=trial) as launch, \
+                     patch('sys.argv', ['entrypoint_compare', '--source', str(root / 'source'),
+                                        '--output', str(root / 'output')]):
+                    if fault:
+                        with self.assertRaisesRegex(SystemExit, 'Invalid execution'):
+                            driver.main()
+                        self.assertEqual(launch.call_count, 1)
+                    else:
+                        driver.main()
+                        self.assertEqual(launch.call_count, 4)
+
+    def test_entrypoint_scope_is_independent_of_behavior(self):
+        from behavioral import entrypoint_compare as driver
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            workspace = root / 'workspace'
+            before = driver.prepare('records', workspace)
+            with patch.object(driver, 'assess_candidate', return_value={'passed': False}):
+                result = driver.assess_records('records', workspace, before, root)
+                self.assertFalse(result['passed'])
+                self.assertTrue(result['scope_preserved'])
+                (workspace / 'archive.json').write_text('[]')
+                self.assertFalse(driver.assess_records('records', workspace, before, root)['scope_preserved'])
 
     def test_assessor_uses_sandbox(self):
         with tempfile.TemporaryDirectory() as temporary:

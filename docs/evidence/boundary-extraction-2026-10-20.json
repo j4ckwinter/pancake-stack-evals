@@ -1,0 +1,17 @@
+{
+  "decision": "rejected before behavioral trials",
+  "method": "Whitespace-separated word counts; static navigation tradeoff, not measured context consumption",
+  "current": {
+    "sha256": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+    "words": 343
+  },
+  "proposed": {
+    "sha256": "5c0235fba0a50f9fabf4a9bd2b9e449d1af1d11d5fc814d1eea5500327baeaf9",
+    "words": 320
+  },
+  "boundary": {
+    "sha256": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+    "words": 154
+  },
+  "publication_policy": "Static source hashes and word counts. Rejected candidate text remains private; no behavioral trial."
+}

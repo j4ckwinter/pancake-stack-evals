@@ -23,7 +23,7 @@ The manifest records frozen source hashes, evaluator identity, and calibrated-fi
 
 A separate assessor reviewed shuffled responses against the exact fixture sources without the treatment mapping. It confirmed both target misses, the supported additional findings, and no unsupported actionable findings. This is partial blinding. Final responses and source paths can reveal clues. One observation per arm and case cannot establish repeatability. Nonempty discovery does not prove arbitrary tests are meaningful; permitted Python and Markdown additions still require semantic scope review. The calibrated control is not universally clean.
 
-The historical detection gap remains open. No additional Check wording was promoted from this follow-up. Further experiments should distinguish a missing review decision from failure to follow existing contract-tracing guidance.
+The historical detection gap remained open after this batch. No additional Check wording was promoted from this follow-up. The separate [20 October contract-execution follow-up](contract-execution-followup.md) tested a concrete valid-operation instruction and records its own observations and promotion decision.
 
 ## Rejected wording screen
 

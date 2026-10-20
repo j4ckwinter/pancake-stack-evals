@@ -297,7 +297,10 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if case_adapter is not None:
             prompt = request + (
                 f"\nUse the workflow at {bundle / case_adapter.entrypoint} and applicable references. "
-                "Work only in this project and supplied bundle. Do not delegate, commit, install "
+                "Work only in this project and supplied bundle. " +
+                ("Independent read-only reviewers are permitted when useful; they must inherit "
+                 "the current model and effort and must not delegate further. Do not commit, install "
+                 if case_adapter.allow_reviewers else "Do not delegate, commit, install ") +
                 "dependencies, use external services, read or change preferences, or inspect unrelated "
                 "projects or user history. Resolve sibling skills within the supplied bundle."
             )
@@ -312,7 +315,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         ]
         if suite == "design":
             command[command.index("agents.max_threads=2")] = "agents.max_threads=4"
-        if case_adapter is not None or suite in ("repository-review", "historical-review", "context-recovery"):
+        if (case_adapter is not None and not case_adapter.allow_reviewers) or suite in ("repository-review", "historical-review", "context-recovery"):
             index = command.index("--enable")
             command[index:index + 4] = ["--disable", "multi_agent"]
         write_json(destination / "invocation.json", command)
