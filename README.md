@@ -24,6 +24,7 @@ each report keeps its methods, results, and limits together.
 
 | report | what it looks at |
 | --- | --- |
+| [measured gap decisions](docs/measured-gap-decisions.md) | natural-request routing, unrelated acceptance paths, corrected raw-tool evidence, and selective experiment references. |
 | [sequential skill-gap decisions](docs/skill-gap-decisions.md) | acceptance-path review, direct repair entrypoints, shared review ownership, a rejected split, and source routing. |
 | [historical review](docs/historical-review.md) | a real regression, missed findings, and problems uncovered in the evaluator itself. |
 | [context recovery](docs/context-recovery.md) | whether an agent can reconcile stale or accurate handoffs with the current repo. |
@@ -46,4 +47,4 @@ passing checks tell us about the files and behavior they exercised. a small tria
 
 the helpers in `fixtures/legacy-0.19.3` test retired functionality. their passing results don't establish current plugin capabilities.
 
-the [latest decision trail](docs/skill-gap-decisions.md) explains this pass; the [earlier trail](docs/gap-pass.md) retains previous corrections and limits. [earlier trial results](docs/behavioral-results.md), the [baseline comparison](docs/baseline-comparison.md), and the [library split record](docs/library-split.md) retain the older evidence and project history. commands in historical reports may need the explicit source setting described above.
+the [latest decision trail](docs/measured-gap-decisions.md) explains this pass; the [earlier trail](docs/gap-pass.md) retains previous corrections and limits. [earlier trial results](docs/behavioral-results.md), the [baseline comparison](docs/baseline-comparison.md), and the [library split record](docs/library-split.md) retain the older evidence and project history. commands in historical reports may need the explicit source setting described above.
