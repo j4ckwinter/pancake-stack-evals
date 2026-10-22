@@ -36,6 +36,22 @@ CASES_TO_RUN = ("summary", "records", "exporter")
 COMPARISON_CASES = ("label", "contract")
 
 
+def skill_catalog(bundle):
+    catalog = []
+    for path in sorted((Path(bundle) / 'skills').glob('*/SKILL.md')):
+        lines = path.read_text().splitlines()
+        if not lines or lines[0] != '---' or '---' not in lines[1:]:
+            raise ValueError(f'missing frontmatter: {path}')
+        fields = dict(line.split(': ', 1) for line in lines[1:lines.index('---', 1)])
+        if set(fields) != {'name', 'description'} or fields['name'] != path.parent.name:
+            raise ValueError(f'invalid catalog metadata: {path}')
+        catalog.append(dict(fields, path=str(path)))
+    if len(catalog) != 19:
+        raise ValueError('routing suite requires the complete 19-skill catalog')
+    return catalog
+
+
+
 def poteto_inventory(source):
     """Select the installed Codex adaptation without copying user configuration."""
     source = Path(source).resolve()
@@ -213,7 +229,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         else:
             before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
-        if case_adapter is not None or variant == "pancake" or suite in ("review", "validation"):
+        if (case_adapter.discovery != "none" if case_adapter is not None else
+                variant == "pancake" or suite in ("review", "validation")):
             shutil.copytree(source / "skills", bundle / "skills")
             (bundle / "docs").mkdir()
             shutil.copy2(source / "docs/configuration.md", bundle / "docs/configuration.md")
@@ -231,7 +248,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if suite == "review" and variant == "consolidated":
             check = bundle / "skills/check/SKILL.md"
             check.write_text(consolidate(check.read_text()))
-        if case_adapter is not None:
+        if case_adapter is not None and case_adapter.discovery != "none":
             copied = snapshot(bundle)
             expected = {f"skills/{k}": v for k, v in snapshot(source / "skills").items()}
             expected["docs/configuration.md"] = hashlib.sha256((source / "docs/configuration.md").read_bytes()).hexdigest()
@@ -295,15 +312,27 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 "Resolve sibling skills within the supplied bundle."
             )
         if case_adapter is not None:
-            prompt = request + (
-                f"\nUse the workflow at {bundle / case_adapter.entrypoint} and applicable references. "
-                "Work only in this project and supplied bundle. " +
+            discovery = case_adapter.discovery
+            prompt = request
+            if discovery == "explicit":
+                prompt += f"\nUse the workflow at {bundle / case_adapter.entrypoint} and applicable references. "
+            elif discovery == "catalog":
+                prompt += "\nAvailable skills may be used when applicable to the task.\n"
+                prompt += "\n".join(f"- {item['name']}: {item['description']} (file: {item['path']})"
+                                    for item in skill_catalog(bundle))
+            prompt += (
+                ("\nWork only in this project. " if discovery == "none" else
+                 ("\n" if discovery == "catalog" else "") + "Work only in this project and supplied bundle. ") +
                 ("Independent read-only reviewers are permitted when useful; they must inherit "
                  "the current model and effort and must not delegate further. Do not commit, install "
                  if case_adapter.allow_reviewers else "Do not delegate, commit, install ") +
                 "dependencies, use external services, read or change preferences, or inspect unrelated "
-                "projects or user history. Resolve sibling skills within the supplied bundle."
+                "projects or user history."
             )
+            if discovery != "explicit":
+                prompt += " Do not read global skill directories."
+            if discovery != "none":
+                prompt += " Resolve sibling skills within the supplied bundle."
         command = [
             "codex", "exec", "--ignore-user-config", "--ignore-rules", "--json",
             "--enable", "multi_agent", "-c", "agents.max_threads=2",
@@ -331,8 +360,9 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             (profile / "auth.json").chmod(0o600)
             started = time.monotonic()
             environment = dict(os.environ, CODEX_HOME=str(profile), PYTHONDONTWRITEBYTECODE="1")
-            if suite == "context-recovery":
-                environment = context_recovery.git_environment(environment)
+            if suite == "context-recovery" or (case_adapter is not None and case_adapter.discovery != "explicit"):
+                from behavioral.context_recovery import git_environment
+                environment = git_environment(environment)
             with (destination / "events.jsonl").open("w") as out, (destination / "stderr.txt").open("w") as err:
                 process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=out, stderr=err,
                                            text=True, start_new_session=True,
@@ -355,7 +385,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
                 result["artifact"] = {"passed": False, "detail": str(error)}
             if case_adapter is not None:
                 try:
-                    result["bundle_unchanged"] = snapshot(bundle) == copied
+                    result["bundle_unchanged"] = (not bundle.exists() if case_adapter.discovery == "none"
+                                                  else snapshot(bundle) == copied)
                 except (ValueError, OSError):
                     result["bundle_unchanged"] = False
                 result["artifact"]["scope_preserved"] = (

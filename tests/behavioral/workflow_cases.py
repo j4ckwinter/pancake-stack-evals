@@ -111,6 +111,11 @@ class Case:
     preparation: object = prepare_case
     assessment: object = assess_case
     allow_reviewers: bool = False
+    discovery: str = "explicit"
+
+    def __post_init__(self):
+        if self.discovery not in ("explicit", "catalog", "none"):
+            raise ValueError("invalid skill discovery mode")
 
 
 CASES = {'small-refactor': Case(
