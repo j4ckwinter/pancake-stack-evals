@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 
-def summarize_session(path):
+def summarize_session(path, *, all_actions=False):
     result = {"id": None, "parent_id": None, "agent_path": None, "workspace": None,
               "selections": [], "calls": [], "outputs": [],
               "verdicts": [], "completed": False}
@@ -49,8 +49,9 @@ def summarize_session(path):
             result["completed"] = False
             result["verdicts"] = []
             result["selections"] = []
-            result["calls"] = []
-            result["outputs"] = []
+            if not all_actions:
+                result["calls"] = []
+                result["outputs"] = []
         elif kind == "event_msg" and payload.get("type") == "task_complete":
             result["completed"] = True
     return result
@@ -62,3 +63,48 @@ def completed_workers(sessions, parent_id):
             if session["parent_id"] == parent_id and session["id"]
             and session["agent_path"] and session["completed"]
             and any(session["verdicts"])]
+
+
+def output_text(value):
+    """Expose text blocks without evaluating nested JSON or including binary payloads."""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        return "\n".join(text for item in value if (text := output_text(item)))
+    if isinstance(value, dict) and value.get("type") in ("text", "input_text", "output_text"):
+        text = value.get("text")
+        return text if isinstance(text, str) else ""
+    return ""
+
+
+def session_actions(paths):
+    """Canonical call evidence from explicitly supplied raw session paths, including failures.
+
+    Nested exec JavaScript stays intact. Outputs match by call ID within a session;
+    multiple output events and calls without outputs remain visible. No CLI event
+    stream or guessed nested-command parser is used.
+    """
+    actions = []
+    for path in sorted(paths):
+        session = summarize_session(path, all_actions=True)
+        outputs = {}
+        for item in session["outputs"]:
+            outputs.setdefault(item["id"], []).append(item["output"])
+        seen = set()
+        for call in session["calls"]:
+            call_id = call["id"]
+            matched = outputs.get(call_id, []) if call_id is not None else []
+            seen.add(call_id)
+            args = call["arguments"]
+            command = next((args[key] for key in ("input", "cmd", "command")
+                            if isinstance(args.get(key), str)), json.dumps(args))
+            actions.append(dict(session_id=session["id"], call_id=call_id,
+                                name=call["name"], arguments=args, command=command,
+                                outputs=matched, output=output_text(matched)))
+        for call_id, unmatched in outputs.items():
+            if call_id is None or call_id not in seen:
+                actions.append(dict(session_id=session["id"], call_id=call_id,
+                                    name=None, arguments=None, command=None,
+                                    outputs=unmatched, output=output_text(unmatched),
+                                    unmatched_output=True))
+    return actions

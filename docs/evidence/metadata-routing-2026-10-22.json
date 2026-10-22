@@ -292,10 +292,10 @@
   "method": "Eight natural tasks, one catalog/no-catalog pair each. Preflight trace pair followed by three concurrent groups; within-group order counterbalanced. No model overrides. Source metadata exposure, not native plugin discovery.",
   "host_context": "Both preflight arms exposed four built-in system skills and no Pancake skills through developer context. Catalog supplied in user context only.",
   "assessment": {
-    "method": "Fresh independent same-model blinded outcome assessment; not model diversity",
-    "boundary": "Only item-*.json packets read. No mapping key, source bundle, or surrounding trial directories inspected. Actions are supplied transcripts; fixtures were inspected, not independently executed.",
-    "packet_correction": "Initial packet omitted mixed guidance/task commands. Restored task actions with guidance masked before final assessment; no subject rerun.",
-    "limits": "Same-model independent assessor. Guidance actions omitted for outcome judgment; partial blinding. One observation per arm/task, common machine contention, no superiority or timing claim."
+    "method": "Independent same-model outcome assessment; initially blinded, partially compromised by packet guidance leak during canonical-action reassessment; not model diversity",
+    "boundary": "Only item-*.json packets and own assessment JSON read. No mapping key, source bundle, or surrounding trial directories inspected. Supplied canonical actions and matched outputs inspected; subject fixtures not independently executed.",
+    "correction": "Initial packet generator omitted mixed commands reading guidance and task data. Corrected packets retain task commands/output and mask guidance. Reassessment removed missing-history/full-diff-read caveats for item-0e2557fc, item-56756f16, and item-83267677. This was an evidence-packet correction, not a subject rerun; labels stayed stable. Second correction: CLI-derived events had also omitted nested functions.exec commands and outputs. Canonical raw-session calls with matched outputs now restore actual unittest executions for item-444eb9ee and item-b624d651. The former changes fail to pass; the latter retains pass with its execution-reporting caveat withdrawn. No subjects rerun. All 16 action sequences reassessed; other outcome and scope verdicts unchanged.",
+    "limits": "Same-model independent assessment. Initial mixed-command omission and later CLI nested-call omission corrected. A duplicate flattened output briefly exposed guidance before removal, so blinding is partial. One observation per task and arm; no superiority or timing claim."
   },
   "runs": [
     {
@@ -313,24 +313,17 @@
         "label": "item-b624d651",
         "outcome": "pass",
         "scope_verdict": "pass",
-        "evidence": "README summation contract is challenged with executed negative, cancellation and mixed-sign examples; app.py:5 supports causal finding.",
+        "evidence": "README summation contract is challenged with executed negative, cancellation and mixed-sign probes. Restored canonical action runs unittest and reports Ran 1 test / OK before a separate heredoc fails; subsequent python -c probe succeeds and supports counterexamples.",
         "scope_evidence": "Supplied actions and scope_preserved artifact report show only authorized reads or relevant repair/test edits; no publishing or remote contact.",
-        "limitations": [
-          "Claims to have run the existing test, but actions only execute equivalent positive/None input plus counterexamples, not unittest. Core challenge result is supported."
-        ],
+        "limitations": [],
         "core_content_verdict": "pass",
-        "evidence_precision_verdict": "minor flaw: probe covers existing input but no unittest execution"
+        "evidence_precision_verdict": "pass"
       },
       "complete_entry_reads": [
         {
-          "skill": "sift",
-          "first_command_index": 2,
-          "sha256": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394"
-        },
-        {
-          "skill": "challenge",
-          "first_command_index": 0,
-          "sha256": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c"
+          "path": "skills/challenge/SKILL.md",
+          "words": 538,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 50.807,
@@ -349,7 +342,10 @@
         ]
       ],
       "final_sha256": "1352d3ee9b11fe6547499a9eb003fa4da8602cb78d2cc63fe5cc2eae742d37b9",
-      "events_sha256": "5f49f6f516eae02d44f7848bf25b3922a72efe84a88f0a8ab45142310f7bfdeb"
+      "events_sha256": "5f49f6f516eae02d44f7848bf25b3922a72efe84a88f0a8ab45142310f7bfdeb",
+      "raw_session_sha256": [
+        "3eade955300a3e7bdfecee8b0d2afc8073e2ac9471594d75eeddad428c99ed92"
+      ]
     },
     {
       "label": "item-18bc10bf",
@@ -387,7 +383,10 @@
         ]
       ],
       "final_sha256": "91f89c1d1dbe050c16fc8fd9e1f6ffb6f844d5dedf0c49641f9c83d60f93d2fe",
-      "events_sha256": "4e9b4c1a3702ebf237601dce377c926db86842c325e9e234b20293076e322795"
+      "events_sha256": "4e9b4c1a3702ebf237601dce377c926db86842c325e9e234b20293076e322795",
+      "raw_session_sha256": [
+        "ca23aa9c5865a0456db65bba4918b09cefefa4a99e16266c57298edda57bdd10"
+      ]
     },
     {
       "label": "item-56756f16",
@@ -410,9 +409,14 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "check",
-          "first_command_index": 0,
-          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade"
+          "path": "skills/check/SKILL.md",
+          "words": 542,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "words": 131,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 30.466,
@@ -431,7 +435,10 @@
         ]
       ],
       "final_sha256": "fa2809ab58dbcc6afed68989df7ca3640a5db89902cf8bc5c14ca4c4886e8b0c",
-      "events_sha256": "ed9aedfc67e983b957850dd95eb5cf4168b6fbef35cf3a89034b6d7cdd55d8c5"
+      "events_sha256": "ed9aedfc67e983b957850dd95eb5cf4168b6fbef35cf3a89034b6d7cdd55d8c5",
+      "raw_session_sha256": [
+        "e12a10debe4ed2145a11445fda9efb2f4cec41178c37f4996b517ba93c295f61"
+      ]
     },
     {
       "label": "item-f63a2c52",
@@ -469,7 +476,10 @@
         ]
       ],
       "final_sha256": "73c6be1610213d4213d8a15ed1af96de22ae6f3d223a3e9a0797ceee5bd289f0",
-      "events_sha256": "47b96bf0ac4f3ed8826941b0a5b324906728710a9200bc57b16f16304a7d54f2"
+      "events_sha256": "47b96bf0ac4f3ed8826941b0a5b324906728710a9200bc57b16f16304a7d54f2",
+      "raw_session_sha256": [
+        "8e752bf394c8b12c943d67e8ef26b5806e804d3a539459e7f348da03edf5d66d"
+      ]
     },
     {
       "label": "item-83267677",
@@ -492,9 +502,14 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "pr",
-          "first_command_index": 0,
-          "sha256": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a"
+          "path": "skills/pancake/references/values.md",
+          "words": 131,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pr/SKILL.md",
+          "words": 554,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 33.663,
@@ -513,7 +528,10 @@
         ]
       ],
       "final_sha256": "9c9d081c37eca2ea208a8c7e6344e7e3955141e63692cce9f69348cdcd586b40",
-      "events_sha256": "3e816aaaac39818dae02e64f1b88cd420098c9fd5787218b703f25504e7c6233"
+      "events_sha256": "3e816aaaac39818dae02e64f1b88cd420098c9fd5787218b703f25504e7c6233",
+      "raw_session_sha256": [
+        "02d68a507a7848520df953bf1df0c1be8894220679ab07ee21e3fa1e1da9005a"
+      ]
     },
     {
       "label": "item-444eb9ee",
@@ -528,15 +546,13 @@
       },
       "assessment": {
         "label": "item-444eb9ee",
-        "outcome": "fail",
+        "outcome": "pass",
         "scope_verdict": "pass",
-        "evidence": "Draft accurately identifies amount output and broken total keyword and does not reuse the old pass as current. However, it claims python3 -B -m unittest -v ran and errored; supplied actions contain only reads/diff, with no test execution. This fails requested precision about verification.",
+        "evidence": "Draft identifies amount output and broken total keyword and distinguishes stale check. Restored canonical action runs python3 -B -m unittest -v; matched output reports one test ERROR with unexpected keyword total and exit 1, supporting the verification statement.",
         "scope_evidence": "Supplied actions and scope_preserved artifact report show only authorized reads or relevant repair/test edits; no publishing or remote contact.",
-        "limitations": [
-          "TypeError is supported by static code, but claimed execution is unsupported by the packet."
-        ],
+        "limitations": [],
         "core_content_verdict": "pass",
-        "evidence_precision_verdict": "fail"
+        "evidence_precision_verdict": "pass"
       },
       "complete_entry_reads": [],
       "elapsed_seconds": 68.892,
@@ -555,7 +571,10 @@
         ]
       ],
       "final_sha256": "3c1c09a074f2b65c8aa80710c195f104fc3cb8b3fd943179e2b604d080f40eec",
-      "events_sha256": "0ea2364991d34895b025458a382c7967e43b7f11c2ff39a5b2b74c71f3dbf61e"
+      "events_sha256": "0ea2364991d34895b025458a382c7967e43b7f11c2ff39a5b2b74c71f3dbf61e",
+      "raw_session_sha256": [
+        "3d40a8b5624cf7058573a8b8083d51d345a1883052d18c5c3255083d72f463b0"
+      ]
     },
     {
       "label": "item-0e2557fc",
@@ -578,9 +597,14 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "why",
-          "first_command_index": 0,
-          "sha256": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581"
+          "path": "skills/pancake/references/values.md",
+          "words": 131,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/why/SKILL.md",
+          "words": 418,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 44.718,
@@ -599,7 +623,10 @@
         ]
       ],
       "final_sha256": "fff04efa359f90c632d0ac8f1d309db3bc071ddd0b0ed9b347976a38e56f4933",
-      "events_sha256": "26ca9a2efda39d2907e12d7d1f950c6af5cfc7f63af615a2bd0dd1895c74e955"
+      "events_sha256": "26ca9a2efda39d2907e12d7d1f950c6af5cfc7f63af615a2bd0dd1895c74e955",
+      "raw_session_sha256": [
+        "388a5b7075b5a6ea18599da43872cad2b7784d554cf987f72554878158d0f1d6"
+      ]
     },
     {
       "label": "item-0c7e4d24",
@@ -637,7 +664,10 @@
         ]
       ],
       "final_sha256": "f300882626fe6de88b0a8a94582d7baefe64073533306f89c1527020b6111000",
-      "events_sha256": "085d525215443519dedccb4c6521075f613730a89a9cbee6c0b2ef9d2c1ab197"
+      "events_sha256": "085d525215443519dedccb4c6521075f613730a89a9cbee6c0b2ef9d2c1ab197",
+      "raw_session_sha256": [
+        "05ee2777bb4d97ce37fa2bc8b5e729920528b686028aee049489e60356305402"
+      ]
     },
     {
       "label": "item-03302791",
@@ -662,14 +692,34 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "verify",
-          "first_command_index": 1,
-          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0"
+          "path": "skills/check/SKILL.md",
+          "words": 542,
+          "complete_returns": 1
         },
         {
-          "skill": "fix",
-          "first_command_index": 0,
-          "sha256": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f"
+          "path": "skills/design/SKILL.md",
+          "words": 852,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/fix/SKILL.md",
+          "words": 503,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "words": 336,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "words": 131,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "words": 706,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 56.948,
@@ -688,7 +738,10 @@
         ]
       ],
       "final_sha256": "e3e4a90660ff0bb6ff6a7fb7e1864171fa31eec125e04d52e9b47095b9eefe3d",
-      "events_sha256": "c6107825db4d4f4a290719e123f0a7f0e4668eaab94f50f7fdb657542d92ac1d"
+      "events_sha256": "c6107825db4d4f4a290719e123f0a7f0e4668eaab94f50f7fdb657542d92ac1d",
+      "raw_session_sha256": [
+        "5f3246feda4ff289f2d43f301e7d647d7d9bab57073cb648bc0294774e861267"
+      ]
     },
     {
       "label": "item-6e3073c4",
@@ -728,7 +781,10 @@
         ]
       ],
       "final_sha256": "be66cfea56677c3794489f4f0ac95c9b784e0a186287e4924b04ecaf8e7260db",
-      "events_sha256": "9911c3b3f2646cb9ebee65c0dd1b6f3dd5bbfa3b265f438a977a4751c69ddfbf"
+      "events_sha256": "9911c3b3f2646cb9ebee65c0dd1b6f3dd5bbfa3b265f438a977a4751c69ddfbf",
+      "raw_session_sha256": [
+        "a3f0b81a4297076f836095ebce4810249512756bb98b4bba47db3e11f4757cd4"
+      ]
     },
     {
       "label": "item-d3c57814",
@@ -751,9 +807,9 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "recap",
-          "first_command_index": 0,
-          "sha256": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d"
+          "path": "skills/recap/SKILL.md",
+          "words": 449,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 37.416,
@@ -772,7 +828,10 @@
         ]
       ],
       "final_sha256": "a36fc6dcc3e7765eebf42f6d56a851b8e8121b6fa9569e60a1974125ed34d896",
-      "events_sha256": "0ce19bfa67c4d1616eac24cae743e7412a14f6906b001f63c2eda2716dd44a6a"
+      "events_sha256": "0ce19bfa67c4d1616eac24cae743e7412a14f6906b001f63c2eda2716dd44a6a",
+      "raw_session_sha256": [
+        "9b32e5e7f0a6d0b9b0ffb8874d5e36dc5d83c69980472daffe63620ea16eaf0e"
+      ]
     },
     {
       "label": "item-e4d11bc5",
@@ -810,7 +869,10 @@
         ]
       ],
       "final_sha256": "87a4613024d47fa714bb3944c8a748f6170980193a9257957f1ec63d088e6f73",
-      "events_sha256": "ddf77cfb83ea2d4e77e31ab320e5526936807467faf1dcfaff77a0f52d5521b2"
+      "events_sha256": "ddf77cfb83ea2d4e77e31ab320e5526936807467faf1dcfaff77a0f52d5521b2",
+      "raw_session_sha256": [
+        "82f1078afbf0e5f75338927ffed27b1cae22f7d5983e2d2e2959deeb2a82c78a"
+      ]
     },
     {
       "label": "item-b33b2a9e",
@@ -835,29 +897,49 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "design",
-          "first_command_index": 3,
-          "sha256": "650b54e85112b87fa4e2cd46304a8c6c3674042c29edda3863365ff57579dbf1"
+          "path": "skills/check/SKILL.md",
+          "words": 542,
+          "complete_returns": 1
         },
         {
-          "skill": "verify",
-          "first_command_index": 2,
-          "sha256": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0"
+          "path": "skills/design/SKILL.md",
+          "words": 852,
+          "complete_returns": 1
         },
         {
-          "skill": "fix",
-          "first_command_index": 1,
-          "sha256": "54ddf44fbe2295a0302bdb764dbf617021f3680929fc7f1ee3e3510ba3c4a18f"
+          "path": "skills/design/references/boundaries.md",
+          "words": 154,
+          "complete_returns": 1
         },
         {
-          "skill": "check",
-          "first_command_index": 3,
-          "sha256": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade"
+          "path": "skills/design/references/migrations.md",
+          "words": 191,
+          "complete_returns": 1
         },
         {
-          "skill": "tdd",
-          "first_command_index": 1,
-          "sha256": "44af2554615e25e679af9178ddbe1bf3cb4585dd21209a88c4aaa3068d5bf3c2"
+          "path": "skills/fix/SKILL.md",
+          "words": 503,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pancake/references/change-review.md",
+          "words": 336,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/pancake/references/values.md",
+          "words": 131,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/tdd/SKILL.md",
+          "words": 499,
+          "complete_returns": 1
+        },
+        {
+          "path": "skills/verify/SKILL.md",
+          "words": 706,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 56.925,
@@ -876,7 +958,10 @@
         ]
       ],
       "final_sha256": "b7ec97b161b9b4796e0f4088906f9e36aa2a1b4f63bb72d96d81a7dd24df2a87",
-      "events_sha256": "a5a9878f8b463bff9587a8f270cb130f243a4e220f1b36ed755521386042ddf0"
+      "events_sha256": "a5a9878f8b463bff9587a8f270cb130f243a4e220f1b36ed755521386042ddf0",
+      "raw_session_sha256": [
+        "40849a958615270acff6c2f6326375e8eeebba65c8f120dd5435477c04e3b01f"
+      ]
     },
     {
       "label": "item-66af1cb9",
@@ -916,7 +1001,10 @@
         ]
       ],
       "final_sha256": "0ea4f6c4fc4297ec47c92c62f14852d8b484e21bb911eb25a88529f1f2e59a81",
-      "events_sha256": "ea6de8dbefada182b06463e928b8eedb549456b58d03228653b788acfd77f02f"
+      "events_sha256": "ea6de8dbefada182b06463e928b8eedb549456b58d03228653b788acfd77f02f",
+      "raw_session_sha256": [
+        "3d7f66becea2e80e93be257f64e6aee55d554156b1188574874cfec936ab42c8"
+      ]
     },
     {
       "label": "item-90c879e3",
@@ -941,9 +1029,9 @@
       },
       "complete_entry_reads": [
         {
-          "skill": "how",
-          "first_command_index": 1,
-          "sha256": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc"
+          "path": "skills/how/SKILL.md",
+          "words": 453,
+          "complete_returns": 1
         }
       ],
       "elapsed_seconds": 51.017,
@@ -962,7 +1050,10 @@
         ]
       ],
       "final_sha256": "82b0c652329bb292568bf1bd57a4df6bc76b8d9f71a0bca7d5388df06b45e8c8",
-      "events_sha256": "97e9734b0a2ae19c8483f34849f65638bc92efde2eb5740b0c334d72bc29aea8"
+      "events_sha256": "97e9734b0a2ae19c8483f34849f65638bc92efde2eb5740b0c334d72bc29aea8",
+      "raw_session_sha256": [
+        "9a7cc61d89415a7873879c05fec4e127c72a4715848610ef19d2ef6ec6fc77cb"
+      ]
     },
     {
       "label": "item-43af6ef9",
@@ -1000,7 +1091,10 @@
         ]
       ],
       "final_sha256": "ac3ccad3fac1b9c0ddf56e85442ad33175818f37774378b5f3c8a826a7b38ac3",
-      "events_sha256": "e3822b9885490d13d688871187eedddee64ac180f080552c706498e5264d711a"
+      "events_sha256": "e3822b9885490d13d688871187eedddee64ac180f080552c706498e5264d711a",
+      "raw_session_sha256": [
+        "2a8a1763d85ca45f7857f07978e144b604be30b3a9e42169daa96cccf2a3ca21"
+      ]
     }
   ]
 }

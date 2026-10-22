@@ -73,3 +73,66 @@ class TrialTraceTests(unittest.TestCase):
             {'type': 'response_item', 'timestamp': '2026-10-07T11:59:00Z', 'payload': {'type': 'message', 'role': 'assistant', 'phase': 'final_answer', 'content': [{'text': 'Parent verdict'}]}},
             {'type': 'event_msg', 'timestamp': '2026-10-07T11:59:01Z', 'payload': {'type': 'task_complete'}}])
         self.assertEqual(completed_workers([session], 'root'), [])
+
+
+class SessionActionTests(unittest.TestCase):
+    def extract(self, sessions):
+        from behavioral.traces import session_actions
+        with tempfile.TemporaryDirectory() as temporary:
+            paths = []
+            for index, events in enumerate(sessions):
+                path = Path(temporary) / f'{index}.jsonl'
+                path.write_text('\n'.join(json.dumps(event) for event in events))
+                paths.append(path)
+            return session_actions(paths)
+
+    def item(self, kind, call_id, **fields):
+        return {'type': 'response_item', 'payload': dict(type=kind, call_id=call_id, **fields)}
+
+    def test_nested_exec_and_failed_probe_survive_turns_and_match_by_id(self):
+        nested = "text(await tools.exec_command({cmd: 'python3 -c probe'}))"
+        failed = [{"type": "input_text", "text": '{"exit_code": 1, "output": "ValueError"}'}]
+        actions = self.extract([[
+            self.item('custom_tool_call', 'probe', name='functions.exec', input=nested),
+            self.item('function_call', 'read', name='exec_command', arguments='{"cmd":"cat app.py"}'),
+            self.item('function_call_output', 'read', output='def checkout(): pass'),
+            self.item('custom_tool_call_output', 'probe', output=failed),
+            {'type': 'event_msg', 'payload': {'type': 'task_started'}},
+            self.item('function_call', 'pending', name='exec_command', arguments='{"cmd":"python3 test.py"}'),
+        ]])
+        self.assertEqual([action['call_id'] for action in actions], ['probe', 'read', 'pending'])
+        self.assertEqual(actions[0]['command'], nested)
+        self.assertEqual(actions[0]['outputs'], [failed])
+        self.assertEqual(actions[0]['output'], '{"exit_code": 1, "output": "ValueError"}')
+        self.assertEqual(actions[1]['output'], 'def checkout(): pass')
+        self.assertEqual(actions[2]['outputs'], [])
+
+    def test_outputs_remain_separate_per_session_and_keep_repeated_events(self):
+        sessions = []
+        for session_id, output in [('first', 'one'), ('second', 'two')]:
+            sessions.append([
+                {'type': 'session_meta', 'payload': {'id': session_id}},
+                self.item('custom_tool_call', 'same', name='functions.exec', input='text(1)'),
+                self.item('custom_tool_call_output', 'same', output=output),
+                self.item('custom_tool_call_output', 'same', output='continued'),
+                self.item('custom_tool_call_output', 'orphan', output='unmatched result'),
+            ])
+        actions = self.extract(sessions)
+        self.assertEqual(actions[0]['output'], 'one\ncontinued')
+        self.assertEqual(actions[2]['output'], 'two\ncontinued')
+        self.assertEqual(actions[0]['session_id'], 'first')
+        self.assertEqual(actions[2]['session_id'], 'second')
+        self.assertTrue(actions[1]['unmatched_output'])
+        self.assertEqual(actions[1]['output'], 'unmatched result')
+
+    def test_text_flattening_excludes_nontext_without_discarding_raw_evidence(self):
+        blocks = [{'type': 'image', 'data': 'binary-secret', 'text': 'not text'},
+                  {'type': 'text', 'text': 'hello'}, {'type': 'input_text', 'text': 'world'},
+                  {'type': 'text', 'text': {'unexpected': 'shape'}},
+                  {'arbitrary': 'metadata'}, {'type': 'output_text', 'text': 'done'}]
+        action = self.extract([[
+            self.item('custom_tool_call', 'mixed', name='functions.exec', input='image(result)'),
+            self.item('custom_tool_call_output', 'mixed', output=blocks),
+        ]])[0]
+        self.assertEqual(action['output'], 'hello\nworld\ndone')
+        self.assertEqual(action['outputs'], [blocks])
