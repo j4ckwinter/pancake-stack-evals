@@ -118,3 +118,85 @@ def judgment(case):
                 'Preserve fixture files and unrelated scratch notes; additions only under scratch/run.',
                 'Report baseline, method, observations, correctness, decision, and limitations.'],
             'exposure_method': 'Sum all guidance actually returned in tool outputs, including shared and sibling references; entrypoint length alone is insufficient.'}
+
+
+RETENTION_REQUEST = (
+    'Measure whether the proposed importer improves this local workload. Inspect '
+    'and correct the supplied benchmark in scratch/run, checking matching outputs '
+    'and measuring completed work. Run two separate measurement batches using '
+    'the supplied sample_store.BatchRecorder(directory, metadata) context manager '
+    'with a new directory under scratch/run for each batch. Record each raw '
+    'measurement as a JSON object immediately after measuring it; include method, '
+    'units and workload context in metadata. Retain both batches and report their '
+    'locations, counts and performance conclusions with limitations. Preserve all '
+    'supplied files, including sample_store.py, and unrelated scratch notes.'
+)
+
+
+def prepare_retention_case(case, destination):
+    prepare_case('performance', destination)
+    recorder = Path(destination) / 'sample_store.py'
+    recorder.write_text(Path(__file__).with_name('sample_store.py').read_text())
+    return snapshot(destination)
+
+
+def _json_object(text):
+    def invalid_constant(value):
+        raise ValueError('nonfinite JSON value: ' + value)
+
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError('duplicate JSON key: ' + key)
+            result[key] = value
+        return result
+
+    value = json.loads(text, parse_constant=invalid_constant,
+                       object_pairs_hook=unique_object)
+    # JSON numbers such as 1e999 also overflow to nonfinite floats in Python.
+    json.dumps(value, allow_nan=False)
+    if not isinstance(value, dict):
+        raise ValueError('expected JSON object')
+    return value
+
+
+def assess_retention_case(case, workspace, before, profile):
+    result = assess_case('performance', workspace, before, profile)
+    root = Path(workspace) / 'scratch/run'
+    directories = sorted({path.parent for name in ('metadata.json', 'samples.jsonl', 'complete.json')
+                          for path in root.rglob(name)})
+    batches = []
+    for directory in directories:
+        batch = {'directory': str(directory.relative_to(workspace)),
+                 'sample_count': 0, 'complete': False, 'errors': []}
+        try:
+            _json_object((directory / 'metadata.json').read_text())
+            with (directory / 'samples.jsonl').open() as stream:
+                for line in stream:
+                    if not line.endswith('\n'):
+                        raise ValueError('unterminated sample record')
+                    _json_object(line)
+                    batch['sample_count'] += 1
+            completion = directory / 'complete.json'
+            if completion.exists():
+                marker = _json_object(completion.read_text())
+                count = marker.get('count')
+                if type(count) is not int or count != batch['sample_count']:
+                    raise ValueError('completion count does not match samples')
+                batch['complete'] = True
+        except (OSError, UnicodeError, ValueError) as error:
+            batch['errors'].append(str(error))
+        batches.append(batch)
+    result.update(batch_records=batches,
+                  retained_sample_count=sum(batch['sample_count'] for batch in batches),
+                  completed_batch_count=sum(batch['complete'] for batch in batches),
+                  incomplete_batch_count=sum(not batch['complete'] for batch in batches),
+                  sample_retention_valid=(result['scope_preserved'] and len(batches) >= 2
+                      and all(batch['complete'] and batch['sample_count'] > 0
+                              and not batch['errors'] for batch in batches)))
+    return result
+
+
+RETENTION_CASE = Case(RETENTION_REQUEST, 'skills/pancake/SKILL.md', False,
+                      prepare_retention_case, assess_retention_case)
