@@ -1,0 +1,30 @@
+import sys,json
+from pathlib import Path
+sys.path.insert(0,'/Users/jackwinter/dev/pancake-stack-evals/tests')
+from behavioral.compare import run_trial,write_json,EVALUATOR,poteto_inventory,trial_plan
+from behavioral.design_compare import source_identity,trial_valid
+from behavioral.reading_paths import build_report
+from behavioral.repository_review import CASES,provenance
+from run_checks import identity
+source=Path(sys.argv[1]);poteto=Path('/tmp/pancake-poteto-oct25')
+inputs=source_identity(source);inventory=poteto_inventory(poteto);evaluator=identity(EVALUATOR)
+out=Path('/tmp/pancake-repository-oct25');out.mkdir(mode=0o700)
+plan=trial_plan(tuple(CASES),('pancake','poteto'),1)
+# Reverse between cases within the single repetition.
+plan=[(case,repeat,variant) for n,case in enumerate(CASES) for repeat in [1] for variant in (('pancake','poteto') if n%2==0 else ('poteto','pancake'))]
+write_json(out/'manifest.json',dict(source=inputs,poteto=inventory,evaluator=evaluator,plan=plan,model_override=None,effort_override=None,timeout=300,fixture=provenance()))
+def unchanged():return identity(EVALUATOR)==evaluator and source_identity(source)==inputs and poteto_inventory(poteto)==inventory
+results=[]
+for i,(case,repeat,variant) in enumerate(plan,1):
+ assert unchanged()
+ dest=out/f'run-{i:02d}'
+ print('Starting',i,case,variant,flush=True)
+ r=run_trial(case,variant,dest,Path.home()/'.codex/auth.json',None,None,300,suite='repository-review',source=source,poteto_source=poteto if variant=='poteto' else None,expected_poteto=inventory if variant=='poteto' else None)
+ r.update(repetition=repeat,inputs_unchanged=unchanged(),final_response_present=(dest/'final.txt').exists() and bool((dest/'final.txt').read_text().strip()))
+ r['execution_valid']=trial_valid(r)
+ write_json(dest/'result.json',r)
+ records=list((dest/'raw-sessions').rglob('*.jsonl'))
+ if records:write_json(dest/'reading.json',build_report(source if variant=='pancake' else poteto,records))
+ results.append(r);write_json(out/'results.json',results)
+ print('Finished',i,'valid',r['execution_valid'],'seconds',r['elapsed_seconds'],flush=True)
+ if not r['execution_valid']:raise SystemExit('Invalid trial; retained records')

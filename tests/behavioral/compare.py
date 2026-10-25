@@ -203,7 +203,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             from behavioral.review import REQUEST, consolidate, prepare_review
     if suite == "repository-review":
         from behavioral.repository_review import CASES as review_cases, REQUEST, prepare_review, provenance
-        if variant not in ("baseline", "pancake") or case not in review_cases:
+        if variant not in ("baseline", "pancake", "poteto") or case not in review_cases:
             raise ValueError("invalid repository-review case or variant")
     if suite in ("historical-review", "context-recovery"):
         from behavioral import historical_review, context_recovery
@@ -294,6 +294,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             if variant == "pancake":
                 skill = "recap" if suite == "context-recovery" else "pancake"
                 prompt += f"\nUse the {skill.title()} skill at {bundle / 'skills' / skill / 'SKILL.md'} and its applicable references."
+            elif variant == "poteto":
+                prompt += f"\nUse the Poteto skill at {bundle / 'skills/poteto-mode/SKILL.md'} and its applicable references."
         if suite == "validation":
             prompt = request + (
                 f"\nUse the TDD skill at {bundle / 'skills/tdd/SKILL.md'} and its applicable references. "
@@ -443,7 +445,8 @@ def main():
     if args.repetitions < 1 or args.timeout < 1:
         parser.error("repetitions and timeout must be positive")
     poteto = None
-    three_arm = args.suite in ("comparison", "review-comparison")
+    three_arm = (args.suite in ("comparison", "review-comparison")
+                 or args.suite == "repository-review" and args.poteto_source is not None)
     if three_arm:
         if args.poteto_source is None:
             parser.error(f"{args.suite} requires --poteto-source")
@@ -452,7 +455,7 @@ def main():
         except (OSError, ValueError) as error:
             parser.error(str(error))
     elif args.poteto_source is not None:
-        parser.error("--poteto-source is only valid for comparison or review-comparison")
+        parser.error("--poteto-source is only valid for comparison, review-comparison or repository-review")
     output = args.output.resolve()
     if output.is_relative_to(ROOT) or output.is_relative_to(EVALUATOR):
         parser.error("raw trial output must be outside the repository")

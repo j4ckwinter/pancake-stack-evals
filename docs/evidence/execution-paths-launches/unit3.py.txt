@@ -1,0 +1,31 @@
+import sys,os,json
+from pathlib import Path
+sys.path.insert(0,'/Users/jackwinter/dev/pancake-stack-evals/tests')
+from behavioral.compare import run_trial,write_json,EVALUATOR
+from behavioral.design_compare import source_identity,trial_valid
+from behavioral.workflow_cases import Case
+from behavioral.repository_review import prepare_review,provenance
+from behavioral.reading_paths import build_report
+from run_checks import identity
+roots={k:Path('/tmp/pancake-snapshot-'+v+'-oct25') for k,v in [('baseline','unit2-final'),('candidate','unit3')]}
+inputs={k:source_identity(v) for k,v in roots.items()}; evaluator=identity(EVALUATOR)
+out=Path('/tmp/pancake-unit3-oct25');out.mkdir(mode=0o700)
+plan=[('trace','baseline'),('trace','candidate'),('independent','candidate'),('independent','baseline')]
+write_json(out/'manifest.json',dict(sources=inputs,evaluator=evaluator,plan=plan,model_override=None,effort_override=None,timeout=300))
+adapter=Case('Use one read-only worker to trace source identity while you trace worker completion. Explain both paths with source evidence and relevant checks. Do not edit files.', 'skills/pancake/references/parallel-work.md', True, lambda case,workspace:prepare_review('identity-clean',workspace), allow_reviewers=True)
+results=[]
+for i,(case,variant) in enumerate(plan,1):
+ assert identity(EVALUATOR)==evaluator
+ assert all(source_identity(v)==inputs[k] for k,v in roots.items())
+ dest=out/f'run-{i:02d}'
+ print('Starting',case,variant,flush=True)
+ kw={'case_adapter':adapter} if case=='trace' else {'suite':'design','design_entrypoint':'parallel-work'}
+ r=run_trial(case,'pancake',dest,Path.home()/'.codex/auth.json',None,None,300 if case=='independent' else 180,source=roots[variant],**kw)
+ r.update(variant=variant,inputs_unchanged=identity(EVALUATOR)==evaluator and all(source_identity(v)==inputs[k] for k,v in roots.items()),final_response_present=(dest/'final.txt').exists() and bool((dest/'final.txt').read_text().strip()))
+ r['execution_valid']=trial_valid(r)
+ write_json(dest/'result.json',r)
+ records=list((dest/'raw-sessions').rglob('*.jsonl'))
+ if records:write_json(dest/'reading.json',build_report(roots[variant],records))
+ results.append(r);write_json(out/'results.json',results)
+ print('Finished',case,variant,'valid',r['execution_valid'],'artifact',r['artifact'],flush=True)
+ if not r['execution_valid']:raise SystemExit('Invalid trial; retained records')

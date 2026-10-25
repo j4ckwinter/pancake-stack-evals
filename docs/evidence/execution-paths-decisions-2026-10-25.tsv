@@ -1,0 +1,11 @@
+ts	phase	decision	why	evidence	result
+2026-10-25	frame	Verify sequential units before release	User requested separate implementation and commits	plan.md	open
+2026-10-25	compression	Compress implementation without a new reference	Reduce reading while retaining execution contracts	/tmp/pancake-execution-paths/skills/pancake/references/implementation.md	source review passed; behavioral trials pending
+2026-10-25	compression	Accept shorter sequence	Four artifacts and source review pass with less returned guidance	/tmp/pancake-unit1-oct25/results.json	verified and committed
+2026-10-25	design	Use independent exploration for unresolved consequential choices	Retain direct handling for settled and small changes	/tmp/pancake-execution-paths/skills/design/SKILL.md	source review passed; behavior pending
+2026-10-25	validation	Exclude first unit2 package run	Recipe correction changed source during check	/tmp/pancake-run-oct25/unit2-checks.json	180 tests pass but input stability fails
+2026-10-25	comparison	Use eight real-repository review runs with two arms	Implementation compression is not exercised by review paths; duplicate arm cannot establish effect	/Users/jackwinter/dev/pancake-stack-evals/docs/execution-paths.md	planned; no general efficacy claim
+2026-10-25	design	Accept narrow default with explicit cost	Trial triggered candidates and judge only on unresolved case; judge refined enqueue and retry contracts	/tmp/pancake-unit2-neutral/B	all semantic criteria pass; no broad quality advantage established
+2026-10-25	cookoff	Reject conditional extraction and preserve candidate patch	Ordinary total guidance rose; mixed single-pair evidence does not justify extra navigation	/Users/jackwinter/dev/pancake-stack-evals/docs/evidence/execution-paths-cookoff-candidate.patch	12 runs across six pairs completed; candidate restored to accepted HEAD
+2026-10-25	comparison	Retain eight correct review verdicts without superiority claim	Both arms detect defects and clear controls under identical constrained scope	/tmp/pancake-repository-neutral	independent assessment passed
+2026-10-25	evidence	Supplement CLI packets with canonical raw actions	Nested tool calls were omitted from CLI events	/tmp/pancake-repository-neutral/A/raw-action-excerpts.json	provisional inspection concern resolved by assessor

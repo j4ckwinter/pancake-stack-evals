@@ -1,0 +1,38 @@
+--- /dev/null
++++ b/skills/pancake/references/candidate-comparison.md
+@@ -0,0 +1,9 @@
++# Compare candidate solutions
++
++For independent design exploration selected by [Design](../../design/SKILL.md#compare-approaches), requested explicitly, or selected through task-supplied candidate choices, follow [competing designs](../../design/references/competing-designs.md). That mode owns candidate isolation and the separate judge requirement. The proportional cookoff below covers other comparisons and does not relax that contract.
++
++Define a small rubric tied to the task before generating candidates. Compare structurally different approaches when the tradeoff warrants it. Give candidates the same objective, constraints, and baseline without seeding a preferred answer. Require an artifact or proposal plus concise rationale and evidence. Do not run competing production edits for a design-only request.
++
++Wait for candidate artifacts to stabilize before judging them. Read each viable result and evaluate correctness, contract fit, maintainability, and task-specific criteria. Run comparable checks when authorized. An independent read-only judge can help when available; disagreement calls for examining evidence, not assuming either reviewer is biased. Do not treat scores or agreement as proof.
++
++Select a coherent base. Incorporate another candidate's idea only when it improves the chosen design without contradicting its assumptions. Record the decisive tradeoffs, accepted ideas, and rejected alternatives briefly. Verify the synthesized result, since passing candidates do not establish that a combination works. Keep a proposal as a proposal unless implementation was requested.
+--- a/skills/pancake/references/parallel-work.md
++++ b/skills/pancake/references/parallel-work.md
+@@ -1,4 +1,4 @@
+-# Compare candidates and coordinate work
++# Coordinate parallel work
+ 
+ Use this reference for substantial work with independent investigation or implementation slices, or for justified competing solutions. When delegation is permitted and available, assign useful independent slices to agents by default. Keep small or tightly coupled tasks direct when coordination would cost more than it helps. No fixed agent count, provider mix, or background infrastructure is required.
+ 
+@@ -18,15 +18,9 @@
+ 
+ For competing code candidates, use separate worktrees or isolated scratch copies from the same baseline, including task-relevant local changes when required. Do not silently compare a dirty working tree with candidates based only on HEAD.
+ 
+-## Cookoff
++## Compare alternatives when needed
+ 
+-For independent design exploration selected by [Design](../../design/SKILL.md#compare-approaches), requested explicitly, or selected through task-supplied candidate choices, follow [competing designs](../../design/references/competing-designs.md). That mode owns candidate isolation and the separate judge requirement. The proportional cookoff below covers other comparisons and does not relax that contract.
+-
+-Define a small rubric tied to the task before generating candidates. Compare structurally different approaches when the tradeoff warrants it. Give candidates the same objective, constraints, and baseline without seeding a preferred answer. Require an artifact or proposal plus concise rationale and evidence. Do not run competing production edits for a design-only request.
+-
+-Wait for candidate artifacts to stabilize before judging them. Read each viable result and evaluate correctness, contract fit, maintainability, and task-specific criteria. Run comparable checks when authorized. An independent read-only judge can help when available; disagreement calls for examining evidence, not assuming either reviewer is biased. Do not treat scores or agreement as proof.
+-
+-Select a coherent base. Incorporate another candidate's idea only when it improves the chosen design without contradicting its assumptions. Record the decisive tradeoffs, accepted ideas, and rejected alternatives briefly. Verify the synthesized result, since passing candidates do not establish that a combination works. Keep a proposal as a proposal unless implementation was requested.
++For a cookoff of alternative solutions, read [candidate comparison](candidate-comparison.md). Partitioned work follows the section below.
+ 
+ ## Partitioned work
+ 
