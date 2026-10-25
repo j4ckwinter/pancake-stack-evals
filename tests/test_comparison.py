@@ -117,6 +117,55 @@ class ComparisonTests(unittest.TestCase):
             self.assertTrue((destination / "result.json").is_file())
             self.assertEqual(auth.read_text(), "fake credential")
 
+    def test_repository_review_shares_scope_and_pins_poteto_bundle(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "skills"
+            self.make_poteto(source)
+            expected = poteto_inventory(source)
+            auth = root / "auth"
+            auth.write_text("fake credential")
+            prompts = []
+            for variant in ("baseline", "pancake", "poteto"):
+                run = root / variant
+                run.mkdir()
+
+                def candidate(prompt, **kwargs):
+                    prompts.append(prompt.split("\nUse the ")[0])
+                    self.assertIn("Do not delegate", prompt)
+                    self.assertIn("read or change preferences", prompt)
+                    self.assertTrue((run / "workspace/change.diff").is_file())
+                    self.assertFalse((run / "profile/skills").exists())
+                    if variant == "poteto":
+                        self.assertIn("Use the Poteto skill", prompt)
+                        self.assertNotIn("Use the Pancake skill", prompt)
+                        self.assertEqual(poteto_inventory(run / "bundle/skills"), expected)
+                    elif variant == "baseline":
+                        self.assertFalse((run / "bundle").exists())
+
+                with patch("behavioral.compare.tempfile.mkdtemp", return_value=str(run)), \
+                        patch("behavioral.compare.subprocess.Popen") as launch:
+                    process = launch.return_value
+                    process.communicate.side_effect = candidate
+                    process.returncode = 0
+                    process.poll.return_value = 0
+                    result = run_trial("identity-clean", variant, root / (variant + "-records"),
+                                       auth, None, None, 10, "repository-review", source,
+                                       expected if variant == "poteto" else None)
+                command = launch.call_args.args[0]
+                self.assertEqual(command[command.index("--sandbox") + 1], "read-only")
+                self.assertEqual(command[command.index("--disable") + 1], "multi_agent")
+                self.assertNotIn("--enable", command)
+                self.assertTrue(result["artifact"]["passed"])
+                self.assertTrue(result["preferences_unchanged"])
+                self.assertFalse(run.exists())
+            self.assertEqual(len(set(prompts)), 1)
+            (source / "helper/SKILL.md").write_text("Changed")
+            with self.assertRaisesRegex(ValueError, "changed since manifest"):
+                run_trial("identity-clean", "poteto", root / "changed", auth,
+                          None, None, 10, "repository-review", source, expected)
+            self.assertFalse((root / "changed").exists())
+
     def test_changed_poteto_input_is_rejected_before_preparation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
