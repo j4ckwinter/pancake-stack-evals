@@ -416,3 +416,17 @@ that label. Execution failures remain failures rather than successful cheap
 reviews. Report each arm's defect detection, false findings, execution status,
 and recorded usage separately. Two modules in one repository and two repetitions
 per arm do not establish general review performance.
+
+
+## Optional Poteto repository-review arm
+
+`--suite repository-review` now accepts `--poteto-source /path/to/codex/skills`.
+Supplying it selects baseline, Pancake and pinned Poteto arms for that CLI invocation.
+The existing two-arm invocation is unchanged. All repository-review arms remain
+read-only with delegation disabled. The runner verifies the selected Poteto bundle
+before launch, copies only the adapted skills, and rejects changed inputs.
+
+The [25 October comparison](execution-paths.md) instead used the existing `run_trial`
+API for an explicit eight-run Pancake/Poteto plan without a bare Codex arm. Its exact
+launch receipt and input identities are retained with that report. Neither mode
+measures unrestricted orchestration or validates an installed plugin.

@@ -1,0 +1,29 @@
+import sys,os,json
+from pathlib import Path
+sys.path.insert(0,'/Users/jackwinter/dev/pancake-stack-evals/tests')
+from behavioral.compare import run_trial,write_json,EVALUATOR
+from behavioral.design_compare import source_identity,trial_valid
+from behavioral.workflow_cases import CASES
+from behavioral.reading_paths import build_report
+from run_checks import identity
+roots={k:Path('/tmp/pancake-snapshot-'+v+'-oct25') for k,v in [('baseline','unit1'),('candidate','unit2')]}
+inputs={k:source_identity(v) for k,v in roots.items()}; evaluator=identity(EVALUATOR)
+out=Path('/tmp/pancake-unit2-oct25');out.mkdir(mode=0o700)
+plan=[('interface','baseline'),('interface','candidate'),('retry','candidate'),('retry','baseline')]
+write_json(out/'manifest.json',dict(sources=inputs,evaluator=evaluator,plan=plan,model_override=None,effort_override=None,timeout=300))
+results=[]
+for i,(case,variant) in enumerate(plan,1):
+ assert identity(EVALUATOR)==evaluator
+ assert all(source_identity(v)==inputs[k] for k,v in roots.items())
+ dest=out/f'run-{i:02d}'
+ print('Starting',case,variant,flush=True)
+ kw={'suite':'design'}
+ r=run_trial(case,'pancake',dest,Path.home()/'.codex/auth.json',None,None,300 if case=='retry' else 180,source=roots[variant],**kw)
+ r.update(variant=variant,inputs_unchanged=identity(EVALUATOR)==evaluator and all(source_identity(v)==inputs[k] for k,v in roots.items()),final_response_present=(dest/'final.txt').exists() and bool((dest/'final.txt').read_text().strip()))
+ r['execution_valid']=trial_valid(r)
+ write_json(dest/'result.json',r)
+ records=list((dest/'raw-sessions').rglob('*.jsonl'))
+ if records:write_json(dest/'reading.json',build_report(roots[variant],records))
+ results.append(r);write_json(out/'results.json',results)
+ print('Finished',case,variant,'valid',r['execution_valid'],'artifact',r['artifact'],flush=True)
+ if not r['execution_valid']:raise SystemExit('Invalid trial; retained records')
