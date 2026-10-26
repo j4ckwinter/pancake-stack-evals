@@ -1,0 +1,33 @@
+from pathlib import Path
+import hashlib
+import json
+import shutil
+import subprocess
+
+upstream = Path('/tmp/pancake-pstack-review-20261026')
+target = Path('/tmp/pancake-gaps-oct26/upstream-codex')
+port_source = Path('/Users/jackwinter/.codex/skills/poteto-mode/references/codex-port.md')
+revision = subprocess.check_output(['git', '-C', str(upstream), 'rev-parse', 'HEAD'], text=True).strip()
+package = upstream / 'pstack'
+version = json.loads((package / '.cursor-plugin/plugin.json').read_text())['version']
+shutil.copytree(package / 'skills', target)
+original = {str(p.relative_to(package / 'skills')): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((package / 'skills').rglob('*')) if p.is_file()}
+marker = '\nRead [Codex compatibility guidance](../poteto-mode/references/codex-port.md) before following this workflow. It governs platform mappings and takes precedence over upstream tool, model, path, and autonomy assumptions below.\n'
+for skill in target.glob('*/SKILL.md'):
+    body = skill.read_text()
+    end = body.index('\n---', 3) + 4 if body.startswith('---\n') else 0
+    skill.write_text(body[:end] + '\n' + marker + body[end:])
+port = port_source.read_text()
+start = port.index('This is a Codex adaptation')
+end = port.index('\n', start)
+port = port[:start] + f'This is a task-local Codex compatibility adaptation of cursor/plugins pstack {version} at commit {revision}, licensed MIT. Workflow content remains upstream content. The compatibility mappings below come from the installed 0.15.5 Codex adaptation and supersede incompatible host assumptions. This is not native Cursor verification.' + port[end:]
+refs = target / 'poteto-mode/references'
+(refs / 'codex-port.md').write_text(port)
+for agent in ('poteto-agent', 'comment-sicko'):
+    destination = refs / 'poteto-agent.md' if agent == 'poteto-agent' else target / 'no-comments/references/comment-sicko.md'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(package / 'agents' / f'{agent}.md', destination)
+shutil.copy2(package / 'LICENSE', refs / 'upstream-LICENSE.txt')
+origin = {'upstream_revision': revision, 'upstream_version': version, 'upstream_files': original, 'compatibility_source_sha256': hashlib.sha256(port_source.read_bytes()).hexdigest(), 'adaptation': 'Insert compatibility reference after each skill frontmatter; replace compatibility provenance paragraph; copy two agent templates into referenced locations; retain MIT license. No workflow body changes.', 'limits': 'Source guidance under Codex, not native Cursor. Inherited settings and user task restrictions override upstream defaults. Optional external integrations remain unavailable.'}
+(refs / 'origin.json').write_text(json.dumps(origin, indent=2) + '\n')
+print(json.dumps({'upstream':revision,'version':version,'skills':len(list(target.glob('*/SKILL.md')))}))

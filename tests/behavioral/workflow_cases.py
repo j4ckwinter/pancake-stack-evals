@@ -112,8 +112,14 @@ class Case:
     assessment: object = assess_case
     allow_reviewers: bool = False
     discovery: str = "explicit"
+    allow_implementers: bool = False
+    max_threads: int = 2
 
     def __post_init__(self):
+        if self.read_only and self.allow_implementers:
+            raise ValueError("read-only cases cannot allow implementers")
+        if type(self.max_threads) is not int or not 2 <= self.max_threads <= 4:
+            raise ValueError("max_threads must be an integer from 2 to 4")
         if self.discovery not in ("explicit", "catalog", "none"):
             raise ValueError("invalid skill discovery mode")
 

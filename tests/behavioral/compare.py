@@ -175,9 +175,10 @@ def assess_candidate(case, workspace, before, profile):
 
 
 def run_trial(case, variant, destination, auth, model, effort, timeout, suite="workflow", poteto_source=None, expected_poteto=None, source=None, design_entrypoint="design", case_adapter=None):
-    if case_adapter is not None and (suite != "workflow" or design_entrypoint != "design"
-                                     or poteto_source is not None or expected_poteto is not None):
+    if case_adapter is not None and (suite != "workflow" or design_entrypoint != "design"):
         raise ValueError("case adapter requires workflow suite")
+    if case_adapter is not None and variant == "poteto" and case_adapter.discovery != "explicit":
+        raise ValueError("Poteto adapters require explicit discovery")
     if design_entrypoint not in ("design", "parallel-work"):
         raise ValueError("invalid Design entrypoint")
     source = Path(source) if source is not None else ROOT
@@ -229,7 +230,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         else:
             before = prepare_review(case, workspace) if read_only_review else prepare(case, workspace)
         bundle = run / "bundle"
-        if (case_adapter.discovery != "none" if case_adapter is not None else
+        copied = {}
+        if (case_adapter.discovery != "none" and variant != "poteto" if case_adapter is not None else
                 variant == "pancake" or suite in ("review", "validation")):
             shutil.copytree(source / "skills", bundle / "skills")
             (bundle / "docs").mkdir()
@@ -248,12 +250,14 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         if suite == "review" and variant == "consolidated":
             check = bundle / "skills/check/SKILL.md"
             check.write_text(consolidate(check.read_text()))
-        if case_adapter is not None and case_adapter.discovery != "none":
+        if case_adapter is not None and case_adapter.discovery != "none" and variant != "poteto":
             copied = snapshot(bundle)
             expected = {f"skills/{k}": v for k, v in snapshot(source / "skills").items()}
             expected["docs/configuration.md"] = hashlib.sha256((source / "docs/configuration.md").read_bytes()).hexdigest()
             if copied != expected:
                 raise ValueError("copied bundle differs from source")
+        if case_adapter is not None and variant == "poteto":
+            copied = snapshot(bundle)
         request = (case_adapter.request if case_adapter is not None else
                    REQUEST if read_only_review else (CASES / case / "request.txt").read_text().strip())
         prompt = request + (
@@ -317,7 +321,8 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             discovery = case_adapter.discovery
             prompt = request
             if discovery == "explicit":
-                prompt += f"\nUse the workflow at {bundle / case_adapter.entrypoint} and applicable references. "
+                entrypoint = "skills/poteto-mode/SKILL.md" if variant == "poteto" else case_adapter.entrypoint
+                prompt += f"\nUse the workflow at {bundle / entrypoint} and applicable references. "
             elif discovery == "catalog":
                 prompt += "\nAvailable skills may be used when applicable to the task.\n"
                 prompt += "\n".join(f"- {item['name']}: {item['description']} (file: {item['path']})"
@@ -325,12 +330,17 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             prompt += (
                 ("\nWork only in this project. " if discovery == "none" else
                  ("\n" if discovery == "catalog" else "") + "Work only in this project and supplied bundle. ") +
-                ("Independent read-only reviewers are permitted when useful; they must inherit "
+                ("Scoped implementation delegates are permitted when useful; each must have exclusive write scope. "
+                 "All workers must inherit the current model and effort and must not delegate further. Do not commit, install "
+                 if case_adapter.allow_implementers else
+                 "Independent read-only reviewers are permitted when useful; they must inherit "
                  "the current model and effort and must not delegate further. Do not commit, install "
                  if case_adapter.allow_reviewers else "Do not delegate, commit, install ") +
                 "dependencies, use external services, read or change preferences, or inspect unrelated "
                 "projects or user history."
             )
+            if case_adapter.allow_reviewers or case_adapter.allow_implementers:
+                prompt += f" Keep the root plus active workers within {case_adapter.max_threads} total threads."
             if discovery != "explicit":
                 prompt += " Do not read global skill directories."
             if discovery != "none":
@@ -346,7 +356,9 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
         ]
         if suite == "design":
             command[command.index("agents.max_threads=2")] = "agents.max_threads=4"
-        if (case_adapter is not None and not case_adapter.allow_reviewers) or suite in ("repository-review", "historical-review", "context-recovery"):
+        if case_adapter is not None:
+            command[command.index("agents.max_threads=2")] = f"agents.max_threads={case_adapter.max_threads}"
+        if (case_adapter is not None and not (case_adapter.allow_reviewers or case_adapter.allow_implementers)) or suite in ("repository-review", "historical-review", "context-recovery"):
             index = command.index("--enable")
             command[index:index + 4] = ["--disable", "multi_agent"]
         write_json(destination / "invocation.json", command)
@@ -409,7 +421,7 @@ def run_trial(case, variant, destination, auth, model, effort, timeout, suite="w
             parents = [s for s in sessions if s["parent_id"] is None]
             result["sessions"] = [{k: s[k] for k in ("id", "parent_id", "agent_path", "selections", "completed", "usage")}
                                   for s in sessions]
-            result["completed_workers" if three_arm else "completed_reviewers"] = [s["id"] for p in parents for s in completed_workers(sessions, p["id"])]
+            result["completed_workers" if three_arm or (case_adapter is not None and case_adapter.allow_implementers) else "completed_reviewers"] = [s["id"] for p in parents for s in completed_workers(sessions, p["id"])]
             result["usage_all_sessions"] = {
                 field: sum(s["usage"].get(field, 0) for s in sessions if s["usage"])
                 for field in ("input_tokens", "cached_input_tokens", "output_tokens", "total_tokens")
