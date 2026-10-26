@@ -1,0 +1,13 @@
+diff --git a/skills/pancake/references/parallel-work.md b/skills/pancake/references/parallel-work.md
+index ce4dda3..4cd2723 100644
+--- a/skills/pancake/references/parallel-work.md
++++ b/skills/pancake/references/parallel-work.md
+@@ -40,6 +40,8 @@ Integrate authorized changes deliberately, preserving unrelated work. Use [the i
+ 
+ If scope or dependencies change, update ownership before continuing. Stop obsolete workers through actual host capabilities when necessary, then inspect their outputs before starting replacements. Do not assume interruption discarded their edits. Preserve unfinished work with [handoff](../../handoff/SKILL.md), including completed slices, outstanding results, isolated locations, and the next action.
+ 
++If a result arrives after reassignment or the target changes, compare its recorded base and assumptions with the current target before applying it. Reconcile useful changes without overwriting newer work, then verify against the current contract. Checks on the worker's old snapshot are historical evidence, not verification of the integrated result.
++
+ Report the result, actual review independence, selection rationale or coverage, verification, and gaps. Clean up only owned temporary resources when useful and authorized, preserving evidence and valuable unmerged work. Do not delete worktrees, publish branches, or commit merely to complete an orchestration checklist.
+ 
+ Before applying delegated model or effort choices, read [active host guidance](host-runtime.md). Independent implementation review follows [change review](change-review.md); an implementation worker cannot replace its independent reviewer.

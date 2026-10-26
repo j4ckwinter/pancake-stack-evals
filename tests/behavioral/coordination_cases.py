@@ -1,4 +1,5 @@
 """Integration fixtures and private artifact probes for bounded implementation work."""
+import hashlib
 import json
 import os
 import secrets
@@ -163,7 +164,50 @@ Use only stdlib. Change only recipe.py and recipe.md; preserve the product, READ
 Do this bounded task directly without delegation.
 '''
 
+
+LATE_BASE = '''import json
+import sys
+
+def summarize(rows):
+    return {"total": sum(abs(value) for value in rows)}
+
+if __name__ == "__main__":
+    print(json.dumps(summarize(json.load(sys.stdin))))
+'''
+LATE_ARTIFACT = LATE_BASE.replace('sum(abs(value) for value in rows)', 'sum(rows)')
+LATE_CURRENT = LATE_BASE.replace('{"total": sum(abs(value) for value in rows)}',
+                               '{"version": 2, "amount": sum(abs(value) for value in rows if value is not None)}')
+LATE_REQUEST = '''A completed implementation result is available under returned/. Inspect it and the current
+handoff, integrate the useful fix into ledger.py, and verify the current behavior through its
+library and CLI interfaces. Use Pancake's parallel-work reference for this integration.
+Change only ledger.py. Preserve all returned artifacts, handoff,
+and data. Work directly without delegation. This is a synthetic returned-artifact exercise;
+no worker is currently running and no real timing or concurrency claim is being tested.
+'''
+LATE_FILES = {}
+for name, current, contract in (
+        ('late-current', LATE_BASE, 'summarize(rows) returns exactly {"total": integer sum}. Rows are integers.'),
+        ('late-stale', LATE_CURRENT, 'summarize(rows) returns exactly {"version": 2, "amount": integer sum}. Ignore None entries.')):
+    LATE_FILES[name] = {
+        'ledger.py': current,
+        'returned/base.py': LATE_BASE,
+        'returned/ledger.py': LATE_ARTIFACT,
+        'returned/report.json': json.dumps({
+            'synthetic': True, 'target': 'ledger.py', 'status': 'completed',
+            'claimed_fix': 'Preserve signed amounts instead of converting negative adjustments to positive.',
+            'base_sha256': hashlib.sha256(LATE_BASE.encode()).hexdigest(),
+            'artifact_sha256': hashlib.sha256(LATE_ARTIFACT.encode()).hexdigest(),
+        }, indent=2) + '\n',
+        'handoff.json': json.dumps({
+            'owner': 'current integrator', 'target': 'ledger.py', 'contract': contract,
+            'cli': 'python3 -B ledger.py reads a JSON list from stdin and prints the same summary object.',
+            'behavior': 'Preserve signed amounts, zero and empty input. Do not change the current schema.',
+        }, indent=2) + '\n',
+        'data/archive.json': '[3, -7, 0]\n',
+    }
+
 CASE_FILES = {
+    **LATE_FILES,
     'fresh-recipe': RECIPE_FILES,
     'integrated-import': FILES,
     'repeated-migration': MIGRATION_FILES,
@@ -171,6 +215,8 @@ CASE_FILES = {
                      'data/archive.json': '[1, 2, 3]\n'},
 }
 EDITABLE_PATHS = {
+    'late-current': {'ledger.py'},
+    'late-stale': {'ledger.py'},
     'fresh-recipe': {'recipe.py', 'recipe.md'},
     'integrated-import': {'json_input.py', 'csv_input.py', 'report.py'},
     'repeated-migration': {name + '.py' for name in (*EXPORTERS, 'combine')},
@@ -206,6 +252,25 @@ def probe(case, workspace):
         script = 'from app import total; assert total([])==0; assert total([1,None,-3,0])==-2; assert total([None])==0'
         result = subprocess.run([sys.executable, '-B', '-c', script], cwd=workspace, capture_output=True, text=True, timeout=5)
         assert result.returncode == 0, result.stderr
+        return
+    if case in LATE_FILES:
+        rows = [[], [0], [-7], [3, -7, 0, 2]]
+        if case == 'late-stale':
+            rows += [[None], [3, None, -7, 0]]
+        for values in rows:
+            amount = sum(value for value in values if value is not None)
+            expected = {'version': 2, 'amount': amount} if case == 'late-stale' else {'total': amount}
+            script = (f'from ledger import summarize; actual=summarize({values!r}); '
+                      f'assert actual == {expected!r}; assert all(type(value) is int for value in actual.values())')
+            result = subprocess.run([sys.executable, '-B', '-c', script], cwd=workspace,
+                                    text=True, capture_output=True, timeout=5)
+            assert result.returncode == 0, result.stderr
+            result = subprocess.run([sys.executable, '-B', 'ledger.py'], input=json.dumps(values),
+                                    cwd=workspace, text=True, capture_output=True, timeout=5)
+            assert result.returncode == 0, result.stderr
+            actual = json.loads(result.stdout)
+            assert actual == expected, result.stdout
+            assert all(type(value) is int for value in actual.values())
         return
     if case == 'repeated-migration':
         script = """import importlib
@@ -373,6 +438,8 @@ def assess_case(case, workspace, before, profile):
 
 
 CASES = {
+    **{name: Case(LATE_REQUEST, 'skills/pancake/SKILL.md', False, prepare_case, assess_case)
+       for name in LATE_FILES},
     'fresh-recipe': Case(RECIPE_REQUEST, 'skills/pancake/SKILL.md', False, prepare_case, assess_case),
     'repeated-migration': Case(MIGRATION_REQUEST, 'skills/pancake/SKILL.md', False,
                                prepare_case, assess_case, allow_implementers=True, max_threads=4),
@@ -388,6 +455,11 @@ CASES = {
 
 
 def judgment(case):
+    if case in LATE_FILES:
+        return dict(case=case, manual_checks=['inspect returned base, target, artifact and current handoff',
+                    'recognize compatibility with current ownership and contract',
+                    'integrate useful fix and verify library plus CLI'],
+                    warning='Synthetic returned artifacts test integration decisions, not live worker timing.')
     if case == 'fresh-recipe':
         return dict(case=case, manual_checks=['documentation commands match executed interface',
                     'setup and demo assumptions explicit', 'retained evidence explained', 'cleanup instructions complete'],

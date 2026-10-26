@@ -54,3 +54,22 @@ Independent assessment confirmed exact documented command execution in the uncha
 The [candidate patch](evidence/coordination-recipe-candidate.patch) and [unit record](evidence/coordination-unit3-2026-10-26.json) retain the comparison, oracle correction, independent assessments, and input hashes. Raw records remain private under `/tmp/pancake-gaps-oct26/unit3`. Portable fixture controls use trusted literal programs; live artifacts always execute in a disposable writable sandbox. The real sandbox smoke is explicitly opt-in, so Python-only CI does not require an installed Codex CLI.
 
 All 193 package and evaluator checks completed successfully, with the opt-in sandbox smoke skipped in the standard run. The smoke passed separately. Both inputs remained unchanged.
+
+## Returned worker artifacts
+
+The late-result paragraph was rejected. Both unchanged and candidate guidance preserved the current schema and `None` handling when integrating a fix based on an older target. Both accepted the compatible fix in the matching-base control. All four artifact probes passed, including signed values, empty input, exact output keys and integer types, library/CLI agreement, and protected artifacts.
+
+| Task | Guidance | Artifact probes | Seconds |
+|---|---|---|---:|
+| Stale result | Unchanged | Pass | 50.644 |
+| Stale result | Late-result paragraph | Pass | 51.679 |
+| Matching result | Late-result paragraph | Pass | 70.853 |
+| Matching result | Unchanged | Pass | 78.194 |
+
+Both arms were explicitly asked to read the parallel-work reference. This is a guided synthetic integration comparison, not a test of automatic discovery. The fixtures supply immutable base and returned files, their hashes, and a current handoff contract. Positive controls accept the matching artifact and a reconciled stale artifact. Negative controls reject the unchanged bug, wholesale stale replacement, wrong numeric types, and protected-file edits.
+
+The [candidate patch](evidence/coordination-late-candidate.patch) and [unit record](evidence/coordination-unit4-2026-10-26.json) retain source identities, outcomes, and independent process assessment. Raw records remain private under `/tmp/pancake-gaps-oct26/unit4`. No real worker was interrupted or raced; cancellation delivery, live reassignment, and timing remain untested. These single observations do not establish general effectiveness or latency differences.
+
+The final package run before these trials completed 194 tests successfully with one opt-in sandbox smoke skipped. Both inputs remained unchanged. No package checks overlapped this batch.
+
+Independent assessment confirmed reference reads, current and returned code inspection, selective integration, and executed library/CLI checks in all four runs. Both matching controls accepted the returned implementation.

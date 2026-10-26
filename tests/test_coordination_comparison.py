@@ -206,6 +206,33 @@ class CoordinationTests(unittest.TestCase):
             self.assertIn('sandbox_workspace_write.exclude_slash_tmp=true', command)
             self.assertNotEqual(Path(command[command.index('--cd') + 1]), workspace)
 
+    def test_returned_artifact_current_and_stale_controls(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            for case in cases.LATE_FILES:
+                with self.subTest(case=case):
+                    workspace = Path(temporary) / case
+                    before = cases.prepare_case(case, workspace)
+                    report = json.loads((workspace / 'returned/report.json').read_text())
+                    self.assertTrue(report['synthetic'])
+                    self.assertEqual(report['base_sha256'], cases.hashlib.sha256((workspace / 'returned/base.py').read_bytes()).hexdigest())
+                    self.assertEqual(report['artifact_sha256'], cases.hashlib.sha256((workspace / 'returned/ledger.py').read_bytes()).hexdigest())
+                    with self.assertRaises(AssertionError):
+                        cases.probe(case, workspace)
+                    (workspace / 'ledger.py').write_text(cases.LATE_ARTIFACT)
+                    if case == 'late-stale':
+                        with self.assertRaises(AssertionError):
+                            cases.probe(case, workspace)
+                        (workspace / 'ledger.py').write_text(cases.LATE_CURRENT.replace('abs(value)', 'value'))
+                    cases.probe(case, workspace)
+                    self.assertTrue(cases.scope_preserved(case, workspace, before))
+                    correct = (workspace / 'ledger.py').read_text()
+                    (workspace / 'ledger.py').write_text(correct.replace('sum(', 'float(sum(').replace(')}', '))}'))
+                    with self.assertRaises(AssertionError):
+                        cases.probe(case, workspace)
+                    (workspace / 'ledger.py').write_text(correct)
+                    (workspace / 'returned/report.json').write_text('{}')
+                    self.assertFalse(cases.scope_preserved(case, workspace, before))
+
     def test_repeated_migration_artifact_controls(self):
         with tempfile.TemporaryDirectory() as temporary:
             workspace = Path(temporary) / 'project'
