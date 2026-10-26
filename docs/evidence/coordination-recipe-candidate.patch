@@ -1,0 +1,21 @@
+diff --git a/skills/verify/references/recipes.md b/skills/verify/references/recipes.md
+index 524c551..b587a8b 100644
+--- a/skills/verify/references/recipes.md
++++ b/skills/verify/references/recipes.md
+@@ -14,6 +14,7 @@ Include only what another agent or colleague needs to execute it cold.
+ 
+ - Prerequisites and scope. Name the environment, relevant tool versions, required test data, and behavior covered. Reference secret storage without recording secret values.
+ - Launch and readiness. Give inspected commands and an observable readiness check. For a short-lived CLI or library check, describe invocation rather than inventing a service lifecycle.
++- Fresh state. Include required migrations, seeds, and account or workspace setup. Check readiness for the action being verified; a healthy process may still lack usable data. When the recipe promises a cold start, replay it from empty application state rather than relying on the author's prepared session.
+ - Drive and assert. Name the user action or supported call, concrete inputs, and expected observable result. Include consequential failure cases. Use stable interface handles where available.
+ - Evidence. Specify what connects the action to the outcome and where artifacts survive cleanup. Distinguish test isolation from production integrations deliberately left unexercised.
+ - Cleanup. Track and remove only processes and scratch state created by the run. Preserve unrelated work and retained evidence, including on a failed attempt.
+@@ -24,6 +25,8 @@ Use exact commands only when verified or clearly marked as unverified. Document
+ 
+ Execute the recipe through the real relevant interface in an isolated environment when permitted. Verify at least the primary documented path and its cleanup. State the revision or application state exercised. Inspect retained evidence after teardown. Broader coverage claims require exercising the corresponding cases; one successful path does not prove all features.
+ 
++When a stand-in skips setup performed by the target environment, name the skipped prerequisites and keep that target path unverified until exercised. A successful stand-in run proves only the path it actually covers.
++
+ If a prerequisite prevents execution, deliver the recipe as a draft with the specific unverified steps. Do not change product code or broaden permissions to make the recipe pass. Distinguish incorrect recipe instructions from a product failure and an environment limitation. Repair recipe errors within requested scope and rerun affected steps. Report product failures rather than rewriting the expected outcome to match them.
+ 
+ When using an existing recipe, check relevant commands and assumptions against the current project before relying on it. Update a saved recipe only when requested or already authorized. Report changed behavior and verification gaps instead of silently maintaining documentation outside the task. Return the recipe location, covered paths, actual results, and remaining limitations. Saving a recipe does not authorize committing or publishing it.

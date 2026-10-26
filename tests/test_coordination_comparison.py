@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 from dataclasses import replace
 from pathlib import Path
 import subprocess
@@ -68,6 +69,45 @@ except (ValueError, KeyError, TypeError, csv_input.csv.Error) as error:
 '''
 
 
+RECIPE_REPAIR = '''import argparse
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('action')
+parser.add_argument('--state', type=Path, required=True)
+parser.add_argument('--evidence', type=Path, required=True)
+parser.add_argument('--key', required=True)
+parser.add_argument('--amount', type=int)
+args = parser.parse_args()
+marker = args.state / ('.recipe-' + args.key + '.json')
+def cli(*parts):
+    return subprocess.check_output([sys.executable, '-B', 'ledger.py', '--state', str(args.state), *parts], text=True)
+if args.action == 'run':
+    created = not args.state.exists()
+    cli('init')
+    cli('seed')
+    marker.write_text(json.dumps({'created': created}))
+    cli('post', args.key, str(args.amount))
+    record = json.loads(cli('read', args.key))
+    assert record == {'key': args.key, 'account': 'demo', 'amount': args.amount}
+    args.evidence.write_text(json.dumps(record))
+else:
+    created = json.loads(marker.read_text())['created']
+    if created:
+        shutil.rmtree(args.state)
+    else:
+        path = args.state / 'ledger.json'
+        data = json.loads(path.read_text())
+        del data['entries'][args.key]
+        path.write_text(json.dumps(data))
+        marker.unlink()
+'''
+
+
 class CoordinationTests(unittest.TestCase):
     def test_case_permissions_and_compatibility(self):
         old = Case('request', 'entry', False)
@@ -100,6 +140,71 @@ class CoordinationTests(unittest.TestCase):
                 (workspace / name).write_text(repairs[name])
             (workspace / 'data/archive.json').write_text('[]')
             self.assertFalse(cases.scope_preserved('integrated-import', workspace, before))
+
+    def test_trusted_recipe_controls_reject_false_success(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            mutations = [
+                RECIPE_REPAIR,
+                RECIPE_REPAIR.replace("    cli('init')\n    cli('seed')\n", ''),
+                RECIPE_REPAIR.replace("    cli('post', args.key, str(args.amount))\n    record = json.loads(cli('read', args.key))", "    record = {'key': args.key, 'account': 'demo', 'amount': args.amount}"),
+                RECIPE_REPAIR.replace('shutil.rmtree(args.state)', 'shutil.rmtree(args.state.parent)'),
+                'try:\n    exec(' + repr(RECIPE_REPAIR) + ')\nexcept Exception:\n    pass\n',
+            ]
+            for index, recipe in enumerate(mutations):
+                with self.subTest(index=index):
+                    workspace = root / str(index)
+                    cases.prepare_case('fresh-recipe', workspace)
+                    (workspace / 'recipe.py').write_text(recipe)
+                    if index == 0:
+                        cases.probe_recipe(workspace)
+                    else:
+                        with self.assertRaises((AssertionError, OSError)):
+                            cases.probe_recipe(workspace)
+
+    def test_recipe_may_refuse_to_overwrite_retained_evidence(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary) / 'project'
+            cases.prepare_case('fresh-recipe', workspace)
+            recipe = RECIPE_REPAIR.replace("if args.action == 'run':",
+                                          "if args.action == 'run':\n    assert not args.evidence.exists()")
+            (workspace / 'recipe.py').write_text(recipe)
+            cases.probe_recipe(workspace)
+            self.assertTrue((workspace / 'fresh-receipt.json').is_file())
+            self.assertTrue((workspace / 'preexisting-receipt.json').is_file())
+
+    @unittest.skipUnless(os.environ.get('PANCAKE_SANDBOX_SMOKE') == '1' and shutil.which('codex'),
+                         'Opt in with PANCAKE_SANDBOX_SMOKE=1 on a supported Codex sandbox host')
+    def test_recipe_sandbox_smoke(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            workspace = root / 'project'
+            before = cases.prepare_case('fresh-recipe', workspace)
+            profile = root / 'profile'
+            profile.mkdir()
+            (workspace / 'recipe.py').write_text(RECIPE_REPAIR)
+            (workspace / 'recipe.md').write_text('Run and cleanup commands use recipe.py.')
+            result = cases.assess_case('fresh-recipe', workspace, before, profile)
+            self.assertTrue(result['passed'], result)
+            self.assertTrue(result['scope_preserved'])
+            self.assertEqual(set(result['retained_receipts']), {'fresh', 'preexisting'})
+            self.assertEqual((workspace / 'demo/ledger.json').read_text(), cases.RECIPE_FILES['demo/ledger.json'])
+
+    def test_generated_recipe_requires_isolated_sandbox(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            workspace = root / 'project'
+            before = cases.prepare_case('fresh-recipe', workspace)
+            (workspace / 'recipe.py').write_text(RECIPE_REPAIR)
+            (workspace / 'recipe.md').write_text('Run and cleanup commands use recipe.py.')
+            with patch.object(cases.subprocess, 'run', return_value=subprocess.CompletedProcess([], 1, '', 'failure')) as run:
+                result = cases.assess_case('fresh-recipe', workspace, before, root / 'profile')
+            self.assertFalse(result['passed'])
+            command = run.call_args.args[0]
+            self.assertEqual(command[:4], ['codex', 'sandbox', '--permission-profile', ':workspace'])
+            self.assertIn('sandbox_workspace_write.exclude_tmpdir_env_var=true', command)
+            self.assertIn('sandbox_workspace_write.exclude_slash_tmp=true', command)
+            self.assertNotEqual(Path(command[command.index('--cd') + 1]), workspace)
 
     def test_repeated_migration_artifact_controls(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -185,7 +290,7 @@ class CoordinationTests(unittest.TestCase):
                 workspace = Path(temporary) / case
                 before = cases.prepare_case(case, workspace)
                 (workspace / 'test_extra.py').write_text('pass\n')
-                self.assertEqual(cases.scope_preserved(case, workspace, before), case != 'direct-total')
+                self.assertEqual(cases.scope_preserved(case, workspace, before), case in ('integrated-import', 'repeated-migration'))
 
     def test_poteto_adapter_preserves_inputs_and_permissions(self):
         with tempfile.TemporaryDirectory() as temporary:

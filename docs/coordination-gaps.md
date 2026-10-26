@@ -37,3 +37,20 @@ The conditional pilot paragraph was rejected. Both migration arms launched the t
 The migration covers four provider-specific archived formats, flat legacy records, new amount records, zero-valued precedence, keyword API compatibility, exact integer types, and the composed CLI. The direct controls prohibit delegation and both stayed direct. Independent review corrected numeric-equality false passes and missing explicit empty-list coverage before the live trials. All 189 package and evaluator tests then passed with unchanged inputs.
 
 Only the pilot paragraph differs between the frozen skill trees. This four-module, fully specified migration may fall under the candidate's small or established transformation exception. Its absence of observed separation does not establish that representative pilots are generally ineffective. It supplies no behavioral reason to retain the addition here. The [candidate patch](evidence/coordination-pilot-candidate.patch) and [unit record](evidence/coordination-unit2-2026-10-26.json) preserve the experiment and independent assessment. Raw records remain private under `/tmp/pancake-gaps-oct26/unit2`. No subjects were rerun to obtain a preferred outcome.
+
+## Fresh-state verification recipe
+
+The proposed fresh-state and stand-in paragraphs were rejected. Both guidance arms read the existing recipe reference and produced runnable recipes with initialization, seeding, real CLI posting and read-back, retained evidence, and ownership-aware cleanup. Corrected sandbox replay passed for both saved artifacts from empty and preexisting state. Both also returned failure when posting or reading failed while health remained green. This supplies coverage for existing guidance rather than evidence that the addition is needed.
+
+| Guidance | Corrected artifact replay | Seconds |
+|---|---|---:|
+| Unchanged | Pass | 118.638 |
+| Fresh-state paragraph | Pass | 138.902 |
+
+The original evaluator incorrectly reused one receipt path across two independent state scenarios while requiring the first receipt to survive cleanup. Both recipes reasonably refused to overwrite it. The user contract did not require overwriting evidence. Independent assessment identified the oracle error. The corrected fixture uses separate receipts and adds a positive control that refuses occupied evidence paths. The original model runs and failed assessment records remain unchanged; only the saved artifacts were replayed under the corrected oracle. The unit record retains both outcomes and both evaluator identities.
+
+Independent assessment confirmed exact documented command execution in the unchanged run. The candidate executed the same run/cleanup interface through temporary-path subprocess checks; its literal documentation block was not separately replayed. Documentation examples match the working interfaces in both artifacts. The executable replay does not establish arbitrary shell-prose reproducibility. Stand-in setup behavior was not exercised, so no benefit from that clause is claimed.
+
+The [candidate patch](evidence/coordination-recipe-candidate.patch) and [unit record](evidence/coordination-unit3-2026-10-26.json) retain the comparison, oracle correction, independent assessments, and input hashes. Raw records remain private under `/tmp/pancake-gaps-oct26/unit3`. Portable fixture controls use trusted literal programs; live artifacts always execute in a disposable writable sandbox. The real sandbox smoke is explicitly opt-in, so Python-only CI does not require an installed Codex CLI.
+
+All 193 package and evaluator checks completed successfully, with the opt-in sandbox smoke skipped in the standard run. The smoke passed separately. Both inputs remained unchanged.

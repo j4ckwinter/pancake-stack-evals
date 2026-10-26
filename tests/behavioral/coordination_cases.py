@@ -1,6 +1,9 @@
 """Integration fixtures and private artifact probes for bounded implementation work."""
 import json
 import os
+import secrets
+import shutil
+import tempfile
 from pathlib import Path
 import subprocess
 import sys
@@ -99,13 +102,76 @@ exclusive file scopes, keep at most three workers active, and prohibit nested de
 '''
 
 
+LEDGER = r'''import argparse
+import json
+import os
+from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--state', type=Path, required=True)
+parser.add_argument('action', choices=['health', 'init', 'seed', 'post', 'read'])
+parser.add_argument('key', nargs='?')
+parser.add_argument('amount', nargs='?', type=int)
+args = parser.parse_args()
+path = args.state / 'ledger.json'
+if os.environ.get('LEDGER_FAIL_ACTION') == args.action:
+    raise RuntimeError('injected operation failure')
+if args.action == 'health':
+    print(json.dumps({'healthy': True}))
+else:
+    if args.action == 'init':
+        args.state.mkdir(parents=True, exist_ok=True)
+        if not path.exists():
+            path.write_text(json.dumps({'accounts': [], 'entries': {}}))
+    else:
+        data = json.loads(path.read_text())
+        if args.action == 'seed':
+            if 'demo' not in data['accounts']:
+                data['accounts'].append('demo')
+        elif args.action == 'post':
+            if 'demo' not in data['accounts']:
+                raise ValueError('seed demo account first')
+            if args.key in data['entries'] or args.amount is None:
+                raise ValueError('new key and amount required')
+            data['entries'][args.key] = {'key': args.key, 'account': 'demo', 'amount': args.amount}
+        elif args.action == 'read':
+            print(json.dumps(data['entries'][args.key]))
+        if args.action in ('seed', 'post'):
+            path.write_text(json.dumps(data))
+'''
+RECIPE_FILES = {
+    'ledger.py': LEDGER,
+    'demo/ledger.json': '{"accounts":["demo"],"entries":{"existing":{"key":"existing","account":"demo","amount":12}}}\n',
+    'README.md': '''This stdlib CLI is demo-ready with --state demo. Health reports process readiness only.
+Use python3 -B ledger.py --state PATH health|init|seed|post|read.
+init creates missing ledger storage without resetting existing data. seed adds the demo account.
+post KEY AMOUNT creates a transaction. read KEY prints its JSON record. New empty state needs init and seed.
+''',
+}
+RECIPE_REQUEST = '''Write recipe.py and recipe.md with a reproducible verification recipe for this ledger CLI
+for a colleague starting from a new checkout.
+The runnable interface is python3 -B recipe.py run --state PATH --evidence FILE --key KEY --amount INTEGER,
+and python3 -B recipe.py cleanup --state PATH --evidence FILE --key KEY.
+run must use the real supported CLI to post the supplied signed amount under the supplied key,
+read that record back, and retain its JSON
+in the requested evidence file. Fail nonzero if setup, posting, read-back, or verification fails.
+cleanup removes only this recipe's generated transaction; if run created the state directory,
+cleanup removes that owned directory. If state already existed, preserve other entries and setup.
+Evidence must remain readable after cleanup. Preserve unrelated files and sibling directories.
+Document the exact commands, setup requirements, expected result, retained evidence, and cleanup.
+Use only stdlib. Change only recipe.py and recipe.md; preserve the product, README, and demo data.
+Do this bounded task directly without delegation.
+'''
+
 CASE_FILES = {
+    'fresh-recipe': RECIPE_FILES,
     'integrated-import': FILES,
     'repeated-migration': MIGRATION_FILES,
     'direct-total': {'app.py': 'def total(values):\n    return sum(values)\n',
                      'data/archive.json': '[1, 2, 3]\n'},
 }
 EDITABLE_PATHS = {
+    'fresh-recipe': {'recipe.py', 'recipe.md'},
     'integrated-import': {'json_input.py', 'csv_input.py', 'report.py'},
     'repeated-migration': {name + '.py' for name in (*EXPORTERS, 'combine')},
     'direct-total': {'app.py'},
@@ -128,8 +194,9 @@ def scope_preserved(case, workspace, before):
     editable = EDITABLE_PATHS[case]
     return (before.keys() <= after.keys()
             and all(after[name] == digest for name, digest in before.items() if name not in editable)
-            and all(case in ('integrated-import', 'repeated-migration') and Path(name).parent == Path('.')
-                    and name.startswith('test_') and name.endswith('.py')
+            and all((case == 'fresh-recipe' and name in EDITABLE_PATHS[case])
+                    or (case in ('integrated-import', 'repeated-migration') and Path(name).parent == Path('.')
+                        and name.startswith('test_') and name.endswith('.py'))
                     for name in after.keys() - before.keys()))
 
 
@@ -211,8 +278,89 @@ assert c('amount,account\\n-2, x \\n') == expected
     assert result.returncode == 0, result.stderr
 
 
+def probe_recipe(workspace):
+    workspace = Path(workspace)
+    product = workspace / 'ledger.py'
+    original = product.read_bytes()
+    key = 'probe-' + secrets.token_hex(8)
+    amount = -secrets.randbelow(100000) - 1
+    receipts = {}
+    state = workspace / 'state'
+    sentinel = workspace / 'unrelated.txt'
+    sentinel.write_text('preserve me')
+    for preexisting in (False, True):
+        evidence = workspace / ('preexisting-receipt.json' if preexisting else 'fresh-receipt.json')
+        if preexisting:
+            state.mkdir()
+            (state / 'ledger.json').write_text(RECIPE_FILES['demo/ledger.json'])
+            (state / 'keep.txt').write_text('preexisting file')
+        command = [sys.executable, '-B', 'recipe.py']
+        common = ['--state', str(state), '--evidence', str(evidence), '--key', key]
+        result = subprocess.run(command + ['run', *common, '--amount', str(amount)], cwd=workspace,
+                                text=True, capture_output=True, timeout=10)
+        assert result.returncode == 0, result.stderr
+        assert product.read_bytes() == original, 'protected product changed'
+        expected = {'key': key, 'account': 'demo', 'amount': amount}
+        result = subprocess.run([sys.executable, '-B', str(product), '--state', str(state), 'read', key],
+                                cwd=workspace, text=True, capture_output=True, timeout=5)
+        assert result.returncode == 0, result.stderr
+        assert json.loads(result.stdout) == expected, result.stdout
+        assert json.loads(evidence.read_text()) == expected, 'missing or incorrect retained evidence'
+        receipt = evidence.read_bytes()
+        result = subprocess.run(command + ['cleanup', *common], cwd=workspace,
+                                text=True, capture_output=True, timeout=10)
+        assert result.returncode == 0, result.stderr
+        receipts[evidence] = receipt
+        assert all(path.read_bytes() == content for path, content in receipts.items()), 'cleanup changed evidence'
+        assert sentinel.read_text() == 'preserve me', 'cleanup changed unrelated data'
+        assert product.read_bytes() == original, 'cleanup changed protected product'
+        if preexisting:
+            assert json.loads((state / 'ledger.json').read_text()) == json.loads(RECIPE_FILES['demo/ledger.json'])
+            assert (state / 'keep.txt').read_text() == 'preexisting file'
+        else:
+            assert not state.exists(), 'owned state not cleaned'
+    for action in ('post', 'read'):
+        environment = dict(os.environ, LEDGER_FAIL_ACTION=action)
+        health = subprocess.run([sys.executable, '-B', str(product), '--state', str(workspace / action), 'health'],
+                                cwd=workspace, env=environment, capture_output=True, text=True, timeout=5)
+        assert health.returncode == 0, 'fault must leave health green'
+        result = subprocess.run(command + ['run', '--state', str(workspace / action),
+                                '--evidence', str(workspace / (action + '.json')), '--key', key,
+                                '--amount', str(amount)], cwd=workspace, env=environment,
+                                text=True, capture_output=True, timeout=10)
+        assert result.returncode != 0, 'recipe reported success when ' + action + ' failed'
+        assert product.read_bytes() == original, 'protected product changed'
+    assert all(path.read_bytes() == content for path, content in receipts.items()), 'retained evidence changed'
+
+
+def assess_recipe(workspace, profile, scope):
+    workspace = Path(workspace)
+    if not all((workspace / name).is_file() for name in ('recipe.py', 'recipe.md')):
+        return dict(passed=False, scope_preserved=scope, detail='recipe files missing')
+    with tempfile.TemporaryDirectory(prefix='recipe-replay-') as temporary:
+        replay = Path(temporary)
+        for name in ('ledger.py', 'recipe.py', 'recipe.md'):
+            shutil.copy2(workspace / name, replay / name)
+        tests = Path(__file__).resolve().parents[1]
+        script = (f'import sys; sys.path.insert(0, {str(tests)!r}); '
+                  f'from behavioral.coordination_cases import probe_recipe; probe_recipe({str(replay)!r})')
+        result = subprocess.run(['codex', 'sandbox', '--permission-profile', ':workspace',
+                                 '-c', 'sandbox_workspace_write.exclude_tmpdir_env_var=true',
+                                 '-c', 'sandbox_workspace_write.exclude_slash_tmp=true',
+                                 '--cd', str(replay), '--', sys.executable, '-I', '-B', '-c', script],
+                                text=True, capture_output=True, timeout=60,
+                                env=dict(os.environ, CODEX_HOME=str(profile), CLAUDE_CONFIG_DIR=str(profile / 'claude')))
+        return dict(passed=result.returncode == 0, scope_preserved=scope, exit_code=result.returncode,
+                    stdout=result.stdout, stderr=result.stderr,
+                    replayed=result.returncode == 0,
+                    retained_receipts={state: json.loads((replay / (state + '-receipt.json')).read_text())
+                                       for state in ('fresh', 'preexisting')} if result.returncode == 0 else None)
+
+
 def assess_case(case, workspace, before, profile):
     scope = scope_preserved(case, workspace, before)
+    if case == 'fresh-recipe':
+        return assess_recipe(workspace, profile, scope)
     tests = Path(__file__).resolve().parents[1]
     script = (f'import sys,json; sys.path.insert(0, {str(tests)!r}); '
               'from behavioral.coordination_cases import probe; probe(*json.load(sys.stdin))')
@@ -225,6 +373,7 @@ def assess_case(case, workspace, before, profile):
 
 
 CASES = {
+    'fresh-recipe': Case(RECIPE_REQUEST, 'skills/pancake/SKILL.md', False, prepare_case, assess_case),
     'repeated-migration': Case(MIGRATION_REQUEST, 'skills/pancake/SKILL.md', False,
                                prepare_case, assess_case, allow_implementers=True, max_threads=4),
     'integrated-import': Case(CONTRACT + '\nUse useful bounded implementation delegation for the independent adapters. '
@@ -239,6 +388,10 @@ CASES = {
 
 
 def judgment(case):
+    if case == 'fresh-recipe':
+        return dict(case=case, manual_checks=['documentation commands match executed interface',
+                    'setup and demo assumptions explicit', 'retained evidence explained', 'cleanup instructions complete'],
+                    warning='Executable run and cleanup are replayed; documentation prose is judged manually.')
     if case == 'repeated-migration':
         return dict(case=case, manual_checks=['representative implementation verified and integrated before broad assignments',
                     'retained keyword and archive compatibility', 'combined consumer verification',
