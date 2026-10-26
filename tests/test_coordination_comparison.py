@@ -101,13 +101,91 @@ class CoordinationTests(unittest.TestCase):
             (workspace / 'data/archive.json').write_text('[]')
             self.assertFalse(cases.scope_preserved('integrated-import', workspace, before))
 
+    def test_repeated_migration_artifact_controls(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary) / 'project'
+            before = cases.prepare_case('repeated-migration', workspace)
+            with self.assertRaises(AssertionError):
+                cases.probe('repeated-migration', workspace)
+            repaired = {}
+            for name in cases.EXPORTERS:
+                filename = name + '.py'
+                original = cases.MIGRATION_FILES[filename]
+                repaired[filename] = original.replace('"total": total', '"amount": total').replace(
+                    'def read(record):', 'def read(record):\n    if "amount" in record:\n        return record["amount"]')
+            repaired['combine.py'] = cases.COMBINE.replace('"total": sum(row["total"]', '"amount": sum(row["amount"]')
+            for name, content in repaired.items():
+                (workspace / name).write_text(content)
+            cases.probe('repeated-migration', workspace)
+            self.assertTrue(cases.scope_preserved('repeated-migration', workspace, before))
+            mutants = [
+                ('sales.py', repaired['sales.py'].replace('emit(total)', 'emit(amount)').replace('"amount": total', '"amount": amount')),
+                ('refunds.py', repaired['refunds.py'].replace('record["refund"]["total"]', 'record["total"]')),
+                ('fees.py', cases.MIGRATION_FILES['fees.py']),
+                ('combine.py', cases.COMBINE),
+                ('sales.py', repaired['sales.py'].replace('"amount": total', '"amount": float(total)')),
+                ('sales.py', repaired['sales.py'].replace('return record["amount"]', 'return float(record["amount"])')),
+                ('sales.py', repaired['sales.py'].replace('"amount": total', '"amount": total or False')),
+                ('combine.py', repaired['combine.py'].replace('sum(row["amount"] for row in exports)',
+                                                            'float(sum(row["amount"] for row in exports))')),
+                ('combine.py', repaired['combine.py'].replace('def combine(records):',
+                     'def combine(records):\n    if any(not rows for rows in records.values()):\n        raise ValueError("empty list")')),
+            ]
+            for name, content in mutants:
+                (workspace / name).write_text(content)
+                with self.assertRaises(AssertionError):
+                    cases.probe('repeated-migration', workspace)
+                (workspace / name).write_text(repaired[name])
+            (workspace / 'data/archive.json').write_text('{}')
+            self.assertFalse(cases.scope_preserved('repeated-migration', workspace, before))
+
+    def test_runner_rejects_partial_or_mixed_modes(self):
+        invalid = [[], ['--source', '/a'], ['--baseline', '/a'],
+                   ['--baseline', '/a', '--candidate', '/b', '--source', '/c'],
+                   ['--source', '/a', '--poteto-source', '/b', '--candidate', '/c']]
+        for options in invalid:
+            with self.subTest(options=options), \
+                 patch('sys.argv', ['coordination_compare', '--output', '/unused', *options]), \
+                 patch('sys.stderr'), patch.object(runner, 'run_trial') as launch:
+                with self.assertRaises(SystemExit):
+                    runner.main()
+                launch.assert_not_called()
+
+    def test_paired_runner_uses_each_frozen_pancake_bundle(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'auth.json').write_text('{}')
+            def trial(case, variant, destination, *args, **kwargs):
+                destination.mkdir()
+                (destination / 'final.txt').write_text('done')
+                return dict(artifact=dict(passed=True, scope_preserved=True), exit_code=0,
+                            timed_out=False, preferences_unchanged=True, bundle_unchanged=True,
+                            sessions=[dict(parent_id=None, completed=True)])
+            with patch.dict(os.environ, CODEX_HOME=str(root)), \
+                 patch.object(runner, 'source_identity', return_value={}), \
+                 patch.object(runner, 'poteto_inventory') as inventory, \
+                 patch.object(runner, 'identity', return_value={}), \
+                 patch.object(runner.subprocess, 'check_output', return_value='test-cli'), \
+                 patch.object(runner, 'run_trial', side_effect=trial) as launch, \
+                 patch('sys.argv', ['coordination_compare', '--baseline', str(root / 'base'),
+                                   '--candidate', str(root / 'candidate'), '--output', str(root / 'output'),
+                                   '--cases', 'repeated-migration', 'direct-total']):
+                runner.main()
+            self.assertEqual(launch.call_count, 4)
+            inventory.assert_not_called()
+            self.assertEqual([call.args[1] for call in launch.call_args_list], ['pancake'] * 4)
+            self.assertEqual([call.kwargs['source'] for call in launch.call_args_list],
+                             [(root / name).resolve() for name in ('base', 'candidate', 'candidate', 'base')])
+            self.assertEqual([row['variant'] for row in json.loads((root / 'output/results.json').read_text())],
+                             ['baseline', 'candidate', 'candidate', 'baseline'])
+
     def test_added_tests_require_case_authorization(self):
         with tempfile.TemporaryDirectory() as temporary:
             for case in cases.CASES:
                 workspace = Path(temporary) / case
                 before = cases.prepare_case(case, workspace)
                 (workspace / 'test_extra.py').write_text('pass\n')
-                self.assertEqual(cases.scope_preserved(case, workspace, before), case == 'integrated-import')
+                self.assertEqual(cases.scope_preserved(case, workspace, before), case != 'direct-total')
 
     def test_poteto_adapter_preserves_inputs_and_permissions(self):
         with tempfile.TemporaryDirectory() as temporary:

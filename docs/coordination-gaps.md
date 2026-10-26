@@ -22,3 +22,18 @@ Independent code review caught two oracle gaps before model trials. The direct t
 These are single observations per case and arm, not general superiority or latency estimates. The validity of duplicate names among irrelevant extra CSV columns was not specified precisely. The two importer artifacts differ there, so that difference remains an unscored residual concern rather than a posthoc success criterion. Process assessment uses actual tool calls and outputs. Encrypted assignment messages prevent a complete briefing audit. Claude verification and plugin installation remain excluded.
 
 Independent evidence assessment confirmed substantive exclusive worker edits, lead integration and combined checks in both importer runs. Pancake also completed an independent review with code inspection and executed checks. Both direct controls used no workers. The unit record retains the assessment and its action references. Blinding was partial because guidance identities remained visible.
+
+## Representative-unit pilot
+
+The conditional pilot paragraph was rejected. Both migration arms launched the two exporter-pair workers before any representative implementation or verification. Both later passed the final artifact probes and completed independent review. The raw timestamps establish launch-before-implementation ordering. Encrypted briefing content leaves shared-brief corrections unobservable.
+
+| Task | Guidance | Artifact probes | Pilot before expansion | Seconds |
+|---|---|---|---|---:|
+| Repeated migration | Unchanged | Pass | Absent | 105.793 |
+| Repeated migration | Pilot paragraph | Pass | Absent | 114.103 |
+| Small direct edit | Pilot paragraph | Pass | Not applicable | 38.509 |
+| Small direct edit | Unchanged | Pass | Not applicable | 32.178 |
+
+The migration covers four provider-specific archived formats, flat legacy records, new amount records, zero-valued precedence, keyword API compatibility, exact integer types, and the composed CLI. The direct controls prohibit delegation and both stayed direct. Independent review corrected numeric-equality false passes and missing explicit empty-list coverage before the live trials. All 189 package and evaluator tests then passed with unchanged inputs.
+
+Only the pilot paragraph differs between the frozen skill trees. This four-module, fully specified migration may fall under the candidate's small or established transformation exception. Its absence of observed separation does not establish that representative pilots are generally ineffective. It supplies no behavioral reason to retain the addition here. The [candidate patch](evidence/coordination-pilot-candidate.patch) and [unit record](evidence/coordination-unit2-2026-10-26.json) preserve the experiment and independent assessment. Raw records remain private under `/tmp/pancake-gaps-oct26/unit2`. No subjects were rerun to obtain a preferred outcome.

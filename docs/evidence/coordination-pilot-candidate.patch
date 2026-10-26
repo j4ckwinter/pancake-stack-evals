@@ -1,0 +1,13 @@
+diff --git a/skills/pancake/references/parallel-work.md b/skills/pancake/references/parallel-work.md
+index ce4dda3..9f49268 100644
+--- a/skills/pancake/references/parallel-work.md
++++ b/skills/pancake/references/parallel-work.md
+@@ -12,6 +12,8 @@ State the outcome, constraints, observable completion criteria, and resources av
+ 
+ Give each worker a self-contained brief with relevant source pointers, exact target revision or workspace snapshot, exclusive write scope or read-only scope, verification requirements, and expected result. Workers inherit task permissions and may not expand them. Use inherited host settings or explicit task choices through supported controls; do not invent models or claim cloud placement or provider diversity unavailable on the host.
+ 
++Before repeating a new or uncertain assignment across many similar units, take one representative unit through implementation, verification, and integration. Correct the shared brief or check from that result before expanding. Do not serialize unrelated investigations or add a separate pilot pipeline for a small, established transformation.
++
+ Isolate data directories, ports, and other mutable state as well as files. Disjoint file ownership alone is insufficient when tests share an application instance or database. If isolation cannot be established, keep workers read-only or work sequentially and disclose the limit.
+ 
+ Use the host's actual delegation tool after briefly explaining the assignments and the lead's own work. Confirm successful launches before claiming agents started. Continue independent work while they run, then report useful findings, failures, or changed assignments without narrating routine polling. If delegation is unavailable or prohibited, proceed directly and note the limitation when material. Agent updates must describe actual activity; host UI labels are outside the skill's control.

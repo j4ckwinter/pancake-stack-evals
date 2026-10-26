@@ -1,3 +1,4 @@
 ts	phase	decision	why	evidence	result
 2026-10-26T08:50:50.551132+00:00	frame	Use four sequential units and existing runner adapters	Preserve isolated execution and avoid duplicate infrastructure	docs/evidence/coordination-launches/adapt-upstream.py.txt	design reviewed; trials pending
 2026-10-26T09:05:55.925844+00:00	unit1	Retain delegated implementation comparison	Both arms completed actual worker contributions and passed bounded artifact checks	docs/evidence/coordination-unit1-2026-10-26.json	verified with stated limits
+2026-10-26T09:22:27.674910+00:00	unit2	Reject pilot paragraph and retain trial	Neither arm exercised pilot-before-expansion; do not add unsupported wording	docs/evidence/coordination-unit2-2026-10-26.json	rejected; artifact controls passed
