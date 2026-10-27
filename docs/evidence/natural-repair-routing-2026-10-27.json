@@ -1,0 +1,697 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "decision": "reject_routing_candidate",
+  "reason": "Targeted reference reading increased without observed artifact or implementation-delegation benefit over successful baseline runs.",
+  "accepted_change": "Natural importer and total controls, source-only entrypoint routing, and oracle/runner regressions in evaluator.",
+  "sources": {
+    "baseline": {
+      "origin": {
+        "revision": "0aed8562c9cde5b8eaefa1bc4c80872124a75ab5",
+        "dirty": false
+      },
+      "frozen_files": {
+        "docs/configuration.md": "ed8d292f215630ab00e130f383d8e0287b6af3b252db358cfcc45fda91ff2ced",
+        "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+        "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+        "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+        "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+        "skills/check/SKILL.md": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+        "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+        "skills/check/references/comments-and-suppressions.md": "c3b388fcf7511c3cce3ebf3c8071807cc9efb77233863e60aa222e3268c6bd28",
+        "skills/design/SKILL.md": "8c8bb893257173895f3273c2c659e297a0b64dea1e6f430f3c65e63f55ef1382",
+        "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+        "skills/design/references/boundaries.md": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+        "skills/design/references/competing-designs.md": "5b461a63a0adc2b9ab3e097316b8b5217972cb29d213f6e55648a82e32aa25c5",
+        "skills/design/references/lifecycle.md": "13fc7bae474079e813db1b145ddb40f54cb6f79fdaecd11a3b686de0817f6328",
+        "skills/design/references/migrations.md": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+        "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+        "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+        "skills/fix/SKILL.md": "5566619fb11e44a6602a8773bccc8aa49f7615cc554a609bf8c095b494a6d153",
+        "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+        "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+        "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+        "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+        "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+        "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+        "skills/pancake/SKILL.md": "2f7f988d92784b78311582a501550565c4169b768fee2c0f3eefef0079b82aee",
+        "skills/pancake/agents/openai.yaml": "8cacb6df64b4e15bf75f288a387f980761eeff0fa4d79a9a7cfe5574be3c7d2a",
+        "skills/pancake/references/change-review.md": "fabdc52e881723147b344680c6c1161683602e83c85ab277fd039f2d77cc6efb",
+        "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+        "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+        "skills/pancake/references/experiments-performance.md": "d96534ad08160ae3e22b59eca1729b9e4e560e741f318a708b1dc1316c9c8760",
+        "skills/pancake/references/experiments-prototype.md": "5f9db6470cd73e8769973ad43e9bdd3eac6fe12016dd5deb596baf3442987027",
+        "skills/pancake/references/experiments-skill-evaluation.md": "eebd76df504de1a8549e029a3e5a21d3c3831df981d81800ce12399cf42e0487",
+        "skills/pancake/references/experiments.md": "31bed8fba864e22d7bedfb3b568b76c6a1ab68480fde6e566aafcec1e5fd6a9a",
+        "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+        "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+        "skills/pancake/references/implementation.md": "d52d2b57da93a806ea0d1cec94a4072f0a3bc14c2e040c8eb71c9a2b35b9fa1e",
+        "skills/pancake/references/parallel-work.md": "64fe222d3c3bd632c025dc35d6980ab4d351a4b11fd7972efaac66f15b722315",
+        "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+        "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+        "skills/pancake/references/substantial-work.md": "69353dc6f72d23138db2849152100490b89dc2c19b7561ee810371042f38dd6a",
+        "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+        "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+        "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+        "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+        "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+        "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+        "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+        "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+        "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+        "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+        "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+        "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+        "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+        "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+        "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+        "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+        "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+        "skills/tdd/SKILL.md": "142f35dcb21fbf809ea0371818e3528e8bf0e36ea5c98ecc46f43cb18c73c7b7",
+        "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+        "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+        "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+        "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+        "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+        "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+        "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+        "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+        "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+        "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+        "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080",
+        "snapshot-origin.json": "5567c268f6077306d4041b7d938fb4ae0b7a191e505453a9080088953bd29d3b"
+      }
+    },
+    "candidate": {
+      "origin": {
+        "revision": "0aed8562c9cde5b8eaefa1bc4c80872124a75ab5",
+        "dirty": true
+      },
+      "frozen_files": {
+        "docs/configuration.md": "ed8d292f215630ab00e130f383d8e0287b6af3b252db358cfcc45fda91ff2ced",
+        "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+        "skills/balls/agents/openai.yaml": "d2d98e537f13e09e8df224529fba69566bd24a26ff2e40aa2955c355b2d5c4c1",
+        "skills/challenge/SKILL.md": "dd5338d59d3e503327235532af314e1f8ac16abe8919d8dcb337f4cc8f19c46c",
+        "skills/challenge/agents/openai.yaml": "18288655adb2764be7e0a43f4b410c87839294ba18032ed1a07bb2d070aded4a",
+        "skills/check/SKILL.md": "52175233279373f1ed6bcf986695f45ff9a052f5fee71a7457995ca143f7cade",
+        "skills/check/agents/openai.yaml": "477e0ba47b22e4989cd079e878f61bbdff983858c5681fb622445e451bc3a23a",
+        "skills/check/references/comments-and-suppressions.md": "c3b388fcf7511c3cce3ebf3c8071807cc9efb77233863e60aa222e3268c6bd28",
+        "skills/design/SKILL.md": "8c8bb893257173895f3273c2c659e297a0b64dea1e6f430f3c65e63f55ef1382",
+        "skills/design/agents/openai.yaml": "58115de3de4c464c23604c7dde7e3edfc94ec49491d4972369e0da6fbfe0624e",
+        "skills/design/references/boundaries.md": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+        "skills/design/references/competing-designs.md": "5b461a63a0adc2b9ab3e097316b8b5217972cb29d213f6e55648a82e32aa25c5",
+        "skills/design/references/lifecycle.md": "13fc7bae474079e813db1b145ddb40f54cb6f79fdaecd11a3b686de0817f6328",
+        "skills/design/references/migrations.md": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+        "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+        "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+        "skills/fix/SKILL.md": "ebe6d0449a098a5feeb402383fd81190b718952917939aefbeef5bb15dd40c3c",
+        "skills/fix/agents/openai.yaml": "5de33902e9c88d9a0a4d4a8275397239a326098ffc3e13c046fe4f6b3ce68e6b",
+        "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+        "skills/handoff/agents/openai.yaml": "cef4a4cb097b4269a203ede3983123d7cad9fd97f1150c6a84c671ead23de777",
+        "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+        "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+        "skills/how/agents/openai.yaml": "dab8e080bc74551577462bdd2c85ad375859edc4d45abed039b7fbd6bbe4e9d7",
+        "skills/pancake/SKILL.md": "2f7f988d92784b78311582a501550565c4169b768fee2c0f3eefef0079b82aee",
+        "skills/pancake/agents/openai.yaml": "8cacb6df64b4e15bf75f288a387f980761eeff0fa4d79a9a7cfe5574be3c7d2a",
+        "skills/pancake/references/change-review.md": "fabdc52e881723147b344680c6c1161683602e83c85ab277fd039f2d77cc6efb",
+        "skills/pancake/references/comment-cleanup.md": "ec965bdd65b7b5cfbfae244ae17312e77f4dcc022ef6681b6c0a43297634da63",
+        "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+        "skills/pancake/references/experiments-performance.md": "d96534ad08160ae3e22b59eca1729b9e4e560e741f318a708b1dc1316c9c8760",
+        "skills/pancake/references/experiments-prototype.md": "5f9db6470cd73e8769973ad43e9bdd3eac6fe12016dd5deb596baf3442987027",
+        "skills/pancake/references/experiments-skill-evaluation.md": "eebd76df504de1a8549e029a3e5a21d3c3831df981d81800ce12399cf42e0487",
+        "skills/pancake/references/experiments.md": "31bed8fba864e22d7bedfb3b568b76c6a1ab68480fde6e566aafcec1e5fd6a9a",
+        "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+        "skills/pancake/references/host-runtime.md": "e28cb47704f5ba5c0635756ad95b171b710c038e3b855148d9d808f3eb54f149",
+        "skills/pancake/references/implementation.md": "d52d2b57da93a806ea0d1cec94a4072f0a3bc14c2e040c8eb71c9a2b35b9fa1e",
+        "skills/pancake/references/parallel-work.md": "64fe222d3c3bd632c025dc35d6980ab4d351a4b11fd7972efaac66f15b722315",
+        "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+        "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+        "skills/pancake/references/substantial-work.md": "69353dc6f72d23138db2849152100490b89dc2c19b7561ee810371042f38dd6a",
+        "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+        "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+        "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+        "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+        "skills/pr/agents/openai.yaml": "8192514992aba2f025c7c9bfddeae785269d8e5ec3f6f5d557cb577c9d017b67",
+        "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+        "skills/recap/agents/openai.yaml": "f5625a3fd8d33766359f7b44f1a49d467ec317202c72fdf089ac377734ba2b77",
+        "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+        "skills/reflect/agents/openai.yaml": "6b98ff4840985e5598d903f459d5733f165eaa9c566e0545ad8c420161142ba8",
+        "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+        "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+        "skills/scope/agents/openai.yaml": "c02f66936965b7a33c6542563e2d7942246b3cf449acd4465495822f5e3e032c",
+        "skills/setup/SKILL.md": "a2514599fa058a697a910cc37d43d23393dfad7c813ae9576d0b09dc792f1f46",
+        "skills/setup/agents/openai.yaml": "72c2e82452b4d7775367ea7fcf91b2cd127f5bd913947c23173adf03c1f2fed2",
+        "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+        "skills/sift/agents/openai.yaml": "a6fef275d0d67e78c8ab867f8e45ae08d46f0450d72bb2ad9f2dcda64748cbae",
+        "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+        "skills/tdd/SKILL.md": "f4d89291fb62951b11509ddf9c71952659515a3c2d32483a14dccc0a73b3c52e",
+        "skills/tdd/agents/openai.yaml": "b02f90712c7d38a3f02651a7765db6ca48520f2ae8815ca5d0727712b07e8c29",
+        "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+        "skills/teach/agents/openai.yaml": "d2668f614a273ebb75e91bf5780062d1cae5fcf498dcb06cdfe3a3116aa04dd4",
+        "skills/verify/SKILL.md": "89cfc4b1038e50968d3e991eaeca7572efef89d69fdfb80921991ad3b16723f0",
+        "skills/verify/agents/openai.yaml": "db029e9ebed49d0310564d5d45d33ee1962517b2aa89da3afef2d47f4376f13d",
+        "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+        "skills/verify/references/recipes.md": "6393b0a545f904659bb9c8dd33a4d451cc9dab97ab71959030750b69c902eca3",
+        "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+        "skills/why/agents/openai.yaml": "b13eb6b4b2ddf9f5058e344a5394b16f336c7245107a5e0e74d171365765068d",
+        "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691",
+        "skills/wtf/agents/openai.yaml": "605840999d85542836027138bb2ed4455365cd75ed3b02f640661c6e24e2f080",
+        "snapshot-origin.json": "a79ed9840bea981c0b201c988eb76d50249b1658da39e85a265ab8ea5de2ce27"
+      }
+    }
+  },
+  "evaluator": {
+    "revision": "0159450d2c8f316185264506816292632d5decb3",
+    "dirty": true,
+    "file_hashes": {
+      "docs/evidence/source-catalog-routing-2026-10-21.py": "6bc2c01d63a9c3babd2296edc76d0b8585aa4f81bf72593444d479aa85232a9d",
+      "fixtures/legacy-0.19.3/skills/setup/scripts/catalog.py": "0be97e5033072ea821369e83fd3719e04f5c9a9801a154f0904b7883215583e7",
+      "fixtures/legacy-0.19.3/skills/setup/scripts/preferences.py": "a7df83d8abd46751fa1f024c7265d45ad6e5c8080c6a6b6a733a88a0b79ba519",
+      "run_checks.py": "1f12556191a3a702e20f5e4f330addcd70652081f7d1a27804ab504d8b806e23",
+      "tests/behavioral/acceptance_cases.py": "bbad70536a50d174199d65b8def55044af7634a511b5c65cf7629401981c4e6d",
+      "tests/behavioral/acceptance_compare.py": "b26dbc1979d13ec48a069ba086e26c57681adb00cf19d9f74c0f5df4cbbf59cd",
+      "tests/behavioral/cases/checkout/workspace/app.py": "8f7363cfe7e81b71b02b58f45fdd1713f3fe9ad0afafc1495ad32be556bd8d72",
+      "tests/behavioral/cases/contract/workspace/archive.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+      "tests/behavioral/cases/contract/workspace/billing.py": "9018f8c162282ee0601fb6580e2419debd5ce4dac656a5e19a5e895d68cc6f3b",
+      "tests/behavioral/cases/contract/workspace/consumer.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+      "tests/behavioral/cases/contract/workspace/producer.py": "879fb93132d29b04d8b615a5170bcc35fba8c6033fe46b321f247732f0da80c5",
+      "tests/behavioral/cases/contract/workspace/test_contract.py": "76a8086467525a9fbbdb01a249dbe1d323ecea8fc12b5addf149e0c0d134af68",
+      "tests/behavioral/cases/delivery/workspace/app.py": "aa0d1f1eff78f376240414c37f450842dfade4ab2ffa5199976adee8548eb2f0",
+      "tests/behavioral/cases/exporter/workspace/app.py": "345f0f9efccc6679cb3a898d2d5ad730ae2f347fa58170548c3a85054ec82a3b",
+      "tests/behavioral/cases/exporter/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/exporter/workspace/test_app.py": "f95010575d0a955e881ea5cdfad89e599826b94665dc1791832aaf17d23ae2d0",
+      "tests/behavioral/cases/invoice/workspace/app.py": "909c8f229655196c9acf8c27765bd895f83e65fd31a4b9cd32a25b06a961bbcb",
+      "tests/behavioral/cases/label/workspace/cli.py": "6c0790388b1cad5efbb7198823918b4e77b45ce3ddf9d59d58392a988f319a8a",
+      "tests/behavioral/cases/records/workspace/archive.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/records/workspace/billing.py": "510c98140ba4a1f1eb3e8f1814989f373f7cb9043341bdbaed98d18d84dd7edb",
+      "tests/behavioral/cases/records/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/records/workspace/producer.py": "3dcfed3c37cc31eee19129ddf312baab34599e19a6a76102101017d7022db6c8",
+      "tests/behavioral/cases/records/workspace/test_records.py": "93ec677a510912169a338b9f9570859c213c0811c69d6ca9f90a1c340b20492d",
+      "tests/behavioral/cases/summary/workspace/app.py": "232cc340c3e6fd52dfe588a5793590a94bd48f7b4da59e142a62472aa8e6daf3",
+      "tests/behavioral/cases/summary/workspace/test_app.py": "c18a7dc3b9df4c34ed8909387c08b0a1f191a7bd47b1606671c7a36c9bb6fbf1",
+      "tests/behavioral/cases/validation/workspace/reader.py": "2061ceb82fa306a3c097d10035170ea2fc903a5ccb6b7c6e957b21d1732392e6",
+      "tests/behavioral/cases/validation/workspace/test_reader.py": "dad3ee159e54df722eb1e78bf867fbf041947cdbd80c8300b68e3cd0ca6f3176",
+      "tests/behavioral/compare.py": "2c6a758b51a8dfd03fe95f794ce3e85c269bbefa98dbf099b254adcdac7012ad",
+      "tests/behavioral/context_recovery.py": "dca5a8356c9775d693e222bc73204b43a0de7abee1a62b9c392b363d945421ee",
+      "tests/behavioral/coordination_cases.py": "6ad35a5e2eb6d741a1fb87fb801ba637999926244f504b9816535d383e894901",
+      "tests/behavioral/coordination_compare.py": "894f13f592e9f088a2436538bd49de15db37cf3c1e1efbcee27b614d2740c88d",
+      "tests/behavioral/design.py": "4460710c8538ff64d21c82b39aa9f84da748ccc4058828db50c23fec543fb741",
+      "tests/behavioral/design_compare.py": "46b52401fa98653b57343ec58027297ab7951b88e09c38d0e1373f18fd572a8e",
+      "tests/behavioral/entrypoint_compare.py": "f53175a97c838551efbcc2608cf563ede27d2ad0e6d90bc1b0f8d2f8b7e5303a",
+      "tests/behavioral/experiment_cases.py": "80591243d588c29f93d9f44b517cf471e63c7ba4f615929f348ede2d95a1dcbc",
+      "tests/behavioral/experiment_compare.py": "601ec7c36a0da731edf8f596696ac95eaa76c1a66c78d7979aba89623674bc3a",
+      "tests/behavioral/historical_review.py": "76afe3b5519707411009e8585e3dd1007163fd4330c85546def07a85016b723d",
+      "tests/behavioral/instruction_review_cases.py": "74247bede7d704013429441406a66b4bbffd90b7c498f774b0bd4be59c9eb30e",
+      "tests/behavioral/pr_maintenance_cases.py": "c6d7ea035be4e19512984c3eb4ae1d78f047fe7d5e7dbc58547ba7324d489b27",
+      "tests/behavioral/reading_paths.py": "919c8daac6269a47149a7c3e078a51f24c97b37c91f49d039311523f906cbe7d",
+      "tests/behavioral/repository_review.py": "ba27584dbe96865664e99cd40c4f0303f98ec506ef126e23ac3f3c318c8675d7",
+      "tests/behavioral/review.py": "c10c5ae9aafd381c83e17a34cba2d8decbccd0b145a40f8453f0d014772c1518",
+      "tests/behavioral/review_comparison.py": "593208bbfbb6a8c05bcb830f88f8cccd20cd683ccf58509a2aa4c837bd904b3c",
+      "tests/behavioral/routing_cases.py": "2b39be99f299d7e134f0dd85a5ecf58b715c02b06ba77b7e86fabc25f9a73924",
+      "tests/behavioral/routing_compare.py": "b61dd9f8404006d0fbe1416db69f3f70c2ede020148ae2635464f0a34379cd37",
+      "tests/behavioral/sample_store.py": "5bbc041f4fbec2150ac2196c91e8e7a04b369cbfcb148e8abc173ebdeb0a1b46",
+      "tests/behavioral/support.py": "4468cf0027d9773618af55173d744f2d425092b7fe0f6214acd05d1727593d92",
+      "tests/behavioral/traces.py": "d568ab4e29db81b890226d86528add9d5e738f18462095f30fc46a61f431bf6d",
+      "tests/behavioral/validation.py": "083e5c45d3742baaca2255c8a25c14949d81cc941a6d348869fa256aef33e69d",
+      "tests/behavioral/workflow_cases.py": "4ac81f8c7dd8d7d044c590be5fdef824fdb25586a12cfd1758ab28f48d1f7554",
+      "tests/behavioral/workflow_compare.py": "150ec68c95af54d7357707d69f0aa260dc642fe85d04bce12aa5f22d9478448d",
+      "tests/package_validation.py": "095f789dbf91bf9de343cda10ce1bb9c57e37e5f92f3593d8c96a0835b4fb56b",
+      "tests/target.py": "ae15fdbfbf58c56eb1722ce9ac34d4bfe8559462368038ab4ab60344840eccf3",
+      "tests/test_acceptance_comparison.py": "19b26a76d32278f0dacaf441531316ddeb7386c86e514eae9df3f67d856a16ca",
+      "tests/test_behavioral_fixtures.py": "494fb07547909d322a25fb51b6704ac099535428d24f8cd488fc69df004ddf61",
+      "tests/test_catalog.py": "1cb79bca54c0be5c223d31a319386f0dfd1f444eff04085b8a2b3f12bd76deee",
+      "tests/test_comparison.py": "3bdae00beaf897e2fcc1df2b3b5e48d57d98eff082a0ee280c70303ce5e389a7",
+      "tests/test_comparison_fixtures.py": "255fc0220019b82d54fea4241cfa969160cd5f8732538610a37c3ee57f832ad5",
+      "tests/test_context_recovery.py": "eccc6d4ac19a88a70688ad402f43a19ea18fddeb5878a45ffbaef22609572800",
+      "tests/test_coordination_comparison.py": "191abed49d31dadc12a60b8f9f425f40bfbe0e1079be743ff427589016bb8015",
+      "tests/test_design_comparison.py": "64e182bdb20f51877099adee88b5cacd727f50161d8db4d44e65922fc671ecef",
+      "tests/test_experiment_comparison.py": "47bbf736c4252005d8b72ecfbdfc1fadd06c1451e9c9bc5e0b5d97a398f4d6b7",
+      "tests/test_historical_review.py": "a0e6a7bb97c34efaaabb16162e105d8f12e789c41e71c2fa1cdd316c39e08dcb",
+      "tests/test_identity.py": "59ec33126e142c7ffe5eb589e9dccbb45f5a5c88a3c3ffac76ba807380834fda",
+      "tests/test_input_guards.py": "594bda9632f3ecaae80d2683e845303c5d7b74f720af0aed3293e7420b47c973",
+      "tests/test_instruction_review.py": "a1494be5d332e3a3dc976f52b81bfe80fd61e5d251ccb5c219affe9f80d0f7d5",
+      "tests/test_package_validation.py": "3e62c86734f0a74e371b02d8ea994428d7d397a8e8b972ac2b9d377b762c8186",
+      "tests/test_pr_maintenance.py": "21c6cf00eb7bff2ee91d8a890ad92214017c64ca989b57b4f537097451ab1a18",
+      "tests/test_preferences.py": "705b6f08c8e1709b4018523f934cc61428644b6f224a6f0579eeed49164e12d3",
+      "tests/test_reading_paths.py": "8fb2c25d9a15d0bce79aac1fe7474cc273b00feac39f339464c2913a10b8c881",
+      "tests/test_repository_review.py": "7c1b4e02cfa4c7e4c53d2cbe0603d694d8e8dc2fb8ef5a6c08f2183e5fb6d5a6",
+      "tests/test_review_comparison.py": "37a4e37780ee97d39ef5094d5874bfc818a7490c30f536146767f86979a5af86",
+      "tests/test_review_evaluation.py": "a3edae946f49bf9ef452b860c3b9b116e6d2b977495be0e12d1fc75a5d840a1a",
+      "tests/test_routing_comparison.py": "aaecd86b6ba98d3335a782ca290044c574cb26531038692c577bb7caa3b4948c",
+      "tests/test_sample_store.py": "38d01637e76d95c1067b5799c4f31437daeb925700a704734826d8b5fbd645f9",
+      "tests/test_trial_traces.py": "2e76b026f0256e47aaf3cbfdff15a8fd4496c6cf1da54c5f5b77b01c8bbd3912",
+      "tests/test_validation.py": "2b2d5bcc9a8643624f4010e18a938a80a80f6d6e8c1f8345a42a55fa4c4093fe",
+      "tests/test_workflow_comparison.py": "dc2a6d608fff27ebf3b4dab69cd092c155f036779432e3a591b152297a4316ac"
+    }
+  },
+  "cli": "codex-cli 0.160.0",
+  "timeout_seconds": 300,
+  "model_override": null,
+  "effort_override": null,
+  "preflight_attempt": {
+    "entrypoint": "fix",
+    "model_started": false,
+    "failure": "source_identity requires snapshot-origin.json; froze skills/docs with run_checks.identity before retry"
+  },
+  "runs": [
+    {
+      "arm": "baseline-fix",
+      "case": "natural-import",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 1,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "README.md": "6880dc283fd370bcdf8d9c42509d9fbdc93df56d1a7e23b2a6eb7ed6f3566249",
+        "csv_input.py": "5fdc810889a55d7df4ef71eb114f86ca136056fa0270823a5077b906e40033fe",
+        "data/accounts.csv": "201423b6f25e85d23b7f75f4efb4d0ab7824c8ccaefe564fe57e68d0c19c2b72",
+        "data/archive.json": "c604a4a5e36d4291738f99c4e67d70f77814514978aea219a716535d872a1160",
+        "json_input.py": "44761414fccbe4c97d2ed3d1e88b9e45c7e386e8cdeec69c69b062443e5af0aa",
+        "report.py": "a71e5dce6d4eafbf95bbddb1d96e69ad15e547a6094b00332b1988bf29ea56be",
+        "test_report.py": "a4d2e06f403c5272e8ec8a2dcf17b6a8ec5d114a0aad44b873b7847374fbc4cc"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "baseline-fix",
+      "case": "natural-total",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 0,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "8276636dbeea2833c0c084f5b595276c78dbd8ace449f218eedb25e599f4fff1"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "baseline-tdd",
+      "case": "natural-import",
+      "entrypoint": "skills/tdd/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 1,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "README.md": "6880dc283fd370bcdf8d9c42509d9fbdc93df56d1a7e23b2a6eb7ed6f3566249",
+        "csv_input.py": "942f5ab7ec34f8dbfffc958f24516aad5f1aab359d8bdb99bd93f33c5df4433d",
+        "data/accounts.csv": "201423b6f25e85d23b7f75f4efb4d0ab7824c8ccaefe564fe57e68d0c19c2b72",
+        "data/archive.json": "c604a4a5e36d4291738f99c4e67d70f77814514978aea219a716535d872a1160",
+        "json_input.py": "a69e1301380c61efa3425bac2f20ced82ffa61ad4c259314430f7870f5436ba6",
+        "report.py": "3d8f5c200118b31a479d6a84533d1de0e7985e3cb33d2c1e1ed097329b60124f",
+        "test_importer.py": "a51914bfd65d606abb1856f06832e1a72fdc4c5eeb4412195e9025ff8370a698"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "baseline-tdd",
+      "case": "natural-total",
+      "entrypoint": "skills/tdd/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 0,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "d8d2c06e1df739db5f85d7257a64d9afe4cc8f1b0e76465c710c39f87c19f9eb"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "baseline-pancake",
+      "case": "natural-import",
+      "entrypoint": "skills/pancake/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 1,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "README.md": "6880dc283fd370bcdf8d9c42509d9fbdc93df56d1a7e23b2a6eb7ed6f3566249",
+        "csv_input.py": "6e126ac35491a5e15a417f9bed2a17ccef8347a530e83f6b26e33f8b29942e3a",
+        "data/accounts.csv": "201423b6f25e85d23b7f75f4efb4d0ab7824c8ccaefe564fe57e68d0c19c2b72",
+        "data/archive.json": "c604a4a5e36d4291738f99c4e67d70f77814514978aea219a716535d872a1160",
+        "json_input.py": "ba4a9affc76820aa7f91bed8194887f689a5088cffe5e0213fe432574f99b673",
+        "report.py": "2e9b0e6cf517b35120e609c8ecd0bcd532adf301bfbb19ccca8b2a8651db64c9",
+        "test_report.py": "6c1b803c5aa1c7fb4db872d14ea26e43e84be36c642c1cc60479a144b8939d8a"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "baseline-pancake",
+      "case": "natural-total",
+      "entrypoint": "skills/pancake/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 0,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "0827aef01bb76a9478f1afda65569a33e9aed3d123630a3c866da18cfa39fdda"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "candidate-fix",
+      "case": "natural-import",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 1,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 1,
+      "artifact_hashes": {
+        "README.md": "6880dc283fd370bcdf8d9c42509d9fbdc93df56d1a7e23b2a6eb7ed6f3566249",
+        "csv_input.py": "5c88aceb728257cf19a6bb34c8a653c11b2bbdaa489d8889cbb69c26eb2b2ef5",
+        "data/accounts.csv": "201423b6f25e85d23b7f75f4efb4d0ab7824c8ccaefe564fe57e68d0c19c2b72",
+        "data/archive.json": "c604a4a5e36d4291738f99c4e67d70f77814514978aea219a716535d872a1160",
+        "json_input.py": "4b6eaa5abcf8bf0ebb8a6a372b9c0bea3c8a576d610bc75c5eed5963cfb6ebe4",
+        "report.py": "c4b91b58a72994e77f2546c34f7296fed71b9dca3c58996db16d92a32e3ed8d9",
+        "test_report.py": "3033dbbff89bca6649554017e2637bb3708256394ba0ba330df1fae5a39d170b"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "candidate-fix",
+      "case": "natural-total",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 0,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "f49df1f671c1be1931380dafe3d223e41f313ab7b1e5fe9e83848998445cd58c"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "candidate-tdd",
+      "case": "natural-import",
+      "entrypoint": "skills/tdd/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 1,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 1,
+      "artifact_hashes": {
+        "README.md": "6880dc283fd370bcdf8d9c42509d9fbdc93df56d1a7e23b2a6eb7ed6f3566249",
+        "csv_input.py": "7fba118e01a8b41551e289b09af4cb305b04ec82c96bd9a2747b4058964651fb",
+        "data/accounts.csv": "201423b6f25e85d23b7f75f4efb4d0ab7824c8ccaefe564fe57e68d0c19c2b72",
+        "data/archive.json": "c604a4a5e36d4291738f99c4e67d70f77814514978aea219a716535d872a1160",
+        "json_input.py": "a9ce29675088e4544de8a5c6f90896c770f73b5022a8bd56d71f153e41f2159b",
+        "report.py": "7cab62844c1c883fb10731c1d5fdd841265d3c95bbc524547aa5f74635c572c2",
+        "test_report.py": "d5a1522fa2b3a1c06a8ff443019a3aa046bcdc04fb1f76230cc9ca7d020fb7aa"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "candidate-tdd",
+      "case": "natural-total",
+      "entrypoint": "skills/tdd/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_children": 0,
+      "observed_implementation_children": 0,
+      "lead_parallel_work_complete_returns": 0,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "3e28f7d1ae43632818c742ff52de9a2859904185535a15fe3ef95661513e54ae"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "independent_assessment": {
+    "baseline": "All six artifact outcomes supported; red-before-production observed in all six; no implementation children; completed independent review for all importer runs. Missing irrelevant CSV trailing field ambiguity unscored. Some initial failure output truncated, with visible failures sufficient for order.",
+    "candidate": "All four core artifacts, scope results, red-before-production order, and completed importer review supported. Review-only children, no implementation children. Changed TDD rejects duplicate irrelevant CSV headers; treated consistently with prior trials as an unspecified, unscored residual concern."
+  },
+  "limitations": [
+    "Single observations per case and entrypoint; no causal or latency claim.",
+    "Outcomes are synthetic Codex source-guidance runs, not host installation checks or Claude parity.",
+    "Complete text returns measure visible guidance delivery, not attention or effective use.",
+    "Assignment ciphertext prevents complete briefing and exclusive-scope audits.",
+    "Candidate Fix reviewer was resumed; retained reviewer trace covers final follow-up, not all initial review actions.",
+    "Model-family diversity was not tested.",
+    "Baseline and candidate runs were sequential, not randomized.",
+    "Raw sessions, exact action linkages, prompts, and assessor packets remain private."
+  ]
+}

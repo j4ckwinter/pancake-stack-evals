@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "decision": "retain_as_sequencing_clarification",
+  "baseline_source_hash_reference": "natural-repair-routing-2026-10-27.json#/sources/baseline/frozen_files",
+  "sources": {
+    "baseline": {
+      "revision": "0aed8562c9cde5b8eaefa1bc4c80872124a75ab5",
+      "dirty": false,
+      "frozen_file_manifest_sha256": "ae99ff2f55454312273118c8703f657ee3fe6578b1abc0c71d912519f33271db",
+      "fix_sha256": "5566619fb11e44a6602a8773bccc8aa49f7615cc554a609bf8c095b494a6d153"
+    },
+    "candidate": {
+      "revision": "0aed8562c9cde5b8eaefa1bc4c80872124a75ab5",
+      "dirty": true,
+      "frozen_file_manifest_sha256": "c7d2de3d131e4b02a3ade8d3e5f92d1d9a5f1dc18906239c53c3d2864d5ec676",
+      "fix_sha256": "b228995b035699ad3509d2822d1e2c97781b967bc2acf7ac25dd1e5db37f0657"
+    }
+  },
+  "candidate_changed_file_hashes": {
+    "skills/fix/SKILL.md": "b228995b035699ad3509d2822d1e2c97781b967bc2acf7ac25dd1e5db37f0657",
+    "snapshot-origin.json": "9587fcd7ebb32d9a260bc6a2503dc5e89ca06f8e9f1c081fb5bb70ecc4c71ddd"
+  },
+  "evaluator": {
+    "revision": "f7da99a9dd317b64b13d20ebb0666e914dff52f3",
+    "dirty": true,
+    "file_hashes": {
+      "tests/test_diagnosis_comparison.py": "bd10d8992fb5354a62e0b9a8a68aa6737140f716f94c52fd0058a63d14507046",
+      "docs/evidence/source-catalog-routing-2026-10-21.py": "6bc2c01d63a9c3babd2296edc76d0b8585aa4f81bf72593444d479aa85232a9d",
+      "fixtures/legacy-0.19.3/skills/setup/scripts/catalog.py": "0be97e5033072ea821369e83fd3719e04f5c9a9801a154f0904b7883215583e7",
+      "fixtures/legacy-0.19.3/skills/setup/scripts/preferences.py": "a7df83d8abd46751fa1f024c7265d45ad6e5c8080c6a6b6a733a88a0b79ba519",
+      "run_checks.py": "1f12556191a3a702e20f5e4f330addcd70652081f7d1a27804ab504d8b806e23",
+      "tests/behavioral/acceptance_cases.py": "bbad70536a50d174199d65b8def55044af7634a511b5c65cf7629401981c4e6d",
+      "tests/behavioral/acceptance_compare.py": "b26dbc1979d13ec48a069ba086e26c57681adb00cf19d9f74c0f5df4cbbf59cd",
+      "tests/behavioral/cases/checkout/workspace/app.py": "8f7363cfe7e81b71b02b58f45fdd1713f3fe9ad0afafc1495ad32be556bd8d72",
+      "tests/behavioral/cases/contract/workspace/archive.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+      "tests/behavioral/cases/contract/workspace/billing.py": "9018f8c162282ee0601fb6580e2419debd5ce4dac656a5e19a5e895d68cc6f3b",
+      "tests/behavioral/cases/contract/workspace/consumer.py": "27cb01e2a016202460fa3ff84995bd3c5a82dc6e5c09c90a36fc517d9feddf0d",
+      "tests/behavioral/cases/contract/workspace/producer.py": "879fb93132d29b04d8b615a5170bcc35fba8c6033fe46b321f247732f0da80c5",
+      "tests/behavioral/cases/contract/workspace/test_contract.py": "76a8086467525a9fbbdb01a249dbe1d323ecea8fc12b5addf149e0c0d134af68",
+      "tests/behavioral/cases/delivery/workspace/app.py": "aa0d1f1eff78f376240414c37f450842dfade4ab2ffa5199976adee8548eb2f0",
+      "tests/behavioral/cases/exporter/workspace/app.py": "345f0f9efccc6679cb3a898d2d5ad730ae2f347fa58170548c3a85054ec82a3b",
+      "tests/behavioral/cases/exporter/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/exporter/workspace/test_app.py": "f95010575d0a955e881ea5cdfad89e599826b94665dc1791832aaf17d23ae2d0",
+      "tests/behavioral/cases/invoice/workspace/app.py": "909c8f229655196c9acf8c27765bd895f83e65fd31a4b9cd32a25b06a961bbcb",
+      "tests/behavioral/cases/label/workspace/cli.py": "6c0790388b1cad5efbb7198823918b4e77b45ce3ddf9d59d58392a988f319a8a",
+      "tests/behavioral/cases/records/workspace/archive.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/records/workspace/billing.py": "510c98140ba4a1f1eb3e8f1814989f373f7cb9043341bdbaed98d18d84dd7edb",
+      "tests/behavioral/cases/records/workspace/consumer.py": "bcf662b3782ea67d0f28e4611868a5663e50763afc48a0150041d7c871f9856f",
+      "tests/behavioral/cases/records/workspace/producer.py": "3dcfed3c37cc31eee19129ddf312baab34599e19a6a76102101017d7022db6c8",
+      "tests/behavioral/cases/records/workspace/test_records.py": "93ec677a510912169a338b9f9570859c213c0811c69d6ca9f90a1c340b20492d",
+      "tests/behavioral/cases/summary/workspace/app.py": "232cc340c3e6fd52dfe588a5793590a94bd48f7b4da59e142a62472aa8e6daf3",
+      "tests/behavioral/cases/summary/workspace/test_app.py": "c18a7dc3b9df4c34ed8909387c08b0a1f191a7bd47b1606671c7a36c9bb6fbf1",
+      "tests/behavioral/cases/validation/workspace/reader.py": "2061ceb82fa306a3c097d10035170ea2fc903a5ccb6b7c6e957b21d1732392e6",
+      "tests/behavioral/cases/validation/workspace/test_reader.py": "dad3ee159e54df722eb1e78bf867fbf041947cdbd80c8300b68e3cd0ca6f3176",
+      "tests/behavioral/compare.py": "2c6a758b51a8dfd03fe95f794ce3e85c269bbefa98dbf099b254adcdac7012ad",
+      "tests/behavioral/context_recovery.py": "dca5a8356c9775d693e222bc73204b43a0de7abee1a62b9c392b363d945421ee",
+      "tests/behavioral/coordination_cases.py": "5fa228fd8e1308c6b74b7cfb84857ef8b80b6efc3083e11721ad3dc0f6e770bd",
+      "tests/behavioral/coordination_compare.py": "894f13f592e9f088a2436538bd49de15db37cf3c1e1efbcee27b614d2740c88d",
+      "tests/behavioral/design.py": "4460710c8538ff64d21c82b39aa9f84da748ccc4058828db50c23fec543fb741",
+      "tests/behavioral/design_compare.py": "46b52401fa98653b57343ec58027297ab7951b88e09c38d0e1373f18fd572a8e",
+      "tests/behavioral/entrypoint_compare.py": "f53175a97c838551efbcc2608cf563ede27d2ad0e6d90bc1b0f8d2f8b7e5303a",
+      "tests/behavioral/experiment_cases.py": "80591243d588c29f93d9f44b517cf471e63c7ba4f615929f348ede2d95a1dcbc",
+      "tests/behavioral/experiment_compare.py": "601ec7c36a0da731edf8f596696ac95eaa76c1a66c78d7979aba89623674bc3a",
+      "tests/behavioral/historical_review.py": "76afe3b5519707411009e8585e3dd1007163fd4330c85546def07a85016b723d",
+      "tests/behavioral/instruction_review_cases.py": "74247bede7d704013429441406a66b4bbffd90b7c498f774b0bd4be59c9eb30e",
+      "tests/behavioral/pr_maintenance_cases.py": "c6d7ea035be4e19512984c3eb4ae1d78f047fe7d5e7dbc58547ba7324d489b27",
+      "tests/behavioral/reading_paths.py": "919c8daac6269a47149a7c3e078a51f24c97b37c91f49d039311523f906cbe7d",
+      "tests/behavioral/repository_review.py": "ba27584dbe96865664e99cd40c4f0303f98ec506ef126e23ac3f3c318c8675d7",
+      "tests/behavioral/review.py": "c10c5ae9aafd381c83e17a34cba2d8decbccd0b145a40f8453f0d014772c1518",
+      "tests/behavioral/review_comparison.py": "593208bbfbb6a8c05bcb830f88f8cccd20cd683ccf58509a2aa4c837bd904b3c",
+      "tests/behavioral/routing_cases.py": "2b39be99f299d7e134f0dd85a5ecf58b715c02b06ba77b7e86fabc25f9a73924",
+      "tests/behavioral/routing_compare.py": "b61dd9f8404006d0fbe1416db69f3f70c2ede020148ae2635464f0a34379cd37",
+      "tests/behavioral/sample_store.py": "5bbc041f4fbec2150ac2196c91e8e7a04b369cbfcb148e8abc173ebdeb0a1b46",
+      "tests/behavioral/support.py": "4468cf0027d9773618af55173d744f2d425092b7fe0f6214acd05d1727593d92",
+      "tests/behavioral/traces.py": "d568ab4e29db81b890226d86528add9d5e738f18462095f30fc46a61f431bf6d",
+      "tests/behavioral/validation.py": "083e5c45d3742baaca2255c8a25c14949d81cc941a6d348869fa256aef33e69d",
+      "tests/behavioral/workflow_cases.py": "4ac81f8c7dd8d7d044c590be5fdef824fdb25586a12cfd1758ab28f48d1f7554",
+      "tests/behavioral/workflow_compare.py": "150ec68c95af54d7357707d69f0aa260dc642fe85d04bce12aa5f22d9478448d",
+      "tests/package_validation.py": "095f789dbf91bf9de343cda10ce1bb9c57e37e5f92f3593d8c96a0835b4fb56b",
+      "tests/target.py": "ae15fdbfbf58c56eb1722ce9ac34d4bfe8559462368038ab4ab60344840eccf3",
+      "tests/test_acceptance_comparison.py": "19b26a76d32278f0dacaf441531316ddeb7386c86e514eae9df3f67d856a16ca",
+      "tests/test_behavioral_fixtures.py": "494fb07547909d322a25fb51b6704ac099535428d24f8cd488fc69df004ddf61",
+      "tests/test_catalog.py": "1cb79bca54c0be5c223d31a319386f0dfd1f444eff04085b8a2b3f12bd76deee",
+      "tests/test_comparison.py": "3bdae00beaf897e2fcc1df2b3b5e48d57d98eff082a0ee280c70303ce5e389a7",
+      "tests/test_comparison_fixtures.py": "255fc0220019b82d54fea4241cfa969160cd5f8732538610a37c3ee57f832ad5",
+      "tests/test_context_recovery.py": "eccc6d4ac19a88a70688ad402f43a19ea18fddeb5878a45ffbaef22609572800",
+      "tests/test_coordination_comparison.py": "a0878000ce13bfc320d6f43a5b3321276d1a8972144431dc4a9941a9e075f606",
+      "tests/test_design_comparison.py": "64e182bdb20f51877099adee88b5cacd727f50161d8db4d44e65922fc671ecef",
+      "tests/test_experiment_comparison.py": "47bbf736c4252005d8b72ecfbdfc1fadd06c1451e9c9bc5e0b5d97a398f4d6b7",
+      "tests/test_historical_review.py": "a0e6a7bb97c34efaaabb16162e105d8f12e789c41e71c2fa1cdd316c39e08dcb",
+      "tests/test_identity.py": "59ec33126e142c7ffe5eb589e9dccbb45f5a5c88a3c3ffac76ba807380834fda",
+      "tests/test_input_guards.py": "594bda9632f3ecaae80d2683e845303c5d7b74f720af0aed3293e7420b47c973",
+      "tests/test_instruction_review.py": "a1494be5d332e3a3dc976f52b81bfe80fd61e5d251ccb5c219affe9f80d0f7d5",
+      "tests/test_package_validation.py": "3e62c86734f0a74e371b02d8ea994428d7d397a8e8b972ac2b9d377b762c8186",
+      "tests/test_pr_maintenance.py": "21c6cf00eb7bff2ee91d8a890ad92214017c64ca989b57b4f537097451ab1a18",
+      "tests/test_preferences.py": "705b6f08c8e1709b4018523f934cc61428644b6f224a6f0579eeed49164e12d3",
+      "tests/test_reading_paths.py": "8fb2c25d9a15d0bce79aac1fe7474cc273b00feac39f339464c2913a10b8c881",
+      "tests/test_repository_review.py": "7c1b4e02cfa4c7e4c53d2cbe0603d694d8e8dc2fb8ef5a6c08f2183e5fb6d5a6",
+      "tests/test_review_comparison.py": "37a4e37780ee97d39ef5094d5874bfc818a7490c30f536146767f86979a5af86",
+      "tests/test_review_evaluation.py": "a3edae946f49bf9ef452b860c3b9b116e6d2b977495be0e12d1fc75a5d840a1a",
+      "tests/test_routing_comparison.py": "aaecd86b6ba98d3335a782ca290044c574cb26531038692c577bb7caa3b4948c",
+      "tests/test_sample_store.py": "38d01637e76d95c1067b5799c4f31437daeb925700a704734826d8b5fbd645f9",
+      "tests/test_trial_traces.py": "2e76b026f0256e47aaf3cbfdff15a8fd4496c6cf1da54c5f5b77b01c8bbd3912",
+      "tests/test_validation.py": "2b2d5bcc9a8643624f4010e18a938a80a80f6d6e8c1f8345a42a55fa4c4093fe",
+      "tests/test_workflow_comparison.py": "dc2a6d608fff27ebf3b4dab69cd092c155f036779432e3a591b152297a4316ac"
+    }
+  },
+  "cli": "codex-cli 0.160.0",
+  "timeout_seconds": 300,
+  "model_override": null,
+  "effort_override": null,
+  "order": [
+    {
+      "variant": "baseline",
+      "case": "account-quotes"
+    },
+    {
+      "variant": "candidate",
+      "case": "account-quotes"
+    },
+    {
+      "variant": "candidate",
+      "case": "natural-total"
+    },
+    {
+      "variant": "baseline",
+      "case": "natural-total"
+    }
+  ],
+  "runs": [
+    {
+      "variant": "baseline",
+      "case": "account-quotes",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_reviewers": 1,
+      "lead_fix_complete_returns": 1,
+      "artifact_hashes": {
+        "README.md": "4186f82b0ec18efb22bf9140f8ee2d67aa14e4dd63d504f8e28ac6cbf5999fb4",
+        "catalog.py": "fad9810162b9619be0a27024e65b8f7b380d2c6268b0f20f6e4000c58d6af31d",
+        "data/catalog.json": "d44fa078df6af1776b12007278483fab3164e0557854c8b15133418c12f123a6",
+        "quote_cli.py": "739b3e9f1075d653133d616685b53ce3cabedc54d9fd1cc7c9cda9053e8d99cd",
+        "quotes.py": "acfd57ae7b9bf85a1dcc788c459faf9a64c4e9af291a68b8751f1df10b25469e",
+        "test_existing.py": "8a995e910e73bbf0d5914cbd33824d1da26b38334b69bbe619b404887e09b256",
+        "test_regressions.py": "dbabd50d8d3590baf892101fa1e2c003526451bef649c62b718a3b8b0dc4b9ad"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "case": "account-quotes",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_reviewers": 1,
+      "lead_fix_complete_returns": 1,
+      "artifact_hashes": {
+        "README.md": "4186f82b0ec18efb22bf9140f8ee2d67aa14e4dd63d504f8e28ac6cbf5999fb4",
+        "catalog.py": "fad9810162b9619be0a27024e65b8f7b380d2c6268b0f20f6e4000c58d6af31d",
+        "data/catalog.json": "d44fa078df6af1776b12007278483fab3164e0557854c8b15133418c12f123a6",
+        "quote_cli.py": "739b3e9f1075d653133d616685b53ce3cabedc54d9fd1cc7c9cda9053e8d99cd",
+        "quotes.py": "2e24f1caa0fbfc866a2a55b05f6b2bf76cd75dbf3b4b8362b360913d8d4b4be5",
+        "test_existing.py": "8a995e910e73bbf0d5914cbd33824d1da26b38334b69bbe619b404887e09b256",
+        "test_quotes.py": "c7a1ae85e89ac548ffcf0b98de468e98932e7c7ed94843d341a7f068f0b762c4"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        },
+        {
+          "role": "reviewer",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "case": "natural-total",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_reviewers": 0,
+      "lead_fix_complete_returns": 1,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "c7975934659c534b0f59efc285b604564257407791e0f72030c1f0e29a12c426"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "case": "natural-total",
+      "entrypoint": "skills/fix/SKILL.md",
+      "artifact": {
+        "passed": true,
+        "scope_preserved": true,
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "execution_valid": true,
+      "inputs_unchanged": true,
+      "bundle_unchanged": true,
+      "preferences_unchanged": true,
+      "final_response_present": true,
+      "completed_reviewers": 0,
+      "lead_fix_complete_returns": 1,
+      "artifact_hashes": {
+        "app.py": "9477b4edda8d16a0d2c0b92a0cdb4c3fd15b0da4497d89e2f16f7643fac4e3c6",
+        "data/archive.json": "67358ed8fd6cd4d8aac33acaa376b58237beb891c3e984e505d3e57e43f7d320",
+        "test_app.py": "e9ad4cd5b7f0cf8f3b377b39db955bced7505f1da4818f16dc2263c3536e205f"
+      },
+      "observed_selections": [
+        {
+          "role": "lead",
+          "selections": [
+            {
+              "model": "gpt-6.1-sol",
+              "effort": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "independent_assessment": {
+    "outcome": "All four pass. Both quote runs have prepatch source evidence distinguishing cache ownership from catalog account normalization and CLI forwarding, actual CLI120/120 reproduction, behavioral failing regressions before production edits, repaired120/80 output, and completed independent review. Small controls remained direct.",
+    "limits": [
+      "Packet assessment without fresh execution.",
+      "Scope oracle consistent with writes; baseline reviewer lacked original diff.",
+      "Candidate tests narrower for cold invalid inputs and malformed CLI inputs; Unicode aliases not explicit. These are coverage limits, not demonstrated defects."
+    ]
+  },
+  "limitations": [
+    "One observation per guidance and case; no latency or superiority claim.",
+    "The omitted account cache key is easy to identify from source; this does not establish benefit for harder ambiguous diagnosis.",
+    "Complete body matches measure delivery rather than attention.",
+    "Assignment ciphertext prevents complete briefing audit.",
+    "Assessment packets remove guidance and identities, but behavior can still reveal treatment.",
+    "Raw sessions, exact action links, and packets remain private.",
+    "Codex source-guidance execution only; no installation or Claude parity check."
+  ],
+  "rationale": "Sequencing clarification for ambiguous initial diagnosis, without claiming measured diagnostic superiority."
+}

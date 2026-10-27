@@ -141,6 +141,61 @@ class CoordinationTests(unittest.TestCase):
             (workspace / 'data/archive.json').write_text('[]')
             self.assertFalse(cases.scope_preserved('integrated-import', workspace, before))
 
+    def test_natural_artifact_controls(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            for case in ('natural-import', 'natural-total'):
+                with self.subTest(case=case):
+                    workspace = Path(temporary) / case
+                    before = cases.prepare_case(case, workspace)
+                    with self.assertRaises(AssertionError):
+                        cases.probe(case, workspace)
+                    repairs = ({'json_input.py': JSON_REPAIR, 'csv_input.py': CSV_REPAIR, 'report.py': CLI_REPAIR}
+                               if case == 'natural-import' else
+                               {'app.py': 'def total(values):\n    return sum(v for v in values if v is not None)\n'})
+                    for name, content in repairs.items():
+                        (workspace / name).write_text(content)
+                    cases.probe(case, workspace)
+                    (workspace / 'test_regression.py').write_text('pass\n')
+                    self.assertTrue(cases.scope_preserved(case, workspace, before))
+                    if case == 'natural-total':
+                        for broken in ('return 0', 'return sum(abs(v) for v in values if v is not None)',
+                                       'return sum(values)'):
+                            (workspace / 'app.py').write_text('def total(values):\n    ' + broken + '\n')
+                            with self.assertRaises(AssertionError):
+                                cases.probe(case, workspace)
+                    (workspace / 'data/archive.json').write_text('[]')
+                    self.assertFalse(cases.scope_preserved(case, workspace, before))
+
+    def test_source_entrypoint_runner_routes_natural_cases(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'auth.json').write_text('{}')
+            def trial(case, variant, destination, *args, **kwargs):
+                destination.mkdir()
+                (destination / 'final.txt').write_text('done')
+                return dict(artifact=dict(passed=True, scope_preserved=True), exit_code=0,
+                            timed_out=False, preferences_unchanged=True, bundle_unchanged=True,
+                            sessions=[dict(parent_id=None, completed=True)])
+            for entrypoint in ('fix', 'tdd', 'pancake'):
+                with patch.dict(os.environ, CODEX_HOME=str(root)), \
+                     patch.object(runner, 'source_identity', return_value={}), \
+                     patch.object(runner, 'identity', return_value={}), \
+                     patch.object(runner.subprocess, 'check_output', return_value='cli'), \
+                     patch.object(runner, 'run_trial', side_effect=trial) as launch, \
+                     patch('sys.argv', ['coordination_compare', '--source', str(root / 'source'),
+                         '--entrypoint', entrypoint, '--output', str(root / entrypoint),
+                         '--cases', 'natural-import', 'natural-total']):
+                    runner.main()
+                self.assertEqual([call.args[0] for call in launch.call_args_list],
+                                 ['natural-import', 'natural-total'])
+                for call in launch.call_args_list:
+                    adapter = call.kwargs['case_adapter']
+                    self.assertEqual(adapter.entrypoint, f'skills/{entrypoint}/SKILL.md')
+                    self.assertTrue(adapter.allow_implementers)
+                    self.assertNotIn('delegat', adapter.request)
+                manifest = json.loads((root / entrypoint / 'manifest.json').read_text())
+                self.assertEqual(manifest['entrypoint'], entrypoint)
+
     def test_trusted_recipe_controls_reject_false_success(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -317,7 +372,7 @@ class CoordinationTests(unittest.TestCase):
                 workspace = Path(temporary) / case
                 before = cases.prepare_case(case, workspace)
                 (workspace / 'test_extra.py').write_text('pass\n')
-                self.assertEqual(cases.scope_preserved(case, workspace, before), case in ('integrated-import', 'repeated-migration'))
+                self.assertEqual(cases.scope_preserved(case, workspace, before), case in ('integrated-import', 'repeated-migration', 'natural-import', 'natural-total', 'account-quotes'))
 
     def test_poteto_adapter_preserves_inputs_and_permissions(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -395,3 +450,7 @@ class CoordinationTests(unittest.TestCase):
                     else:
                         runner.main()
                         self.assertEqual(launch.call_count, 4)
+                        results = json.loads((root / 'output/results.json').read_text())
+                        self.assertEqual([row['entrypoint'] for row in results],
+                                         ['skills/pancake/SKILL.md', 'skills/poteto-mode/SKILL.md',
+                                          'skills/poteto-mode/SKILL.md', 'skills/pancake/SKILL.md'])
