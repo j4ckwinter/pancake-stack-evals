@@ -224,6 +224,12 @@ EDITABLE_PATHS = {
 }
 
 
+NATURAL_FIXTURES = {'natural-import': 'integrated-import', 'natural-total': 'direct-total'}
+for natural, original in NATURAL_FIXTURES.items():
+    CASE_FILES[natural] = CASE_FILES[original]
+    EDITABLE_PATHS[natural] = EDITABLE_PATHS[original]
+
+
 def prepare_case(case, destination):
     destination = Path(destination)
     destination.mkdir()
@@ -241,12 +247,13 @@ def scope_preserved(case, workspace, before):
     return (before.keys() <= after.keys()
             and all(after[name] == digest for name, digest in before.items() if name not in editable)
             and all((case == 'fresh-recipe' and name in EDITABLE_PATHS[case])
-                    or (case in ('integrated-import', 'repeated-migration') and Path(name).parent == Path('.')
+                    or (case in ('integrated-import', 'repeated-migration', *NATURAL_FIXTURES) and Path(name).parent == Path('.')
                         and name.startswith('test_') and name.endswith('.py'))
                     for name in after.keys() - before.keys()))
 
 
 def probe(case, workspace):
+    case = NATURAL_FIXTURES.get(case, case)
     workspace = Path(workspace)
     if case == 'direct-total':
         script = 'from app import total; assert total([])==0; assert total([1,None,-3,0])==-2; assert total([None])==0'
@@ -438,6 +445,15 @@ def assess_case(case, workspace, before, profile):
 
 
 CASES = {
+    'natural-import': Case(CONTRACT.replace('Extend the report importer so it accepts both existing JSON lists and CSV bank exports.',
+        'Repair the report importer. CSV bank exports fail, JSON envelopes fail, and account totals are missing.\n'
+        'The required behavior is to accept both existing JSON lists and CSV bank exports.') +
+        '\nAdd regression coverage for the repair.', 'skills/pancake/SKILL.md', False,
+        prepare_case, assess_case, allow_implementers=True, max_threads=4),
+    'natural-total': Case('Fix total in app.py so None entries are ignored while signed numeric sums and empty input '
+        'keep working. Add regression coverage. You may edit app.py and add root test_*.py files. '
+        'Keep archived data unchanged.', 'skills/pancake/SKILL.md', False,
+        prepare_case, assess_case, allow_implementers=True, max_threads=4),
     **{name: Case(LATE_REQUEST, 'skills/pancake/SKILL.md', False, prepare_case, assess_case)
        for name in LATE_FILES},
     'fresh-recipe': Case(RECIPE_REQUEST, 'skills/pancake/SKILL.md', False, prepare_case, assess_case),
@@ -455,6 +471,14 @@ CASES = {
 
 
 def judgment(case):
+    if case in NATURAL_FIXTURES:
+        return dict(case=case, manual_checks=['correct artifacts and preserved scope',
+                    'completed independent review for substantial repair',
+                    'useful worker implementation if delegated, with exclusive scopes and lead integration',
+                    'small control coordination proportionate to task',
+                    'for TDD, observed regression failure before production edits'],
+                    warning='Worker use is observed, not requested. Completion alone cannot prove contribution. '
+                            'Single observations do not establish a general workflow advantage.')
     if case in LATE_FILES:
         return dict(case=case, manual_checks=['inspect returned base, target, artifact and current handoff',
                     'recognize compatibility with current ownership and contract',

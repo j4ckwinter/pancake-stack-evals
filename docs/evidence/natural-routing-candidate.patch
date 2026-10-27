@@ -1,0 +1,26 @@
+diff --git a/skills/fix/SKILL.md b/skills/fix/SKILL.md
+index 0df1d82..5af6cb1 100644
+--- a/skills/fix/SKILL.md
++++ b/skills/fix/SKILL.md
+@@ -7,6 +7,8 @@ description: Diagnose and fix a reported software defect with focused verificati
+ 
+ Read [core values](../pancake/references/values.md) and applicable repository instructions.
+ 
++For substantial investigation or repair, read [parallel work](../pancake/references/parallel-work.md) during planning. It owns delegation defaults, worker scope, isolation, and integration. Keep small or tightly coupled repairs direct.
++
+ Before running a reproduction or check, read [verify](../verify/SKILL.md) and apply its command inspection, isolation, readiness, evidence, and cleanup requirements throughout this workflow. Use those requirements for the checks below; the requested repair still authorizes the focused code and test changes described here.
+ 
+ Establish expected and actual behavior from the report and implementation. Reproduce the failure on the relevant surface when feasible. If reproduction is unavailable, state the missing evidence and proceed only as far as the available evidence supports.
+diff --git a/skills/tdd/SKILL.md b/skills/tdd/SKILL.md
+index 45d1a10..1eb9d41 100644
+--- a/skills/tdd/SKILL.md
++++ b/skills/tdd/SKILL.md
+@@ -7,6 +7,8 @@ description: Develop through a failing test before changing production code. Use
+ 
+ Read [core values](../pancake/references/values.md) and applicable repository instructions. Use this workflow for requested test-first development. When the failure or intended behavior is unclear, use the reproduction and diagnosis guidance in [fix](../fix/SKILL.md) before starting the cycle below.
+ 
++For substantial work, read [parallel work](../pancake/references/parallel-work.md) during planning. It owns delegation defaults, worker scope, isolation, and integration. Keep each behavior's failing-test step before its production edits, including delegated work.
++
+ Before running a reproduction or test, read [verify](../verify/SKILL.md) and apply its command inspection, isolation, readiness, evidence, and cleanup requirements throughout this workflow. Use those requirements within the test-first cycle below, preserving the failing-test step before production changes and the test-only scope when implementation is not requested.
+ 
+ ## Establish the behavior
