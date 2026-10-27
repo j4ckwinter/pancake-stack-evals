@@ -1,0 +1,16 @@
+diff --git a/skills/fix/SKILL.md b/skills/fix/SKILL.md
+index 0df1d82..5c3da54 100644
+--- a/skills/fix/SKILL.md
++++ b/skills/fix/SKILL.md
+@@ -11,9 +11,9 @@ Before running a reproduction or check, read [verify](../verify/SKILL.md) and ap
+ 
+ Establish expected and actual behavior from the report and implementation. Reproduce the failure on the relevant surface when feasible. If reproduction is unavailable, state the missing evidence and proceed only as far as the available evidence supports.
+ 
+-Trace the symptom through its inputs, state changes, and callers. Identify the cause before changing code. Preserve existing contracts unless the requested fix requires changing them. Prefer a focused correction over a broad cleanup.
++Trace the symptom through its inputs, state changes, and callers. If the cause is ambiguous, seek a narrow observation that distinguishes it from alternatives. Identify the cause before changing code. Preserve existing contracts unless the requested fix requires changing them. Prefer a focused correction over a broad cleanup.
+ 
+-If repeated corrections fail the same scenario, compare their observed results and write down the assumption they share. Inspect whether the failure originates in the product, environment, or observation method before another patch. Seek a narrow observation that distinguishes the proposed cause from alternatives. A failed correction is evidence against its hypothesis, not permission to add more guards.
++If repeated corrections fail the same scenario, compare their observed results and write down the assumption they share. Inspect whether the failure originates in the product, environment, or observation method before another patch. A failed correction is evidence against its hypothesis, not permission to add more guards.
+ 
+ For ownership, timing, or distribution failures, inspect the relevant actors and their state or lifecycle. Find what assigns the problematic state before compensating for it. Use existing diagnostics first; do not require an actor census for an unrelated local defect or create instrumentation outside the authorized scope. Missing observations remain explicit gaps. Revisit the assumption when evidence contradicts it, while preserving useful verified work.
+ 

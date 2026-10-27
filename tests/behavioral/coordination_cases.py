@@ -58,6 +58,95 @@ unchanged. You may edit only json_input.py, csv_input.py, report.py, and add tes
 '''
 
 
+QUOTE_FILES = {
+    'catalog.py': '''import json
+from pathlib import Path
+
+
+class Catalog:
+    def __init__(self, path):
+        self.rows = json.loads(Path(path).read_text())
+        self.read_count = 0
+
+    def lookup(self, account, sku):
+        self.read_count += 1
+        return self.rows[account.strip().casefold()][sku]
+''',
+    'quotes.py': '''class QuoteService:
+    def __init__(self, catalog):
+        self.catalog = catalog
+        self.cache = {}
+
+    def quote(self, account, sku):
+        if not isinstance(account, str) or not isinstance(sku, str):
+            raise ValueError("account and sku must be strings")
+        key = sku
+        if key in self.cache:
+            return self.cache[key]
+        amount = self.catalog.lookup(account, sku)
+        self.cache[key] = amount
+        return amount
+''',
+    'quote_cli.py': '''import json
+from pathlib import Path
+import sys
+from catalog import Catalog
+from quotes import QuoteService
+
+service = QuoteService(Catalog(Path(__file__).with_name("data") / "catalog.json"))
+for line in sys.stdin:
+    try:
+        request = json.loads(line)
+        amount = service.quote(request["account"], request["sku"])
+        result = {"amount": amount}
+    except KeyError:
+        result = {"error": "unknown quote"}
+    except (ValueError, TypeError):
+        result = {"error": "invalid request"}
+    print(json.dumps(result), flush=True)
+''',
+    'data/catalog.json': '{"north":{"Widget":120,"widget":45,"credit":-3},"south":{"Widget":80,"widget":30,"credit":-7}}\n',
+    'README.md': '''QuoteService.quote(account, sku) returns the catalog's signed integer amount.
+Account names ignore surrounding whitespace and case. SKU spelling is exact and case-sensitive.
+Each service has its own cache. Successful repeated lookups for the same account and SKU
+must avoid another Catalog.lookup call, including equivalent account spellings.
+Catalog.read_count counts lookup calls for existing operational diagnostics.
+Unknown accounts or SKUs raise KeyError and must not return or cache another quote.
+Non-string account or SKU arguments raise ValueError, including on warm caches.
+Run python3 -B quote_cli.py and send one JSON object per line with account and sku.
+The same service handles every line. Successful output is {"amount": integer}.
+Unknown quotes output {"error":"unknown quote"}; invalid requests output
+{"error":"invalid request"}. Processing continues after errors.
+Use only Python's standard library. Run python3 -B -m unittest for existing checks.
+''',
+    'test_existing.py': '''from pathlib import Path
+import unittest
+from catalog import Catalog
+from quotes import QuoteService
+
+
+class Quotes(unittest.TestCase):
+    def test_fresh_accounts(self):
+        for account, amount in (("north", 120), ("south", 80)):
+            service = QuoteService(Catalog(Path(__file__).with_name("data") / "catalog.json"))
+            self.assertEqual(service.quote(account, "Widget"), amount)
+
+    def test_repeat(self):
+        catalog = Catalog(Path(__file__).with_name("data") / "catalog.json")
+        service = QuoteService(catalog)
+        self.assertEqual(service.quote("north", "Widget"), 120)
+        self.assertEqual(service.quote("north", "Widget"), 120)
+        self.assertEqual(catalog.read_count, 1)
+''',
+}
+QUOTE_REQUEST = '''Repair the quote service. In one running CLI session, looking up north's Widget
+and then south's Widget shows north's amount twice. Restarting between accounts gives the
+expected amounts. Callers also use account names with different case and surrounding spaces.
+Make the running CLI and importable service return the correct quotes while preserving the
+README contract, including warm lookup caching and error handling. Add regression coverage.
+You may edit quotes.py and add root test_*.py files. Keep existing tests, the catalog,
+CLI, README, and catalog data unchanged. No dependencies.'''
+
 EXPORTERS = ('sales', 'refunds', 'fees', 'credits')
 EXPORTER = '''def emit(total):
     return {"source": SOURCE, "total": total}
@@ -207,6 +296,7 @@ for name, current, contract in (
     }
 
 CASE_FILES = {
+    'account-quotes': QUOTE_FILES,
     **LATE_FILES,
     'fresh-recipe': RECIPE_FILES,
     'integrated-import': FILES,
@@ -215,6 +305,7 @@ CASE_FILES = {
                      'data/archive.json': '[1, 2, 3]\n'},
 }
 EDITABLE_PATHS = {
+    'account-quotes': {'quotes.py'},
     'late-current': {'ledger.py'},
     'late-stale': {'ledger.py'},
     'fresh-recipe': {'recipe.py', 'recipe.md'},
@@ -247,7 +338,7 @@ def scope_preserved(case, workspace, before):
     return (before.keys() <= after.keys()
             and all(after[name] == digest for name, digest in before.items() if name not in editable)
             and all((case == 'fresh-recipe' and name in EDITABLE_PATHS[case])
-                    or (case in ('integrated-import', 'repeated-migration', *NATURAL_FIXTURES) and Path(name).parent == Path('.')
+                    or (case in ('integrated-import', 'repeated-migration', 'account-quotes', *NATURAL_FIXTURES) and Path(name).parent == Path('.')
                         and name.startswith('test_') and name.endswith('.py'))
                     for name in after.keys() - before.keys()))
 
@@ -255,6 +346,54 @@ def scope_preserved(case, workspace, before):
 def probe(case, workspace):
     case = NATURAL_FIXTURES.get(case, case)
     workspace = Path(workspace)
+    if case == 'account-quotes':
+        script = '''from catalog import Catalog
+from quotes import QuoteService
+catalog = Catalog('data/catalog.json')
+service = QuoteService(catalog)
+for account, sku, expected in [(' NORTH ', 'Widget', 120), ('south', 'Widget', 80),
+                               ('north', 'widget', 45), ('south', 'credit', -7)]:
+    value = service.quote(account, sku)
+    assert value == expected and type(value) is int
+assert catalog.read_count == 4
+for account, sku, expected in [('north', 'Widget', 120), (' SOUTH ', 'Widget', 80),
+                               ('North', 'widget', 45), ('south', 'credit', -7)]:
+    assert service.quote(account, sku) == expected
+assert catalog.read_count == 4, 'warm lookups bypassed cache'
+for account, sku in [('missing', 'Widget'), ('north', 'absent'), ('missing', 'Widget')]:
+    try:
+        service.quote(account, sku)
+    except KeyError:
+        pass
+    else:
+        raise AssertionError('unknown quote returned a value')
+for account, sku in [(None, 'Widget'), ('north', None), ([], 'Widget')]:
+    try:
+        service.quote(account, sku)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('invalid argument accepted')
+assert service.quote('north', 'Widget') == 120
+assert service.quote('south', 'Widget') == 80
+fresh = Catalog('data/catalog.json')
+assert QuoteService(fresh).quote('south', 'Widget') == 80
+assert fresh.read_count == 1, 'cache leaked across services'
+'''
+        result = subprocess.run([sys.executable, '-B', '-c', script], cwd=workspace,
+                                text=True, capture_output=True, timeout=5)
+        assert result.returncode == 0, result.stderr
+        requests = [{'account': account, 'sku': sku} for account, sku in
+                    [('north', 'Widget'), ('south', 'Widget'), (' SOUTH ', 'widget'),
+                     ('north', 'credit'), ('missing', 'Widget'), ('north', 'Widget'), (None, 'Widget')]]
+        result = subprocess.run([sys.executable, '-B', 'quote_cli.py'], cwd=workspace,
+                                input='\n'.join(json.dumps(request) for request in requests) + '\n',
+                                text=True, capture_output=True, timeout=5)
+        assert result.returncode == 0 and not result.stderr, result.stderr
+        assert [json.loads(line) for line in result.stdout.splitlines()] == [
+            {'amount': 120}, {'amount': 80}, {'amount': 30}, {'amount': -3},
+            {'error': 'unknown quote'}, {'amount': 120}, {'error': 'invalid request'}], result.stdout
+        return
     if case == 'direct-total':
         script = 'from app import total; assert total([])==0; assert total([1,None,-3,0])==-2; assert total([None])==0'
         result = subprocess.run([sys.executable, '-B', '-c', script], cwd=workspace, capture_output=True, text=True, timeout=5)
@@ -445,6 +584,8 @@ def assess_case(case, workspace, before, profile):
 
 
 CASES = {
+    'account-quotes': Case(QUOTE_REQUEST, 'skills/fix/SKILL.md', False,
+                          prepare_case, assess_case, allow_reviewers=True),
     'natural-import': Case(CONTRACT.replace('Extend the report importer so it accepts both existing JSON lists and CSV bank exports.',
         'Repair the report importer. CSV bank exports fail, JSON envelopes fail, and account totals are missing.\n'
         'The required behavior is to accept both existing JSON lists and CSV bank exports.') +
@@ -471,6 +612,12 @@ CASES = {
 
 
 def judgment(case):
+    if case == 'account-quotes':
+        return dict(case=case, manual_checks=['prepatch evidence distinguishes competing causes',
+                    'correction follows observed cause and preserves cache/error contracts',
+                    'regression fails behaviorally before production edit and passes after',
+                    'completed proportionate review and composed interface checks'],
+                    warning='Source inspection may distinguish causes; success alone does not prove diagnostic ordering.')
     if case in NATURAL_FIXTURES:
         return dict(case=case, manual_checks=['correct artifacts and preserved scope',
                     'completed independent review for substantial repair',

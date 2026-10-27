@@ -372,7 +372,7 @@ class CoordinationTests(unittest.TestCase):
                 workspace = Path(temporary) / case
                 before = cases.prepare_case(case, workspace)
                 (workspace / 'test_extra.py').write_text('pass\n')
-                self.assertEqual(cases.scope_preserved(case, workspace, before), case in ('integrated-import', 'repeated-migration', 'natural-import', 'natural-total'))
+                self.assertEqual(cases.scope_preserved(case, workspace, before), case in ('integrated-import', 'repeated-migration', 'natural-import', 'natural-total', 'account-quotes'))
 
     def test_poteto_adapter_preserves_inputs_and_permissions(self):
         with tempfile.TemporaryDirectory() as temporary:
