@@ -1,0 +1,7 @@
+test_save_api (__main__.PersistenceChecks) ... ok
+test_save_cli (__main__.PersistenceChecks) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.302s
+
+OK
