@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-30",
+  "library_base": "d0a5d76b8cdbdf9d3fcff4327ebb1c8d505af9f0",
+  "library_dirty": true,
+  "evaluator_base": "bd752da43b956cb5baf024b126ca1a42d5e1b179",
+  "skill_hashes": {
+    "skills/balls/SKILL.md": "c3a788b67ec6e193cb62425590567ea3ddd7bb637e2876278d77c90ad5c38f9f",
+    "skills/challenge/SKILL.md": "1719eea04813db9663457512a892a33b6ff84856a4c64818b614f0ea3d96a6f2",
+    "skills/check/SKILL.md": "5cfac3b7c83076bfe50edaad91c449e6567bf3788b0dc906da19db5c05950ae1",
+    "skills/check/references/comments-and-suppressions.md": "f06dd500c42c0777d8a50298ad895c83a9b2635694ab39f83a79037f28978951",
+    "skills/design/SKILL.md": "8c8bb893257173895f3273c2c659e297a0b64dea1e6f430f3c65e63f55ef1382",
+    "skills/design/references/boundaries.md": "36dd32f34028568884deb8383b72ffcd229b42e8d12afd2231699928982ba9d3",
+    "skills/design/references/competing-designs.md": "5b461a63a0adc2b9ab3e097316b8b5217972cb29d213f6e55648a82e32aa25c5",
+    "skills/design/references/lifecycle.md": "13fc7bae474079e813db1b145ddb40f54cb6f79fdaecd11a3b686de0817f6328",
+    "skills/design/references/migrations.md": "934827dd29827310954ec973bcecdc70dff441648030249093f67dc54368ec34",
+    "skills/design/references/structural-quality.md": "05fbfb2eb2f34669302ed7160e480fe66972149ba3129726666a438e9be82ee5",
+    "skills/design/references/typescript.md": "de83740bfd4d9fda86cb3f1846308d85901966fa4728f830824b596c0471520b",
+    "skills/fix/SKILL.md": "b228995b035699ad3509d2822d1e2c97781b967bc2acf7ac25dd1e5db37f0657",
+    "skills/handoff/SKILL.md": "cdb2114313e2dd48a8df345ee37d364c5af967afa754933fc003c843ed8018ad",
+    "skills/handoff/references/continuation.md": "7c88327e92e20dbb5b2c34993c68930d34633cb0b8b627587320e99a63b8a3b2",
+    "skills/how/SKILL.md": "2c25fccb1ec7519cae57d857b966453360ba692f99055cb5147bd32c107219bc",
+    "skills/pancake/SKILL.md": "638d80ed43070a2c3346ff770cd250b890c7d4274a87760f716ce4534ce26e6d",
+    "skills/pancake/references/change-review.md": "db5ae4486c72557ed67e570e7dd16953431432f0e2de2c9b97265e548f3702e2",
+    "skills/pancake/references/comment-cleanup.md": "6504bff39b17bf773708f5496e7185200c3ef4b6c3670419cba145a3518bbe9a",
+    "skills/pancake/references/decision-trail.md": "283479850d89ef1e39a3dbee5046bfc353bef4a7d06b5fb6b2152c43669e45ff",
+    "skills/pancake/references/experiments-performance.md": "d96534ad08160ae3e22b59eca1729b9e4e560e741f318a708b1dc1316c9c8760",
+    "skills/pancake/references/experiments-prototype.md": "5f9db6470cd73e8769973ad43e9bdd3eac6fe12016dd5deb596baf3442987027",
+    "skills/pancake/references/experiments-skill-evaluation.md": "eebd76df504de1a8549e029a3e5a21d3c3831df981d81800ce12399cf42e0487",
+    "skills/pancake/references/experiments.md": "31bed8fba864e22d7bedfb3b568b76c6a1ab68480fde6e566aafcec1e5fd6a9a",
+    "skills/pancake/references/forensics.md": "8cab5e45557a0a96b26d1149f0176b4953295d8e8d027e7029aaf648cd0ff1db",
+    "skills/pancake/references/host-runtime.md": "068c9706f76080ec0a4d1d5dc45e5713b0275f463bc184373f4b715b7e77550a",
+    "skills/pancake/references/implementation.md": "fe062d079a87852164dc0e6d131924ce23fc4647c90d9ab1765a86c3d0057083",
+    "skills/pancake/references/parallel-work.md": "64fe222d3c3bd632c025dc35d6980ab4d351a4b11fd7972efaac66f15b722315",
+    "skills/pancake/references/pr-maintenance.md": "696dfe88793e8e773f6476e7f2f0d4c21512dde475927ecb3167d9a32ea8c4cb",
+    "skills/pancake/references/shipping.md": "b75aeadd819c541571eeb391982350a1754fc91c28c98546d8080a92c5f86ee1",
+    "skills/pancake/references/substantial-work.md": "69353dc6f72d23138db2849152100490b89dc2c19b7561ee810371042f38dd6a",
+    "skills/pancake/references/values.md": "9c57c9e939749763f9d0594b139185067c421bdaafaf8ed0bb474d156111cdb5",
+    "skills/pancake/references/visual-parity.md": "fb53dcf9f52ce1656a07d960eed2b73487647512542abd3c824a32aac515755a",
+    "skills/pancake/references/worktree-cleanup.md": "37adee93745772832e20718dbcd0dacac37d292db5337557bd1c2a3df4765f38",
+    "skills/pr/SKILL.md": "318559f250165078cab0d23ee5bd156da49996418666e7b8bb6d0aa5d5de126a",
+    "skills/recap/SKILL.md": "30abbe05b1bfe101a254d8a882f241e08052033c181c4324cf80e4f79fa34f8d",
+    "skills/reflect/SKILL.md": "a0c22f7e0c867a44528f91018cc7c2d9b68db0932f397c575e3ea411d72ecf93",
+    "skills/reflect/references/personalization.md": "e33f579d27c95cf214d2c04da37e182dfe16430db9ea37c967768a765470e457",
+    "skills/scope/SKILL.md": "b19e4150374c8de83b790a4958070d5559627b2c78e2a1e593a5f5901e8c3ff0",
+    "skills/setup/SKILL.md": "958edcdc429b522b6146b5ebbf617783a413501e3cd4c0d94a38f9037f3cf9fc",
+    "skills/sift/SKILL.md": "a99a0df9ad51d9849c1e97c77215f3e1fd4a9742c5c52f9c92e0cff6ea166394",
+    "skills/sift/references/technical-writing.md": "6d415b30db28801d9764aa68546f63b87f607d2602b8aff938205e29c6659aed",
+    "skills/tdd/SKILL.md": "142f35dcb21fbf809ea0371818e3528e8bf0e36ea5c98ecc46f43cb18c73c7b7",
+    "skills/teach/SKILL.md": "af06604759033e31a3847fe3e75627ccb0721b61f66fd51abfcd1f64060c43e9",
+    "skills/verify/SKILL.md": "6a4bc5a0f2bcf7b972f88ee36d75bf55fa8b571832182e27fd58c26cec6ee23b",
+    "skills/verify/references/existing-fix.md": "9604acbdb99f7fe0f5d47d8e0349cf335e5df2e07e5614fd10841dc2737d5bf4",
+    "skills/verify/references/failure-detection.md": "c1e62b19b76f437e59432a412d1e84b0c860b832813c4df74780411a566c24e2",
+    "skills/verify/references/formal-verification.md": "1728858bcf0f1f58167f5013ead5d8004e50f806c0536439c50124ff33ad42ed",
+    "skills/verify/references/maintenance.md": "9a2a17d52439d971817f6fa5d48d1b9ccb538987cbfdd5d04793bd1bd01b1fbd",
+    "skills/verify/references/recipes.md": "56731ee27296b715420ddb87008be49730ab9949f7c660a6904089be701cc67e",
+    "skills/why/SKILL.md": "27b5f43bbf845019ed5f98e370b09871397b19ba005c6b1d9bbcf78ef48b1581",
+    "skills/wtf/SKILL.md": "0b4cb6fb0c61c3c16058f40c4aa1f4e2e87d872f083dd3aec726c5fd17f77691"
+  },
+  "runtime": "Codex collaboration fresh contexts; inherited model/effort; Python 3.9.6",
+  "trials": [
+    {
+      "agent": "/root/trial_harness",
+      "outcome": "Both supported writers exercised; whitespace corruption rejected; restored original passed",
+      "scope_deviation": "Initial tempfile use outside authorized /tmp; removed and final runs used TMPDIR=/tmp."
+    },
+    {
+      "agent": "/root/trial_attribution",
+      "outcome": "Zero-limit regression reported; existing zero-count ratio defect separated."
+    },
+    {
+      "agent": "/root/trial_model",
+      "outcome": "Passing model insufficient; four of six real worker schedules violate contract; concrete replay provided."
+    },
+    {
+      "agent": "/root/trial_existing_fix",
+      "outcome": "Baseline zero failure and patched success confirmed; six patched cases passed."
+    },
+    {
+      "agent": "/root/trial_inconclusive",
+      "outcome": "None report does not reproduce on baseline; causal fix claim inconclusive."
+    }
+  ]
+}

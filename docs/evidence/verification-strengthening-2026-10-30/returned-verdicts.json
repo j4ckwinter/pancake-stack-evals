@@ -1,0 +1,45 @@
+{
+  "note": "Selected returned-agent observations, transcribed from final replies. These are reports, not raw execution traces.",
+  "trial_attribution": {
+    "finding": "P2 zero limit returns all items instead of none; baseline returns none",
+    "separate_issue": "ratio(10,0) raises ZeroDivisionError in both baseline and patch",
+    "reported_checks": [
+      "None limit",
+      "0 limit",
+      "1 limit",
+      "ratio"
+    ]
+  },
+  "trial_model": {
+    "verdict": "Passing model does not verify worker; reproduced product violation",
+    "reported_model_result": "all model schedules passed",
+    "reported_real_schedules": 6,
+    "reported_violations": 4,
+    "reported_replay": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "reported_scope": "two actors, four productive calls, supplied initial state; no edits"
+  },
+  "trial_existing_fix": {
+    "verdict": "Confirmed for exercised scenario",
+    "reported_baseline": "926007106d0cad636509cbc864634fecd86c6f01",
+    "reported_patch": "7fe584ff3eecf5d39c344eb6f93167027a532fc1",
+    "reported_inputs_repr": [
+      "0",
+      "None",
+      "''",
+      "False",
+      "1",
+      "'hello'"
+    ],
+    "reported_scope": "library interface only; target clean; scratch copies removed"
+  },
+  "trial_inconclusive": {
+    "verdict": "None report inconclusive because baseline does not reproduce",
+    "reported_observation": "Both revisions return unset for None; zero correction is separate",
+    "reported_scope": "No separate display interface; target clean; scratch copies removed"
+  }
+}

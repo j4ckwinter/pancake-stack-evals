@@ -1,0 +1,30 @@
+Sanitized transcript: the original macOS temporary directory is replaced by <ORIGINAL_TEMP_DIR>; trailing whitespace is stripped for publication.
+test_save_api (__main__.PersistenceChecks) ... test_save_cli (__main__.PersistenceChecks) ...
+======================================================================
+FAIL: test_save_api (__main__.PersistenceChecks) (value='  padded\t ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<ORIGINAL_TEMP_DIR>/verify.py", line 38, in check_writer
+    self.assertEqual(read_fresh(path), value)
+AssertionError: 'padded' != '  padded\t '
+- padded
++   padded
+? ++      ++
+
+
+======================================================================
+FAIL: test_save_cli (__main__.PersistenceChecks) (value='  padded\t ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<ORIGINAL_TEMP_DIR>/verify.py", line 38, in check_writer
+    self.assertEqual(read_fresh(path), value)
+AssertionError: 'padded' != '  padded\t '
+- padded
++   padded
+? ++      ++
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.306s
+
+FAILED (failures=2)

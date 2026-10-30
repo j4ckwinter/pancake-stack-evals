@@ -1,0 +1,131 @@
+{
+  "origin": "Lead replay after fresh-agent trials; independent of agent claims",
+  "harness": {
+    "valid": 0,
+    "broken_new_harness": 1,
+    "broken_original_harness": 0,
+    "restored": 0,
+    "broken_output": "test_save_api (__main__.PersistenceChecks) ... test_save_cli (__main__.PersistenceChecks) ... \n======================================================================\nFAIL: test_save_api (__main__.PersistenceChecks) (value='  padded\\t ')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<REPLAY_TARGET>/verify.py\", line 38, in check_writer\n    self.assertEqual(read_fresh(path), value)\nAssertionError: 'padded' != '  padded\\t '\n- padded\n+   padded\t \n? ++      ++\n\n\n======================================================================\nFAIL: test_save_cli (__main__.PersistenceChecks) (value='  padded\\t ')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<REPLAY_TARGET>/verify.py\", line 38, in check_writer\n    self.assertEqual(read_fresh(path), value)\nAssertionError: 'padded' != '  padded\\t '\n- padded\n+   padded\t \n? ++      ++\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.353s\n\nFAILED (failures=2)\n",
+    "path_note": "Replay workspace path replaced with <REPLAY_TARGET>."
+  },
+  "zero_limit": {
+    "before": [],
+    "after": [
+      1,
+      2,
+      3
+    ]
+  },
+  "worker_schedules": [
+    {
+      "schedule": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "deliveries": 1
+    },
+    {
+      "schedule": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "deliveries": 2
+    },
+    {
+      "schedule": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "deliveries": 2
+    },
+    {
+      "schedule": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "deliveries": 2
+    },
+    {
+      "schedule": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "deliveries": 2
+    },
+    {
+      "schedule": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "deliveries": 1
+    }
+  ],
+  "labels": [
+    {
+      "input_repr": "0",
+      "before": "unset",
+      "after": "0",
+      "expected": "0"
+    },
+    {
+      "input_repr": "None",
+      "before": "unset",
+      "after": "unset",
+      "expected": "unset"
+    },
+    {
+      "input_repr": "''",
+      "before": "unset",
+      "after": "",
+      "expected": ""
+    },
+    {
+      "input_repr": "False",
+      "before": "unset",
+      "after": "False",
+      "expected": "False"
+    },
+    {
+      "input_repr": "1",
+      "before": "1",
+      "after": "1",
+      "expected": "1"
+    },
+    {
+      "input_repr": "'hello'",
+      "before": "hello",
+      "after": "hello",
+      "expected": "hello"
+    }
+  ],
+  "read_only_targets": {
+    "target-b": {
+      "tracked_diff": "",
+      "untracked": "change.diff\n"
+    },
+    "target-c": {
+      "tracked_diff": "",
+      "untracked": ""
+    },
+    "target-d": {
+      "tracked_diff": "",
+      "untracked": ""
+    },
+    "target-e": {
+      "tracked_diff": "",
+      "untracked": ""
+    }
+  }
+}
