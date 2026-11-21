@@ -24,6 +24,7 @@ each report keeps its methods, results, and limits together.
 
 | report | what it looks at |
 | --- | --- |
+| [claude workflow checks](docs/claude-workflow-checks.md) | economy-model gathering, multi-model vs same-model review, the 0.21.23 values consolidation, and requested delegate settings on authenticated Claude Code. |
 | [execution path improvements](docs/execution-paths.md) | shorter implementation guidance, selective design competition, a rejected extraction, and a pinned Poteto repository review. |
 | [measured gap decisions](docs/measured-gap-decisions.md) | natural-request routing, unrelated acceptance paths, corrected raw-tool evidence, and selective experiment references. |
 | [sequential skill-gap decisions](docs/skill-gap-decisions.md) | acceptance-path review, direct repair entrypoints, shared review ownership, a rejected split, and source routing. |

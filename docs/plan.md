@@ -81,7 +81,7 @@ The completed list records delivered guidance and repository work. The dated sec
 
 ## Next
 
-- Run authenticated Claude How, Fix, Check, Setup interaction, reviewer panels, and competing Design. Verify requested versus applied model and effort separately. This environment reports no Claude authentication.
+- Find review cases hard enough to separate multi-model from same-model review, and guard cases that provoke a violation from the older skill tree. The [Claude workflow checks](claude-workflow-checks.md) of 21 November 2026 ran authenticated How, Fix, Check, Setup, reviewer panels and competing Design, and saturated both comparisons.
 - Verify Git-backed Claude installation after the host metadata is available on the remote source.
 - Verify visible VS Code labels, picker filtering, and namespaced invocation in a fresh chat. Backend discovery does not establish the visible result.
 - Exercise a host with genuinely absent collaboration tools. Rejected selections, partial Design exploration, a rejected judge, and delegation outside task permissions now have observed fallback results.
