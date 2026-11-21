@@ -34,6 +34,7 @@ CASES_TO_RUN = ("summary", "records", "exporter")
 
 
 COMPARISON_CASES = ("label", "contract")
+CATALOG_SIZE = 21
 
 
 def skill_catalog(bundle):
@@ -46,8 +47,8 @@ def skill_catalog(bundle):
         if set(fields) != {'name', 'description'} or fields['name'] != path.parent.name:
             raise ValueError(f'invalid catalog metadata: {path}')
         catalog.append(dict(fields, path=str(path)))
-    if len(catalog) != 19:
-        raise ValueError('routing suite requires the complete 19-skill catalog')
+    if len(catalog) != CATALOG_SIZE:
+        raise ValueError(f'routing suite requires the complete {CATALOG_SIZE}-skill catalog')
     return catalog
 
 

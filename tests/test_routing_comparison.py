@@ -9,7 +9,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from behavioral import routing_cases as cases, routing_compare as runner
-from behavioral.compare import run_trial, skill_catalog, trial_plan
+from behavioral.compare import CATALOG_SIZE, run_trial, skill_catalog, trial_plan
 from behavioral.context_recovery import git_environment
 from behavioral.workflow_cases import Case
 from target import source_root
@@ -54,7 +54,7 @@ class RoutingComparisonTests(unittest.TestCase):
     def test_catalog_matches_actual_frontmatter(self):
         source = source_root()
         catalog = skill_catalog(source)
-        self.assertEqual(len(catalog), 19)
+        self.assertEqual(len(catalog), CATALOG_SIZE)
         for item in catalog:
             text = Path(item['path']).read_text().split('---')[1]
             self.assertIn('\nname: ' + item['name'] + '\n', text)
