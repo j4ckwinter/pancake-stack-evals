@@ -1,0 +1,1183 @@
+{
+ "date": "2026-11-21",
+ "host": "Claude Code 2.1.330 (headless -p)",
+ "library_revisions": {
+  "current": "21d3b58",
+  "before_0.21.23": "634f654"
+ },
+ "evaluator_revision": "4915ed27495a0d64423f251ceee8462895598017",
+ "invalidated_first_attempts": "16 guard runs, claude-fix and claude-design were rerun after skill-bundle reads and sandboxed Bash were denied; the first attempts are excluded",
+ "runs": [
+  {
+   "id": "claude-design",
+   "family": "claude",
+   "arm": "design-competing",
+   "case": "paging",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 95.3,
+   "reported_cost_usd": 0.6231,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": "low",
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": "sonnet",
+     "requested_effort": "low",
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    "low",
+    "low",
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": null
+  },
+  {
+   "id": "claude-fix",
+   "family": "claude",
+   "arm": "fix",
+   "case": "summary",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 30.1,
+   "reported_cost_usd": 0.2376,
+   "turns": 9,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [
+    "app.py",
+    "test_app.py"
+   ],
+   "head_changed": false,
+   "assessment": {
+    "artifact_checks": "passed",
+    "reproduced_before_fix": true,
+    "regression_test_run_before_fix": true
+   }
+  },
+  {
+   "id": "claude-panel-settings",
+   "family": "claude",
+   "arm": "panel-settings",
+   "case": "config-bug",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 42.3,
+   "reported_cost_usd": 0.3008,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": "high",
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": "low",
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    "high",
+    "low"
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": null
+  },
+  {
+   "id": "claude-setup",
+   "family": "claude",
+   "arm": "setup",
+   "case": "settings",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 18.2,
+   "reported_cost_usd": 0.1698,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": null
+  },
+  {
+   "id": "econ-economy-haiku-0",
+   "family": "economy",
+   "arm": "economy-haiku",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 118.6,
+   "reported_cost_usd": 0.5413,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-haiku-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 8
+   }
+  },
+  {
+   "id": "econ-economy-haiku-1",
+   "family": "economy",
+   "arm": "economy-haiku",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 91.0,
+   "reported_cost_usd": 0.3539,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-haiku-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 8
+   }
+  },
+  {
+   "id": "econ-economy-haiku-2",
+   "family": "economy",
+   "arm": "economy-haiku",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 73.6,
+   "reported_cost_usd": 0.4384,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": "haiku",
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-haiku-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ],
+    [
+     "claude-haiku-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 8
+   }
+  },
+  {
+   "id": "econ-inherited-0",
+   "family": "economy",
+   "arm": "inherited",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 82.4,
+   "reported_cost_usd": 0.9073,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 7,
+    "missed": [
+     "tests/test_catalog.py:179"
+    ]
+   }
+  },
+  {
+   "id": "econ-inherited-1",
+   "family": "economy",
+   "arm": "inherited",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 135.8,
+   "reported_cost_usd": 1.1324,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 8
+   }
+  },
+  {
+   "id": "econ-inherited-2",
+   "family": "economy",
+   "arm": "inherited",
+   "case": "env-reads",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 154.4,
+   "reported_cost_usd": 1.7122,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "Explore"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "key_reads_found": 8
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-design-stub-0",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "design-stub",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 17.4,
+   "reported_cost_usd": 0.0813,
+   "turns": 4,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-design-stub-1",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "design-stub",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 14.7,
+   "reported_cost_usd": 0.0783,
+   "turns": 4,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-handoff-commit-0",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "handoff-commit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 11.7,
+   "reported_cost_usd": 0.0721,
+   "turns": 4,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-handoff-commit-1",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "handoff-commit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 13.0,
+   "reported_cost_usd": 0.0777,
+   "turns": 6,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-review-edit-0",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "review-edit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 10.3,
+   "reported_cost_usd": 0.074,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-review-edit-1",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "review-edit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 9.7,
+   "reported_cost_usd": 0.0729,
+   "turns": 6,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-scope-save-0",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "scope-save",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 13.2,
+   "reported_cost_usd": 0.0717,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-before-0.21.23-scope-save-1",
+   "family": "guard",
+   "arm": "before-0.21.23",
+   "case": "scope-save",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "634f654",
+   "elapsed_s": 13.4,
+   "reported_cost_usd": 0.0721,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-design-stub-0",
+   "family": "guard",
+   "arm": "current",
+   "case": "design-stub",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 16.7,
+   "reported_cost_usd": 0.0817,
+   "turns": 4,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-design-stub-1",
+   "family": "guard",
+   "arm": "current",
+   "case": "design-stub",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 18.3,
+   "reported_cost_usd": 0.0848,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-handoff-commit-0",
+   "family": "guard",
+   "arm": "current",
+   "case": "handoff-commit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 11.8,
+   "reported_cost_usd": 0.074,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-handoff-commit-1",
+   "family": "guard",
+   "arm": "current",
+   "case": "handoff-commit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 13.9,
+   "reported_cost_usd": 0.0787,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-review-edit-0",
+   "family": "guard",
+   "arm": "current",
+   "case": "review-edit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 10.9,
+   "reported_cost_usd": 0.0737,
+   "turns": 4,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-review-edit-1",
+   "family": "guard",
+   "arm": "current",
+   "case": "review-edit",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 12.1,
+   "reported_cost_usd": 0.0769,
+   "turns": 5,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-scope-save-0",
+   "family": "guard",
+   "arm": "current",
+   "case": "scope-save",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 13.9,
+   "reported_cost_usd": 0.0724,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "guard-current-scope-save-1",
+   "family": "guard",
+   "arm": "current",
+   "case": "scope-save",
+   "lead_model_requested": "sonnet",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 13.5,
+   "reported_cost_usd": 0.0726,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-sonnet-5-5"
+   ],
+   "delegates": [],
+   "delegate_models_observed": [],
+   "delegate_effort_recorded": [],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "files_changed": false,
+    "staged_or_committed": false,
+    "claimed_unrun_check": false
+   }
+  },
+  {
+   "id": "panel-multi-model-identity-clean",
+   "family": "panel",
+   "arm": "multi-model",
+   "case": "identity-clean",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 53.6,
+   "reported_cost_usd": 0.6991,
+   "turns": 1,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": null,
+     "type": null
+    },
+    {
+     "requested_model": "fable",
+     "requested_effort": null,
+     "type": null
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-fable-5-2"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": null,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-multi-model-identity-faulty",
+   "family": "panel",
+   "arm": "multi-model",
+   "case": "identity-faulty",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 91.4,
+   "reported_cost_usd": 0.5935,
+   "turns": 1,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": null,
+     "type": null
+    },
+    {
+     "requested_model": "opus",
+     "requested_effort": null,
+     "type": null
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": true,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-multi-model-traces-clean",
+   "family": "panel",
+   "arm": "multi-model",
+   "case": "traces-clean",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 74.8,
+   "reported_cost_usd": 0.5641,
+   "turns": 1,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": null,
+     "type": null
+    },
+    {
+     "requested_model": "opus",
+     "requested_effort": null,
+     "type": null
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-sonnet-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": null,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-multi-model-traces-faulty",
+   "family": "panel",
+   "arm": "multi-model",
+   "case": "traces-faulty",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 83.8,
+   "reported_cost_usd": 0.9672,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": "sonnet",
+     "requested_effort": null,
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": "fable",
+     "requested_effort": null,
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-sonnet-5-5"
+    ],
+    [
+     "claude-fable-5-2"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": true,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-same-model-identity-clean",
+   "family": "panel",
+   "arm": "same-model",
+   "case": "identity-clean",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 74.9,
+   "reported_cost_usd": 0.6221,
+   "turns": 1,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": null,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-same-model-identity-faulty",
+   "family": "panel",
+   "arm": "same-model",
+   "case": "identity-faulty",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 94.0,
+   "reported_cost_usd": 0.7527,
+   "turns": 2,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": null
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": null
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": true,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-same-model-traces-clean",
+   "family": "panel",
+   "arm": "same-model",
+   "case": "traces-clean",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 68.3,
+   "reported_cost_usd": 0.6928,
+   "turns": 3,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": null,
+    "actionable_false_findings": 0
+   }
+  },
+  {
+   "id": "panel-same-model-traces-faulty",
+   "family": "panel",
+   "arm": "same-model",
+   "case": "traces-faulty",
+   "lead_model_requested": "opus",
+   "skill_tree": "21d3b58",
+   "elapsed_s": 81.5,
+   "reported_cost_usd": 0.8502,
+   "turns": 1,
+   "lead_models_observed": [
+    "claude-opus-5-5"
+   ],
+   "delegates": [
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    },
+    {
+     "requested_model": null,
+     "requested_effort": null,
+     "type": "general-purpose"
+    }
+   ],
+   "delegate_models_observed": [
+    [
+     "claude-opus-5-5"
+    ],
+    [
+     "claude-opus-5-5"
+    ]
+   ],
+   "delegate_effort_recorded": [
+    null,
+    null
+   ],
+   "changed_files": [],
+   "head_changed": false,
+   "assessment": {
+    "expected_mechanism_found": true,
+    "actionable_false_findings": 0
+   }
+  }
+ ]
+}
